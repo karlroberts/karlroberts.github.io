@@ -37,4 +37,4 @@ Piped Streams, Producers and consumers
 
 P & C's are drivers, usually running in their own Thread
 Piped Streams are Streams whose head or tail must be attached to the oposite kind
-
+[see][1](http://www.certpal.com/blogs/2010/11/using-a-pipedinputstream-and-pipedoutputstream/)
