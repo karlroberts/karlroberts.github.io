@@ -1,11 +1,11 @@
 ---
 layout: page
-title: "marshalling"
+title: "Marshalling in Spray.io"
 date: 2014-05-06 08:31
 comments: true
 sharing: true
 footer: true
-published: false
+published: true
 categories: [spray, spray.io, marshalling, scala]
 ---
 Marshalling in spray.io
