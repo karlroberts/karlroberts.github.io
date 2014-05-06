@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: http://karlroberts.github.io
-title: Karl's Stuff
-subtitle: code related stuff
+title: Karl's Code
+subtitle: and other code related stuff
 author: Karl Roberts
 simple_search: http://google.com/search
-description:
+description: 
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -63,13 +63,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: karlroberts
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: MrK4rl
 twitter_tweet_button: true
 
 # Google +1
