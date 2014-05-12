@@ -7,5 +7,6 @@ sharing: true
 footer: true
 ---
 * Hazelcast
-  - [meetup1-demo](./talks/hazelcast/meetup1-intro/index.html)
+  - [meetup1-demo](./hazelcast/meetup1-intro/index.html)
+  - [meetup1-demolocal](./talks/hazelcast/meetup1-intro/index.html)
 
