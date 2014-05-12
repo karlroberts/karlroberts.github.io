@@ -2,46 +2,50 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://karlroberts.github.io/research/me/known-string-fast-hash.html</loc>
-        <lastmod>2014-05-09T00:25:48+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/research/me/akka-failure-tolerence-semanics.html</loc>
-        <lastmod>2014-05-09T13:24:37+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/apm/agent/automagic-aspects.html</loc>
-        <lastmod>2014-05-07T08:02:07+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/robots.txt</loc>
-        <lastmod>2014-05-07T08:01:40+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/</loc>
-        <lastmod>2014-05-07T08:01:40+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/talks/hazelcast/meetup1-intro/index.markdown.orig</loc>
-        <lastmod>2014-05-12T12:27:02+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
+    </url>
+    <url>
+        <loc>http://karlroberts.github.io/talks/hazelcast/meetup1-intro/</loc>
+        <lastmod>2014-05-12T14:02:08+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/talks/</loc>
-        <lastmod>2014-05-12T13:52:40+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/blog/archives/</loc>
-        <lastmod>2014-05-07T08:01:40+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/about/</loc>
-        <lastmod>2014-05-07T08:02:07+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/programming/gotchas/spray/marshalling.html</loc>
-        <lastmod>2014-05-07T08:02:07+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
     <url>
         <loc>http://karlroberts.github.io/programming/gotchas/spray/marshalling.html</loc>
-        <lastmod>2014-05-07T08:04:27+10:00</lastmod>
+        <lastmod>2014-05-12T13:58:36+10:00</lastmod>
     </url>
 </urlset>
