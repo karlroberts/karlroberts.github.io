@@ -1,25 +1,24 @@
 ## Overview
 + What am I doing here?
 + (Cache | !Cache)?
-  - Why not always cache?
 + My Test App
 + Spray.io & Akka
 + Hazelcast
-  - architecture not code
+  - architecture not code <!-- .element: class="fragment" -->
 + Demo
 + TODO
 
 ---
 
 ## What am I doing here?
+![Alt Ecetera logo](./images/Ecetera_Logo_Grey.png) <!-- .element: class="fragment" ata-fragment-index="1" -->
 
-> &ldquo;Ridding the world of badly behaving Web applications&rdquo; <!-- .element: class="fragment" data-fragment-index="2" -->
-  >> <small>Peter Brown, CEO Ecetera</small>                         <!-- .element: class="fragment" data-fragment-index="1" -->
+> &ldquo;Ridding the world of badly behaving Web applications&rdquo; <!-- .element: class="fragment" data-fragment-index="3" -->
+  >> <small>Peter Brown, CEO Ecetera</small>                         <!-- .element: class="fragment" data-fragment-index="2" -->
 
 ---
 
 ## (Cache | !Cache)? 
-+ 
 + Rememering stuff you've seen before speeds up apps 
 + Caching is good!                                   
   - right?                                           <!-- .element: class="fragment" -->
@@ -54,9 +53,6 @@ Note: CAP Consistency Availably Performance - can have 2 of these when distribut
 
 + Caching is good!                                  
   - maybe                                           <!-- .element: class="fragment" -->
-  - ![Alt arms cache](./images/arms_cache1.jpg)     <!-- .element: class="fragment" -->
-  - They sometime blow up!                          <!-- .element: class="fragment" -->
-
-
-
-
+  - ![Alt arms cache](./images/arms_cache1.jpg)  <!-- .element: class="fragment" -->
+    <small>weapons cache</small>    <!-- .element: class="fragment" -->
+  - They will complicate your life!                          <!-- .element: class="fragment" -->
