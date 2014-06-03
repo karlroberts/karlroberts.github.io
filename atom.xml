@@ -4,7 +4,7 @@
   <title><![CDATA[Karl's Code]]></title>
   <link href="http://karlroberts.github.io/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2014-06-03T14:01:33+10:00</updated>
+  <updated>2014-06-03T14:05:45+10:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -20,7 +20,7 @@
     <id>http://karlroberts.github.io/blog/2014/06/03/installing-octopress-the-missing-manual</id>
     <content type="html"><![CDATA[<h2>Ruby pain</h2>
 
-<p>The main problems installing octopress are that it relies on ruby environment.
+<p>The main problems installing octopress is that it relies on a ruby environment.
 This would be fine except it also relies on Ruby having been compiled with certain libraries available in order for the bundler to work as per the octopress doco.</p>
 
 <h2>Missing libraries</h2>
