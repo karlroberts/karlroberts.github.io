@@ -9,7 +9,7 @@
   <meta name="author" content="Karl Roberts">
 
   
-  <meta name="description" content="Meetup1-intro May 12th, 2014 May 12th, 2014 Tweet Recent Posts GitHub Repos Status updating... @karlroberts on GitHub $(document).ready(function(){ &hellip;">
+  <meta name="description" content="Meetup1-intro May 12th, 2014 May 12th, 2014 Tweet Recent Posts Installing Octopress: The Missing Manual GitHub Repos Status updating... @karlroberts &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -124,6 +124,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/03/installing-octopress-the-missing-manual/">Installing Octopress: The Missing Manual</a>
+      </li>
     
   </ul>
 </section>

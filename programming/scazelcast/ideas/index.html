@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Automagic Aspects - Karl's Code</title>
+  <title>Ideas - Karl's Code</title>
   <meta name="author" content="Karl Roberts">
 
   
-  <meta name="description" content="Automagic Aspects Mar 24th, 2014 As a developer it is natural to abstract and encode this stuff that you end up doing more than once so we &ldquo; &hellip;">
+  <meta name="description" content="Ideas May 14th, 2014 Serialisation via pickling lib, no reflections
+Linked List for immutable List
+ResourceMonad to clear up Distributed locks via &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://karlroberts.github.io/apm/agent/automagic-aspects.html">
+  <link rel="canonical" href="http://karlroberts.github.io/programming/scazelcast/ideas">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
@@ -67,7 +69,7 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Automagic Aspects</h1>
+    <h1 class="entry-title">Ideas</h1>
     <p class="meta">
 
 
@@ -80,16 +82,23 @@
   
 
 
-<time datetime="2014-03-24T08:53:00+11:00" pubdate data-updated="true">Mar 24<span>th</span>, 2014</time></p>
+<time datetime="2014-05-14T14:46:00+10:00" pubdate data-updated="true">May 14<span>th</span>, 2014</time></p>
   </header>
   
-  <p>As a developer it is natural to abstract and encode this stuff that you end up doing more than once so we &ldquo;Don&rsquo;t Repeat Yourself&rdquo; (DRY).
-Working for a <a href="http://www.ecetera.com.au">performance tuning company</a> some themes come up again and again. In order to tune a system it is first necessary to to be able to measure and monitor the systems performance. Application Performance Monitoring (APM) kicks up a number of themes that we&rsquo;ve noticed keep recurring in our discussions with customers.</p>
+  <ul>
+<li>Serialisation via pickling lib, no reflections</li>
+<li>Linked List for immutable List</li>
+<li><h2>ResourceMonad to clear up Distributed locks via destroy(), loan pattern</h2></li>
+<li><h2>Topic, onMessage must be and actor dispatch :&ndash;)</h2></li>
+<li>to come PartitionProcessors can run ops on all stuff on a partions, make it monadic</li>
+<li>trees hard to partition, why not on 5 depth partition?? or Cord  this is hard so lets sort it functionally :&ndash;)</li>
+<li>if not portable serialisation then reflectionis used to do Queries on a value, &ldquo;if(age > 32)&rdquo; would look up age part by reflection, poratbles dont do this the Class Def is encoded with it.
 
-<ol>
-<li>Centralise your logging and informatics.</li>
-<li>When user transactions span systems attach a correlation ID that is picked up and propagated to any other systems that the transaction touches.</li>
-</ol>
+<ul>
+<li>Pickling seems buffer</li>
+</ul>
+</li>
+</ul>
 
 
   
@@ -108,21 +117,13 @@ Working for a <a href="http://www.ecetera.com.au">performance tuning company</a>
   
 
 
-<time datetime="2014-03-24T08:53:00+11:00" pubdate data-updated="true">Mar 24<span>th</span>, 2014</time>
+<time datetime="2014-05-14T14:46:00+10:00" pubdate data-updated="true">May 14<span>th</span>, 2014</time>
         
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/apm/'>apm</a>, <a class='category' href='/blog/categories/javaagent/'>javaagent</a>, <a class='category' href='/blog/categories/performance-monitoring/'>performance monitoring</a>
-  
-</span>
-
-
       </p>
       
         <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/apm/agent/automagic-aspects.html" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/apm/agent/automagic-aspects.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/programming/scazelcast/ideas/index.html" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/programming/scazelcast/ideas/index.html" >Tweet</a>
   
   
   

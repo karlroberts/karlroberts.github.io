@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Marshalling in Spray.io - Karl's Code</title>
+  <title>Marshalling - Karl's Code</title>
   <meta name="author" content="Karl Roberts">
 
   
-  <meta name="description" content="Marshalling in Spray.io May 6th, 2014 Marshalling in spray.io Issue When generating output from a Data type Spray looks for implicit Marshaller or &hellip;">
+  <meta name="description" content="Marshalling May 6th, 2014 Marshalling in spray.io
+======================= ## Issue When generating output from a Data type Spray looks for implicit &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,7 +68,7 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Marshalling in Spray.io</h1>
+    <h1 class="entry-title">Marshalling</h1>
     <p class="meta">
 
 
@@ -83,32 +84,40 @@
 <time datetime="2014-05-06T08:31:00+10:00" pubdate data-updated="true">May 6<span>th</span>, 2014</time></p>
   </header>
   
-  <h1>Marshalling in spray.io</h1>
+  Marshalling in spray.io
+=======================
 
-<h2>Issue</h2>
+## Issue
 
-<p>When generating output from a Data type Spray looks for implicit Marshaller or UnMarshallers in the scope of the route in question.</p>
+When generating output from a Data type Spray looks for implicit Marshaller or UnMarshallers in the scope of the route in question.
 
-<p>There are some default marshallers for most of the common value types such as Int Long String and the Collections, as well as automatic marshallers for case classes</p>
+There are some default marshallers for most of the common value types such as Int Long String and the Collections, as well as automatic marshallers for case classes
 
-<p>However these may or may not be available, because:&ndash;</p>
+However these may or may not be available, because:-
 
-<ul>
-<li>Your type has not been added to the Marshaller typeclass</li>
-<li>Your type is a case class but some of it&rsquo;s fields have no marshallern</li>
-<li>You invoke a Future using the ask pattern and there is no execution context in scope.</li>
-</ul>
+* Your type has not been added to the Marshaller typeclass
+* Your type is a case class but some of it&#8217;s fields have no marshallern 
+* You invoke a Future using the ask pattern and there is no execution context in scope.
 
+### Example
 
-<h3>Example</h3>
+* consider this [route](http://spray.io/documentation/1.2.1/spray-routing/) from the Spray route [Example project](https://github.com/spray/spray/blob/master/examples/spray-routing/on-spray-can/src/main/scala/spray/examples/DemoService.scala) 
 
-<ul>
-<li>consider this <a href="http://spray.io/documentation/1.2.1/spray-routing/">route</a> from the Spray route <a href="https://github.com/spray/spray/blob/master/examples/spray-routing/on-spray-can/src/main/scala/spray/examples/DemoService.scala">Example project</a></li>
-<li>the route that get&rsquo;s the Stats is the problem</li>
-</ul>
+<figure class='code'><figcaption><span>Coffeescript Tricks start:51 mark:51,54-55 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># Given an alphabet:</span>
+</span><span class='line'><span class="nv">alphabet = </span><span class="s">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Iterate over part of the alphabet:</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">letter</span> <span class="k">for</span> <span class="nx">letter</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">[</span><span class="mi">4</span><span class="p">..</span><span class="mi">8</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
 
-
-<figure class='code'><figcaption><span>&#8220;DemoSevice.scala&#8221; start:35 mark:38,64-69</span><a href='https://github.com/spray/spray/blob/master/examples/spray-routing/on-spray-can/src/main/scala/spray/examples/DemoService.scala'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Demo start:35 mark:38,64-69 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -187,187 +196,6 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>the code calls the listener actor, the one that sends the Bound message, and passes it the <code>Http.GetStats</code> message.</li>
-<li>that actor responds with a Stats object.</li>
-<li>to prevent blocking the code uses the ask pattern to get a Future[Stats] object, ask returns a Future[Any] so it is cast to Future[Stats]</li>
-<li><p>complete looks for a way to marshall Stats to a HttpEntity but runs into trouble&hellip;.</p>
-
-<ul>
-<li>lets break it down</li>
-</ul>
-</li>
-<li><p>Execution Context</p></li>
-<li>if you kick of a Future, eg with the ask pattern for the Stats, you must include the following
-
-<ul>
-<li>This uses the default execution context of the actor system and makes it implicitly available</li>
-</ul>
-</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>&#8220;execution context&#8221; start:38 mark:39</span><a href='https://github.com/spray/spray/blob/master/examples/spray-routing/on-spray-can/src/main/scala/spray/examples/DemoService.scala'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'>  <span class="c1">// we use the enclosing ActorContext&#39;s or ActorSystem&#39;s dispatcher for our Futures and Scheduler</span>
-</span><span class='line'>  <span class="k">implicit</span> <span class="k">def</span> <span class="n">executionContext</span> <span class="k">=</span> <span class="n">actorRefFactory</span><span class="o">.</span><span class="n">dispatcher</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>failure to do so will rsult in an error like, note we are trying to create a <code>Marshaller[Future[Stats]]</code></li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[error] DemoService.scala:68: could not find implicit value for parameter marshaller: spray.httpx.marshalling.ToResponseMarshaller[scala.concurrent.Future[spray.can.server.Stats]]
-</span><span class='line'>[error]               .mapTo[Stats]</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>Can&rsquo;t marshall</li>
-<li>the marshalling system for Spray needs an implicit marshaller for Stats</li>
-<li>Stats doesn not have one in it&rsquo;s companion object</li>
-<li>in fact it doesn&rsquo;t have a companion object it is a case class</li>
-<li>note the error is identical to the previous which is annoying!</li>
-</ol>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[error] DemoService.scala:68: could not find implicit value for parameter marshaller: spray.httpx.marshalling.ToResponseMarshaller[scala.concurrent.Future[spray.can.server.Stats]]
-</span><span class='line'>[error]               .mapTo[Stats]</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>so we need to bring one into scope, something like this will do although we could use Marshaller.of[Stats] function too with a bit more boilerplate.</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>&#8220;implicit Marshaller&#8221; start:168</span><a href='https://github.com/spray/spray/blob/master/examples/spray-routing/on-spray-can/src/main/scala/spray/examples/DemoService.scala'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">statsMarshaller</span><span class="k">:</span> <span class="kt">Marshaller</span><span class="o">[</span><span class="kt">Stats</span><span class="o">]</span> <span class="k">=</span>
-</span><span class='line'>    <span class="nc">Marshaller</span><span class="o">.</span><span class="n">delegate</span><span class="o">[</span><span class="kt">Stats</span>, <span class="kt">String</span><span class="o">](</span><span class="nc">ContentTypes</span><span class="o">.</span><span class="n">`text/plain`</span><span class="o">)</span> <span class="o">{</span> <span class="n">stats</span> <span class="k">=&gt;</span>
-</span><span class='line'>      <span class="s">&quot;Uptime                : &quot;</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">uptime</span><span class="o">.</span><span class="n">formatHMS</span> <span class="o">+</span> <span class="sc">&#39;\n&#39;</span> <span class="o">+</span>
-</span><span class='line'>      <span class="s">&quot;Total requests        : &quot;</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">totalRequests</span> <span class="o">+</span> <span class="sc">&#39;\n&#39;</span> <span class="o">+</span>
-</span><span class='line'>      <span class="s">&quot;Open requests         : &quot;</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">openRequests</span> <span class="o">+</span> <span class="sc">&#39;\n&#39;</span> <span class="o">+</span>
-</span><span class='line'>      <span class="s">&quot;Max open requests     : &quot;</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">maxOpenRequests</span> <span class="o">+</span> <span class="sc">&#39;\n&#39;</span> <span class="o">+</span>
-</span><span class='line'>      <span class="s">&quot;Total connections     : &quot;</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">totalConnections</span> <span class="o">+</span> <span class="sc">&#39;\n&#39;</span> <span class="o">+</span>
-</span><span class='line'>      <span class="s">&quot;Open connections      : &quot;</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">openConnections</span> <span class="o">+</span> <span class="sc">&#39;\n&#39;</span> <span class="o">+</span>
-</span><span class='line'>      <span class="s">&quot;Max open connections  : &quot;</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">maxOpenConnections</span> <span class="o">+</span> <span class="sc">&#39;\n&#39;</span> <span class="o">+</span>
-</span><span class='line'>      <span class="s">&quot;Requests timed out    : &quot;</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">requestTimeouts</span> <span class="o">+</span> <span class="sc">&#39;\n&#39;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>JSON</h3>
-
-<p>  So with the points above the code will work and on hittingthe <code>/Stats</code> URL will render the stats as a String
-  <strong>But what about JSON?</strong></p>
-
-<p>Spray supports JSON an even automatically supports case classes made up from standard value fields all you have to do is</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Just mix in spray.httpx.SprayJsonSupport or import spray.httpx.SprayJsonSupport._.</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>ie mix that into your route or just import the Object&rsquo;s vals
-
-<ul>
-<li>and it will bring an implicit RootJsonFormat[T] into scope which is a Marshaller</li>
-<li>and job done right?</li>
-</ul>
-</li>
-</ul>
-
-
-<h4>Stats has a FiniteDuration</h4>
-
-<ul>
-<li>look at <code>Stats</code></li>
-<li>is not made of the default value types it has a FiniteDuration</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>case class MyStats(uptime: FiniteDuration,
-</span><span class='line'>                   totalRequests: Long,
-</span><span class='line'>                   openRequests: Long,
-</span><span class='line'>                   maxOpenRequests: Long,
-</span><span class='line'>                   totalConnections: Long,
-</span><span class='line'>                   openConnections: Long,
-</span><span class='line'>                   maxOpenConnections: Long,
-</span><span class='line'>                   requestTimeouts: Long)</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>there is no default RootJsonFormat for that</li>
-</ul>
-
-
-<p>so we need some help</p>
-
-<h5>Create an implicit RootJsonFormat[FiniteDuration]</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>import MyJsonMarshaller._</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>object MyJsonMarshaller extends DefaultJsonProtocol {
-</span><span class='line'>
-</span><span class='line'>  // implicit JSON marshaller for FiniteDuration
-</span><span class='line'>  implicit object finiteDurationJsonFormat extends RootJsonFormat[FiniteDuration] {
-</span><span class='line'>    def write(c: FiniteDuration) = JsNumber(c.toNanos) // toNanos just a hack to create a Long could be cleverer
-</span><span class='line'>
-</span><span class='line'>    def read(value: JsValue) = value match {
-</span><span class='line'>      case JsNumber(nanos) => new FiniteDuration(nanos.longValue, TimeUnit.NANOSECONDS)
-</span><span class='line'>      case _ => deserializationError("FiniteDuration in Nanos expected")
-</span><span class='line'>    }
-</span><span class='line'>  }
-</span><span class='line'>  
-</span><span class='line'>  //use the jsonFormat8() factory to convert Stats
-</span><span class='line'>  implicit val statsFormat = jsonFormat8(Stats) 
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>the end.</p>
 
   
     <footer>
@@ -417,6 +245,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/03/installing-octopress-the-missing-manual/">Installing Octopress: The Missing Manual</a>
+      </li>
     
   </ul>
 </section>

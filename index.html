@@ -9,7 +9,8 @@
   <meta name="author" content="Karl Roberts">
 
   
-  <meta name="description" content="Blog Archives Recent Posts GitHub Repos Status updating&#8230; @karlroberts on GitHub $(document).ready(function(){ if (!window.jXHR){ var jxhr = &hellip;">
+  <meta name="description" content="Ruby pain The main problems installing octopress are that it relies on ruby environment.
+This would be fine except it also relies on Ruby having been &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +67,59 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/03/installing-octopress-the-missing-manual/">Installing Octopress: The Missing Manual</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-03T12:36:13+10:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Ruby pain</h2>
+
+<p>The main problems installing octopress are that it relies on ruby environment.
+This would be fine except it also relies on Ruby having been compiled with certain libraries available in order for the bundler to work as per the octopress doco.</p>
+
+<h2>Missing libraries</h2>
+
+<p>During the Octopress install Ruby or rbenv or bundler will moan that Ruby needs to be compiled with zlib or OpenSSL. to get these on ubuntu do:&ndash;</p>
+
+<pre><code>apt-get install zlib1g-dev
+apt-get install libssl-dev openssl
+</code></pre>
+
+<p>if you are not on ubuntu look at <a href="https://github.com/sstephenson/ruby-build/wiki">this blog</a> for common ruby gotchas and solutions on different Linuxes.</p>
+
+<p>Then as per the Octopress Doco <a href="http://octopress.org/docs/setup/rbenv/">install Ruby</a></p>
+
+<p>Once that is done the Octopress install, as per <a href="http://octopress.org/docs/setup/">this doco</a>, should work fine&hellip; well&hellip;. it worked on my machine (Ubuntu 14.4  ;&ndash;) )</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -77,6 +131,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/03/installing-octopress-the-missing-manual/">Installing Octopress: The Missing Manual</a>
+      </li>
     
   </ul>
 </section>

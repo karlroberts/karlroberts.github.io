@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Automagic Aspects - Karl's Code</title>
+  <title>Installing Octopress: The Missing Manual - Karl's Code</title>
   <meta name="author" content="Karl Roberts">
 
   
-  <meta name="description" content="Automagic Aspects Mar 24th, 2014 As a developer it is natural to abstract and encode this stuff that you end up doing more than once so we &ldquo; &hellip;">
+  <meta name="description" content="Ruby pain The main problems installing octopress are that it relies on ruby environment.
+This would be fine except it also relies on Ruby having been &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://karlroberts.github.io/apm/agent/automagic-aspects.html">
+  <link rel="canonical" href="http://karlroberts.github.io/blog/2014/06/03/installing-octopress-the-missing-manual">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
@@ -64,73 +65,93 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Automagic Aspects</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-24T08:53:00+11:00" pubdate data-updated="true">Mar 24<span>th</span>, 2014</time></p>
-  </header>
-  
-  <p>As a developer it is natural to abstract and encode this stuff that you end up doing more than once so we &ldquo;Don&rsquo;t Repeat Yourself&rdquo; (DRY).
-Working for a <a href="http://www.ecetera.com.au">performance tuning company</a> some themes come up again and again. In order to tune a system it is first necessary to to be able to measure and monitor the systems performance. Application Performance Monitoring (APM) kicks up a number of themes that we&rsquo;ve noticed keep recurring in our discussions with customers.</p>
-
-<ol>
-<li>Centralise your logging and informatics.</li>
-<li>When user transactions span systems attach a correlation ID that is picked up and propagated to any other systems that the transaction touches.</li>
-</ol>
-
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Installing Octopress: The Missing Manual</h1>
+    
+    
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-03T12:36:13+10:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2014</time>
         
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-24T08:53:00+11:00" pubdate data-updated="true">Mar 24<span>th</span>, 2014</time>
-        
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/apm/'>apm</a>, <a class='category' href='/blog/categories/javaagent/'>javaagent</a>, <a class='category' href='/blog/categories/performance-monitoring/'>performance monitoring</a>
-  
-</span>
-
-
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Ruby pain</h2>
+
+<p>The main problems installing octopress are that it relies on ruby environment.
+This would be fine except it also relies on Ruby having been compiled with certain libraries available in order for the bundler to work as per the octopress doco.</p>
+
+<h2>Missing libraries</h2>
+
+<p>During the Octopress install Ruby or rbenv or bundler will moan that Ruby needs to be compiled with zlib or OpenSSL. to get these on ubuntu do:&ndash;</p>
+
+<pre><code>apt-get install zlib1g-dev
+apt-get install libssl-dev openssl
+</code></pre>
+
+<p>if you are not on ubuntu look at <a href="https://github.com/sstephenson/ruby-build/wiki">this blog</a> for common ruby gotchas and solutions on different Linuxes.</p>
+
+<p>Then as per the Octopress Doco <a href="http://octopress.org/docs/setup/rbenv/">install Ruby</a></p>
+
+<p>Once that is done the Octopress install, as per <a href="http://octopress.org/docs/setup/">this doco</a>, should work fine&hellip; well&hellip;. it worked on my machine (Ubuntu 14.4  ;&ndash;) )</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/apm/agent/automagic-aspects.html" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/apm/agent/automagic-aspects.html" >Tweet</a>
+
+<span class="byline author vcard">Posted by <span class="fn">Karl Roberts</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-03T12:36:13+10:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/blog/2014/06/03/installing-octopress-the-missing-manual/" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/blog/2014/06/03/installing-octopress-the-missing-manual/" >Tweet</a>
   
   
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+      
+    </p>
+  </footer>
 </article>
 
 </div>
