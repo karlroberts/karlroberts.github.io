@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="style/favicon.ico"/>
+<link href="style/style.css" rel="stylesheet" type="text/css" />
+<link href="style/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<title>Gatling Stats - Login</title>
+</head>
+<body>
+<div class="frise"></div>
+<div class="container details">
+    <div class="head">
+        <a href="http://gatling-tool.org" target="blank_" title="Gatling Home Page"><img alt="Gatling" src="style/logo.png"/></a>
+    </div>
+    <div class="main">
+        <div class="cadre">
+                <div class="onglet">
+                    <img src="style/cible.png" />
+                    <p><span>loginandsearchperson1-cached-cutdown</span></p>
+                </div>
+                <div class="content">
+                    <div class="sous-menu">
+                        <div class="item "><a href="index.html">GLOBAL</a></div>
+                        <div class="item ouvert"><a id="details_link" href="#">DETAILS</a></div>
+                        <p class="sim_desc" title="2014-06-02 12:22:37, duration : 4327 seconds" data-content="">
+                            <b>2014-06-02 12:22:37, duration : 4327 seconds</b> </b>
+                        </p>
+                    </div>
+                    <div class="content-in">
+                        <h1><span>> </span>Login</h1>
+                        <div class="article">
+                            
+                        <div class="infos">
+                            <div class="titre">STATISTICS</div>
+                            <div class="infos-in">
+                                <div class="repli"></div>                               
+                                <div class="info">
+                                    <h2 class="first">Executions</h2>
+                                    <table>
+                                        <thead>
+                                            <tr><th></th><th>Total</th><th>OK</th><th>KO</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="title"></td>
+                                                <td id="numberOfRequests" class="total"></td>
+                                                <td id="numberOfRequestsOK" class="ok"></td>
+                                                <td id="numberOfRequestsKO" class="ko"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h2 class="second">Response Time (ms)</h2>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Total</th>
+                                                <th>OK</th>
+                                                <th>KO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="title">Min</td>
+                                                <td id="minResponseTime" class="total"></td>
+                                                <td id="minResponseTimeOK" class="ok"></td>
+                                                <td id="minResponseTimeKO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Max</td>
+                                                <td id="maxResponseTime" class="total"></td>
+                                                <td id="maxResponseTimeOK" class="ok"></td>
+                                                <td id="maxResponseTimeKO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Mean</td>
+                                                <td id="meanResponseTime" class="total"></td>
+                                                <td id="meanResponseTimeOK" class="ok"></td>
+                                                <td id="meanResponseTimeKO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Std Deviation</td>
+                                                <td id="standardDeviation" class="total"></td>
+                                                <td id="standardDeviationOK" class="ok"></td>
+                                                <td id="standardDeviationKO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">95th percentile</td>
+                                                <td id="percentiles1" class="total"></td>
+                                                <td id="percentiles1OK" class="ok"></td>
+                                                <td id="percentiles1KO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">99th percentile</td>
+                                                <td id="percentiles2" class="total"></td>
+                                                <td id="percentiles2OK" class="ok"></td>
+                                                <td id="percentiles2KO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Mean req/s</td>
+                                                <td id="meanNumberOfRequestsPerSecond" class="total"></td>
+                                                <td id="meanNumberOfRequestsPerSecondOK" class="ok"></td>
+                                                <td id="meanNumberOfRequestsPerSecondKO" class="ko"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="schema demi">
+                            <div id="container_indicators" class="demi"></div>
+                        </div>
+<div class="statistics extensible-geant collapsed">
+    <div class="title">
+        <div class="title_collapsed" style="cursor: auto;">ERRORS</div>
+    </div>
+    <table id="container_errors" class="statistics-in extensible-geant">
+        <thead>
+            <tr>
+                <th class="header"><span>Error</span></th>
+                <th class="header"><span>Count</span></th>
+                <th class="header"><span>Percentage</span></th>
+            </tr>
+        </thead>
+		<tbody>
+		    <tr><td class="total">Remotely Closed [id: 0x6e10dc7e, /192.168.2.121:40841 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xe2c453ce, /192.168.2.121:40545 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x42e1e3bf, /192.168.2.121:40512 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xa62d522c, /192.168.2.121:40513 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xd2fe79b3, /192.168.2.121:40567 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xd2c97075, /192.168.2.121:40725 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x190705e8, /192.168.2.121:40838 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x1a9e3b2f, /192.168.2.121:40751 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x5cd9e3f6, /192.168.2.121:40565 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x0c76cf26, /192.168.2.121:40830 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x98acf9cb, /192.168.2.121:40837 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x5f680e8b, /192.168.2.121:40871 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x2937faa0, /192.168.2.121:40510 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x28f40989, /192.168.2.121:40516 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x243628b4, /192.168.2.121:40839 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xd4b42b95, /192.168.2.121:40750 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x679adf92, /192.168.2.121:40851 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x14ba98d7, /192.168.2.121:40563 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xb9b1bdb1, /192.168.2.121:40709 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x3c105372, /192.168.2.121:40515 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xf3e35824, /192.168.2.121:40554 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x8e19cafb, /192.168.2.121:40874 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xda8480f7, /192.168.2.121:40560 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x5a327b38, /192.168.2.121:40558 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x9e8d2ceb, /192.168.2.121:40757 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x4c187602, /192.168.2.121:40509 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xa034ebb0, /192.168.2.121:40713 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x15f724b3, /192.168.2.121:41022 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x787b721b, /192.168.2.121:40718 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x5b7af2f1, /192.168.2.121:40538 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xf93f2eec, /192.168.2.121:40514 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x09b933cc, /192.168.2.121:40523 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x864ae001, /192.168.2.121:40724 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x531faeb8, /192.168.2.121:40840 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x7ff84d29, /192.168.2.121:40557 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xe6e5ee30, /192.168.2.121:40755 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x97f9ee7c, /192.168.2.121:40546 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x17beeec2, /192.168.2.121:40581 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xc5dba718, /192.168.2.121:40575 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x90398e7d, /192.168.2.121:40738 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x4b09c224, /192.168.2.121:40553 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x4afbec08, /192.168.2.121:40540 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xb1f321ae, /192.168.2.121:40511 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x39fd0e26, /192.168.2.121:40583 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x34ed3173, /192.168.2.121:40743 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xa2414fd8, /192.168.2.121:40518 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x07979bb7, /192.168.2.121:40842 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x8a4f347e, /192.168.2.121:40746 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x42788934, /192.168.2.121:40772 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x9792a0ed, /192.168.2.121:40570 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0xc7292e2f, /192.168.2.121:40653 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x2b39c9fb, /192.168.2.121:40766 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr><tr><td class="total">Remotely Closed [id: 0x21fd5f58, /192.168.2.121:40531 :> www.nationalsystemportal.amsa.gov.au/144.140.84.58:443]</td><td class="value total">1</td><td class="value total">1 %</td></tr>   
+		</tbody>
+    </table>
+</div>
+
+                        <div class="schema geant">
+                            <div id="container" class="geant"></div>
+                        </div>
+
+                        <div class="schema geant">
+                            <div id="container_distrib" class="geant"></div>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="nav">
+        <ul></ul>
+    </div>
+</div>
+<div class="foot">
+    <a href="http://gatling-tool.org" title="Gatling Home Page"><img alt="Gatling" src="style/logo-gatling.jpg"/></a>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/gatling.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/all_sessions.js"></script>
+<script type="text/javascript" src="js/stats.js"></script>
+<script type="text/javascript" src="js/highstock.js"></script>
+<script type="text/javascript" src="js/highcharts-more.js"></script>
+<script type="text/javascript" src="js/theme.js"></script>
+<script type="text/javascript">
+    var pageStats = stats.contents['login-99dea78007133396a7b8ed70578ac6ae'].stats;
+    $(document).ready(function() {
+        $('.sim_desc').popover({trigger:'hover', placement:'bottom'});
+        setDetailsLinkUrl();
+        setDetailsMenu();
+        setActiveMenu();
+        fillStats(pageStats);
+        
+Highcharts.setOptions({
+    global: {
+        useUTC: false
+    }
+});
+
+var indicatorsChart = new Highcharts.Chart({
+    chart: {
+        renderTo: 'container_indicators',
+        marginRight: 150
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: false
+    },
+    title: {
+     text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    xAxis: {
+        categories: [pageStats.group1.name,pageStats.group2.name,pageStats.group3.name,pageStats.group4.name]
+    },
+    yAxis: {
+        title: {
+            text: 'Number of Requests'
+        }
+    },
+    tooltip: {
+        formatter: function() {
+            var s;
+            if (this.point.name) { // the pie chart
+                s = ''+ this.point.name +': '+ this.y +' requests';
+            } else {
+                s = ''+ this.y + ' requests';
+            }
+            return s;
+        }
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            shadow: true
+        }
+    },
+    series: [
+        {
+            type: 'column',
+            color: '#A0B228',
+            data: [pageStats.group1.count,0,0,0],
+            tooltip: { yDecimals: 0, ySuffix: 'ms' }
+        },
+        {
+            type: 'column',
+            color: '#FFDD00',
+            data: [0,pageStats.group2.count,0,0],
+            tooltip: { yDecimals: 0, ySuffix: 'ms' }
+        },
+        {
+            type: 'column',
+            color: '#FF9D00',
+            data: [0,0,pageStats.group3.count,0],
+            tooltip: { yDecimals: 0, ySuffix: 'ms' }
+        },
+        {
+            type: 'column',
+            color: '#FF0000',
+            data: [0,0,0,pageStats.group4.count],
+            tooltip: { yDecimals: 0, ySuffix: 'ms' }
+        },
+        {
+            type: 'pie',
+            name: 'Percentages',
+            data: [
+                {
+                    name: pageStats.group1.name,
+                    y: pageStats.group1.percentage,
+                    color: '#A0B228'
+                },
+                {
+                    name: pageStats.group2.name,
+                    y: pageStats.group2.percentage,
+                    color: '#FFDD00'
+                },
+                {
+                    name: pageStats.group3.name,
+                    y: pageStats.group3.percentage,
+                    color: '#FF9D00'
+                },
+                {
+                    name: pageStats.group4.name,
+                    y: pageStats.group4.percentage,
+                    color: '#FF0000'
+                }
+            ],
+            center: [470, 85],
+            size: 100,
+            showInLegend: false,
+            dataLabels: { enabled: false }
+        }
+    ]
+});
+
+indicatorsChart.setTitle({
+    text: '<span class="chart_title">Indicators</span>',
+    useHTML: true
+});
+
+var responseTimeChart = new Highcharts.StockChart({
+    chart: {
+        renderTo: 'container',
+        zoomType: 'x'
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: true,
+        floating: true,
+        y: -285,
+        borderWidth: 0
+    },
+    title: {
+        text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    rangeSelector: {
+        buttons : [{
+        type : 'minute',
+        count : 1,
+        text : '1m'
+    }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+    }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+    }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+    }],
+    selected : 3,
+    inputEnabled : false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        maxZoom: 10000 // three days
+    },
+    yAxis:[
+    {
+        min: 0,
+        title: {
+            text: 'Duration (ms)',
+            style: {
+                color: '#4572A7'
+            }
+        }
+    }, {
+        min: 0,
+        title: {
+            text: 'Active Sessions',
+            style: {
+                color: '#FF9D00'
+            }
+        },
+        opposite: true
+    }],
+    plotOptions: {
+        arearange: {
+            lineWidth: 1
+        },
+        series: {
+            shadow: true
+        }
+    },
+    series: [
+    {
+color: '#4572A7'
+, pointInterval: 1000
+, name: 'Group duration (success)'
+, data: [
+[1401675760387,7400,8720],[1401675764715,7500,7600],[1401675769043,7400,9050],[1401675773371,7650,8250],[1401675777699,7650,7850],[1401675782027,7700,8200],[1401675786355,8750,9200],[1401675790683,8600,9350],[1401675795011,9350,10150],[1401675799339,8450,8900],[1401675803667,8200,9700],[1401675807995,7750,9150],[1401675812323,8900,13400],[1401675816651,8900,10700],[1401675820979,8850,9500],[1401675825307,7950,10850],[1401675829635,8450,9350],[1401675833963,8450,10400],[1401675838291,9200,12400],[1401675842619,9800,11050],[1401675846947,9200,10600],[1401675851275,9300,11750],[1401675855603,10200,12150],[1401675859931,10900,11250],[1401675864259,8000,13150],[1401675868587,8600,11700],[1401675872915,8100,12050],[1401675877243,9050,14050],[1401675881571,9450,12000],[1401675885899,10350,11650],[1401675890227,8650,9300],[1401675894555,8600,11050],[1401675898883,9150,19400],[1401675903211,11350,12500],[1401675907539,8950,12650],[1401675911867,11100,14450],[1401675916195,11150,15800],[1401675920523,15250,16800],[1401675924851,12650,14200],[1401675929179,11200,12100],[1401675933507,9050,10550],[1401675937835,9300,12300],[1401675942163,10850,45050],[1401675946491,36000,44600],[1401675950819,32950,32950],[1401675963803,24850,24850],[1401675968131,22850,26150],[1401675972459,19600,19600],[1401675981115,12750,14250],[1401675985443,10750,13900],[1401675989771,10750,20800],[1401675994099,16600,29050],[1401675998427,27650,28200],[1401676002755,22350,31150],[1401676007083,25250,34950],[1401676015739,25850,25850],[1401676020067,23200,26050],[1401676024395,29300,29300],[1401676033051,21000,21550],[1401676037379,20550,41400],[1401676041707,26300,41350],[1401676046035,25750,33550],[1401676059019,30450,30450]
+]
+, type: 'arearange'
+, tooltip: { yDecimals: 0, ySuffix: 'ms' }
+, yAxis: 0
+
+},	
+    {
+color: '#FF0000'
+, pointInterval: 1000
+, name: 'Group duration (failure)'
+, data: [
+[1401675950819,27850,28150],[1401675955147,32800,35600],[1401675959475,19400,27950],[1401675963803,18000,18400],[1401675968131,12050,12050],[1401675972459,8850,10400],[1401675976787,11000,18100],[1401675998427,27150,27150],[1401676011411,20950,31450],[1401676015739,29100,30650],[1401676024395,18350,18350],[1401676028723,15550,17400],[1401676033051,17450,17450],[1401676041707,30750,30750],[1401676050363,24100,28450],[1401676054691,23350,27250]
+]
+, type: 'arearange'
+, tooltip: { yDecimals: 0, ySuffix: 'ms' }
+, yAxis: 0
+
+},	
+    allSessionsData
+    ]
+});
+
+responseTimeChart.setTitle({
+    text: '<span class="chart_title chart_title_">Group duration during Simulation</span>',
+    useHTML: true
+});
+
+var responseTimeDistributionChart = new Highcharts.Chart({
+    chart: {
+        renderTo: 'container_distrib',
+        type: 'column'
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: true,
+        floating: true,
+        y: -285,
+        borderWidth: 0
+    },
+    title: {
+        text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    xAxis: {
+        categories: ['7588', '7965', '8341', '8718', '9094', '9471', '9847', '10224', '10600', '10977', '11353', '11730', '12106', '12483', '12859', '13236', '13612', '13989', '14365', '14742', '15118', '15495', '15871', '16248', '16624', '17001', '17377', '17754', '18130', '18507', '18883', '19260', '19636', '20013', '20389', '20766', '21142', '21519', '21895', '22272', '22648', '23025', '23401', '23778', '24154', '24531', '24907', '25284', '25660', '26037', '26413', '26790', '27166', '27543', '27919', '28296', '28672', '29049', '29425', '29802', '30178', '30555', '30931', '31308', '31684', '32061', '32437', '32814', '33190', '33567', '33943', '34320', '34696', '35073', '35449', '35826', '36202', '36579', '36955', '37332', '37708', '38085', '38461', '38838', '39214', '39591', '39967', '40344', '40720', '41097', '41473', '41850', '42226', '42603', '42979', '43356', '43732', '44109', '44485', '44862'],
+        tickInterval: 20
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Percentage of Requests'
+        }
+    },
+    tooltip: {
+        formatter: function() {
+            return '<b>'+ this.x +' ms</b><br/>'+
+            this.series.name +': '+ this.y +' %<br/>'+
+            'Total: '+ this.point.stackTotal + ' %';
+        }
+    },
+    plotOptions: {
+        series: {
+            groupPadding: 0,
+            stacking: 'normal',
+	        shadow: true
+        }
+    },
+    series: [
+    	{
+type: 'column'
+, color: '#4572A7'
+, name: 'Group duration (failure)'
+, data: [
+5,4,3,11,7,5,3,3,3,4,2,2,2,3,1,1,0,1,2,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+]
+, tooltip: { yDecimals: 0, ySuffix: 'ms' }
+},
+    	{
+type: 'column'
+, color: '#FF0000'
+, name: 'Group duration (failure)'
+, data: [
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+]
+, tooltip: { yDecimals: 0, ySuffix: 'ms' }
+}
+    ]
+});
+
+responseTimeDistributionChart.setTitle({
+    text: '<span class="chart_title">Group Duration Distribution</span>',
+    useHTML: true
+});
+
+    });
+</script>
+</body>
+</html>
