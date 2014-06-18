@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Marshalling - Karl's Code</title>
+  <meta name="author" content="Karl Roberts">
+
+  
+  <meta name="description" content="Marshalling May 6th, 2014 Marshalling in spray.io
+======================= ## Issue When generating output from a Data type Spray looks for implicit &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karlroberts.github.io/programming/gotchas/spray/marshalling.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karl's Code</a></h1>
+  
+    <h2>and other code related stuff</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:karlroberts.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Marshalling</h1>
+    <p class="meta">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T08:31:00+10:00" pubdate data-updated="true">May 6<span>th</span>, 2014</time></p>
+  </header>
+  
+  Marshalling in spray.io
+=======================
+
+## Issue
+
+When generating output from a Data type Spray looks for implicit Marshaller or UnMarshallers in the scope of the route in question.
+
+There are some default marshallers for most of the common value types such as Int Long String and the Collections, as well as automatic marshallers for case classes
+
+However these may or may not be available, because:-
+
+* Your type has not been added to the Marshaller typeclass
+* Your type is a case class but some of it&#8217;s fields have no marshallern 
+* You invoke a Future using the ask pattern and there is no execution context in scope.
+
+### Example
+
+* consider this [route](http://spray.io/documentation/1.2.1/spray-routing/) from the Spray route [Example project](https://github.com/spray/spray/blob/master/examples/spray-routing/on-spray-can/src/main/scala/spray/examples/DemoService.scala) 
+
+<figure class='code'><figcaption><span>Coffeescript Tricks start:51 mark:51,54-55 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># Given an alphabet:</span>
+</span><span class='line'><span class="nv">alphabet = </span><span class="s">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Iterate over part of the alphabet:</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">letter</span> <span class="k">for</span> <span class="nx">letter</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">[</span><span class="mi">4</span><span class="p">..</span><span class="mi">8</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<figure class='code'><figcaption><span>Demo start:35 mark:38,64-69 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">trait</span> <span class="nc">DemoService</span> <span class="k">extends</span> <span class="nc">HttpService</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// we use the enclosing ActorContext&#39;s or ActorSystem&#39;s dispatcher for our Futures and Scheduler</span>
+</span><span class='line'>  <span class="k">implicit</span> <span class="k">def</span> <span class="n">executionContext</span> <span class="k">=</span> <span class="n">actorRefFactory</span><span class="o">.</span><span class="n">dispatcher</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">val</span> <span class="n">demoRoute</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">get</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">pathSingleSlash</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">complete</span><span class="o">(</span><span class="n">index</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">}</span> <span class="o">~</span>
+</span><span class='line'>      <span class="n">path</span><span class="o">(</span><span class="s">&quot;ping&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">complete</span><span class="o">(</span><span class="s">&quot;PONG!&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">}</span> <span class="o">~</span>
+</span><span class='line'>      <span class="n">path</span><span class="o">(</span><span class="s">&quot;stream1&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">// we detach in order to move the blocking code inside the simpleStringStream into a future</span>
+</span><span class='line'>        <span class="n">detach</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">respondWithMediaType</span><span class="o">(</span><span class="n">`text/html`</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// normally Strings are rendered to text/plain, we simply override here</span>
+</span><span class='line'>            <span class="n">complete</span><span class="o">(</span><span class="n">simpleStringStream</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span> <span class="o">~</span>
+</span><span class='line'>      <span class="n">path</span><span class="o">(</span><span class="s">&quot;stream2&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">sendStreamingResponse</span>
+</span><span class='line'>      <span class="o">}</span> <span class="o">~</span>
+</span><span class='line'>      <span class="n">path</span><span class="o">(</span><span class="s">&quot;stream-large-file&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">encodeResponse</span><span class="o">(</span><span class="nc">Gzip</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">getFromFile</span><span class="o">(</span><span class="n">largeTempFile</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span> <span class="o">~</span>
+</span><span class='line'>      <span class="n">path</span><span class="o">(</span><span class="s">&quot;stats&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">complete</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">actorRefFactory</span><span class="o">.</span><span class="n">actorFor</span><span class="o">(</span><span class="s">&quot;/user/IO-HTTP/listener-0&quot;</span><span class="o">)</span>
+</span><span class='line'>            <span class="o">.</span><span class="n">ask</span><span class="o">(</span><span class="nc">Http</span><span class="o">.</span><span class="nc">GetStats</span><span class="o">)(</span><span class="mf">1.</span><span class="n">second</span><span class="o">)</span>
+</span><span class='line'>            <span class="o">.</span><span class="n">mapTo</span><span class="o">[</span><span class="kt">Stats</span><span class="o">]</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T08:31:00+10:00" pubdate data-updated="true">May 6<span>th</span>, 2014</time>
+        
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/marshalling/'>marshalling</a>, <a class='category' href='/blog/categories/scala/'>scala</a>, <a class='category' href='/blog/categories/spray/'>spray</a>, <a class='category' href='/blog/categories/spray-dot-io/'>spray.io</a>
+  
+</span>
+
+
+      </p>
+      
+        <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/programming/gotchas/spray/marshalling.html" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/programming/gotchas/spray/marshalling.html" >Tweet</a>
+  
+  
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/03/installing-octopress-the-missing-manual/">Installing Octopress: The Missing Manual</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/karlroberts">@karlroberts</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'karlroberts',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Karl Roberts -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
