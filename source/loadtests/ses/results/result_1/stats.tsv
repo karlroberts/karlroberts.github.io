@@ -1,0 +1,78 @@
+name	nbRequest	nbRequestOK	nbRequestKO	minResponseTime	minResponseTimeOK	minResponseTimeKO	maxResponseTime	maxResponseTimeOK	maxResponseTimeKO	meanResponseTime	meanResponseTimeOK	meanResponseTimeKO	deviation	deviationOK	deviationKO	percentile1	percentile1OK	percentile1KO	percentile2	percentile2OK	percentile2KO	group1Name	group1Count	group1Percentage	group2Name	group2Count	group2Percentage	group3Name	group3Count	group3Percentage	group4Name	group4Count	group4Percentage	meanNumberOfRequestsPerSecond	meanNumberOfRequestsPerSecondOK	meanNumberOfRequestsPerSecondKO
+Global Information	7171	7171	0	0	0	-1	2330	2330	-1	88	88	-1	229	229	-1	380	380	-1	1320	1320	-1	t < 800 ms	6943	96	800 ms < t < 1200 ms	132	1	t > 1200 ms	96	1	failed	0	0	11	11	-1
+loginPage	101	101	0	1150	1150	-1	2100	2100	-1	1205	1205	-1	120	120	-1	1350	1350	-1	1650	1650	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	95	94	t > 1200 ms	6	5	failed	0	0	0	0	-1
+loginPage / request_1	101	101	0	0	0	-1	900	900	-1	21	21	-1	91	91	-1	10	10	-1	230	230	-1	t < 800 ms	100	99	800 ms < t < 1200 ms	1	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+loginPage / request_1 Redirect 1	101	101	0	10	10	-1	280	280	-1	13	13	-1	27	27	-1	20	20	-1	40	40	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+loginPage / request_2	101	101	0	10	10	-1	450	450	-1	16	16	-1	44	44	-1	20	20	-1	50	50	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+loginPage / request_3	101	101	0	0	0	-1	10	10	-1	2	2	-1	4	4	-1	10	10	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+loginPage / request_4	101	101	0	0	0	-1	10	10	-1	0	0	-1	2	2	-1	0	0	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+loginPage / request_5	101	101	0	10	10	-1	50	50	-1	21	21	-1	5	5	-1	30	30	-1	40	40	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+loginPage / request_6	101	101	0	0	0	-1	10	10	-1	0	0	-1	2	2	-1	0	0	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login	101	101	0	5100	5100	-1	6050	6050	-1	5243	5243	-1	155	155	-1	5550	5550	-1	5850	5850	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	101	100	failed	0	0	0	0	-1
+login / request_7	101	101	0	350	350	-1	380	380	-1	354	354	-1	13	13	-1	370	370	-1	380	380	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_8	101	101	0	20	20	-1	720	720	-1	62	62	-1	99	99	-1	150	150	-1	610	610	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_8 Redirect 1	101	101	0	20	20	-1	80	80	-1	41	41	-1	12	12	-1	60	60	-1	80	80	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_9	101	101	0	0	0	-1	790	790	-1	18	18	-1	88	88	-1	20	20	-1	360	360	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_10	101	101	0	0	0	-1	80	80	-1	11	11	-1	8	8	-1	20	20	-1	20	20	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_11	101	101	0	10	10	-1	30	30	-1	12	12	-1	2	2	-1	20	20	-1	20	20	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_12	101	101	0	0	0	-1	10	10	-1	0	0	-1	1	1	-1	0	0	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_13	101	101	0	0	0	-1	210	210	-1	3	3	-1	21	21	-1	10	10	-1	20	20	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_14	101	101	0	0	0	-1	30	30	-1	11	11	-1	3	3	-1	20	20	-1	30	30	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_15	101	101	0	10	10	-1	370	370	-1	21	21	-1	45	45	-1	30	30	-1	290	290	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_16	101	101	0	20	20	-1	270	270	-1	27	27	-1	26	26	-1	50	50	-1	70	70	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_17	101	101	0	0	0	-1	20	20	-1	3	3	-1	5	5	-1	10	10	-1	20	20	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_18	101	101	0	10	10	-1	50	50	-1	12	12	-1	6	6	-1	20	20	-1	30	30	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+login / request_20	101	101	0	0	0	-1	310	310	-1	11	11	-1	45	45	-1	10	10	-1	230	230	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob	101	101	0	5350	5350	-1	7700	7700	-1	6159	6159	-1	457	457	-1	7150	7150	-1	7300	7300	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	101	100	failed	0	0	0	0	-1
+createJob / request_22	101	101	0	30	30	-1	580	580	-1	46	46	-1	54	54	-1	50	50	-1	70	70	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_23	101	101	0	0	0	-1	20	20	-1	8	8	-1	4	4	-1	10	10	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_24	101	101	0	10	10	-1	200	200	-1	22	22	-1	19	19	-1	30	30	-1	40	40	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_26	101	101	0	0	0	-1	20	20	-1	10	10	-1	0	0	-1	10	10	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_25	101	101	0	0	0	-1	10	10	-1	1	1	-1	2	2	-1	10	10	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_26 Redirect 1	101	101	0	40	40	-1	280	280	-1	73	73	-1	35	35	-1	140	140	-1	160	160	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_27	101	101	0	30	30	-1	350	350	-1	83	83	-1	50	50	-1	160	160	-1	260	260	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_28	101	101	0	10	10	-1	260	260	-1	13	13	-1	25	25	-1	10	10	-1	20	20	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_29	101	101	0	10	10	-1	30	30	-1	11	11	-1	3	3	-1	20	20	-1	20	20	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_30	101	101	0	0	0	-1	680	680	-1	17	17	-1	66	66	-1	10	10	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_31	101	101	0	0	0	-1	10	10	-1	10	10	-1	0	0	-1	10	10	-1	10	10	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_32	101	101	0	60	60	-1	1110	1110	-1	86	86	-1	145	145	-1	80	80	-1	1070	1070	-1	t < 800 ms	99	98	800 ms < t < 1200 ms	2	1	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_33	101	101	0	90	90	-1	240	240	-1	102	102	-1	25	25	-1	150	150	-1	220	220	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_34	101	101	0	180	180	-1	500	500	-1	303	303	-1	72	72	-1	390	390	-1	480	480	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_35	101	101	0	170	170	-1	1710	1710	-1	397	397	-1	166	166	-1	590	590	-1	700	700	-1	t < 800 ms	100	99	800 ms < t < 1200 ms	0	0	t > 1200 ms	1	0	failed	0	0	0	0	-1
+createJob / request_36	101	101	0	10	10	-1	190	190	-1	17	17	-1	18	18	-1	20	20	-1	40	40	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_37	101	101	0	10	10	-1	40	40	-1	10	10	-1	4	4	-1	10	10	-1	20	20	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_38	101	101	0	30	30	-1	320	320	-1	42	42	-1	37	37	-1	80	80	-1	230	230	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_39	101	101	0	10	10	-1	770	770	-1	50	50	-1	134	134	-1	360	360	-1	660	660	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_40	101	101	0	10	10	-1	820	820	-1	36	36	-1	114	114	-1	20	20	-1	710	710	-1	t < 800 ms	100	99	800 ms < t < 1200 ms	1	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_41	101	101	0	20	20	-1	50	50	-1	22	22	-1	6	6	-1	30	30	-1	50	50	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_42	101	101	0	10	10	-1	150	150	-1	18	18	-1	15	15	-1	30	30	-1	50	50	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_43	101	101	0	20	20	-1	150	150	-1	23	23	-1	13	13	-1	30	30	-1	60	60	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_44	101	101	0	10	10	-1	50	50	-1	12	12	-1	6	6	-1	20	20	-1	30	30	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_45	101	101	0	10	10	-1	730	730	-1	21	21	-1	71	71	-1	30	30	-1	40	40	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_46	101	101	0	10	10	-1	610	610	-1	18	18	-1	60	60	-1	20	20	-1	90	90	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_47	101	101	0	10	10	-1	600	600	-1	26	26	-1	57	57	-1	30	30	-1	30	30	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_48	101	101	0	1090	1090	-1	2330	2330	-1	1359	1359	-1	201	201	-1	1740	1740	-1	2180	2180	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	17	16	t > 1200 ms	84	83	failed	0	0	0	0	-1
+createJob / request_49	101	101	0	0	0	-1	720	720	-1	30	30	-1	101	101	-1	220	220	-1	530	530	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+createJob / request_51	101	101	0	0	0	-1	520	520	-1	17	17	-1	65	65	-1	30	30	-1	280	280	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails	101	101	0	19950	19950	-1	23200	23200	-1	20649	20649	-1	421	421	-1	21600	21600	-1	22000	22000	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	101	100	failed	0	0	0	0	-1
+enterDetails / request_53	101	101	0	20	20	-1	710	710	-1	33	33	-1	68	68	-1	40	40	-1	50	50	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_54	101	101	0	40	40	-1	760	760	-1	54	54	-1	79	79	-1	70	70	-1	380	380	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_55	101	101	0	700	700	-1	1660	1660	-1	1089	1089	-1	126	126	-1	1410	1410	-1	1580	1580	-1	t < 800 ms	1	0	800 ms < t < 1200 ms	92	91	t > 1200 ms	8	7	failed	0	0	0	0	-1
+enterDetails / request_56	101	101	0	20	20	-1	470	470	-1	63	63	-1	57	57	-1	110	110	-1	310	310	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_57	101	101	0	30	30	-1	530	530	-1	68	68	-1	48	48	-1	90	90	-1	170	170	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_58	101	101	0	50	50	-1	1620	1620	-1	139	139	-1	264	264	-1	810	810	-1	1340	1340	-1	t < 800 ms	95	94	800 ms < t < 1200 ms	4	3	t > 1200 ms	2	1	failed	0	0	0	0	-1
+enterDetails / request_59	101	101	0	40	40	-1	920	920	-1	102	102	-1	119	119	-1	250	250	-1	590	590	-1	t < 800 ms	100	99	800 ms < t < 1200 ms	1	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_60	101	101	0	30	30	-1	260	260	-1	38	38	-1	26	26	-1	60	60	-1	130	130	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_61	101	101	0	50	50	-1	840	840	-1	316	316	-1	137	137	-1	560	560	-1	690	690	-1	t < 800 ms	100	99	800 ms < t < 1200 ms	1	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_62	101	101	0	10	10	-1	320	320	-1	16	16	-1	32	32	-1	20	20	-1	70	70	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_63	101	101	0	10	10	-1	40	40	-1	12	12	-1	6	6	-1	20	20	-1	40	40	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_64	101	101	0	10	10	-1	40	40	-1	12	12	-1	5	5	-1	20	20	-1	30	30	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_65	101	101	0	20	20	-1	460	460	-1	28	28	-1	44	44	-1	40	40	-1	80	80	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_66	101	101	0	10	10	-1	100	100	-1	15	15	-1	16	16	-1	40	40	-1	90	90	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_67	101	101	0	10	10	-1	30	30	-1	11	11	-1	2	2	-1	20	20	-1	20	20	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_68	101	101	0	350	350	-1	1350	1350	-1	362	362	-1	99	99	-1	360	360	-1	380	380	-1	t < 800 ms	100	99	800 ms < t < 1200 ms	0	0	t > 1200 ms	1	0	failed	0	0	0	0	-1
+enterDetails / request_69	101	101	0	30	30	-1	260	260	-1	41	41	-1	31	31	-1	100	100	-1	150	150	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_70	101	101	0	30	30	-1	120	120	-1	36	36	-1	17	17	-1	60	60	-1	110	110	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+enterDetails / request_71	101	101	0	10	10	-1	200	200	-1	18	18	-1	27	27	-1	70	70	-1	130	130	-1	t < 800 ms	101	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+save	101	101	0	80	80	-1	1170	1170	-1	294	294	-1	320	320	-1	940	940	-1	1040	1040	-1	t < 800 ms	87	86	800 ms < t < 1200 ms	14	13	t > 1200 ms	0	0	failed	0	0	0	0	-1
+save / request_72	101	101	0	80	80	-1	1170	1170	-1	287	287	-1	320	320	-1	930	930	-1	1040	1040	-1	t < 800 ms	88	87	800 ms < t < 1200 ms	13	12	t > 1200 ms	0	0	failed	0	0	0	0	-1
