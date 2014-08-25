@@ -1,0 +1,148 @@
+---
+layout: html
+title: "AppDynamics Critsit talk"
+date: 2014-09-24 12:01
+comments: false
+sharing: false
+footer: false
+published: true
+---
+
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>AppDynamics Critsit</title>
+
+<meta name="description" content="Talk about using AppDynamics in a Critsit">
+<meta name="author" content="Karl Roberts">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="css/reveal.min.css">
+<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+if( window.location.search.match( /print-pdf/gi ) ) {
+  var link = document.createElement( 'link' );
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = 'css/print/pdf.css';
+  document.getElementsByTagName( 'head' )[0].appendChild( link );
+}
+</script>
+
+<!--[if lt IE 9]>
+                <script src="lib/js/html5shiv.js"></script>
+                <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+  <div class="slides">
+    <section data-background="./images/wave.jpg" data-background-size="100%">
+      <h1><font color="blue">AppDynamics: Finding bottlenecks.</font></h1>
+      <h3><font color="blue">It's not just for ops</font></h3>
+      <p>
+      <small>Created by <a href="http://www.ecetera.com.au">Karl Roberts</a> / <a href="http://twitter.com/MrK4rl">@MrK4rl</a></small>
+      </p>
+    </section>
+
+    <section data-markdown="./slides/1_intro.md"  
+      data-separator="^\n-----\n"  
+      data-vertical="^\n---\n"  
+      data-notes="^Note:"  
+      data-charset="utf-8">
+    </section>
+
+    <section data-markdown="./slides/2_overview.md"  
+      data-separator="^\n-----\n"  
+      data-vertical="^\n---\n"  
+      data-notes="^Note:"  
+      data-charset="utf-8">
+    </section>
+
+    <section data-markdown="./slides/3_chaos.md"  
+      data-separator="^\n-----\n"  
+      data-vertical="^\n---\n"  
+      data-notes="^Note:"  
+      data-charset="utf-8">
+    </section>
+
+    <section data-markdown="./slides/4_loadtests.md"  
+      data-separator="^\n-----\n"  
+      data-vertical="^\n---\n"  
+      data-notes="^Note:"  
+      data-charset="utf-8">
+    </section>
+
+    <section data-markdown="./slides/5_bottlenecks.md"  
+      data-separator="^\n-----\n"  
+      data-vertical="^\n---\n"  
+      data-notes="^Note:"  
+      data-charset="utf-8">
+    </section>
+
+    <section data-markdown="./slides/6_db.md"  
+      data-separator="^\n-----\n"  
+      data-vertical="^\n---\n"  
+      data-notes="^Note:"  
+      data-charset="utf-8">
+    </section>
+
+    <section data-background="./images/wave.jpg" data-background-size="50%">
+      <h1><font color="blue">AppDynamics: Finding bottlenecks.</font></h1>
+      <h3><font color="blue">It's not just for ops</font></h3>
+      <p>
+      <small>Created by <a href="http://www.ecetera.com.au">Karl Roberts</a> / <a href="http://twitter.com/MrK4rl">@MrK4rl</a></small>
+      <small>slides: <a href="http://karlroberts.github.io/talks/hazelcast/meetup1-intro/index.html">http://karlroberts.github.io/talks/hazelcast/meetup1-intro/index.html</a></small>
+      <small>code: todo ???</small>
+      </p>
+    </section>
+  </div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+// Parallax scrolling
+// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+// parallaxBackgroundSize: '2100px 900px',
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+  });
+
+  </script>
+
+  </body>
+  </html>
