@@ -1,5 +1,5 @@
 ## Digging deeper
-* So How do we fix it?  <!-- .element: class="fragment" -->
+* So how do we fix it?  <!-- .element: class="fragment" -->
 
 -----
 <!-- .slide: data-background="./images/4_zigzag.png" data-background-size="90%" -->
@@ -12,8 +12,8 @@
 
 -----
 ## How can Ops Help?
-* can Ops help?... ;-) <!-- .element: class="fragment" -->
-* We can start by sorting out Alerting   <!-- .element: class="fragment" -->
+* Can Ops help?... ;-) <!-- .element: class="fragment" -->
+* They could start by sorting out alerting   <!-- .element: class="fragment" -->
 
 ---
 <!-- .slide: data-background="./images/1_ops.png" data-background-size="60%" -->
@@ -26,4 +26,3 @@
 
 ---
 <!-- .slide: data-background="./images/4_ops.png" data-background-size="40%" -->
-

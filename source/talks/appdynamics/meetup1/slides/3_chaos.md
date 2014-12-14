@@ -5,25 +5,25 @@
 
 ---
 ## Moving parts
-* multiple systems  <!-- .element: class="fragment" -->
-* asynchronous calls <!-- .element: class="fragment" -->
-* networks <!-- .element: class="fragment" -->
-* multi threaded <!-- .element: class="fragment" -->
-* OS interupts <!-- .element: class="fragment" -->
-* load balancing <!-- .element: class="fragment" -->
-* session management <!-- .element: class="fragment" -->
-* caching <!-- .element: class="fragment" -->
+* Multiple systems  <!-- .element: class="fragment" -->
+* Asynchronous calls <!-- .element: class="fragment" -->
+* Networks <!-- .element: class="fragment" -->
+* Multi threaded <!-- .element: class="fragment" -->
+* OS interrupts <!-- .element: class="fragment" -->
+* Load balancing <!-- .element: class="fragment" -->
+* Session management <!-- .element: class="fragment" -->
+* Caching <!-- .element: class="fragment" -->
 * etc. etc. <!-- .element: class="fragment" -->
 
 ---
 ## Ask the Project Manager
 The previous slide was a good day.
 
-What about when
+What about when:
 
-* multiple teams are involved? <!-- .element: class="fragment" -->
-* requirement changes? <!-- .element: class="fragment" -->
-* Scope Creep? <!-- .element: class="fragment" -->
+* Multiple teams are involved? <!-- .element: class="fragment" -->
+* Requirements change? <!-- .element: class="fragment" -->
+* Scope creeps? <!-- .element: class="fragment" -->
 * Politics and finger pointing! <!-- .element: class="fragment" -->
 
 ---

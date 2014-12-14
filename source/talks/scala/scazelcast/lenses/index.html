@@ -1,0 +1,21 @@
+---
+layout: page
+title: "index"
+date: 2014-11-03 17:24
+comments: true
+sharing: true
+footer: true
+published: false
+---
+
+want a nice config DSL for scazelcast
+
+//need to combine functions that modify the config. so need to chain to more config ie COnfig => Config
+
+def doNetworkConfig(f: NetworkConfig => NetworkConfig): Config => Config =
+hzConf.doIt(_.getNetworkConfig)(_.setNetworkConfig(_))(f)
+
+// getter and setter almost a lens
+trait HzConfigCombinator {
+def doIt[A](g: Config => A)(h: (Config,A) => Config)(f: A => A): Config => Config
+}

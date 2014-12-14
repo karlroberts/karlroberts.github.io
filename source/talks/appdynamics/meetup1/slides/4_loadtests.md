@@ -3,15 +3,15 @@
 
 -----
 ## Load Tests
-* Allow us to add stress to the system in a controlled manner. <!-- .element: class="fragment" -->
-* Unlike Unit testing we test the whole system <!-- .element: class="fragment" -->
-* hopefully it&rsquo;s a replica of production  <!-- .element: class="fragment" -->
+* Allow us to add stress to the system in a controlled manner <!-- .element: class="fragment" -->
+* Unlike unit testing we test the whole system <!-- .element: class="fragment" -->
+* Hopefully it&rsquo;s a replica of production  <!-- .element: class="fragment" -->
 
 -----
 ## Ramp up Tests
-* When short of time I like to perform rampup tests.
-* see various system states at a glance.
-* creep up the load until the system degrades
+* When short of time I like to perform ramp-up tests
+* See various system states at a glance
+* Creep up the load until the system degrades
 
 -----
 <!-- .slide: data-background="./images/1_ramp.png" data-background-size="100%" -->
