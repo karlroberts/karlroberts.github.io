@@ -5,13 +5,13 @@ date: 2014-07-07 11:09:20 +1000
 comments: true
 categories: [Google, Authentication, Contacts API, HOWTO, Installed] 
 ---
-Installed Apps typically mean apps that are not web apps. 
-Using the Installed app authentication flow is sometimes better than using a Service Account.
+Installed apps typically mean apps that are not web apps. 
+Using the installed app authentication flow is sometimes better than using a Service Account.
 
 ### Pro
 * don't need your admin to assign special "impersonate" permissions to the service account (once assigned it can impersonate anyone in the domain)
-* don't need a google Domain (see link ???)
-* app can use the refresh token to continue to fetch from google API's until the user is revoked.
+* don't need a Google Domain (see link ???)
+* app can use the refresh token to continue to fetch from Google API's until the user is revoked.
 
 ### Con
 * A user needs to accept the Scope of the app, not too bad as once accepted it can continue to use the refresh token to keep accessing the API

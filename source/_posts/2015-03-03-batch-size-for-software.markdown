@@ -1,0 +1,36 @@
+---
+layout: post
+title: "Batch size for software"
+date: 2015-03-03 08:49:42 +1100
+comments: true
+categories:
+- throughput
+- reinersten
+published: true
+---
+
+We software developers all want to be efficient. There is a sweet self applied kudos from knowing that your code takes less CPU and runs faster than someone else's, or quickly knocking up a feature because you spent time extracting a library that made it a breeze. But what about in our processes?
+
+As usual, I was thinking about algorithms while doing my household chores. This morning I was emptying the cutlery from my dishwasher. My normal way to do this is to select all the knives, hold them all between two fingers in one hand, then select all the forks, hold them all between another couple of fingers and repeat for spoons and teaspoons. Then with a big bunch of cutlery I walk to the drawer and quickly and efficiently grab each finger full of cutlery and dump that whole lot in it's tray. All the knives go at once, then forks etc. etc.
+
+This pre-sorting algorithm works fine for me and minimises my trips from the dishwasher to the cutlery drawer. Also no-one is waiting on my output. But what if my house was a busy restaurant and someone was waiting to lay the tables and there was no cutlery in the tray? In this case my dishwasher emptying algorithm is sub-optimal because the person waiting would have to wait for me to fully empty the dishwasher before they could get any work done. It would be better in that case if I simply grab a handful of any items and sort them directly into the tray. In this way the other person can start some work almost immediately.
+
+[Little's Law](http://www.factoryphysics.com/Principle/LittlesLaw.htm) shows that by shrinking the Work In Progress (WIP) we can reduce flow time through the system while holding throughput constant. We can make use of this in our development cycles.
+
+Developers have, IMHO, a natural tendency to hoard their work, in the same way an artist may refuse to let you see a painting before it is finished, a developer will not release his code until it is beautiful.
+It's as if we believe that "showing the workings" exposes the magic trick. The beautiful unique snowflake, that is our software, was not magicked into existence in one fell swoop but was instead wrought out of the aether by hard work, determination and skill. We seem to think that doing this would in some way cheapen the final product.
+
+This is a shame. We see examples everywhere that if people see the work in progress then the final product is improved, either directly or by providing critical feedback.
+For example how many times have you explained some software design to BA's or project stakeholders and they just looked at you funny? But when you show them a demo GUI they can instantly grasp the concept and help refine it.
+
+Most people are quite good at incrementally improving a design, but not all are good at initialising a design. Getting "eyes on early" is a great strategy for producing great products. Engineers have done this since time immemorial, by producing prototypes to allow for early and cheaper testing and re-design.
+
+Gathering critical feedback and design improvements is not the only benefit from transparently showing your workings. More eyes mean less bugs!  This is true whether it is a restaurant with an openly visible kitchen, allowing customers to check hygiene standards for themselves or the open source software community where transparency allows Techos to find and fix bugs and security flaws preventing mal-ware and viruses from quietly taking hold.
+
+So clearly releasing work early and often is going to be a big win. How big? I urge you to watch [Don Reinersten's talk at YOW 2012](https://yow.eventer.com/yow-2012-1012/the-practical-science-of-batch-size-by-don-reinertsen-1269). IMHO it should be recommended or _required?_ viewing for all developers and managers in general.
+
+But how do we do this? The key is to understand what a batch, and hence batch size, is in the Software Development Life cycle (SDLC). A Batch for a developer is a deployable artefact it just needs to compile and run. Once an artefact is released the next people or robots in the chain can work with it, be they QA Testers or Load testers or client representatives who can provide feedback quickly. Quick turnaround of feedback can massively improve the development time, one simple example is that the context of the work will probably still be in the developer's head allowing him to immediately fix or modify the code without a lengthy analysis session.
+
+Shrinking the batch time of each stage in the SDLC pipeline is critical to building quality software and reducing development time. 
+
+Think Dev-Ops.
