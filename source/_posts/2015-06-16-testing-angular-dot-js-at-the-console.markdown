@@ -31,8 +31,8 @@ I can run the method like this from the console:-
 
 voila! we now have the routes in a variable... we can see them by typing the name of the varible in the javascript console:-
 
-   routes
-   [Object, Object, Object]
+    routes
+    [Object, Object, Object]
 
 In Chrome the object is compressed onto one line with a little "expandme" triangle next to it, click the triangle to see the values in the route Objects.
 
