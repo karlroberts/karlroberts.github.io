@@ -62,10 +62,12 @@ endif
 set shortmess=aoO
 badd +1 source/_posts/2014-07-06-google-contacts-api-service-account-howto.markdown
 badd +1 source/_posts/2014-07-16-micro-dot-single-file-webapps.markdown
-badd +15 source/_posts/2015-03-03-batch-size-for-software.markdown
+badd +31 source/_posts/2015-03-03-batch-size-for-software.markdown
 badd +18 ~/.vimrc
+badd +77 source/_posts/2015-03-11-e-do-part-1.markdown
+badd +0 source/_posts/2015-06-16-testing-angular-dot-js-at-the-console.markdown
 silent! argdel *
-edit source/_posts/2015-03-03-batch-size-for-software.markdown
+edit source/_posts/2015-06-16-testing-angular-dot-js-at-the-console.markdown
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -154,10 +156,10 @@ setlocal shiftwidth=2
 setlocal noshortname
 setlocal smartindent
 setlocal softtabstop=2
-setlocal spell
+setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=~/.vim/spell/en.utf-8.add
-setlocal spelllang=en_gb
+setlocal spellfile=
+setlocal spelllang=en
 setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
@@ -175,12 +177,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 31 - ((30 * winheight(0) + 30) / 60)
+let s:l = 38 - ((33 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-31
-normal! 0167|
+38
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
