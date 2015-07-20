@@ -65,9 +65,10 @@ badd +1 source/_posts/2014-07-16-micro-dot-single-file-webapps.markdown
 badd +31 source/_posts/2015-03-03-batch-size-for-software.markdown
 badd +18 ~/.vimrc
 badd +77 source/_posts/2015-03-11-e-do-part-1.markdown
-badd +0 source/_posts/2015-06-16-testing-angular-dot-js-at-the-console.markdown
+badd +38 source/_posts/2015-06-16-testing-angular-dot-js-at-the-console.markdown
+badd +0 source/_posts/2015-06-27-passwordless-ssh-on-synology.markdown
 silent! argdel *
-edit source/_posts/2015-06-16-testing-angular-dot-js-at-the-console.markdown
+edit source/_posts/2015-06-27-passwordless-ssh-on-synology.markdown
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -177,11 +178,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 38 - ((33 * winheight(0) + 17) / 35)
+let s:l = 48 - ((34 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-38
+48
 normal! 0
 tabnext 1
 if exists('s:wipebuf')

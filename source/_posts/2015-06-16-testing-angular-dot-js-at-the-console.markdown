@@ -22,11 +22,11 @@ But the service is wrapped in a clousure, how can I get it to run it's methods?
 Luckily Angular uses a dependency Injection (DI) mechanism, and we can get access to the injector.
 Once we have the injector we can ask for the service "by Name" :-)
 
-Assume I have a service called RouteService that has a method called routes on it that returns an array of route Objects.
+Assume I have a service called RouteService that has a method called `routes()` on it that returns an array of route Objects.
 I can run the method like this from the console:-
 
     var myinjector = angular.element(document.body).injector();   
-    var myRouteService = myinjector('RouteService');
+    var myRouteService = myinjector.get('RouteService');
     var routes = myRouteService.routes();
 
 voila! we now have the routes in a variable... we can see them by typing the name of the varible in the javascript console:-
