@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Using AWS S3 for intranets"
+title: "Private Websites in S3 Buckets"
 date: 2015-08-26 14:25:25 +1000
 comments: true
 categories: 
