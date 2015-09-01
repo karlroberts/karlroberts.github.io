@@ -72,4 +72,6 @@ NB any other ip is automatically excluded too
 }
 ```
 
+The full list of AWS Condition keys is available [here](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#AvailableKeys)
+
 Cheap private web hosting here I come!
