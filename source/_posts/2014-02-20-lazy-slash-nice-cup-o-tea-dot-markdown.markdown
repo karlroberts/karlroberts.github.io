@@ -15,6 +15,7 @@ eg
 But what about splitting the output so that the output can be processed by two consumers? For instance piped into less so I can view it and simultaneously piped into `wc` so we can count the words?
 
 The tee command was invented for just such a purpose.
+<!--more-->
 
     tee example TODO
 

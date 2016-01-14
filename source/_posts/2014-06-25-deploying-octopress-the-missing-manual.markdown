@@ -12,6 +12,7 @@ The [Octopress Doco](http://octopress.org/docs/deploying/github/) does a pretty 
 * You need to commit the master branch and push it up to github.
 
 But before you do please read on to see how to do that the octopress way.
+<!--more-->
 
 ### Where are all my blogs and pages?
 

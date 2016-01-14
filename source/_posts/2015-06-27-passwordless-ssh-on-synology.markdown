@@ -3,14 +3,14 @@ layout: post
 title: "passwordless ssh on synology"
 date: 2015-06-27 17:43:13 +1000
 comments: true
-published: false
+published: true
 categories: 
 - ssh
 - passwordless
 - synology
 ---
 
-I want the rsync user on my synology box (called synology) to use ssh with no password.
+I want the rsync user on my synology box (called synology) to use ssh with no password. <!--more-->
 
 first I create the ssh key
 

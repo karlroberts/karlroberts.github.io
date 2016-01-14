@@ -9,6 +9,7 @@ published: false
 ## Introduction
 Following E-Do we need our artifact to be easy for downstream consumption.
 Whats easier to consume than a unix command? simply add to path or call directly
+<!--more-->
 
 ## SPA - Single-Page-Applications
 Angular.js and other web frameworks mak it easy to build and manage webapps.

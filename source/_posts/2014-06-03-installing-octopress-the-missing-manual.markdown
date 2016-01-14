@@ -8,6 +8,7 @@ categories:
 ## Ruby pain
 The main problems installing octopress is that it relies on a ruby environment.
 This would be fine except it also relies on Ruby having been compiled with certain libraries available in order for the bundler to work as per the octopress doco.
+<!--more-->
 
 ## Missing libraries
 During the Octopress install Ruby or rbenv or bundler will moan that Ruby needs to be compiled with zlib or OpenSSL. to get these on ubuntu do:-

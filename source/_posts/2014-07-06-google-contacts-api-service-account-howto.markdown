@@ -7,6 +7,7 @@ categories: [Service Account, Google, Contacts API, Authentication]
 ---
 ## Overview
 I want to set up a server side App that can read list and filter the Google contacts in our company domain "mycompany.com". This server side app can then be queried by some of our internal webapps to display helpful info.
+<!--more-->
 
 ### Why not simply do it all in javascript?
 Dunno. maybe that would be better. We'll See.

@@ -16,6 +16,7 @@ Using the installed app authentication flow is sometimes better than using a Ser
 ### Con
 * A user needs to accept the Scope of the app, not too bad as once accepted it can continue to use the refresh token to keep accessing the API
 * con you can't choose the OAuth2 redurect_URI just get magig top of page or http://localhost (any port you want) so no good for webapps... but then they have a Web-AppClient if you want that.
+<!--more-->
 
 
 ## Create a project in [Google Dev Console](https://console.developers.google.com)

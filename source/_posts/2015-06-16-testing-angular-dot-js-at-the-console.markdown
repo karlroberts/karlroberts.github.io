@@ -15,7 +15,7 @@ sure you can (and should) write a unit test but you just need to sanity check
 the service is doing the right thing.
 
 Well the browser has a javascript console (f12) which has all your code loaded in it,
-so we should be able just run the service.
+so we should be able just run the service. <!--more-->
 
 But the service is wrapped in a clousure, how can I get it to run it's methods?
 

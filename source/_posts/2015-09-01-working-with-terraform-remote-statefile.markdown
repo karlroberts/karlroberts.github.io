@@ -10,7 +10,7 @@ categories:
 - devops
 ---
 #### Remote state
-There are gotcha's when working with remote state in terraform that this blog attempts to explain and workaround.
+There are gotcha's when working with remote state in terraform that this blog attempts to explain and workaround. <!--more-->
 
 [Terraform](https://www.terraform.io/docs/index.html)  is a pretty cool infrastructure provisioner.
 It lets me set up infrastructure that can span cloud providers, eg AWS and/or Azure.

@@ -11,6 +11,7 @@ For the details see [Implicit Classes](http://docs.scala-lang.org/overviews/core
 This makes it trivial to add methods to previously closed classes. However there are some gotcha's to beware of. In particular make sure you [read the rules](http://docs.scala-lang.org/overviews/core/implicit-classes.html#restrictions)
 
 The reason I'm writing this blog is that I fell foul of restriction 3. It took me ages to work it out.
+<!--more-->
 
 Restriction 3 says:- 
 > "There may not be any method, member or object in scope with the same name as the implicit class.

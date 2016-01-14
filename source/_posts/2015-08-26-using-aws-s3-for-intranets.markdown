@@ -13,7 +13,7 @@ categories:
 Many people now realise that you can use Amazon Web Services (AWS) S3 buckets to [host a static website](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html).
 
 This is cool because it is very reliable and extremly cheap.
-You don't pay to have an EC2 instance constantly running
+You don't pay to have an EC2 instance constantly running <!--more-->
 
 - you just get charged s3 costs
 - $0.03 per GB and $0.004 per 10000 requests.
