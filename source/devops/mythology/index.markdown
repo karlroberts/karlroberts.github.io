@@ -32,11 +32,20 @@ System Administrator was appalled at the mess. He loved his computer and knew th
 
 The Schism instigated by the Bussiness was complete. Developers and Operations would forever be pulled in different directions, devlopers were tasked with createing changes in Production and Operations would attempt to  prevent all change from sullying Production's pristeen uptime.
 
+Problems continued to occur. One small mis-alignment of code or requirement or one mistep and the deployment process would flatten Production. Operations added more manuals and documentation to the wall that Developers had to get their code over to land in Production. Strange and infinitly varied proceedures begat equally varied  ways to get around them. 
+
 ## Dark Ages ...
 
-Problems continued to occur. On small mis-alignment of code or requirement or one mistep and the deployment process would flatten Production. The Bussiness was worried that they may get the blame and being compleatly IT illiterate many cargo cults, monsters and mythical creatures were invented to try to explain or solve the problems. For instance it was widely belived that Gremlins attacked computers leaving Bugs everywhere which caused crashes.
+Dispite or even due to the Schism, Software in Production was incredibly valuable to the Bussiness. In fact Computers flourished in the demand and became faster and faster, but such efficiency rather than satiating the Bussiness's greed furhter threw them into a feeding frenzy driving more demand.
 
-It was in this chaos and misunderstanding a saviour was though to exist in the form of a ruthless deamon, called a PM, that had been spawned and risen to the top of the Tele-sales department. PM would be able to understand both the Bussiness desires and understand computer systems (after all he could use a predictive-dialing phone system) and so should be able to run am IT project or department. Or so it was thought.
+In this turmoil the winners became super rich and loosers .... went out of bussiness or were consumed by the super wealthy. With so much at stake no-one wanted to slow down and think they just wanted code in Production.
+
+Being compleatly IT illiterate many cargo cults, monsters and mythical creatures were invented by the Bussiness to try to explain or solve the problems in Production. For instance it was widely belived that Gremlins attacked computers leaving Bugs everywhere which caused Production crashes.
+
+It was in this chaos and misunderstanding a saviour was though to exist in the form of a ruthless deamon, called a PM, that had been spawned and risen to the top of the fetering pit of the Tele-sales department. PM would be able to understand both the Bussiness desires and understand computer systems (after all he could use a predictive-dialing phone system) and so should be able to run am IT project or department. Or so it was thought.
+
+However, PM's ambition was boundless. He neither knew nor cared how IT systems worked but he fully understood greed and power and he knew that the more people he could consume in his project the more power and weight he would have. His diabolical plan was to consume so much of The Bussiness that he'd become too big to fail and he'd be able to live forever on the misory of his victims. Born out of his success in Tele-Sales PM hatched a new monster the "Mythical Man-Month" to be his vessel. Using the Mythical Man Month he easily swayed The Bussiness that he just needed to consume more bodies and he could get code shipped to Production
 
 Unfortunatly skilled Dev and Ops guys were expensive and hard to indoctinate
-Enterprise Systems were created in an attempt to mass-produce developers and Ops guys cheaply
+Other Bussinesses created Enterprise Systems were created in an attempt to mass-produce developers and Ops guys cheaply
+
