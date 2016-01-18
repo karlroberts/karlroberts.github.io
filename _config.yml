@@ -89,12 +89,12 @@ pinboard_count: 3
 delicious_user:
 delicious_count: 3
 
-# Disqus Comments
+# Disqus Comments karlcode
 disqus_short_name:
 disqus_show_comment_count: false
 
-# Google Analytics
-google_analytics_tracking_id: UA-72539490-1
+# Google Analytics UA-72539490-1
+google_analytics_tracking_id: 
 
 # Facebook Like
 facebook_like: false

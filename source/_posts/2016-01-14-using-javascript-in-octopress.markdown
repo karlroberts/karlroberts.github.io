@@ -11,6 +11,7 @@ categories:
 ---
 
 I intend to write a series of blogs on Javascript. It occurred to me that the blog should be able to demonstrate the JS code to make it more accessible.
+K
 So first things first I need to gry Octopress (my blogging framework) to use my JavaScript.
 
 This blog intends to catalog how I got my JS examples into the blog. <!--more-->
