@@ -11,4 +11,4 @@ categories: [about, whoami, author]
 - scala/java dev
 - unhealthy obsesion with performance
 - code for fun and profit
-- work at [ecetera](http://www.ecetera.com.au)
+- work at [avocado](http://www.avocadoconsulting.com.au)
