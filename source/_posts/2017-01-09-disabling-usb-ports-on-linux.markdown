@@ -73,7 +73,7 @@ So in this case the USB device (or port) we need is `1-1.6`.
 Because the Webcam is attached to the internal USB hub, it will always be listed at the same address, this is helpful as it means I can hard-code `1-1.6` where I need it rather than parsing the output of the command.
 
 ## Turn off power to the Webcam
-Now we know the device to power off it is simple to turn of the camera using the `sys` file system. 
+Now we know the USB device number, it is simple to turn off the camera using the `sys` file system. 
 
 By writing values to the "files" in the `sys` file system you can effect the devices that the file represents. Obviously you need to be root to do this, or be a user that has `sudo` permissions.
 
@@ -88,7 +88,7 @@ To turn it back on,
 
     $ echo '1-1.6' | sudo tee /sys/bus/usb/drivers/usb/bind
 
-This command pushed the USB device name, "1-1.6", to a special socket that acts like an command API to the USB driver, in other words rather than directly control the power of the device we ask the USB driver to do it for us.
+This command pushed the USB device name, "1-1.6", to a special socket that acts like a command API to the USB driver, in other words rather than directly control the power of the device we ask the USB driver to do it for us.
 
 ## Run it at start-up
 Now I have control over my USB ports I want to disable this port at start-up.
