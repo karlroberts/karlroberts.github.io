@@ -5,23 +5,23 @@ date: 2016-01-14 11:24:02 +1100
 comments: true
 published: true
 categories: 
-- octopress
-- javascript
+- Octopress
+- JavaScript
 - D3
 ---
 
-I intend to write a series of blogs on Javascript. It occurred to me that the blog should be able to demonstrate the JS code to make it more accessible.
-K
-So first things first I need to gry Octopress (my blogging framework) to use my JavaScript.
+I intend to write a series of blogs on JavaScript. It occurred to me that the blog should be able to demonstrate the JS code to make it more accessible.
+OK
+So, first things first, I need to get Octopress (my blogging framework) to use my JavaScript.
 
-This blog intends to catalog how I got my JS examples into the blog. <!--more-->
+This blog intends to catalogue how I got my JS examples into the blog. <!--more-->
 
 What do I need? ... 
 
 I need to add a `script` tag in the blog post to include the JavaScript.
 
-luckily the Octopress markdown syntax that blogs are written in allows pure html, so I can simply add the script tags
-eg. Here is how to use D3 to generate an SVG
+Luckily the Octopress markdown syntax that blogs are written in allows pure html, so I can simply add the script tags
+e.g. Here is how to use D3 to generate an SVG
 
 {% codeblock lang:html %}
 <div id="rect1" class="chart"></div>
@@ -49,7 +49,7 @@ Notice that the `<div>` tag to hold the generated SVG came before the JavaScript
 
 If it had come after the JS the Square would not have rendered because the script would run as soon as it was encountered in the normal HTML way but the DOM element it was looking to populate (something with the id="rect1") was not yet on the page.
 
-I could have simply looked for the `body` and appended it to that in JS or had the JavaScript run in an `onload` callback eg
+I could have simply looked for the `body` and appended it to that in JS or had the JavaScript run in an `onload` callback e.g.
 
 {% codeblock lang:javascript %}
 window.onload = function drawSquare() {...}

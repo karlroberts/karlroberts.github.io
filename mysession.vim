@@ -15,11 +15,13 @@ nnoremap ,sv :source $MYVIMRC
 nnoremap ,` :vsplit $MYVIMRC
 nnoremap / /\v
 nnoremap ? ?\v
+vmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 onoremap il{ :normal! F}vi{
 onoremap in{ :normal! f{vi{
 onoremap il( :normal! F)vi(
 onoremap in( :normal! f(vi(
+vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
 nnoremap <Right> <Nop>
 nnoremap <Left> <Nop>
@@ -52,7 +54,7 @@ set smartindent
 set softtabstop=2
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set tags=tags,./tags,~/tags/commontags
-set window=50
+set window=55
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -69,8 +71,10 @@ badd +77 source/_posts/2015-03-11-e-do-part-1.markdown
 badd +38 source/_posts/2015-06-16-testing-angular-dot-js-at-the-console.markdown
 badd +48 source/_posts/2015-06-27-passwordless-ssh-on-synology.markdown
 badd +1 source/_posts/2015-09-01-working-with-terraform-remote-statefile.markdown
+badd +116 source/_posts/2016-01-14-using-javascript-in-octopress.markdown
+argglobal
 silent! argdel *
-edit source/_posts/2015-09-01-working-with-terraform-remote-statefile.markdown
+edit source/_posts/2015-06-27-passwordless-ssh-on-synology.markdown
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -80,7 +84,10 @@ argglobal
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
+setlocal backupcopy=
 setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
 setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
@@ -110,6 +117,7 @@ setlocal expandtab
 if &filetype != 'markdown'
 setlocal filetype=markdown
 endif
+setlocal fixendofline
 setlocal foldcolumn=0
 setlocal foldenable
 setlocal foldexpr=0
@@ -136,12 +144,13 @@ setlocal keywordprg=
 set linebreak
 setlocal linebreak
 setlocal nolisp
+setlocal lispwords=
 setlocal nolist
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
 setlocal modifiable
-setlocal nrformats=octal,hex
+setlocal nrformats=bin,octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
@@ -159,10 +168,10 @@ setlocal shiftwidth=2
 setlocal noshortname
 setlocal smartindent
 setlocal softtabstop=2
-setlocal nospell
+setlocal spell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
+setlocal spellfile=~/.vim/spell/en.utf-8.add
+setlocal spelllang=en_gb
 setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
@@ -171,21 +180,23 @@ if &syntax != 'markdown'
 setlocal syntax=markdown
 endif
 setlocal tabstop=8
+setlocal tagcase=
 setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
+setlocal undolevels=-123456
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 151 - ((49 * winheight(0) + 25) / 50)
+let s:l = 56 - ((1 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-151
-normal! 03|
+56
+normal! 02|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
