@@ -71,14 +71,17 @@ badd +38 source/_posts/2015-06-16-testing-angular-dot-js-at-the-console.markdown
 badd +56 source/_posts/2015-06-27-passwordless-ssh-on-synology.markdown
 badd +1 source/_posts/2015-09-01-working-with-terraform-remote-statefile.markdown
 badd +116 source/_posts/2016-01-14-using-javascript-in-octopress.markdown
-badd +109 source/_posts/2017-01-09-disabling-usb-ports-on-linux.markdown
+badd +1 source/_posts/2017-01-09-disabling-usb-ports-on-linux.markdown
 badd +1 source/_posts/2017-01-11-reusable-d3-chart-components-in-angular2.markdown
 badd +10 source/_posts/2017-01-11-extract-helper-funcs-to-private-npm-modules.markdown
-badd +7 source/_posts/2017-01-11-automounting-s3fs.markdown
-badd +0 source/_posts/2017-01-11-using-octopus-to-deploy-to-linux.markdown
+badd +13 source/_posts/2017-01-11-automounting-s3fs.markdown
+badd +1 source/_posts/2017-01-11-using-octopus-to-deploy-to-linux.markdown
+badd +37 source/_posts/2017-01-12-howto-correctly-extend-a-prototype-in-typescript.markdown
+badd +23 source/_posts/2017-01-13-system-dot-js-gotcha-404-get-slash-traceur.markdown
+badd +45 source/_posts/2017-01-17-correct-way-to-add-d3-libs-and-types-to-angular-dot-js-with-system-dot-js.markdown
 argglobal
 silent! argdel *
-edit source/_posts/2017-01-11-using-octopus-to-deploy-to-linux.markdown
+edit source/_posts/2017-01-11-automounting-s3fs.markdown
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -195,12 +198,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 36) / 73)
+let s:l = 31 - ((30 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+31
+normal! 0306|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
