@@ -15,6 +15,7 @@ During the Octopress install Ruby or rbenv or bundler will moan that Ruby needs 
 
     apt-get install zlib1g-dev
     apt-get install libssl-dev openssl
+    apt-get install -y libreadline-dev
 
 if you are not on ubuntu look at [this blog](https://github.com/sstephenson/ruby-build/wiki) for common ruby gotchas and solutions on different Linuxes.
 

@@ -120,28 +120,27 @@ init.txt
 ```
 
 here is the terraform config to set up remote state, remote.tf :-
-```
-# found from env var TF_VAR_acces_key
-variable "access_key" {}
 
-variable "secret_key" {}
-
-provider "aws" {
-    access_key = "${var.access_key}"
-    secret_key = "${var.secret_key}"
-    region = "ap-southeast-2"
-}
-
-resource "terraform_remote_state" "remote_state" {
-    backend = "s3"
-    config {
-      bucket = "my-statefile-bucket-name"
-      key    = "myterraformprojectname/terraform.tfstate"
-     # region = "ap-southeast-2"
+    # found from env var TF_VAR_acces_key
+    variable "access_key" {}
+    
+    variable "secret_key" {}
+    
+    provider "aws" {
+        access_key = "${var.access_key}"
+        secret_key = "${var.secret_key}"
+        region = "ap-southeast-2"
     }
-}
+    
+    resource "terraform_remote_state" "remote_state" {
+        backend = "s3"
+        config {
+          bucket = "my-statefile-bucket-name"
+          key    = "myterraformprojectname/terraform.tfstate"
+         # region = "ap-southeast-2"
+        }
+    }
 
-```
 
 
 ##### Usage

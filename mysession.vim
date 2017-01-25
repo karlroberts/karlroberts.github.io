@@ -74,14 +74,15 @@ badd +116 source/_posts/2016-01-14-using-javascript-in-octopress.markdown
 badd +1 source/_posts/2017-01-09-disabling-usb-ports-on-linux.markdown
 badd +1 source/_posts/2017-01-11-reusable-d3-chart-components-in-angular2.markdown
 badd +10 source/_posts/2017-01-11-extract-helper-funcs-to-private-npm-modules.markdown
-badd +13 source/_posts/2017-01-11-automounting-s3fs.markdown
+badd +31 source/_posts/2017-01-11-automounting-s3fs.markdown
 badd +1 source/_posts/2017-01-11-using-octopus-to-deploy-to-linux.markdown
 badd +37 source/_posts/2017-01-12-howto-correctly-extend-a-prototype-in-typescript.markdown
 badd +23 source/_posts/2017-01-13-system-dot-js-gotcha-404-get-slash-traceur.markdown
 badd +45 source/_posts/2017-01-17-correct-way-to-add-d3-libs-and-types-to-angular-dot-js-with-system-dot-js.markdown
+badd +0 source/_posts/2017-01-25-push-a-docker-image-to-personal-repository.markdown
 argglobal
 silent! argdel *
-edit source/_posts/2017-01-11-automounting-s3fs.markdown
+edit source/_posts/2017-01-25-push-a-docker-image-to-personal-repository.markdown
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -175,10 +176,10 @@ setlocal shiftwidth=2
 setlocal noshortname
 setlocal smartindent
 setlocal softtabstop=2
-setlocal nospell
+setlocal spell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
+setlocal spellfile=~/.vim/spell/en.utf-8.add
+setlocal spelllang=en_gb
 setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
@@ -198,12 +199,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 31 - ((30 * winheight(0) + 24) / 48)
+let s:l = 133 - ((44 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-31
-normal! 0306|
+133
+normal! 08|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

@@ -1,7 +1,7 @@
 ---
 published: false
 layout: post
-title: "automounting s3fs"
+title: "Seamless integration with s3 using s3fs and the automounter"
 date: 2017-01-18 13:20:22 +1100
 comments: true
 categories: 
@@ -10,6 +10,18 @@ categories:
 - linux
 - s3
 ---
+This is a small series of blogs showing how to seamlessly integrate with S3 buckets using s3fs and the automounter. 
+
+If you already know what I'm talking about feel free to skip to [part 2]() and [part3]() where I show the details of how to set up s3fs and the automounter.
+
+Index:
+* Introduction
+* Set up S3
+* Set up s3fs
+* Set up automounter
+* Devops the setup with ansible playbook and roles.
+
+## tl;dr
 ## What is s3?
 I'm going to assume you know what Amazon Web Services(AWS) S3 storage is and know that it is good and you want to use it, if not [see s3](https://aws.amazon.com/s3/) 
 
@@ -47,7 +59,7 @@ The documentation on the s3fs Github [page](https://github.com/s3fs-fuse/s3fs-fu
 
 I want to mount the filesystem on demand, ie when I attempt to look in the directory or access a file. 
 
-This is what the automounter can do for me. enough explanation, lets see how to set it up.
+This is what the automounter can do for me. 
 
 1. first get an AWS account and create an [S3 bucket](https://aws.amazon.com/s3/) 
 1.1 in this example I'll call the bucket "mystuff" 
@@ -61,3 +73,4 @@ if auto mount and no network when acces dir or file get
 need to `sudo umount /my/s3fs/mountpoint` then once network is up just cd to dir again,
 if using `/etc/fstab` you need to `sudo umount /my/s3fs/mountpoint` and then start net then `sudo mount /my/s3fs/mountpoint` then cd to the dir.
 
+enough explanation, lets see how to set it up. Jump to the [next post]() in this series to set up your s3 bucket.
