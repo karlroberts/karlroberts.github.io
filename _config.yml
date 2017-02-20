@@ -99,3 +99,8 @@ google_analytics_tracking_id: UA-72539490-1
 
 # Facebook Like
 facebook_like: false
+
+# octopress plugins
+gems:
+  - octopress-paginate
+
