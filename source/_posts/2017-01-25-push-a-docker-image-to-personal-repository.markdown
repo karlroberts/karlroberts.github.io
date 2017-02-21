@@ -33,7 +33,7 @@ This is great as it gives you the ability to spin up a container based on the im
     # my super-cool microservice
     $ docker run --name mycont1 5f157f802a51 ls
 
-A potential issue with the above process is that if I want a co-worker to kick of his micro service, or we want to run it in 
+A potential issue with the above process is that if I want a co-worker to kick off his micro service, or we want to run it in 
 multiple "environments" then he will have to run the docker build first and then run it.
 
 This takes some time

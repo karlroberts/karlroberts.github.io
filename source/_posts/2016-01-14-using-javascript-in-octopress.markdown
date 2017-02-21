@@ -8,6 +8,8 @@ categories:
 - Octopress
 - JavaScript
 - D3
+keywords:
+- d3
 ---
 
 I intend to write a series of blogs on JavaScript. It occurred to me that the blog should be able to demonstrate the JS code to make it more accessible.
@@ -26,7 +28,7 @@ e.g. Here is how to use D3 to generate an SVG
 {% codeblock lang:html %}
 <div id="rect1" class="chart"></div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.12/d3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
 
 <script>
 var square = d3.select("#rect1");

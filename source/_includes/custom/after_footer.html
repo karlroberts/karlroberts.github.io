@@ -1,3 +1,20 @@
 {% comment %}
   Add content to be output at the bottom of each page. (You might use this for analytics scripts, for example)
 {% endcomment %}
+
+{% if page.keywords contains "suited.js" %}
+  <script type="text/javascript" src="{{ root_url }}/scripts/suited.js"></script>
+	<script type="text/javascript">
+	var suited = {
+	  config: {
+	   "foo": "bar",
+	   "plugins": {
+	     "MarkdownPlugin": {
+	       "html": true
+	     }
+	   }
+
+	  }
+	};
+  </script>
+{% endif %}
