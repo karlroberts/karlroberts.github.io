@@ -32,7 +32,11 @@ Vagrant.configure("2") do |config|
     # uncomment below to use local Dockerfile rather than repo image
     d.build_dir = "."
     d.ports = ["4000:4000"]
-    d.volumes = ["/home/robertk/projects/octopress:/home/vagrant/blog"]
+    d.volumes = ["/home/robertk/projects/octopress:/home/vagrant/blog", "/home/robertk/.ssh:/home/vagrant/ussh" ]
+  end
+
+  config.vm.provision "shell" do |s|
+    s.inline = "echo Hiya Karl shel prov"
   end
 
   config.vm.provision "ansible" do |ansible|

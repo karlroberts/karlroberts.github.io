@@ -13,6 +13,14 @@
       executable: /bin/bash
       chdir: /home/vagrant/blog  
 
+  #   - name: "copy github key"
+  #     copy:
+  #       src: /home/robertk/.ssh/id_rsa
+  #       dest: /home/vagrant/.ssh/id_rsa
+  #       owner: vagrant
+  #       group: vagrant
+  #       mode: 0400
+
     # - name: "install rbenv local"
     # - shell: "source /home/vagrant/.bashrc && rbenv local 1.9.3-p0"
     # - args:

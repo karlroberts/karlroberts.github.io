@@ -30,6 +30,8 @@ RUN mkdir -p /home/vagrant/.ssh
 RUN chmod 700  /home/vagrant/.ssh
 ADD vagrant.pub  /home/vagrant/.ssh/authorized_keys
 RUN chmod 600 /home/vagrant/.ssh/authorized_keys
+ADD ssh_config /home/vagrant/.ssh/config
+RUN chmod 600 /home/vagrant/.ssh/config
 RUN chown -R vagrant:vagrant /home/vagrant/.ssh
 
 # all vagrant use to sudo to root
@@ -80,9 +82,14 @@ RUN /bin/bash -c "source /home/vagrant/.bashrc && $HOME/.rbenv/bin/rbenv rehash"
 
 
 RUN mkdir /home/vagrant/blog
+RUN mkdir /home/vagrant/ussh
+RUN ln -s /home/vagrant/ussh/id_rsa /home/vagrant/.ssh/id_rsa
+#RUN chmod 500 /home/vagrant/.ssh/id_rsa
 
 USER root
 VOLUME /home/vagrant/blog
+VOLUME /home/vagrant/ussh
+
 
 
 ENTRYPOINT ["/bin/sh", "/usr/local/bin/launch"]
