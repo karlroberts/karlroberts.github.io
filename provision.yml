@@ -1,0 +1,17 @@
+---
+- hosts: octopress
+  remote_user: vagrant
+  tasks:
+    - name: "install ruby with rbenv"
+      command: "rbenv install 1.9.3-p0"
+
+    - name: "install rbenv local"
+      command: "rbenv local 1.9.3-p0"
+
+    - name: "rbenv rehash"
+      command: "rbenv rehash"
+
+    - name: "install bundler"
+      command: "gem install bundler"
+    - command: "benv rehash"
+    - command: "bundle install"

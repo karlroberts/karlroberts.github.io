@@ -1,0 +1,35 @@
+---
+- hosts: octopress
+  become: true
+  become_user: vagrant
+  become_method: su 
+  tasks:
+  - name: "foobar"
+    shell: hostname
+
+  - name: "install gem dependencies"
+    shell: source ~/.bashrc && /home/vagrant/.rbenv/shims/bundle install
+    args:
+      executable: /bin/bash
+      chdir: /home/vagrant/blog  
+
+    # - name: "install rbenv local"
+    # - shell: "source /home/vagrant/.bashrc && rbenv local 1.9.3-p0"
+    # - args:
+    # -   executable: /bin/bash
+
+    # - name: "rbenv rehash"
+    # - shell: "source /home/vagrant/.bashrc && rbenv rehash"
+    # - args:
+    # -   executable: /bin/bash
+
+    # - name: "install bundler"
+    # - shell: "source /home/vagrant/.bashrc && gem install bundler"
+    # - args:
+    # -   executable: /bin/bash
+    # - shell: "source /home/vagrant/.bashrc && rbenv rehash"
+    # - args:
+    # -   executable: /bin/bash
+    # - shell: "source /home/vagrant/.bashrc && bundle install"
+    # - args:
+    # -   executable: /bin/bash

@@ -4,6 +4,7 @@
 .gist-cache
 .pygments-cache
 _deploy
+.vagrant
 public
 sass.old
 source.old
@@ -12,3 +13,4 @@ source/stylesheets/screen.css
 vendor
 node_modules
 Gemfile.lock
+*.retry
