@@ -28,22 +28,23 @@ Vagrant.configure("2") do |config|
     d.name = "my_octopress_name"
     d.has_ssh = true
     # comment below to use local Dockerfile rather than repo image
-    #d.image = "docker.aws.avocado.com.au:443/hel/ubuntu-xenial-hel:latest"
+    d.image = "ubuntu-xenial-ruby:latest"
     # uncomment below to use local Dockerfile rather than repo image
-    d.build_dir = "."
+    #d.build_dir = "."
     d.ports = ["4000:4000"]
     d.volumes = ["/home/robertk/projects/octopress:/home/vagrant/blog", "/home/robertk/.ssh:/home/vagrant/ussh" ]
   end
 
   config.vm.provision "shell" do |s|
     s.inline = "echo Hiya Karl shel prov"
+    s.inline = "source ~/.bashrc && cd /home/vagrant/blog && sudo -u vagrant /home/vagrant/.rbenv/shims/bundle install"
   end
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "provision_vagrant.yml"
-    ansible.verbose = "v"
-    ansible.groups = {
-      "octopress" => ["default"]
-    }
-  end
+ # config.vm.provision "ansible" do |ansible|
+ #   ansible.playbook = "provision_vagrant.yml"
+ #   ansible.verbose = "v"
+ #   ansible.groups = {
+ #     "octopress" => ["default"]
+ #   }
+ # end
 end

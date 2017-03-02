@@ -1,26 +1,27 @@
 ---
-published: false
+published: true
 layout: post
-title: "The Rise and (hopefully) fall of the Aux Pattern 2"
+title: "The Rise and (hopefully) fall of the Aux Pattern 3"
 date: 2017-01-31 08:36:16 +1100
 comments: true
-paginate:
-  collection:   auxpattern
-  per_page:     10             # maximum number of items per page
-  limit:        5
 categories:
 - suited.js
+- auxpattern
 keywords:
 - suited.js
-- foobarwibble
+- foobarwibblex
+paginate:
+  category: 'auxpattern'
 ---
 
 
 
-{% for post in paginator.auxpattern %}
-  this is foobar page num is {{ paginator.page }} of {{ paginator.total_auxpattern }}
-{% endfor %}
+### paginator deets 
+page is kkkkkk {{ paginator.page }}
 
+<section data-figure>
+## a title
+</section>
 
 <section data-figure>
 <p>Foo bar wibble</p>
@@ -134,5 +135,8 @@ the[Last[String :: Int :: HNil]]
 .::[Int,shapeless.HNil]]]{type Out = Int} = shapeless.ops.
 hlist$Last$$anon$34@17b3e7d8
 We only need a single instance, defined for HLists of at least two elements:
+
+
+
 
 

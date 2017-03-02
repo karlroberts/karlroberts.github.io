@@ -13,5 +13,5 @@
 
     - name: "install bundler"
       command: "gem install bundler"
-    - command: "benv rehash"
+    - command: "rbenv rehash"
     - command: "bundle install"

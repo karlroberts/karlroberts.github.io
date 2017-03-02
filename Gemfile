@@ -17,6 +17,7 @@ end
 
 group :jekyll_plugins do
     gem 'octopress-paginate'
+    gem 'octopress-pullquote-tag'
 end
 
 gem 'sinatra', '~> 1.4.2'

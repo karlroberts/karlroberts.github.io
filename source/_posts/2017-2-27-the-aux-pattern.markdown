@@ -1,11 +1,12 @@
 ---
 published: true
 layout: post
-title: "The Rise and (hopefully) fall of the Aux Pattern"
-date: 2017-01-31 08:36:16 +1100
+title: "Aux Pattern - Index"
+date: 2017-02-27 08:36:16 +1100
 comments: true
 paginate:
-  collection:   auxpattern
+  category: 'auxpattern'
+  title_suffix: " - page :num" # Append to template's page title
   per_page:     10             # maximum number of items per page
   limit:        5   
 categories: 
@@ -13,18 +14,25 @@ categories:
 kjdfhkjsdfsdfjk
 dfkjsdfjn
 
-{% for post in paginator.auxpattern %}
+{% for post in paginator.posts %}
   this is foobar page num is {{ paginator.page }} of 
 
-bble
 paginator.total_pages {{  paginator.total_pages }}
+
 paginator.total_posts {{  paginator.total_posts }}
+
 paginator.per_page {{  paginator.per_page }}
+
  {{  paginator.limit }}
+
  {{  paginator.page }}
+
  {{  paginator.previous_page }}
+
  {{  paginator.previous_page_path }}
+
  {{  paginator.next_page }}
+
  {{  paginator.next_page_path }}
 
 {% endfor %}
@@ -55,7 +63,6 @@ paginator.per_page {{  paginator.per_page }}
      </div>
 {% endif %}
 
-Foo bar page 1 auxpattern
 
 
 

@@ -103,4 +103,5 @@ facebook_like: false
 # octopress plugins
 gems:
   - octopress-paginate
+  - octopress-pullquote-tag
 
