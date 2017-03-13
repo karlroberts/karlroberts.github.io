@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Working With Terraform Remote Statefile - Karl's Code</title>
+  <meta name="author" content="Karl Roberts">
+
+  
+  <meta name="description" content="Remote state There are gotcha&rsquo;s when working with remote state in terraform that this blog attempts to explain and workaround. Terraform is a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
+
+  <!-- add scripts I want to add first if the keywords section in YML frontmatter exists -->
+
+
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-72539490-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karl's Code</a></h1>
+  
+    <h2>and other code related stuff</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="karlroberts.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Working With Terraform Remote Statefile</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-01T01:04:11+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:04 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>Remote state</h4>
+
+<p>There are gotcha&rsquo;s when working with remote state in terraform that this blog attempts to explain and workaround. <!--more--></p>
+
+<p><a href="https://www.terraform.io/docs/index.html">Terraform</a>  is a pretty cool infrastructure provisioner.
+It lets me set up infrastructure that can span cloud providers, eg AWS and/or Azure.</p>
+
+<h4>working with terraform</h4>
+
+<p>By writing terraform config files you declaritivly describe the infrastructure that you want,
+for example which AWS IAM users, groups, roles and policies on which S3 buckets and EC2 instances.</p>
+
+<p>by running <code>terraform plan</code> terraform create a terraform.tfstate file that describes the full state as described in your config
+and compares it to the previous tfstate file to show you what changes will be made.</p>
+
+<p>This is cool, you can see what will happen before you run <code>terraform apply</code>.</p>
+
+<h4>What&rsquo;s the catch?</h4>
+
+<p>It is important to realise that terraform is a state machine.</p>
+
+<p>if your previous state added a user, and your new state does not mention that user (ie you removed him from one of the config files) then next time you run <code>terraform plan</code> or <code>terraform apply</code> you will see that the user will be removed so that the terraformed environment matches the new desired state.</p>
+
+<p>That doesn&rsquo;t seem so bad. Your config (which I presume you are version controlling in git?) grows and consistently matches the desired end stateof your environment, effectivly documenting the infrastructure. Cool.</p>
+
+<p>So what&rsquo;s the problem?</p>
+
+<h4>The problem</h4>
+
+<p>What happens when your mate runs apply from his dev machine?</p>
+
+<p>Obviously terraform will apply the state to the environment as described in his config.
+But what if he deletes something that you are still depending on? You can quite quickly destroy each others infrastructure.</p>
+
+<p>This can be avoided using normal Version control practice, eg rebasing from git before you run <code>terraform plan</code> and <code>terraform apply</code> but almost enevitably you will always be merging conflicts by hand in the <code>terraform.tfstate</code> JSON file. This is not too bad if you always have a conflict as you&rsquo;ll know that you need to merge, but as with all structured text files it&rsquo;s possible that a clause will be inserted at a different line to your changes that doesn&rsquo;t conflict in a diff sense but does change the meaning of the file in an inconsitent way, ege a group gould be removed from one place but depended on in another. terraform will fail in this case but then you&rsquo;ll need to manually fix it up, which is a pain, but I can imagine changes that could happen that would not be conflicts and dont screw up the file, but do dramatically impact the generated infrastucture, such as adding a policy or group that together work to lower the expected security contraints of the infrastructure.</p>
+
+<h5>How do we deal with this?</h5>
+
+<p>Terraform handles this scenario by allowing a Remote statefile, that can live in Consul, AWS S3 or Atlas.</p>
+
+<p>Running the <code>terraform remote</code> command can set up your local terraform.tfstate file to match the remote one before seeing what the diffs are.</p>
+
+<p><strong>Gotcha 1</strong> NB even with a remote statefile terraform does not support concurrent <code>terraform apply</code> commands as it doesn&rsquo;t manage locking of the stanza&rsquo;s in the statefile, so talk to your mate before running it!</p>
+
+<p>This is all OK now&hellip;. or is it?</p>
+
+<p>There are still a couple of anoying problems that prevent this feature working as you&rsquo;d expect.</p>
+
+<p>The way I&rsquo;d like to work with this, is prevent git from commiting the <code>.terraform/terraform.tfstate</code> file in the gitignore file, so that the remote one is auto downloaded to compare with my generated new state before calulateing the combined next state.</p>
+
+<p><strong>Gotcha 2</strong> If you don&rsquo;t have a local <code>terraform.tfstate</code> file then <code>terraform apply</code> fails beacuse it assumes it needs to create resources that already may already exist but it doesn&rsquo;t know because it doesn&rsquo;t have the current state.</p>
+
+<h4>The workaround</h4>
+
+<p>You could fetch the latest remote state file and copy it to <code>.terraform/terraform.tfstate</code> the first time, but this means you be forever explaining to people what to do.</p>
+
+<p>my current recommendation is to use a Makefile to run terraform, which by default sets up the copy of remote state if it doesn&rsquo;t exist and then runs <code>terraform plan</code> with a seperate target for <code>terraform apply</code>.</p>
+
+<p>In this way you don&rsquo;t need to check in the statefile so you cna be sure that you are in sync and you don&rsquo;t need to remember to get it first (Chicken and Egg scenario)</p>
+
+<p>here is the Makefile using and AWS bucket for this terraform remote state:-</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Makefile to kick of the terraform for this project
+</span><span class='line'>#
+</span><span class='line'># You should set the following environment variable to authenticate 
+</span><span class='line'># with AWS so you can store and retrieve the remote state befor you run this Makefile.
+</span><span class='line'>#
+</span><span class='line'># export AWS_ACCESS_KEY_ID= &lt;your key&gt;
+</span><span class='line'># export AWS_SECRET_ACCESS_KEY= &lt;your secret&gt;
+</span><span class='line'># export AWS_DEFAULT_REGION= &lt;your bucket region eg ap-southeast-2&gt;
+</span><span class='line'># export TF_VAR_access_key=$AWS_ACCESS_KEY # exposed as access_key in the terraform scripts
+</span><span class='line'># export TF_VAR_secret_key=$AWS_SECRET_ACCESS_KEY
+</span><span class='line'>#
+</span><span class='line'># ####################################################
+</span><span class='line'>#
+</span><span class='line'>STATEBUCKET = my-statefile-bucket-name
+</span><span class='line'>PREFIX = myterraformprojectname
+</span><span class='line'>
+</span><span class='line'># # Before we start test that we have the manditory executables avilable
+</span><span class='line'> EXECUTABLES = git terraform
+</span><span class='line'> K := $(foreach exec,$(EXECUTABLES),\
+</span><span class='line'>  $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH, consider apt-get install $(exec)")))
+</span><span class='line'>#
+</span><span class='line'>#     .PHONY: all s3bucket plan
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>.PHONY: all plan apply
+</span><span class='line'>
+</span><span class='line'>all: init.txt plan
+</span><span class='line'>  echo "All"
+</span><span class='line'>
+</span><span class='line'>plan: 
+</span><span class='line'>  @echo "running terraform plan"
+</span><span class='line'>  terraform plan
+</span><span class='line'>
+</span><span class='line'>apply:
+</span><span class='line'>  @echo running terraform apply
+</span><span class='line'>  terraform apply
+</span><span class='line'>
+</span><span class='line'># little hack target to prevent it running again without need
+</span><span class='line'># for second nested Makefile
+</span><span class='line'>init.txt:
+</span><span class='line'>  @echo "initialise remote statefile"
+</span><span class='line'>  terraform remote config -backend=s3 -backend-config="bucket=terrastate" -backend-config="key=$(PREFIX)/terraform.tfstate"
+</span><span class='line'>  echo "ran terraform remote config -backend=s3 -backend-config=\"bucket=$(STATEBUCKET)\" -backend-config=\"key=$(PREFIX)/terraform.tfstate\"" &gt; ./init.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>here is the .gitignore file</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>*.swp
+</span><span class='line'>.terraform/terraform.tfstate*
+</span><span class='line'>init.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>here is the terraform config to set up remote state, remote.tf :-</p>
+
+<pre><code># found from env var TF_VAR_acces_key
+variable "access_key" {}
+
+variable "secret_key" {}
+
+provider "aws" {
+    access_key = "${var.access_key}"
+    secret_key = "${var.secret_key}"
+    region = "ap-southeast-2"
+}
+
+resource "terraform_remote_state" "remote_state" {
+    backend = "s3"
+    config {
+      bucket = "my-statefile-bucket-name"
+      key    = "myterraformprojectname/terraform.tfstate"
+     # region = "ap-southeast-2"
+    }
+}
+</code></pre>
+
+<h5>Usage</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># run 'terraform plan'
+</span><span class='line'>make</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># run 'terraform apply'
+</span><span class='line'>make apply</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Karl Roberts</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-09-01T01:04:11+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:04 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/devops/'>devops</a>, <a class='category' href='/blog/categories/gotcha/'>gotcha</a>, <a class='category' href='/blog/categories/remote/'>remote</a>, <a class='category' href='/blog/categories/terraform/'>terraform</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile/" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/26/using-aws-s3-for-intranets/" title="Previous Post: Private Websites in S3 Buckets">&laquo; Private Websites in S3 Buckets</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/01/14/using-javascript-in-octopress/" title="Next Post: Using JavaScript in Octopress">Using JavaScript in Octopress &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/03/13/reverting-to-a-previous-kernel/">Reverting to a Previous Kernel</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/25/push-a-docker-image-to-personal-repository/">Push a Docker Image to a Personal Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/disabling-usb-ports-on-linux/">Disabling the Webcam or USB Ports on Linux</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/18/octopress-ignores-published-false-gotcha/">Octopress Ignores Published: False - GOTCHA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/14/using-javascript-in-octopress/">Using JavaScript in Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="6142720898"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+</script>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'karlroberts',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode-leader1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="4526386891"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- <p> adsense here todo... </p> -->
+<p>
+Copyright &copy; 2017 - Karl Roberts -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'karlcode';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile/';
+        var disqus_url = 'http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

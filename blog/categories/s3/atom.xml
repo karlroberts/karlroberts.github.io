@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: S3 | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/s3/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Private Websites in S3 Buckets]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/08/26/using-aws-s3-for-intranets/"/>
+    <updated>2015-08-26T04:25:25+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/08/26/using-aws-s3-for-intranets</id>
+    <content type="html"><![CDATA[<p>Many people now realise that you can use Amazon Web Services (AWS) S3 buckets to <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html">host a static website</a>.</p>
+
+<p>This is cool because it is very reliable and extremly cheap.
+You don&rsquo;t pay to have an EC2 instance constantly running <!--more--></p>
+
+<ul>
+<li>you just get charged s3 costs</li>
+<li>$0.03 per GB and $0.004 per 10000 requests.</li>
+</ul>
+
+
+<p>But what if I want to host my company private web pages?
+Can I use S3?
+Will other people be able to see my stuff?</p>
+
+<p>The answer is yes you can use S3.</p>
+
+<p>The trick is you need to modify the bucket policy to have constraints.</p>
+
+<p>For example here is a public s3 buckets policy:-</p>
+
+<pre><code>{
+  "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "PublicReadGetObject",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::testfoo/*"
+        }
+      }
+    ]
+}
+</code></pre>
+
+<p>And here is a policy that allows access only from my ip address or CIDR range
+and denies a some other specified ip-addreses that would otherise be included.</p>
+
+<p>NB any other ip is automatically excluded too</p>
+
+<pre><code>{
+  "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "PublicReadGetObject",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::testfoo/*",
+        "Condition": {
+          "IpAddress": {
+            "aws:SourceIp": "150.101.204.0/24"
+          },
+          "NotIpAddress": {
+            "aws:SourceIp": "150.101.204.188/32"
+          }
+        }
+      }
+    ]
+}
+</code></pre>
+
+<p>The full list of AWS Condition keys is available <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#AvailableKeys">here</a></p>
+
+<p>Cheap private web hosting here I come!</p>
+]]></content>
+  </entry>
+  
+</feed>

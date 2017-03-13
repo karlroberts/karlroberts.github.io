@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gotcha | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/gotcha/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Ignores Published: False - GOTCHA]]></title>
+    <link href="http://karlroberts.github.io/blog/2016/01/18/octopress-ignores-published-false-gotcha/"/>
+    <updated>2016-01-18T03:29:13+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2016/01/18/octopress-ignores-published-false-gotcha</id>
+    <content type="html"><![CDATA[<p>I recently had the misfortune that octopress started ignoring my <code>published: false</code> statement in my blogs YAML header section. I have now solved the issue. <!--more--></p>
+
+<p>The <code>published: false</code> statement is meant to prevent the blog from being prematurely published, eg while it is in progress.</p>
+
+<p>The internet told me that running <code>rake generate</code> before <code>rake deploy</code> was supposed to remove blogs marked as <code>published: false</code> from the files to be published. However it was not working for me.</p>
+
+<p>Octopress does allow blogs marked as <code>published: false</code> to be used in the <code>preview</code> task, so you can see your work in progress locally.</p>
+
+<p>Looking through the Rakefile I discovered that a file called <code>.preview-mode</code> is used to handle this exemption.</p>
+
+<p>It turned out that I had accidentally committed the <code>.preview-mode</code> file to git while running the preview. It was now always there! This messed up the deploy and enabled all my in flight blogs to be published.</p>
+
+<p>The fix was simple.</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git rm -f ./.preview-mode
+</span><span class='line'>git commit -m <span class="p">&amp;</span>ldquo<span class="p">;</span>removed .preview-mode, which was accidentally added<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>SOLVED. <code>rake generate</code> and <code>rake deploy</code> now work properly again.</p>
+
+<p>:-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Working With Terraform Remote Statefile]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile/"/>
+    <updated>2015-09-01T01:04:11+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile</id>
+    <content type="html"><![CDATA[<h4>Remote state</h4>
+
+<p>There are gotcha&rsquo;s when working with remote state in terraform that this blog attempts to explain and workaround. <!--more--></p>
+
+<p><a href="https://www.terraform.io/docs/index.html">Terraform</a>  is a pretty cool infrastructure provisioner.
+It lets me set up infrastructure that can span cloud providers, eg AWS and/or Azure.</p>
+
+<h4>working with terraform</h4>
+
+<p>By writing terraform config files you declaritivly describe the infrastructure that you want,
+for example which AWS IAM users, groups, roles and policies on which S3 buckets and EC2 instances.</p>
+
+<p>by running <code>terraform plan</code> terraform create a terraform.tfstate file that describes the full state as described in your config
+and compares it to the previous tfstate file to show you what changes will be made.</p>
+
+<p>This is cool, you can see what will happen before you run <code>terraform apply</code>.</p>
+
+<h4>What&rsquo;s the catch?</h4>
+
+<p>It is important to realise that terraform is a state machine.</p>
+
+<p>if your previous state added a user, and your new state does not mention that user (ie you removed him from one of the config files) then next time you run <code>terraform plan</code> or <code>terraform apply</code> you will see that the user will be removed so that the terraformed environment matches the new desired state.</p>
+
+<p>That doesn&rsquo;t seem so bad. Your config (which I presume you are version controlling in git?) grows and consistently matches the desired end stateof your environment, effectivly documenting the infrastructure. Cool.</p>
+
+<p>So what&rsquo;s the problem?</p>
+
+<h4>The problem</h4>
+
+<p>What happens when your mate runs apply from his dev machine?</p>
+
+<p>Obviously terraform will apply the state to the environment as described in his config.
+But what if he deletes something that you are still depending on? You can quite quickly destroy each others infrastructure.</p>
+
+<p>This can be avoided using normal Version control practice, eg rebasing from git before you run <code>terraform plan</code> and <code>terraform apply</code> but almost enevitably you will always be merging conflicts by hand in the <code>terraform.tfstate</code> JSON file. This is not too bad if you always have a conflict as you&rsquo;ll know that you need to merge, but as with all structured text files it&rsquo;s possible that a clause will be inserted at a different line to your changes that doesn&rsquo;t conflict in a diff sense but does change the meaning of the file in an inconsitent way, ege a group gould be removed from one place but depended on in another. terraform will fail in this case but then you&rsquo;ll need to manually fix it up, which is a pain, but I can imagine changes that could happen that would not be conflicts and dont screw up the file, but do dramatically impact the generated infrastucture, such as adding a policy or group that together work to lower the expected security contraints of the infrastructure.</p>
+
+<h5>How do we deal with this?</h5>
+
+<p>Terraform handles this scenario by allowing a Remote statefile, that can live in Consul, AWS S3 or Atlas.</p>
+
+<p>Running the <code>terraform remote</code> command can set up your local terraform.tfstate file to match the remote one before seeing what the diffs are.</p>
+
+<p><strong>Gotcha 1</strong> NB even with a remote statefile terraform does not support concurrent <code>terraform apply</code> commands as it doesn&rsquo;t manage locking of the stanza&rsquo;s in the statefile, so talk to your mate before running it!</p>
+
+<p>This is all OK now&hellip;. or is it?</p>
+
+<p>There are still a couple of anoying problems that prevent this feature working as you&rsquo;d expect.</p>
+
+<p>The way I&rsquo;d like to work with this, is prevent git from commiting the <code>.terraform/terraform.tfstate</code> file in the gitignore file, so that the remote one is auto downloaded to compare with my generated new state before calulateing the combined next state.</p>
+
+<p><strong>Gotcha 2</strong> If you don&rsquo;t have a local <code>terraform.tfstate</code> file then <code>terraform apply</code> fails beacuse it assumes it needs to create resources that already may already exist but it doesn&rsquo;t know because it doesn&rsquo;t have the current state.</p>
+
+<h4>The workaround</h4>
+
+<p>You could fetch the latest remote state file and copy it to <code>.terraform/terraform.tfstate</code> the first time, but this means you be forever explaining to people what to do.</p>
+
+<p>my current recommendation is to use a Makefile to run terraform, which by default sets up the copy of remote state if it doesn&rsquo;t exist and then runs <code>terraform plan</code> with a seperate target for <code>terraform apply</code>.</p>
+
+<p>In this way you don&rsquo;t need to check in the statefile so you cna be sure that you are in sync and you don&rsquo;t need to remember to get it first (Chicken and Egg scenario)</p>
+
+<p>here is the Makefile using and AWS bucket for this terraform remote state:-</p>
+
+<pre><code># Makefile to kick of the terraform for this project
+#
+# You should set the following environment variable to authenticate 
+# with AWS so you can store and retrieve the remote state befor you run this Makefile.
+#
+# export AWS_ACCESS_KEY_ID= &lt;your key&gt;
+# export AWS_SECRET_ACCESS_KEY= &lt;your secret&gt;
+# export AWS_DEFAULT_REGION= &lt;your bucket region eg ap-southeast-2&gt;
+# export TF_VAR_access_key=$AWS_ACCESS_KEY # exposed as access_key in the terraform scripts
+# export TF_VAR_secret_key=$AWS_SECRET_ACCESS_KEY
+#
+# ####################################################
+#
+STATEBUCKET = my-statefile-bucket-name
+PREFIX = myterraformprojectname
+
+# # Before we start test that we have the manditory executables avilable
+ EXECUTABLES = git terraform
+ K := $(foreach exec,$(EXECUTABLES),\
+    $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH, consider apt-get install $(exec)")))
+#
+#   .PHONY: all s3bucket plan
+
+
+.PHONY: all plan apply
+
+all: init.txt plan
+    echo "All"
+
+plan: 
+    @echo "running terraform plan"
+    terraform plan
+
+apply:
+    @echo running terraform apply
+    terraform apply
+
+# little hack target to prevent it running again without need
+# for second nested Makefile
+init.txt:
+    @echo "initialise remote statefile"
+    terraform remote config -backend=s3 -backend-config="bucket=terrastate" -backend-config="key=$(PREFIX)/terraform.tfstate"
+    echo "ran terraform remote config -backend=s3 -backend-config=\"bucket=$(STATEBUCKET)\" -backend-config=\"key=$(PREFIX)/terraform.tfstate\"" &gt; ./init.txt
+</code></pre>
+
+<p>here is the .gitignore file
+<code>
+*.swp
+.terraform/terraform.tfstate*
+init.txt
+</code></p>
+
+<p>here is the terraform config to set up remote state, remote.tf :-</p>
+
+<pre><code># found from env var TF_VAR_acces_key
+variable "access_key" {}
+
+variable "secret_key" {}
+
+provider "aws" {
+    access_key = "${var.access_key}"
+    secret_key = "${var.secret_key}"
+    region = "ap-southeast-2"
+}
+
+resource "terraform_remote_state" "remote_state" {
+    backend = "s3"
+    config {
+      bucket = "my-statefile-bucket-name"
+      key    = "myterraformprojectname/terraform.tfstate"
+     # region = "ap-southeast-2"
+    }
+}
+</code></pre>
+
+<h5>Usage</h5>
+
+<pre><code># run 'terraform plan'
+make
+</code></pre>
+
+<pre><code># run 'terraform apply'
+make apply
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Scala Implicit Class Pimp Gotcha]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha/"/>
+    <updated>2014-12-14T21:59:25+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha</id>
+    <content type="html"><![CDATA[<p>Since Scala 2.10 we&rsquo;ve had the convenience to &ldquo;Pimp&rdquo; a library using implicit classes.
+For the details see <a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">Implicit Classes</a></p>
+
+<p>This makes it trivial to add methods to previously closed classes. However there are some gotcha&rsquo;s to beware of. In particular make sure you <a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html#restrictions">read the rules</a></p>
+
+<p>The reason I&rsquo;m writing this blog is that I fell foul of restriction 3. It took me ages to work it out.</p>
+
+<!--more-->
+
+
+<p>Restriction 3 says:-</p>
+
+<blockquote><p>&ldquo;There may not be any method, member or object in scope with the same name as the implicit class.</p>
+
+<p>Note: This means an implicit class cannot be a case class."</p></blockquote>
+
+<p>The mistake I made was to have a companion Object for my Implicit class. The compiler spits out an error message like this :</p>
+
+<pre><code>[error] /home/projects/myproj/src/test/scala/com/owtelse/FooTest.scala:27: value myPimpedMethod is not a member of com.owtelse.Foo
+[error]     val f2: Foo = foo.myPimpedMethod(false)
+[error]                       ^
+[error] one error found
+[error] (scazelcast-api/test:compile) Compilation failed
+[error] Total time: 2 s, completed 15/12/2014 8:24:05 AM
+</code></pre>
+
+<p>This had me pulling my hair out! I could see my implicit class was in scope and so the method should have been available to Foo.
+The problem was of course that I had an object named the same as my implicit class as a companion object.
+Rather than tell me that the compiler simply discounted my implicit class and simply reported that the myPimpedMethod was not available on type Foo.</p>
+
+<p><strong>As soon as I deleted the companion object every thing worked.</strong></p>
+
+<p>While I was a bit annoyed with this behaviour, it makes sense.
+The only purpose of the implicit class is as a convenience to wrap the underlying class you wish to pimp and is only meant to be used as an implicit conversion.
+As such you should have no need to instantiate the class in any other way and so should have no need for companion object,
+plus I bet it makes it easier for the compiler writers to apply the conversion where needed if they don&rsquo;t have to disambiguate symbols :-)</p>
+]]></content>
+  </entry>
+  
+</feed>

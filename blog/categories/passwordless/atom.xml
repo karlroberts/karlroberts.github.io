@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Passwordless | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/passwordless/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Passwordless Ssh on Synology]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/06/27/passwordless-ssh-on-synology/"/>
+    <updated>2015-06-27T07:43:13+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/06/27/passwordless-ssh-on-synology</id>
+    <content type="html"><![CDATA[<p>I want the rsync user on my Synology box (called synology) to use ssh with no password. <!--more--></p>
+
+<p>First I create the ssh key</p>
+
+<pre><code>ssh-keygen -t rsa
+</code></pre>
+
+<p>When asked for the password for the key simply hit <code>enter</code> key, and again.
+This will create a private key and public key in</p>
+
+<pre><code>~/.ssh/id_rsa
+~/.ssh/id_rsa.pub
+</code></pre>
+
+<p>Over on the Synology box (I assume you have ssh&rsquo;d there as root)</p>
+
+<pre><code>ssh root@synology
+</code></pre>
+
+<p>Some hoops need to be jumped.</p>
+
+<p>By default you can&rsquo;t get to the home directory of a user, it is mapped to a fake place
+Get around that by:-</p>
+
+<ul>
+<li>go to Users admin page
+
+<ul>
+<li>click advanced</li>
+<li>turn on &ldquo;home services&rdquo;</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Now you need to modify the home dir permissions</p>
+
+<pre><code>cd /var/services/homes
+
+chmod 755 user user # by default synology setts 777 and sshd is picky
+</code></pre>
+
+<p>Now you need to actually give your user a shell.
+as root edit <code>/etc/passwd</code></p>
+
+<p>You need an entry like</p>
+
+<pre><code>rsync:x:1031:100:linux backup user:/var/services/homes/rsync:/bin/ash
+</code></pre>
+
+<p>Notice that the last section is a real shell /bin/ash  if it is not a shell you can&rsquo;t log in.</p>
+
+<p>Now you need to modify <code>/etc/ssh/sshd_config</code> make sure it has the following lines:-</p>
+
+<pre><code>RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile  .ssh/authorized_keys
+</code></pre>
+
+<p>Finally you need to create the authorized_keys file in the users account an add a public key to it.
+Beware that file permissions are crucial here or ssh will refuse you.</p>
+
+<pre><code>su -s /bin/ash rsync
+cd $HOME
+pwd # make sure you are in /var/services/homes/rsync
+
+mkdir ./.ssh
+chmod 700 ./.ssh
+touch ./.ssh/authorized_keys
+chmod 600 ./.ssh/authorized_keys
+</code></pre>
+
+<p>Then add a public key corresponding to a private key that you own on one line in the file
+either use vi an paste it in or from another PC you can use ssh and cat (you&rsquo;ll need to use password for the user until you are done)</p>
+
+<p>Assume my pub key is at ~/.ssh/id_rsa.pub and I want the rsync users authorized_keys file to hold contain that key..</p>
+
+<pre><code>ssh rsync@synology "/bin/cat &gt;&gt; ./.ssh/authorized_keys" &lt; ~/.ssh/id_rsa.pub
+</code></pre>
+
+<p>After being prompted for the password the key will be in place.. now restart  synology or quicker just get the ssh daemon to re-read its config</p>
+
+<pre><code>synology&gt; ps | grep sshd
+16783 root     16772 S    /usr/bin/sshd
+
+synology&gt; kill -HUP 16783
+</code></pre>
+
+<p>You should now be able to ssh to synology as rsync with no password</p>
+
+<pre><code>ssh rsync@synology
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

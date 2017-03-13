@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Usb | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/usb/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Disabling the Webcam or USB Ports on Linux]]></title>
+    <link href="http://karlroberts.github.io/blog/2017/01/09/disabling-usb-ports-on-linux/"/>
+    <updated>2017-01-09T04:46:31+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2017/01/09/disabling-usb-ports-on-linux</id>
+    <content type="html"><![CDATA[<h2>Why disable a USB port?</h2>
+
+<p>You may just want to make sure that you webcam, usually connected to the internal USB bus, is turned off.</p>
+
+<p>In my case my laptop webcam has become intermittently faulty. This has caused my laptop to hang on shutdown while the kernel tries to power down the device.</p>
+
+<p>Clearly I want to disable the camera&rsquo;s port without disabling all the other USB ports on the laptop&hellip;</p>
+
+<!--more--> 
+
+
+<h2>Identify the port</h2>
+
+<p>The first step was to identify the camera&rsquo;s port.</p>
+
+<p>You can trawl through <code>dmesg</code> logs looking at all USB entries until you find the webcam, e.g.</p>
+
+<pre><code>$ dmesg
+...
+[    2.996705] usb 1-1.6: Product: Webcam SC-13HDL11624N
+...
+</code></pre>
+
+<p>Here you can see that my webcam was on bus 1 - port 1 on the 6th device on that port e.g. <code>1-1.6</code></p>
+
+<p>However Linux has some commands and a pseudo &ldquo;sys&rdquo; file system that make it easier, for instance you could use <code>lsusb</code></p>
+
+<pre><code>$ lsusb -t
+/:  Bus 03.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 5000M
+/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+    |__ Port 2: Dev 3, If 0, Class=Human Interface Device, Driver=usbhid, 12M
+    |__ Port 2: Dev 3, If 1, Class=Human Interface Device, Driver=usbhid, 12M
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=ehci-pci/3p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/6p, 480M
+        |__ Port 2: Dev 3, If 0, Class=Human Interface Device, Driver=usbhid, 1.5M
+        |__ Port 5: Dev 4, If 0, Class=Wireless, Driver=btusb, 12M
+        |__ Port 5: Dev 4, If 1, Class=Wireless, Driver=btusb, 12M
+        |__ Port 6: Dev 5, If 0, Class=Video, Driver=uvcvideo, 480M
+        |__ Port 6: Dev 5, If 1, Class=Video, Driver=uvcvideo, 480M
+</code></pre>
+
+<p>If we walk this tree we can see bus 01 Port 1 is a USB hub and port 6 on the hub is a video device, which is my webcam&hellip;
+but this is a bit obtuse and confusing, and it doesn&rsquo;t yield the literal string <code>1-1.6</code> that I&rsquo;ll need to disable the webcam port.</p>
+
+<p>A better method is to walk the <code>sys</code> pseudo file system that gives info on all devices attached to the kernel system.</p>
+
+<pre><code>$ for device in $(ls /sys/bus/usb/devices/*/product); do echo $device;cat $device;done
+/sys/bus/usb/devices/1-1.2/product
+Dell USB Entry Keyboard
+/sys/bus/usb/devices/1-1.6/product
+Webcam SC-13HDL11624N
+/sys/bus/usb/devices/2-1/product
+Amazon Kindle
+/sys/bus/usb/devices/2-2/product
+USB Receiver
+/sys/bus/usb/devices/usb1/product
+EHCI Host Controller
+/sys/bus/usb/devices/usb2/product
+xHCI Host Controller
+/sys/bus/usb/devices/usb3/product
+xHCI Host Controller
+</code></pre>
+
+<p>Here we can see that the file <code>/sys/bus/usb/devices/1-1.6/product</code> contains the <code>Webcam SC-13HDL11624N</code></p>
+
+<p>So in this case the USB device (or port) we need is <code>1-1.6</code>.</p>
+
+<p>Because the Webcam is attached to the internal USB hub, it will always be listed at the same address, this is helpful as it means I can hard-code <code>1-1.6</code> where I need it rather than parsing the output of the command.</p>
+
+<h2>Turn off power to the Webcam</h2>
+
+<p>Now we know the USB device number, it is simple to turn off the camera using the <code>sys</code> file system.</p>
+
+<p>By writing values to the &ldquo;files&rdquo; in the <code>sys</code> file system you can effect the devices that the file represents. Obviously you need to be root to do this, or be a user that has <code>sudo</code> permissions.</p>
+
+<h3>On Ubuntu</h3>
+
+<p>We can send a command to the USB driver to unbind a port,</p>
+
+<pre><code>$ echo '1-1.6' | sudo tee /sys/bus/usb/drivers/usb/unbind
+</code></pre>
+
+<p>Obviously replace &ldquo;1-1.6&rdquo; with whichever usb port your webcam is on (see above).</p>
+
+<p>To turn it back on,</p>
+
+<pre><code>$ echo '1-1.6' | sudo tee /sys/bus/usb/drivers/usb/bind
+</code></pre>
+
+<p>This command pushed the USB device name, &ldquo;1-1.6&rdquo;, to a special socket that acts like a command API to the USB driver, in other words rather than directly control the power of the device we ask the USB driver to do it for us.</p>
+
+<h2>Run it at start-up</h2>
+
+<p>Now I have control over my USB ports I want to disable this port at start-up.
+Ubuntu uses the <code>anacron</code> cron daemon which allows a special syntax, <code>@reboot</code>, to hook a command to the reboot sequence.</p>
+
+<p>Simple edit root&rsquo;s crontab</p>
+
+<pre><code>$ sudo crontab -e
+</code></pre>
+
+<p>And then append the following</p>
+
+<pre><code>@reboot echo '1-1.6' &gt; /sys/bus/usb/drivers/usb/unbind
+</code></pre>
+
+<p>Again edit &lsquo;1-1.6&rsquo; to your usb device&rsquo;s number.</p>
+
+<p>And that&rsquo;s it. My laptop can now shutdown without hanging.</p>
+
+<p>Cheers.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="style/favicon.ico"/>
+<link href="style/style.css" rel="stylesheet" type="text/css" />
+<link href="style/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<title>Gatling Stats - createJob / request_27</title>
+</head>
+<body>
+<div class="frise"></div>
+<div class="container details">
+    <div class="head">
+        <a href="http://gatling-tool.org" target="blank_" title="Gatling Home Page"><img alt="Gatling" src="style/logo.png"/></a>
+    </div>
+    <div class="main">
+        <div class="cadre">
+                <div class="onglet">
+                    <img src="style/cible.png" />
+                    <p><span>createjob</span></p>
+                </div>
+                <div class="content">
+                    <div class="sous-menu">
+                        <div class="item "><a href="index.html">GLOBAL</a></div>
+                        <div class="item ouvert"><a id="details_link" href="#">DETAILS</a></div>
+                        <p class="sim_desc" title="2014-06-12 11:40:43, duration : 634 seconds" data-content="1 to 100 users ramp 10mins">
+                            <b>2014-06-12 11:40:43, duration : 634 seconds</b> 1 to 100 users ramp 10mins</b>
+                        </p>
+                    </div>
+                    <div class="content-in">
+                        <h1><span>> </span>createJob / request_27</h1>
+                        <div class="article">
+                            
+                        <div class="infos">
+                            <div class="titre">STATISTICS</div>
+                            <div class="infos-in">
+                                <div class="repli"></div>                               
+                                <div class="info">
+                                    <h2 class="first">Executions</h2>
+                                    <table>
+                                        <thead>
+                                            <tr><th></th><th>Total</th><th>OK</th><th>KO</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="title"></td>
+                                                <td id="numberOfRequests" class="total"></td>
+                                                <td id="numberOfRequestsOK" class="ok"></td>
+                                                <td id="numberOfRequestsKO" class="ko"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h2 class="second">Response Time (ms)</h2>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Total</th>
+                                                <th>OK</th>
+                                                <th>KO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="title">Min</td>
+                                                <td id="minResponseTime" class="total"></td>
+                                                <td id="minResponseTimeOK" class="ok"></td>
+                                                <td id="minResponseTimeKO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Max</td>
+                                                <td id="maxResponseTime" class="total"></td>
+                                                <td id="maxResponseTimeOK" class="ok"></td>
+                                                <td id="maxResponseTimeKO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Mean</td>
+                                                <td id="meanResponseTime" class="total"></td>
+                                                <td id="meanResponseTimeOK" class="ok"></td>
+                                                <td id="meanResponseTimeKO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Std Deviation</td>
+                                                <td id="standardDeviation" class="total"></td>
+                                                <td id="standardDeviationOK" class="ok"></td>
+                                                <td id="standardDeviationKO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">95th percentile</td>
+                                                <td id="percentiles1" class="total"></td>
+                                                <td id="percentiles1OK" class="ok"></td>
+                                                <td id="percentiles1KO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">99th percentile</td>
+                                                <td id="percentiles2" class="total"></td>
+                                                <td id="percentiles2OK" class="ok"></td>
+                                                <td id="percentiles2KO" class="ko"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Mean req/s</td>
+                                                <td id="meanNumberOfRequestsPerSecond" class="total"></td>
+                                                <td id="meanNumberOfRequestsPerSecondOK" class="ok"></td>
+                                                <td id="meanNumberOfRequestsPerSecondKO" class="ko"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="schema demi">
+                            <div id="container_indicators" class="demi"></div>
+                        </div>
+
+                        <div class="schema geant">
+                            <div id="container" class="geant"></div>
+                        </div>
+
+                        <div class="schema geant">
+                            <div id="container_distrib" class="geant"></div>
+                        </div>
+
+                        <div class="schema geant">
+                            <div id="container_latency" class="geant"></div>
+                        </div>
+
+                        <div class="schema geant">
+                            <div id="container_dispersion" class="geant"></div>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="nav">
+        <ul></ul>
+    </div>
+</div>
+<div class="foot">
+    <a href="http://gatling-tool.org" title="Gatling Home Page"><img alt="Gatling" src="style/logo-gatling.jpg"/></a>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/gatling.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/all_sessions.js"></script>
+<script type="text/javascript" src="js/stats.js"></script>
+<script type="text/javascript" src="js/highstock.js"></script>
+<script type="text/javascript" src="js/highcharts-more.js"></script>
+<script type="text/javascript" src="js/theme.js"></script>
+<script type="text/javascript">
+    var pageStats = stats.contents['createjob-b85d7c4367670d06e7edad5613434dc7'].contents['request-27-649b0ceebc1e5fdbf861330d8f53416e'].stats;
+    $(document).ready(function() {
+        $('.sim_desc').popover({trigger:'hover', placement:'bottom'});
+        setDetailsLinkUrl();
+        setDetailsMenu();
+        setActiveMenu();
+        fillStats(pageStats);
+        
+Highcharts.setOptions({
+    global: {
+        useUTC: false
+    }
+});
+
+var indicatorsChart = new Highcharts.Chart({
+    chart: {
+        renderTo: 'container_indicators',
+        marginRight: 150
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: false
+    },
+    title: {
+     text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    xAxis: {
+        categories: [pageStats.group1.name,pageStats.group2.name,pageStats.group3.name,pageStats.group4.name]
+    },
+    yAxis: {
+        title: {
+            text: 'Number of Requests'
+        }
+    },
+    tooltip: {
+        formatter: function() {
+            var s;
+            if (this.point.name) { // the pie chart
+                s = ''+ this.point.name +': '+ this.y +' requests';
+            } else {
+                s = ''+ this.y + ' requests';
+            }
+            return s;
+        }
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            shadow: true
+        }
+    },
+    series: [
+        {
+            type: 'column',
+            color: '#A0B228',
+            data: [pageStats.group1.count,0,0,0],
+            tooltip: { yDecimals: 0, ySuffix: 'ms' }
+        },
+        {
+            type: 'column',
+            color: '#FFDD00',
+            data: [0,pageStats.group2.count,0,0],
+            tooltip: { yDecimals: 0, ySuffix: 'ms' }
+        },
+        {
+            type: 'column',
+            color: '#FF9D00',
+            data: [0,0,pageStats.group3.count,0],
+            tooltip: { yDecimals: 0, ySuffix: 'ms' }
+        },
+        {
+            type: 'column',
+            color: '#FF0000',
+            data: [0,0,0,pageStats.group4.count],
+            tooltip: { yDecimals: 0, ySuffix: 'ms' }
+        },
+        {
+            type: 'pie',
+            name: 'Percentages',
+            data: [
+                {
+                    name: pageStats.group1.name,
+                    y: pageStats.group1.percentage,
+                    color: '#A0B228'
+                },
+                {
+                    name: pageStats.group2.name,
+                    y: pageStats.group2.percentage,
+                    color: '#FFDD00'
+                },
+                {
+                    name: pageStats.group3.name,
+                    y: pageStats.group3.percentage,
+                    color: '#FF9D00'
+                },
+                {
+                    name: pageStats.group4.name,
+                    y: pageStats.group4.percentage,
+                    color: '#FF0000'
+                }
+            ],
+            center: [470, 85],
+            size: 100,
+            showInLegend: false,
+            dataLabels: { enabled: false }
+        }
+    ]
+});
+
+indicatorsChart.setTitle({
+    text: '<span class="chart_title">Indicators</span>',
+    useHTML: true
+});
+
+var responseTimeChart = new Highcharts.StockChart({
+    chart: {
+        renderTo: 'container',
+        zoomType: 'x'
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: true,
+        floating: true,
+        y: -285,
+        borderWidth: 0
+    },
+    title: {
+        text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    rangeSelector: {
+        buttons : [{
+        type : 'minute',
+        count : 1,
+        text : '1m'
+    }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+    }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+    }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+    }],
+    selected : 3,
+    inputEnabled : false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        maxZoom: 10000 // three days
+    },
+    yAxis:[
+    {
+        min: 0,
+        title: {
+            text: 'Response Time (ms)',
+            style: {
+                color: '#4572A7'
+            }
+        }
+    }, {
+        min: 0,
+        title: {
+            text: 'Active Sessions',
+            style: {
+                color: '#FF9D00'
+            }
+        },
+        opposite: true
+    }],
+    plotOptions: {
+        arearange: {
+            lineWidth: 1
+        },
+        series: {
+            shadow: true
+        }
+    },
+    series: [
+    {
+color: '#4572A7'
+, pointInterval: 1000
+, name: 'Response Time (success)'
+, data: [
+[1402537251870,40,90],[1402537256870,40,40],[1402537263870,40,40],[1402537270870,40,40],[1402537275870,80,80],[1402537281870,80,80],[1402537287870,40,40],[1402537293870,40,40],[1402537299870,110,110],[1402537306870,80,80],[1402537311870,50,50],[1402537317870,40,40],[1402537323870,40,40],[1402537329870,260,260],[1402537335870,40,40],[1402537341870,40,40],[1402537347870,150,150],[1402537353870,40,40],[1402537360870,170,170],[1402537365870,40,40],[1402537372870,40,40],[1402537378870,40,40],[1402537384870,80,80],[1402537390870,40,40],[1402537396870,140,140],[1402537402870,150,150],[1402537408870,80,80],[1402537414870,100,100],[1402537420870,130,130],[1402537426870,80,80],[1402537432870,80,80],[1402537438870,80,80],[1402537444870,70,70],[1402537450870,40,40],[1402537456870,40,40],[1402537463870,90,90],[1402537469870,80,80],[1402537475870,140,140],[1402537481870,50,50],[1402537487870,150,150],[1402537493870,150,150],[1402537499870,130,130],[1402537505870,150,150],[1402537511870,350,350],[1402537517870,130,130],[1402537523870,80,80],[1402537529870,80,80],[1402537535870,80,80],[1402537541870,110,110],[1402537547870,40,40],[1402537553870,80,80],[1402537560870,100,100],[1402537566870,40,40],[1402537572870,180,180],[1402537578870,80,80],[1402537584870,80,80],[1402537590870,80,80],[1402537596870,80,80],[1402537602870,70,70],[1402537608870,40,40],[1402537614870,80,80],[1402537620870,40,40],[1402537626870,80,80],[1402537633870,140,140],[1402537638870,150,150],[1402537645870,40,40],[1402537651870,80,80],[1402537656870,180,180],[1402537663870,80,80],[1402537669870,80,80],[1402537675870,80,80],[1402537681870,40,40],[1402537687870,70,70],[1402537693870,40,40],[1402537699870,110,110],[1402537705870,40,40],[1402537711870,160,160],[1402537717870,80,80],[1402537723870,110,110],[1402537729870,80,80],[1402537735870,80,80],[1402537741870,40,40],[1402537747870,40,40],[1402537753870,30,30],[1402537759870,80,80],[1402537766870,40,40],[1402537772870,80,80],[1402537778870,40,40],[1402537784870,40,40],[1402537790870,70,70],[1402537796870,140,140],[1402537802870,40,40],[1402537808870,70,70],[1402537814870,80,80],[1402537820870,40,40],[1402537826870,90,90],[1402537832870,40,40],[1402537838870,80,80],[1402537844870,40,40],[1402537850870,80,80]
+]
+, type: 'arearange'
+, tooltip: { yDecimals: 0, ySuffix: 'ms' }
+, yAxis: 0
+
+},
+    
+    allSessionsData
+    ]
+});
+
+responseTimeChart.setTitle({
+    text: '<span class="chart_title chart_title_">Response Time during Simulation</span>',
+    useHTML: true
+});
+
+var responseTimeDistributionChart = new Highcharts.Chart({
+    chart: {
+        renderTo: 'container_distrib',
+        type: 'column'
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: true,
+        floating: true,
+        y: -285,
+        borderWidth: 0
+    },
+    title: {
+        text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    xAxis: {
+        categories: ['32', '35', '38', '41', '44', '48', '51', '54', '57', '60', '64', '67', '70', '73', '76', '80', '83', '86', '89', '92', '96', '99', '102', '105', '108', '112', '115', '118', '121', '124', '128', '131', '134', '137', '140', '144', '147', '150', '153', '156', '160', '163', '166', '169', '172', '176', '179', '182', '185', '188', '192', '195', '198', '201', '204', '208', '211', '214', '217', '220', '224', '227', '230', '233', '236', '240', '243', '246', '249', '252', '256', '259', '262', '265', '268', '272', '275', '278', '281', '284', '288', '291', '294', '297', '300', '304', '307', '310', '313', '316', '320', '323', '326', '329', '332', '336', '339', '342', '345', '348'],
+        tickInterval: 20
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Percentage of Requests'
+        }
+    },
+    tooltip: {
+        formatter: function() {
+            return '<b>'+ this.x +' ms</b><br/>'+
+            this.series.name +': '+ this.y +' %<br/>'+
+            'Total: '+ this.point.stackTotal + ' %';
+        }
+    },
+    plotOptions: {
+        series: {
+            groupPadding: 0,
+            stacking: 'normal',
+            shadow: true
+        }
+    },
+    series: [
+    	{
+type: 'column'
+, color: '#4572A7'
+, name: 'Success'
+, data: [
+1,0,0,34,0,0,2,0,0,0,0,0,5,0,0,31,0,0,3,0,0,2,0,0,4,0,0,0,0,0,0,3,0,0,4,0,0,6,0,0,1,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+]
+, tooltip: { yDecimals: 0, ySuffix: 'ms' }
+},
+    	{
+type: 'column'
+, color: '#FF0000'
+, name: 'Failure'
+, data: [
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+]
+, tooltip: { yDecimals: 0, ySuffix: 'ms' }
+}
+    ]
+});
+
+responseTimeDistributionChart.setTitle({
+    text: '<span class="chart_title">Response Time Distribution</span>',
+    useHTML: true
+});
+
+var latencyChart = new Highcharts.StockChart({
+    chart: {
+        renderTo: 'container_latency',
+        zoomType: 'x'
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: true,
+        floating: true,
+        y: -285,
+        borderWidth: 0
+    },
+    title: {
+        text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    rangeSelector: {
+        buttons : [{
+        type : 'minute',
+        count : 1,
+        text : '1m'
+    }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+    }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+    }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+    }],
+    selected : 3,
+    inputEnabled : false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        maxZoom: 10000 // three days
+    },
+    yAxis:[
+    {
+        min: 0,
+        title: {
+            text: 'Latency (ms)',
+            style: {
+                color: '#4572A7'
+            }
+        }
+    }, {
+        min: 0,
+        title: {
+            text: 'Active Sessions',
+            style: {
+                color: '#FF9D00'
+            }
+        },
+        opposite: true
+    }],
+    plotOptions: {
+        arearange: {
+            lineWidth: 1
+        },
+        series: {
+            shadow: true
+        }
+    },
+    series: [
+    {
+color: '#4572A7'
+, pointInterval: 1000
+, name: 'Latency (success)'
+, data: [
+[1402537251870,10,10],[1402537256870,10,10],[1402537263870,10,10],[1402537270870,10,10],[1402537275870,10,10],[1402537281870,10,10],[1402537287870,10,10],[1402537293870,10,10],[1402537299870,10,10],[1402537306870,10,10],[1402537311870,10,10],[1402537317870,10,10],[1402537323870,10,10],[1402537329870,10,10],[1402537335870,10,10],[1402537341870,10,10],[1402537347870,10,10],[1402537353870,10,10],[1402537360870,10,10],[1402537365870,10,10],[1402537372870,10,10],[1402537378870,10,10],[1402537384870,10,10],[1402537390870,10,10],[1402537396870,10,10],[1402537402870,10,10],[1402537408870,10,10],[1402537414870,10,10],[1402537420870,10,10],[1402537426870,10,10],[1402537432870,10,10],[1402537438870,10,10],[1402537444870,10,10],[1402537450870,10,10],[1402537456870,10,10],[1402537463870,10,10],[1402537469870,10,10],[1402537475870,10,10],[1402537481870,10,10],[1402537487870,10,10],[1402537493870,10,10],[1402537499870,10,10],[1402537505870,10,10],[1402537511870,10,10],[1402537517870,10,10],[1402537523870,10,10],[1402537529870,10,10],[1402537535870,10,10],[1402537541870,10,10],[1402537547870,10,10],[1402537553870,10,10],[1402537560870,10,10],[1402537566870,10,10],[1402537572870,10,10],[1402537578870,10,10],[1402537584870,10,10],[1402537590870,10,10],[1402537596870,10,10],[1402537602870,10,10],[1402537608870,10,10],[1402537614870,10,10],[1402537620870,10,10],[1402537626870,10,10],[1402537633870,10,10],[1402537638870,10,10],[1402537645870,10,10],[1402537651870,10,10],[1402537656870,150,150],[1402537663870,10,10],[1402537669870,10,10],[1402537675870,10,10],[1402537681870,10,10],[1402537687870,10,10],[1402537693870,10,10],[1402537699870,40,40],[1402537705870,10,10],[1402537711870,10,10],[1402537717870,10,10],[1402537723870,10,10],[1402537729870,10,10],[1402537735870,10,10],[1402537741870,10,10],[1402537747870,10,10],[1402537753870,10,10],[1402537759870,10,10],[1402537766870,10,10],[1402537772870,10,10],[1402537778870,10,10],[1402537784870,10,10],[1402537790870,10,10],[1402537796870,10,10],[1402537802870,10,10],[1402537808870,10,10],[1402537814870,10,10],[1402537820870,10,10],[1402537826870,10,10],[1402537832870,10,10],[1402537838870,10,10],[1402537844870,10,10],[1402537850870,10,10]
+]
+, type: 'arearange'
+, tooltip: { yDecimals: 0, ySuffix: 'ms' }
+, yAxis: 0
+
+},
+    
+    allSessionsData
+    ]
+});
+
+latencyChart.setTitle({
+    text: '<span class="chart_title chart_title_">Latency during Simulation</span>',
+    useHTML: true
+});
+
+var scatterChart = new Highcharts.Chart({
+    chart: {
+        renderTo: 'container_dispersion', 
+        defaultSeriesType: 'scatter',
+        zoomType: 'xy'
+    },
+    credits: {
+        enabled: false
+    },
+    xAxis: {
+        title: {
+            enabled: true,
+            text: 'Global number of requests per second'
+        },
+        startOnTick: true,
+        endOnTick: true,
+        showLastLabel: true
+    },
+    title: {
+        text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Response time'
+        }
+    },
+    tooltip: {
+        formatter: function() {
+                 return ''+
+            this.y +' ms at ' + this.x + ' allreq/s';
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        scatter: {
+            marker: {
+            radius: 3,
+            states: {
+                hover: {
+                    enabled: true,
+                    lineColor: 'rgb(100,100,100)'
+                }
+            }
+        },
+        states: {
+            hover: {
+                marker: {
+                   enabled: false
+                }
+            }
+            }
+        }
+    },
+    series: [
+	    {
+type: 'scatter'
+, color: 'rgba(69, 114, 167, .2)'
+, name: 'Successes'
+, data: [
+[8,40],[8,80],[8,40],[9,180],[9,140],[9,80],[9,110],[9,140],[9,140],[10,80],[10,40],[10,40],[10,80],[10,260],[10,150],[10,80],[10,90],[10,150],[10,80],[11,80],[11,100],[11,40],[11,350],[11,70],[11,70],[11,80],[11,40],[11,80],[11,170],[11,40],[11,80],[12,150],[12,80],[12,80],[12,90],[12,150],[12,80],[12,100],[12,80],[12,80],[12,40],[12,130],[12,80],[12,110],[12,80],[12,40],[12,140],[13,80],[13,50],[13,160],[13,40],[13,70],[13,40],[13,40],[13,40],[13,130],[13,110],[14,80],[14,80],[14,80],[14,80],[14,80],[14,80],[14,40],[14,40],[14,40],[14,70],[14,50],[14,40],[15,40],[15,80],[15,80],[15,40],[15,80],[15,40],[15,40],[15,40],[15,80],[16,130],[16,40],[16,40],[16,80],[16,40],[16,40],[16,80],[16,110],[16,40],[17,40],[17,40],[17,40],[17,180],[17,40],[17,150],[17,70],[17,90],[20,40],[20,40],[20,150],[23,30],[26,80]
+]},
+	    {
+type: 'scatter'
+, color: 'rgba(255, 0, 0, .2)'
+, name: 'Failures'
+, data: [
+[]
+]}
+	]
+});
+
+scatterChart.setTitle({
+    text: '<span class="chart_title">Response Time against the Global Number of Requests per Second</span>',
+    useHTML: true
+});
+
+    });
+</script>
+</body>
+</html>

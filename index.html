@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Karl's Code</title>
+  <meta name="author" content="Karl Roberts">
+
+  
+  <meta name="description" content="I haven&rsquo;t needed to downgrade my kernel for a while. I was using Ubuntu&rsquo;s 14.04 LTS (long time support) support for a few years, and it &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karlroberts.github.io/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
+
+  <!-- add scripts I want to add first if the keywords section in YML frontmatter exists -->
+
+
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-72539490-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karl's Code</a></h1>
+  
+    <h2>and other code related stuff</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="karlroberts.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/03/13/reverting-to-a-previous-kernel/">Reverting to a Previous Kernel</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-03-13T01:40:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>1:40 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I haven&rsquo;t needed to downgrade my kernel for a while. I was using Ubuntu&rsquo;s 14.04 LTS (long time support) support for a few years, and it was so stable that
+I just run the following with no problems.</p>
+
+<pre><code>sudo apt-get update
+sudo apt-get upgrade
+</code></pre>
+
+<p>But recently I got a new laptop with the latest chipsets and peripherals and decided to upgrade to the new Ubuntu Xenial 16.04 LTS
+while I&rsquo;m at it.</p>
+
+<p>I&rsquo;m sad to say that the combination of new distro with bleeding edge hardware has twice given me a problem. </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/03/13/reverting-to-a-previous-kernel/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/01/25/push-a-docker-image-to-personal-repository/">Push a Docker Image to a Personal Repository</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-01-25T02:30:53+00:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>2:30 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Why push your own image?</h2>
+
+<p>After using docker for a while you may find that you want more control over the images you want to base your containers on.</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/01/25/push-a-docker-image-to-personal-repository/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/01/09/disabling-usb-ports-on-linux/">Disabling the Webcam or USB Ports on Linux</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-01-09T04:46:31+00:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>4:46 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Why disable a USB port?</h2>
+
+<p>You may just want to make sure that you webcam, usually connected to the internal USB bus, is turned off.</p>
+
+<p>In my case my laptop webcam has become intermittently faulty. This has caused my laptop to hang on shutdown while the kernel tries to power down the device.</p>
+
+<p>Clearly I want to disable the camera&rsquo;s port without disabling all the other USB ports on the laptop&hellip;</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/01/09/disabling-usb-ports-on-linux/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/01/18/octopress-ignores-published-false-gotcha/">Octopress Ignores Published: False - GOTCHA</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-18T03:29:13+00:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>3:29 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently had the misfortune that octopress started ignoring my <code>published: false</code> statement in my blogs YAML header section. I have now solved the issue. </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/01/18/octopress-ignores-published-false-gotcha/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/01/14/using-javascript-in-octopress/">Using JavaScript in Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-14T00:24:02+00:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>12:24 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I intend to write a series of blogs on JavaScript. It occurred to me that the blog should be able to demonstrate the JS code to make it more accessible.
+OK
+So, first things first, I need to get Octopress (my blogging framework) to use my JavaScript.</p>
+
+<p>This blog intends to catalogue how I got my JS examples into the blog. </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/01/14/using-javascript-in-octopress/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/01/working-with-terraform-remote-statefile/">Working With Terraform Remote Statefile</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-01T01:04:11+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:04 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>Remote state</h4>
+
+<p>There are gotcha&rsquo;s when working with remote state in terraform that this blog attempts to explain and workaround. </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/01/working-with-terraform-remote-statefile/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/26/using-aws-s3-for-intranets/">Private Websites in S3 Buckets</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-26T04:25:25+00:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:25 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Many people now realise that you can use Amazon Web Services (AWS) S3 buckets to <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html">host a static website</a>.</p>
+
+<p>This is cool because it is very reliable and extremly cheap.
+You don&rsquo;t pay to have an EC2 instance constantly running </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/08/26/using-aws-s3-for-intranets/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/27/passwordless-ssh-on-synology/">Passwordless Ssh on Synology</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-27T07:43:13+00:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:43 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I want the rsync user on my Synology box (called synology) to use ssh with no password. </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/27/passwordless-ssh-on-synology/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/16/testing-angular-dot-js-at-the-console/">Testing angular.js at the Console</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-16T04:54:54+00:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:54 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>You&rsquo;ve deployed your angular app</h3>
+
+<p>and now you want to test a Service or Controller quickly.</p>
+
+<p>sure you can (and should) write a unit test but you just need to sanity check
+the service is doing the right thing.</p>
+
+<p>Well the browser has a javascript console (f12) which has all your code loaded in it,
+so we should be able just run the service. </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/16/testing-angular-dot-js-at-the-console/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/03/02/batch-size-for-software/">Batch Size for Software</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-02T21:49:42+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>9:49 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We software developers all want to be efficient. There is a sweet self applied kudos from knowing that your code takes less CPU and runs faster than someone else&rsquo;s, or quickly knocking up a feature because you spent time extracting a library that made it a breeze. But what about in our processes?</p>
+
+<p>As usual, I was thinking about algorithms </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/03/02/batch-size-for-software/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/2">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/03/13/reverting-to-a-previous-kernel/">Reverting to a Previous Kernel</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/25/push-a-docker-image-to-personal-repository/">Push a Docker Image to a Personal Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/disabling-usb-ports-on-linux/">Disabling the Webcam or USB Ports on Linux</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/18/octopress-ignores-published-false-gotcha/">Octopress Ignores Published: False - GOTCHA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/14/using-javascript-in-octopress/">Using JavaScript in Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="6142720898"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+</script>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'karlroberts',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode-leader1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="4526386891"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- <p> adsense here todo... </p> -->
+<p>
+Copyright &copy; 2017 - Karl Roberts -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'karlcode';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

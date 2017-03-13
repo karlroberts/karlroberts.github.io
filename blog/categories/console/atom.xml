@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Console | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/console/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Testing angular.js at the Console]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/06/16/testing-angular-dot-js-at-the-console/"/>
+    <updated>2015-06-16T04:54:54+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/06/16/testing-angular-dot-js-at-the-console</id>
+    <content type="html"><![CDATA[<h3>You&rsquo;ve deployed your angular app</h3>
+
+<p>and now you want to test a Service or Controller quickly.</p>
+
+<p>sure you can (and should) write a unit test but you just need to sanity check
+the service is doing the right thing.</p>
+
+<p>Well the browser has a javascript console (f12) which has all your code loaded in it,
+so we should be able just run the service. <!--more--></p>
+
+<p>But the service is wrapped in a clousure, how can I get it to run it&rsquo;s methods?</p>
+
+<p>Luckily Angular uses a dependency Injection (DI) mechanism, and we can get access to the injector.
+Once we have the injector we can ask for the service &ldquo;by Name&rdquo; :-)</p>
+
+<p>Assume I have a service called RouteService that has a method called <code>routes()</code> on it that returns an array of route Objects.
+I can run the method like this from the console:-</p>
+
+<pre><code>var myinjector = angular.element(document.body).injector();   
+var myRouteService = myinjector.get('RouteService');
+var routes = myRouteService.routes();
+</code></pre>
+
+<p>voila! we now have the routes in a variable&hellip; we can see them by typing the name of the varible in the javascript console:-</p>
+
+<pre><code>routes
+[Object, Object, Object]
+</code></pre>
+
+<p>In Chrome the object is compressed onto one line with a little &ldquo;expandme&rdquo; triangle next to it, click the triangle to see the values in the route Objects.</p>
+]]></content>
+  </entry>
+  
+</feed>

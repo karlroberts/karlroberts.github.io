@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Scala Implicit Class Pimp Gotcha - Karl's Code</title>
+  <meta name="author" content="Karl Roberts">
+
+  
+  <meta name="description" content="Since Scala 2.10 we&rsquo;ve had the convenience to &ldquo;Pimp&rdquo; a library using implicit classes.
+For the details see Implicit Classes This &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
+
+  <!-- add scripts I want to add first if the keywords section in YML frontmatter exists -->
+
+
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-72539490-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karl's Code</a></h1>
+  
+    <h2>and other code related stuff</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="karlroberts.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Scala Implicit Class Pimp Gotcha</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-14T21:59:25+00:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:59 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Since Scala 2.10 we&rsquo;ve had the convenience to &ldquo;Pimp&rdquo; a library using implicit classes.
+For the details see <a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">Implicit Classes</a></p>
+
+<p>This makes it trivial to add methods to previously closed classes. However there are some gotcha&rsquo;s to beware of. In particular make sure you <a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html#restrictions">read the rules</a></p>
+
+<p>The reason I&rsquo;m writing this blog is that I fell foul of restriction 3. It took me ages to work it out.</p>
+
+<!--more-->
+
+
+<p>Restriction 3 says:-</p>
+
+<blockquote><p>&ldquo;There may not be any method, member or object in scope with the same name as the implicit class.</p>
+
+<p>Note: This means an implicit class cannot be a case class."</p></blockquote>
+
+<p>The mistake I made was to have a companion Object for my Implicit class. The compiler spits out an error message like this :</p>
+
+<pre><code>[error] /home/projects/myproj/src/test/scala/com/owtelse/FooTest.scala:27: value myPimpedMethod is not a member of com.owtelse.Foo
+[error]     val f2: Foo = foo.myPimpedMethod(false)
+[error]                       ^
+[error] one error found
+[error] (scazelcast-api/test:compile) Compilation failed
+[error] Total time: 2 s, completed 15/12/2014 8:24:05 AM
+</code></pre>
+
+<p>This had me pulling my hair out! I could see my implicit class was in scope and so the method should have been available to Foo.
+The problem was of course that I had an object named the same as my implicit class as a companion object.
+Rather than tell me that the compiler simply discounted my implicit class and simply reported that the myPimpedMethod was not available on type Foo.</p>
+
+<p><strong>As soon as I deleted the companion object every thing worked.</strong></p>
+
+<p>While I was a bit annoyed with this behaviour, it makes sense.
+The only purpose of the implicit class is as a convenience to wrap the underlying class you wish to pimp and is only meant to be used as an implicit conversion.
+As such you should have no need to instantiate the class in any other way and so should have no need for companion object,
+plus I bet it makes it easier for the compiler writers to apply the conversion where needed if they don&rsquo;t have to disambiguate symbols :-)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Karl Roberts</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-12-14T21:59:25+00:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:59 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gotcha/'>gotcha</a>, <a class='category' href='/blog/categories/implicit-class/'>implicit class</a>, <a class='category' href='/blog/categories/pimp/'>pimp</a>, <a class='category' href='/blog/categories/pimp-my-library/'>pimp my library</a>, <a class='category' href='/blog/categories/scala/'>scala</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha/" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/07/07/google-contacts-installed-app-workflow-howto/" title="Previous Post: Google Contacts - Installed App workflow HOWTO">&laquo; Google Contacts - Installed App workflow HOWTO</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/03/02/batch-size-for-software/" title="Next Post: Batch size for software">Batch size for software &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/03/13/reverting-to-a-previous-kernel/">Reverting to a Previous Kernel</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/25/push-a-docker-image-to-personal-repository/">Push a Docker Image to a Personal Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/disabling-usb-ports-on-linux/">Disabling the Webcam or USB Ports on Linux</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/18/octopress-ignores-published-false-gotcha/">Octopress Ignores Published: False - GOTCHA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/14/using-javascript-in-octopress/">Using JavaScript in Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="6142720898"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+</script>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'karlroberts',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode-leader1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="4526386891"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- <p> adsense here todo... </p> -->
+<p>
+Copyright &copy; 2017 - Karl Roberts -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'karlcode';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha/';
+        var disqus_url = 'http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

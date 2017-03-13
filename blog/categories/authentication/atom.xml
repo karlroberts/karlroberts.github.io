@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Authentication | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/authentication/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google Contacts - Installed App Workflow HOWTO]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/07/07/google-contacts-installed-app-workflow-howto/"/>
+    <updated>2014-07-07T01:09:20+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/07/07/google-contacts-installed-app-workflow-howto</id>
+    <content type="html"><![CDATA[<p>Installed apps typically mean apps that are not web apps.
+Using the installed app authentication flow is sometimes better than using a Service Account.</p>
+
+<h3>Pro</h3>
+
+<ul>
+<li>don&rsquo;t need your admin to assign special &ldquo;impersonate&rdquo; permissions to the service account (once assigned it can impersonate anyone in the domain)</li>
+<li>don&rsquo;t need a Google Domain (see link ???)</li>
+<li>app can use the refresh token to continue to fetch from Google API&rsquo;s until the user is revoked.</li>
+</ul>
+
+
+<h3>Con</h3>
+
+<ul>
+<li>A user needs to accept the Scope of the app, not too bad as once accepted it can continue to use the refresh token to keep accessing the API</li>
+<li>con you can&rsquo;t choose the OAuth2 redurect_URI just get magig top of page or <a href="http://localhost">http://localhost</a> (any port you want) so no good for webapps&hellip; but then they have a Web-AppClient if you want that.</li>
+</ul>
+
+
+<!--more-->
+
+
+<h2>Create a project in <a href="https://console.developers.google.com">Google Dev Console</a></h2>
+
+<p>The Google page explaining how to use it is <a href="https://developers.google.com/accounts/docs/OAuth2InstalledApp">here</a> but here is a concreate example.</p>
+
+<ol>
+<li>Click &ldquo;Create a client ID&rdquo; -> &ldquo;Installed application&rdquo;</li>
+<li><p>This give you a client with these details:-</p>
+
+<p>Client ID for native application</p>
+
+<p>CLIENT ID 758647508586-0vnrjg9dv7gr9h1qvqle58rd4kq0lu45.apps.googleusercontent.com
+CLIENT SECRET  _Br_xUcZSfgmsuPrRmxkavV9</p>
+
+<p>REDIRECT URIS<br/>
+  urn:ietf:wg:oauth:2.0:oob
+  <a href="http://localhost">http://localhost</a></p></li>
+<li><p>Request the authentication code <a href="https://developers.google.com/google-apps/contacts/v3/#authorizing_requests_with_oauth_20">I&rsquo;m requesting auth for the contacts API see the scope (here</a></p></li>
+<li>The request is made up of :-</li>
+<li>The Google oath code request URI = <a href="https://accounts.google.com/o/oauth2/auth">https://accounts.google.com/o/oauth2/auth</a></li>
+<li>The Google ContactAPI read/write scope = <a href="https://www.google.com/m8/feeds">https://www.google.com/m8/feeds</a></li>
+<li>The redirect uri to put the code in the page title and code div = urn:ietf:wg:oauth:2.0:oob  <a href="https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi">see googledocs</a></li>
+<li>response_type = code</li>
+<li><p>client_id = the Client_ID found in the dev console, see above</p>
+
+<p><a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob&amp;response_type=code&amp;client_id=758647508586-0vnrjg9dv7gr9h1qvqle58rd4kq0lu45.apps.googleusercontent.com">https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob&amp;response_type=code&amp;client_id=758647508586-0vnrjg9dv7gr9h1qvqle58rd4kq0lu45.apps.googleusercontent.com</a></p></li>
+<li><p>look at the response there will be a code in the page title and also in a div with id=&lsquo;code&rsquo; in the page like below</p>
+
+<p> 4/7x7B5YMMVMQ1S7iWQ1PnOcFRGqyj.cuXlXIEu_icYdJfo-QBMszswfSocjgI</p></li>
+<li><p>now we have the authorisation code we need to exchange it for an access token, this is done with a POST <a href="https://developers.google.com/accounts/docs/OAuth2InstalledApp#handlingtheresponse">see here</a></p>
+
+<p> POST <a href="https://accounts.google.com/o/oauth2/token">https://accounts.google.com/o/oauth2/token</a></p>
+
+<p> code=4/7x7B5YMMVMQ1S7iWQ1PnOcFRGqyj.cuXlXIEu_icYdJfo-QBMszswfSocjgI&amp;client_id=758647508586-0vnrjg9dv7gr9h1qvqle58rd4kq0lu45.apps.googleusercontent.com&amp;client_secret=_Br_xUcZSfgmsuPrRmxkavV9&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob&amp;grant_type=authorization_code</p></li>
+<li><p>parse the result (see below) we&rsquo;ll need to store the access_token and the refresh_token.</p>
+
+<p> {
+     &ldquo;access_token&rdquo; : &ldquo;ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg&rdquo;,
+     &ldquo;token_type&rdquo; : &ldquo;Bearer&rdquo;,
+     &ldquo;expires_in&rdquo; : 3600,
+     &ldquo;refresh_token&rdquo; : &ldquo;1/m8wiWvc63swre62YXwrECE-SEqlQBf1Vb62Zb28-3lE&rdquo;
+ }</p></li>
+<li><p>Use the access token to finally make a Google API call</p></li>
+<li>here I&rsquo;m calling the Contacts API asking for all contacts (for the user who authenticated in step 1)</li>
+<li><p>you can add the token in a header or as a parameter (header is better as it won&rsquo;t be stored in the URL)</p>
+
+<p><a href="https://www.google.com/m8/feeds/contacts/default/full">https://www.google.com/m8/feeds/contacts/default/full</a></p>
+
+<p>Authorization: Bearer ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg</p>
+
+<p>eg</p>
+
+<p>curl <a href="https://www.google.com/m8/feeds/contacts/default/full?access_token=ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg">https://www.google.com/m8/feeds/contacts/default/full?access_token=ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg</a></p>
+
+<p>or
+curl -H &ldquo;Authorization: Bearer ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg&rdquo; <a href="https://www.google.com/m8/feeds/contacts/default/full">https://www.google.com/m8/feeds/contacts/default/full</a></p></li>
+<li><p>Read the results :-) Enjoy.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Google Contacts API - Service Account Howto]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/07/06/google-contacts-api-service-account-howto/"/>
+    <updated>2014-07-06T00:29:39+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/07/06/google-contacts-api-service-account-howto</id>
+    <content type="html"><![CDATA[<h2>Overview</h2>
+
+<p>I want to set up a server side App that can read list and filter the Google contacts in our company domain &ldquo;mycompany.com&rdquo;. This server side app can then be queried by some of our internal webapps to display helpful info.</p>
+
+<!--more-->
+
+
+<h3>Why not simply do it all in javascript?</h3>
+
+<p>Dunno. maybe that would be better. We&rsquo;ll See.</p>
+
+<h3>Problems</h3>
+
+<p>There are a number of gotchas involved, and misleading documentation to contend with, so I&rsquo;m going to go through setting up a service account to access your users contact info.</p>
+
+<h2>Google Project <small>Authentication Authorisation</small></h2>
+
+<p>This is likely to be the most confusing part.</p>
+
+<p>For any app to use Googles API&rsquo;s it&rsquo;ll need to ble to authenticate with Google and be authorised to use the API&rsquo;s you want to use, or a subset of the API, eg the ability to read contact info but not edit it, it may also need to be granted permission from a user to see their data.</p>
+
+<p>To allow any of this you need to set up a &ldquo;Google Project&rdquo; for your app in the <a href="https://console.developers.google.com">Google Developer Console</a>. The project manages the app&rsquo;s authentication as well as which API&rsquo;s it can use.
+In the &ldquo;API&rsquo;s &amp; Auth&rdquo; -> API section, add the Contacts api.
+Don&rsquo;t add any others yet, it is best to keep things as simple as possible while setting up your app and to test that your app can connect to the requested API before other authorisations are layered on it.</p>
+
+<h2>Gotchas</h2>
+
+<ul>
+<li>You NEED to make the scope exact including not trailing slashes!
+
+<ul>
+<li>eg use <code>https://www.google.com/m8/feeds</code> not <code>https://www.google.com/m8/feeds/</code></li>
+</ul>
+</li>
+<li>The Sevice Account ID is the Service account EMAIL NOT it&rsquo;s Client ID
+
+<ul>
+<li>eg <code>blahblah@@developer.gserviceaccount.com</code> not <code>blahblah.apps.googleusercontent.com</code></li>
+</ul>
+</li>
+<li>The service account must be delegated access to the the SCOPE you want it to use
+
+<ul>
+<li>see <a href="https://developers.google.com/admin-sdk/directory/v1/guides/delegation">The Admin SDK Google Docs</a></li>
+</ul>
+</li>
+<li>The sevice account has no contacts of it&rsquo;s own so you must supply a User who&rsquo;s contactas you want to snarf, eg <code>GoogleCredential.Builder().setServiceAccountUser("me@mydomain.com")</code></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Service Account | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/service-account/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google Contacts API - Service Account Howto]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/07/06/google-contacts-api-service-account-howto/"/>
+    <updated>2014-07-06T00:29:39+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/07/06/google-contacts-api-service-account-howto</id>
+    <content type="html"><![CDATA[<h2>Overview</h2>
+
+<p>I want to set up a server side App that can read list and filter the Google contacts in our company domain &ldquo;mycompany.com&rdquo;. This server side app can then be queried by some of our internal webapps to display helpful info.</p>
+
+<!--more-->
+
+
+<h3>Why not simply do it all in javascript?</h3>
+
+<p>Dunno. maybe that would be better. We&rsquo;ll See.</p>
+
+<h3>Problems</h3>
+
+<p>There are a number of gotchas involved, and misleading documentation to contend with, so I&rsquo;m going to go through setting up a service account to access your users contact info.</p>
+
+<h2>Google Project <small>Authentication Authorisation</small></h2>
+
+<p>This is likely to be the most confusing part.</p>
+
+<p>For any app to use Googles API&rsquo;s it&rsquo;ll need to ble to authenticate with Google and be authorised to use the API&rsquo;s you want to use, or a subset of the API, eg the ability to read contact info but not edit it, it may also need to be granted permission from a user to see their data.</p>
+
+<p>To allow any of this you need to set up a &ldquo;Google Project&rdquo; for your app in the <a href="https://console.developers.google.com">Google Developer Console</a>. The project manages the app&rsquo;s authentication as well as which API&rsquo;s it can use.
+In the &ldquo;API&rsquo;s &amp; Auth&rdquo; -> API section, add the Contacts api.
+Don&rsquo;t add any others yet, it is best to keep things as simple as possible while setting up your app and to test that your app can connect to the requested API before other authorisations are layered on it.</p>
+
+<h2>Gotchas</h2>
+
+<ul>
+<li>You NEED to make the scope exact including not trailing slashes!
+
+<ul>
+<li>eg use <code>https://www.google.com/m8/feeds</code> not <code>https://www.google.com/m8/feeds/</code></li>
+</ul>
+</li>
+<li>The Sevice Account ID is the Service account EMAIL NOT it&rsquo;s Client ID
+
+<ul>
+<li>eg <code>blahblah@@developer.gserviceaccount.com</code> not <code>blahblah.apps.googleusercontent.com</code></li>
+</ul>
+</li>
+<li>The service account must be delegated access to the the SCOPE you want it to use
+
+<ul>
+<li>see <a href="https://developers.google.com/admin-sdk/directory/v1/guides/delegation">The Admin SDK Google Docs</a></li>
+</ul>
+</li>
+<li>The sevice account has no contacts of it&rsquo;s own so you must supply a User who&rsquo;s contactas you want to snarf, eg <code>GoogleCredential.Builder().setServiceAccountUser("me@mydomain.com")</code></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

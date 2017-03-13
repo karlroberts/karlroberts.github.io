@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Implicit Class | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/implicit-class/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Scala Implicit Class Pimp Gotcha]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha/"/>
+    <updated>2014-12-14T21:59:25+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha</id>
+    <content type="html"><![CDATA[<p>Since Scala 2.10 we&rsquo;ve had the convenience to &ldquo;Pimp&rdquo; a library using implicit classes.
+For the details see <a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">Implicit Classes</a></p>
+
+<p>This makes it trivial to add methods to previously closed classes. However there are some gotcha&rsquo;s to beware of. In particular make sure you <a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html#restrictions">read the rules</a></p>
+
+<p>The reason I&rsquo;m writing this blog is that I fell foul of restriction 3. It took me ages to work it out.</p>
+
+<!--more-->
+
+
+<p>Restriction 3 says:-</p>
+
+<blockquote><p>&ldquo;There may not be any method, member or object in scope with the same name as the implicit class.</p>
+
+<p>Note: This means an implicit class cannot be a case class."</p></blockquote>
+
+<p>The mistake I made was to have a companion Object for my Implicit class. The compiler spits out an error message like this :</p>
+
+<pre><code>[error] /home/projects/myproj/src/test/scala/com/owtelse/FooTest.scala:27: value myPimpedMethod is not a member of com.owtelse.Foo
+[error]     val f2: Foo = foo.myPimpedMethod(false)
+[error]                       ^
+[error] one error found
+[error] (scazelcast-api/test:compile) Compilation failed
+[error] Total time: 2 s, completed 15/12/2014 8:24:05 AM
+</code></pre>
+
+<p>This had me pulling my hair out! I could see my implicit class was in scope and so the method should have been available to Foo.
+The problem was of course that I had an object named the same as my implicit class as a companion object.
+Rather than tell me that the compiler simply discounted my implicit class and simply reported that the myPimpedMethod was not available on type Foo.</p>
+
+<p><strong>As soon as I deleted the companion object every thing worked.</strong></p>
+
+<p>While I was a bit annoyed with this behaviour, it makes sense.
+The only purpose of the implicit class is as a convenience to wrap the underlying class you wish to pimp and is only meant to be used as an implicit conversion.
+As such you should have no need to instantiate the class in any other way and so should have no need for companion object,
+plus I bet it makes it easier for the compiler writers to apply the conversion where needed if they don&rsquo;t have to disambiguate symbols :-)</p>
+]]></content>
+  </entry>
+  
+</feed>

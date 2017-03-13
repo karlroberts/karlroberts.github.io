@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Push a Docker Image to a Personal Repository - Karl's Code</title>
+  <meta name="author" content="Karl Roberts">
+
+  
+  <meta name="description" content="Why push your own image? After using docker for a while you may find that you want more control over the images you want to base your containers on. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karlroberts.github.io/blog/2017/01/25/push-a-docker-image-to-personal-repository/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
+
+  <!-- add scripts I want to add first if the keywords section in YML frontmatter exists -->
+
+
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-72539490-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karl's Code</a></h1>
+  
+    <h2>and other code related stuff</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="karlroberts.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Push a Docker Image to a Personal Repository</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-01-25T02:30:53+00:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>2:30 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Why push your own image?</h2>
+
+<p>After using docker for a while you may find that you want more control over the images you want to base your containers on.<!--more--></p>
+
+<p>If you have a Dockerfile, you can always use it to build an image locally using</p>
+
+<pre><code>docker build .
+</code></pre>
+
+<p>Alternatively if you want the image to have a tag name to make it easier to recognise</p>
+
+<pre><code>docker build -t myimage .
+</code></pre>
+
+<p>After the base image has downloaded and all the commands in the Docker file have run you&rsquo;ll have an image locally.</p>
+
+<p>This is great as it gives you the ability to spin up a container based on the image and run a command there, such as to kick off your micro-service.</p>
+
+<pre><code># find the correct image id
+
+$ docker image ls
+REPOSITORY                                     TAG                 IMAGE ID            CREATED             SIZE
+&lt;none&gt;                                         myimage             5f157f802a51        2 minutes ago       533 MB
+ubuntu                                         xenial-20160914     45bc58500fa3        4 months ago        127 MB
+
+# start the container and ls the home dir as an example rather than start
+# my super-cool microservice
+$ docker run --name mycont1 5f157f802a51 ls
+</code></pre>
+
+<p>A potential issue with the above process is that if I want a co-worker to kick off his micro service, or we want to run it in
+multiple &ldquo;environments&rdquo; then he will have to run the docker build first and then run it.</p>
+
+<p>This takes some time</p>
+
+<p>Imagine  how long it would take if your container was based on ubuntu
+and in the Dockerfile you ran <code>apt-get update</code> and <code>apt-get upgrade -y</code>, not to mention the time it takes to install
+necessary software such as Java, Mono, Python or Ruby. The whole process could easily take 10 minutes or more to run the build.</p>
+
+<p>But that isn&rsquo;t the biggest problem. What if a Python dependency or Ruby Gem had changes since you ran your build?
+Not only could the install fail because, in this case, other different dependencies would need to be pre-installed
+but also your co-worker&rsquo;s build will now be different to yours.</p>
+
+<p>All your version controlled guaranties are now moot.</p>
+
+<p>Clearly we want him to have the same exact image as us.</p>
+
+<h2>Create an image from your container</h2>
+
+<p>The way to do this is to create an image from your container. In Docker-speak we will <code>commit</code> the image.
+Think of it like committing all the changes to the layered file system that you have made in the container after starting it from an image.</p>
+
+<p>If you run up your container as described above, then you need to find out its container ID.</p>
+
+<p>If it is still running use:</p>
+
+<pre><code>$ docker ps
+</code></pre>
+
+<p>If it has stopped use:</p>
+
+<pre><code>$ docker ps -a
+</code></pre>
+
+<p>You will see info about your container, this is where naming the container using the <code>-name</code> flag, see above, will be useful. For example this is what I see:</p>
+
+<pre><code>$ docker ps -a
+CONTAINER ID    IMAGE          COMMAND        CREATED         STATUS                       PORTS   NAMES
+2fdc41c14fc6    5f157f802a51   "/bin/sh ls"   7 minutes ago   Exited (137) 13 seconds ago          mycont1
+</code></pre>
+
+<p>So the container Id for <code>mycont1</code> is <code>2fdc41c14fc6</code>. I can now use this to commit an image. Note that you can even cut an image if the container is running because by default it will pause the container before committing, see <code>man docker commit</code></p>
+
+<p>Now you can create the image</p>
+
+<pre><code>$ docker commit -m "my microservice added to ubuntu xenial" -a "Karl" 2fdc41c14fc6 ubuntu-xenial-mymicro
+</code></pre>
+
+<p>You can see the newly minted image as before</p>
+
+<pre><code>$ docker image ls
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+ubuntu-xenial-mymicro   latest              d2c713fdb832        10 seconds ago      795 MB
+ubuntu                  xenial-20160914     45bc58500fa3        4 months ago        127 M
+</code></pre>
+
+<h2>Push to a repository</h2>
+
+<p>Now we have an image we want to push it to our repository so our co-workers can pull and run up a container from it.</p>
+
+<p>The trick to all of this is that Docker uses the image tag name in a special way. When you pull or run an image the name you give it is actually a location (URI) that also refers to the repository host. By default if no host is specified then the <a href="https://hub.docker.com/">Docker hub repo</a> is assumed.</p>
+
+<p>Therefore if you wanted to push your image to Docker Hub, you would first create an account to get a Docker ID that also maps to a &ldquo;repo&rdquo; in Docker Hub,
+e.g. if my Docker ID was <code>karlcode</code> I would create an image tag that referenced my repo in Docker Hub. Remember that &ldquo;Docker Hub&rdquo; is assumed so I could do this:</p>
+
+<pre><code>docker tag ubuntu-xenial-mymicro karlcode/ubuntu-xenial-mymicro:latest
+docker push karlcode/ubuntu-xenial-mymicro:latest
+</code></pre>
+
+<p>This creates a tag of my image, you can use <code>docker image ls</code> to confirm this, and then uses the tag to push the image to the repository host/repo of the same name as the tag.</p>
+
+<p>Of course you would need to let docker know how to login to your docker hub account in order to run the push.</p>
+
+<p>This is done with the <code>docker login</code> command.</p>
+
+<p>It asks for your Docker Hub Docker ID and password and stores a token in your HOME directory at <code>~/.docker/config.json</code> if you have not run <code>docker login</code> before, so you don&rsquo;t need to login every time you push or pull.</p>
+
+<h2>Push to your private repository</h2>
+
+<p>The same principle applies to push to a private repository such as your company&rsquo;s own Docker repository. The only difference is that you need to specify the repository host in the tag name.</p>
+
+<p>Lets say that my repository was running at <code>docker.owtelse.com</code> running on port <code>443</code> and that my project is called <code>magicmicro</code> I may choose to do this:-</p>
+
+<pre><code>$ docker login docker.owtelse.com:443
+$ docker tag ubuntu-xenial-mymicro docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:latest
+$ docker tag ubuntu-xenial-mymicro docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:20170125
+</code></pre>
+
+<p>I would then have local images which we can see like:-</p>
+
+<pre><code>$ docker image ls
+REPOSITORY                                                TAG              IMAGE ID      CREATED          SIZE
+docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro   20170125         d2c713fdb832  10 minutes ago   795 MB
+docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro   latest           d2c713fdb832  10 minutes ago   795 MB
+ubuntu-xenial-mymicro                                     latest           d2c713fdb832  10 minutes ago   795 MB
+ubuntu                                                    xenial-20160914  45bc58500fa3  4 months ago     127 M
+</code></pre>
+
+<p>You may notice that I have two alias for my image with two tags one with the date and the other with the <code>latest</code> tag.</p>
+
+<p>Images with the <code>latest</code> tag are  pulled by default if the tag is not specified.</p>
+
+<p>This allows a user to easily get the latest version by not specifying a preference or by picking a specific release, e.g. for debugging a particular version or for a production environment.</p>
+
+<p>Now to push it:-</p>
+
+<pre><code>$ docker push docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:latest
+$ docker push docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:20170125
+</code></pre>
+
+<p>And that is it!</p>
+
+<h2>Test it</h2>
+
+<p>To prove this to yourself, delete the local images, remember to use your own image ID in the command below :-</p>
+
+<pre><code>$ docker rmi -f docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro
+$ docker rmi -f d2c713fdb832
+</code></pre>
+
+<p>Then you can pull the image from your private repo and use <code>docker image ls</code> to confirm you have it</p>
+
+<pre><code>$ docker pull docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:latest
+</code></pre>
+
+<p>Alternatively you and you co-worker can simply try to run it. If you have already run <code>docker login docker.owtelse.com:443</code> the image will download and run, when you type:</p>
+
+<pre><code>$ docker run --name mymicro docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:latest
+</code></pre>
+
+<p>For more info see the man page <code>man docker push</code>.</p>
+
+<p>I hope you find this information useful and you are now able take more advantage of Docker in both the development and production environment.</p>
+
+<p>The end.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Karl Roberts</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2017-01-25T02:30:53+00:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>2:30 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/docker/'>docker</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/blog/2017/01/25/push-a-docker-image-to-personal-repository/" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/blog/2017/01/25/push-a-docker-image-to-personal-repository/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/01/09/disabling-usb-ports-on-linux/" title="Previous Post: Disabling the webcam or USB ports on Linux">&laquo; Disabling the webcam or USB ports on Linux</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2017/03/13/reverting-to-a-previous-kernel/" title="Next Post: Reverting to a previous Kernel">Reverting to a previous Kernel &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/03/13/reverting-to-a-previous-kernel/">Reverting to a Previous Kernel</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/25/push-a-docker-image-to-personal-repository/">Push a Docker Image to a Personal Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/disabling-usb-ports-on-linux/">Disabling the Webcam or USB Ports on Linux</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/18/octopress-ignores-published-false-gotcha/">Octopress Ignores Published: False - GOTCHA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/14/using-javascript-in-octopress/">Using JavaScript in Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="6142720898"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+</script>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'karlroberts',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode-leader1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="4526386891"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- <p> adsense here todo... </p> -->
+<p>
+Copyright &copy; 2017 - Karl Roberts -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'karlcode';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://karlroberts.github.io/blog/2017/01/25/push-a-docker-image-to-personal-repository/';
+        var disqus_url = 'http://karlroberts.github.io/blog/2017/01/25/push-a-docker-image-to-personal-repository/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

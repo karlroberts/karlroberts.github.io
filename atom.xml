@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Reverting to a Previous Kernel]]></title>
+    <link href="http://karlroberts.github.io/blog/2017/03/13/reverting-to-a-previous-kernel/"/>
+    <updated>2017-03-13T01:40:00+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2017/03/13/reverting-to-a-previous-kernel</id>
+    <content type="html"><![CDATA[<p>I haven&rsquo;t needed to downgrade my kernel for a while. I was using Ubuntu&rsquo;s 14.04 LTS (long time support) support for a few years, and it was so stable that
+I just run the following with no problems.</p>
+
+<pre><code>sudo apt-get update
+sudo apt-get upgrade
+</code></pre>
+
+<p>But recently I got a new laptop with the latest chipsets and peripherals and decided to upgrade to the new Ubuntu Xenial 16.04 LTS
+while I&rsquo;m at it.</p>
+
+<p>I&rsquo;m sad to say that the combination of new distro with bleeding edge hardware has twice given me a problem. <!-- More --></p>
+
+<p>I&rsquo;m sure it&rsquo;ll be stable soon but in the mean time
+I&rsquo;ve had to revert to a previous kernel twice now, so this blog will help me remember what to do if it happens again.</p>
+
+<p>The symptoms are dramatic. After a re-boot my laptop had no network drivers and no graphics drivers,
+the display reverts to an emergency emulated mode which has very slow mouse response times and it looks huge,
+like a &ldquo;my first computer&rdquo; children&rsquo;s toy!</p>
+
+<p>Not what I want from my brand new hardware.</p>
+
+<p>I don&rsquo;t have time or want to fix all the drivers, so the quickest fix is to revert to a previous kernel that was working, remove the broken one, which
+has the effect of blacklisting it then try the next kernel when it comes out.</p>
+
+<h3>Howto</h3>
+
+<h5>Boot from previous kernel</h5>
+
+<ol>
+<li>Hold the shift key while booting to get to the <code>grub</code> options</li>
+<li>Choose advanced grub options</li>
+<li>Make a note of the current kernel numbers (top of the list) you&rsquo;ll need them later to remove it.</li>
+<li>Use the arrow key to pick a previous kernel and boot into it.</li>
+</ol>
+
+
+<h5>Remove the dodgy kernel</h5>
+
+<p>This will remove the broken kernel and drivers, and lets the package manager know that you don&rsquo;t want it again if you do an update.
+You should remove the specific broken kernel and it&rsquo;s headers, don&rsquo;t remove the super package <code>linux-generic</code> this is the package that
+Ubuntu uses to upgrade the kernel and headers when they become available. If you remove it you wont get kernel updates automatically and will have to
+specifically run <code>apt-get</code> to get them.</p>
+
+<pre><code># use the kernel numbers from previous step to confirm that the broken kernel has been installed
+# eg if the currently broken kernel was linux-image-4.4.0-64-generic it should show up in the following command.
+dpkg -l | grep linux-image
+
+# remove the broken kernel
+sudo apt-get purge linux-image-4.4.0-64-generic
+
+# remove its headers too
+sudo apt-get purge linux-headers-4.4.0-64-generic
+</code></pre>
+
+<h5>Reboot</h5>
+
+<p>On reboot you should boot into the previous safe version, hold shift down on boot and confirm that the broken kernel is not a
+choice in the grub advanced settings.</p>
+
+<p>Because we haven&rsquo;t removed the linux-generic package itself Ubuntu will still attempt to get a new kernel when one is available,
+just not the one you specifically purged.</p>
+
+<p>That&rsquo;s it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Push a Docker Image to a Personal Repository]]></title>
+    <link href="http://karlroberts.github.io/blog/2017/01/25/push-a-docker-image-to-personal-repository/"/>
+    <updated>2017-01-25T02:30:53+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2017/01/25/push-a-docker-image-to-personal-repository</id>
+    <content type="html"><![CDATA[<h2>Why push your own image?</h2>
+
+<p>After using docker for a while you may find that you want more control over the images you want to base your containers on.<!--more--></p>
+
+<p>If you have a Dockerfile, you can always use it to build an image locally using</p>
+
+<pre><code>docker build .
+</code></pre>
+
+<p>Alternatively if you want the image to have a tag name to make it easier to recognise</p>
+
+<pre><code>docker build -t myimage .
+</code></pre>
+
+<p>After the base image has downloaded and all the commands in the Docker file have run you&rsquo;ll have an image locally.</p>
+
+<p>This is great as it gives you the ability to spin up a container based on the image and run a command there, such as to kick off your micro-service.</p>
+
+<pre><code># find the correct image id
+
+$ docker image ls
+REPOSITORY                                     TAG                 IMAGE ID            CREATED             SIZE
+&lt;none&gt;                                         myimage             5f157f802a51        2 minutes ago       533 MB
+ubuntu                                         xenial-20160914     45bc58500fa3        4 months ago        127 MB
+
+# start the container and ls the home dir as an example rather than start
+# my super-cool microservice
+$ docker run --name mycont1 5f157f802a51 ls
+</code></pre>
+
+<p>A potential issue with the above process is that if I want a co-worker to kick off his micro service, or we want to run it in
+multiple &ldquo;environments&rdquo; then he will have to run the docker build first and then run it.</p>
+
+<p>This takes some time</p>
+
+<p>Imagine  how long it would take if your container was based on ubuntu
+and in the Dockerfile you ran <code>apt-get update</code> and <code>apt-get upgrade -y</code>, not to mention the time it takes to install
+necessary software such as Java, Mono, Python or Ruby. The whole process could easily take 10 minutes or more to run the build.</p>
+
+<p>But that isn&rsquo;t the biggest problem. What if a Python dependency or Ruby Gem had changes since you ran your build?
+Not only could the install fail because, in this case, other different dependencies would need to be pre-installed
+but also your co-worker&rsquo;s build will now be different to yours.</p>
+
+<p>All your version controlled guaranties are now moot.</p>
+
+<p>Clearly we want him to have the same exact image as us.</p>
+
+<h2>Create an image from your container</h2>
+
+<p>The way to do this is to create an image from your container. In Docker-speak we will <code>commit</code> the image.
+Think of it like committing all the changes to the layered file system that you have made in the container after starting it from an image.</p>
+
+<p>If you run up your container as described above, then you need to find out its container ID.</p>
+
+<p>If it is still running use:</p>
+
+<pre><code>$ docker ps
+</code></pre>
+
+<p>If it has stopped use:</p>
+
+<pre><code>$ docker ps -a
+</code></pre>
+
+<p>You will see info about your container, this is where naming the container using the <code>-name</code> flag, see above, will be useful. For example this is what I see:</p>
+
+<pre><code>$ docker ps -a
+CONTAINER ID    IMAGE          COMMAND        CREATED         STATUS                       PORTS   NAMES
+2fdc41c14fc6    5f157f802a51   "/bin/sh ls"   7 minutes ago   Exited (137) 13 seconds ago          mycont1
+</code></pre>
+
+<p>So the container Id for <code>mycont1</code> is <code>2fdc41c14fc6</code>. I can now use this to commit an image. Note that you can even cut an image if the container is running because by default it will pause the container before committing, see <code>man docker commit</code></p>
+
+<p>Now you can create the image</p>
+
+<pre><code>$ docker commit -m "my microservice added to ubuntu xenial" -a "Karl" 2fdc41c14fc6 ubuntu-xenial-mymicro
+</code></pre>
+
+<p>You can see the newly minted image as before</p>
+
+<pre><code>$ docker image ls
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+ubuntu-xenial-mymicro   latest              d2c713fdb832        10 seconds ago      795 MB
+ubuntu                  xenial-20160914     45bc58500fa3        4 months ago        127 M
+</code></pre>
+
+<h2>Push to a repository</h2>
+
+<p>Now we have an image we want to push it to our repository so our co-workers can pull and run up a container from it.</p>
+
+<p>The trick to all of this is that Docker uses the image tag name in a special way. When you pull or run an image the name you give it is actually a location (URI) that also refers to the repository host. By default if no host is specified then the <a href="https://hub.docker.com/">Docker hub repo</a> is assumed.</p>
+
+<p>Therefore if you wanted to push your image to Docker Hub, you would first create an account to get a Docker ID that also maps to a &ldquo;repo&rdquo; in Docker Hub,
+e.g. if my Docker ID was <code>karlcode</code> I would create an image tag that referenced my repo in Docker Hub. Remember that &ldquo;Docker Hub&rdquo; is assumed so I could do this:</p>
+
+<pre><code>docker tag ubuntu-xenial-mymicro karlcode/ubuntu-xenial-mymicro:latest
+docker push karlcode/ubuntu-xenial-mymicro:latest
+</code></pre>
+
+<p>This creates a tag of my image, you can use <code>docker image ls</code> to confirm this, and then uses the tag to push the image to the repository host/repo of the same name as the tag.</p>
+
+<p>Of course you would need to let docker know how to login to your docker hub account in order to run the push.</p>
+
+<p>This is done with the <code>docker login</code> command.</p>
+
+<p>It asks for your Docker Hub Docker ID and password and stores a token in your HOME directory at <code>~/.docker/config.json</code> if you have not run <code>docker login</code> before, so you don&rsquo;t need to login every time you push or pull.</p>
+
+<h2>Push to your private repository</h2>
+
+<p>The same principle applies to push to a private repository such as your company&rsquo;s own Docker repository. The only difference is that you need to specify the repository host in the tag name.</p>
+
+<p>Lets say that my repository was running at <code>docker.owtelse.com</code> running on port <code>443</code> and that my project is called <code>magicmicro</code> I may choose to do this:-</p>
+
+<pre><code>$ docker login docker.owtelse.com:443
+$ docker tag ubuntu-xenial-mymicro docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:latest
+$ docker tag ubuntu-xenial-mymicro docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:20170125
+</code></pre>
+
+<p>I would then have local images which we can see like:-</p>
+
+<pre><code>$ docker image ls
+REPOSITORY                                                TAG              IMAGE ID      CREATED          SIZE
+docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro   20170125         d2c713fdb832  10 minutes ago   795 MB
+docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro   latest           d2c713fdb832  10 minutes ago   795 MB
+ubuntu-xenial-mymicro                                     latest           d2c713fdb832  10 minutes ago   795 MB
+ubuntu                                                    xenial-20160914  45bc58500fa3  4 months ago     127 M
+</code></pre>
+
+<p>You may notice that I have two alias for my image with two tags one with the date and the other with the <code>latest</code> tag.</p>
+
+<p>Images with the <code>latest</code> tag are  pulled by default if the tag is not specified.</p>
+
+<p>This allows a user to easily get the latest version by not specifying a preference or by picking a specific release, e.g. for debugging a particular version or for a production environment.</p>
+
+<p>Now to push it:-</p>
+
+<pre><code>$ docker push docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:latest
+$ docker push docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:20170125
+</code></pre>
+
+<p>And that is it!</p>
+
+<h2>Test it</h2>
+
+<p>To prove this to yourself, delete the local images, remember to use your own image ID in the command below :-</p>
+
+<pre><code>$ docker rmi -f docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro
+$ docker rmi -f d2c713fdb832
+</code></pre>
+
+<p>Then you can pull the image from your private repo and use <code>docker image ls</code> to confirm you have it</p>
+
+<pre><code>$ docker pull docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:latest
+</code></pre>
+
+<p>Alternatively you and you co-worker can simply try to run it. If you have already run <code>docker login docker.owtelse.com:443</code> the image will download and run, when you type:</p>
+
+<pre><code>$ docker run --name mymicro docker.owtelse.com:443/magicmicro/ubuntu-xenial-mymicro:latest
+</code></pre>
+
+<p>For more info see the man page <code>man docker push</code>.</p>
+
+<p>I hope you find this information useful and you are now able take more advantage of Docker in both the development and production environment.</p>
+
+<p>The end.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Disabling the Webcam or USB Ports on Linux]]></title>
+    <link href="http://karlroberts.github.io/blog/2017/01/09/disabling-usb-ports-on-linux/"/>
+    <updated>2017-01-09T04:46:31+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2017/01/09/disabling-usb-ports-on-linux</id>
+    <content type="html"><![CDATA[<h2>Why disable a USB port?</h2>
+
+<p>You may just want to make sure that you webcam, usually connected to the internal USB bus, is turned off.</p>
+
+<p>In my case my laptop webcam has become intermittently faulty. This has caused my laptop to hang on shutdown while the kernel tries to power down the device.</p>
+
+<p>Clearly I want to disable the camera&rsquo;s port without disabling all the other USB ports on the laptop&hellip;</p>
+
+<!--more--> 
+
+
+<h2>Identify the port</h2>
+
+<p>The first step was to identify the camera&rsquo;s port.</p>
+
+<p>You can trawl through <code>dmesg</code> logs looking at all USB entries until you find the webcam, e.g.</p>
+
+<pre><code>$ dmesg
+...
+[    2.996705] usb 1-1.6: Product: Webcam SC-13HDL11624N
+...
+</code></pre>
+
+<p>Here you can see that my webcam was on bus 1 - port 1 on the 6th device on that port e.g. <code>1-1.6</code></p>
+
+<p>However Linux has some commands and a pseudo &ldquo;sys&rdquo; file system that make it easier, for instance you could use <code>lsusb</code></p>
+
+<pre><code>$ lsusb -t
+/:  Bus 03.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 5000M
+/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+    |__ Port 2: Dev 3, If 0, Class=Human Interface Device, Driver=usbhid, 12M
+    |__ Port 2: Dev 3, If 1, Class=Human Interface Device, Driver=usbhid, 12M
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=ehci-pci/3p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/6p, 480M
+        |__ Port 2: Dev 3, If 0, Class=Human Interface Device, Driver=usbhid, 1.5M
+        |__ Port 5: Dev 4, If 0, Class=Wireless, Driver=btusb, 12M
+        |__ Port 5: Dev 4, If 1, Class=Wireless, Driver=btusb, 12M
+        |__ Port 6: Dev 5, If 0, Class=Video, Driver=uvcvideo, 480M
+        |__ Port 6: Dev 5, If 1, Class=Video, Driver=uvcvideo, 480M
+</code></pre>
+
+<p>If we walk this tree we can see bus 01 Port 1 is a USB hub and port 6 on the hub is a video device, which is my webcam&hellip;
+but this is a bit obtuse and confusing, and it doesn&rsquo;t yield the literal string <code>1-1.6</code> that I&rsquo;ll need to disable the webcam port.</p>
+
+<p>A better method is to walk the <code>sys</code> pseudo file system that gives info on all devices attached to the kernel system.</p>
+
+<pre><code>$ for device in $(ls /sys/bus/usb/devices/*/product); do echo $device;cat $device;done
+/sys/bus/usb/devices/1-1.2/product
+Dell USB Entry Keyboard
+/sys/bus/usb/devices/1-1.6/product
+Webcam SC-13HDL11624N
+/sys/bus/usb/devices/2-1/product
+Amazon Kindle
+/sys/bus/usb/devices/2-2/product
+USB Receiver
+/sys/bus/usb/devices/usb1/product
+EHCI Host Controller
+/sys/bus/usb/devices/usb2/product
+xHCI Host Controller
+/sys/bus/usb/devices/usb3/product
+xHCI Host Controller
+</code></pre>
+
+<p>Here we can see that the file <code>/sys/bus/usb/devices/1-1.6/product</code> contains the <code>Webcam SC-13HDL11624N</code></p>
+
+<p>So in this case the USB device (or port) we need is <code>1-1.6</code>.</p>
+
+<p>Because the Webcam is attached to the internal USB hub, it will always be listed at the same address, this is helpful as it means I can hard-code <code>1-1.6</code> where I need it rather than parsing the output of the command.</p>
+
+<h2>Turn off power to the Webcam</h2>
+
+<p>Now we know the USB device number, it is simple to turn off the camera using the <code>sys</code> file system.</p>
+
+<p>By writing values to the &ldquo;files&rdquo; in the <code>sys</code> file system you can effect the devices that the file represents. Obviously you need to be root to do this, or be a user that has <code>sudo</code> permissions.</p>
+
+<h3>On Ubuntu</h3>
+
+<p>We can send a command to the USB driver to unbind a port,</p>
+
+<pre><code>$ echo '1-1.6' | sudo tee /sys/bus/usb/drivers/usb/unbind
+</code></pre>
+
+<p>Obviously replace &ldquo;1-1.6&rdquo; with whichever usb port your webcam is on (see above).</p>
+
+<p>To turn it back on,</p>
+
+<pre><code>$ echo '1-1.6' | sudo tee /sys/bus/usb/drivers/usb/bind
+</code></pre>
+
+<p>This command pushed the USB device name, &ldquo;1-1.6&rdquo;, to a special socket that acts like a command API to the USB driver, in other words rather than directly control the power of the device we ask the USB driver to do it for us.</p>
+
+<h2>Run it at start-up</h2>
+
+<p>Now I have control over my USB ports I want to disable this port at start-up.
+Ubuntu uses the <code>anacron</code> cron daemon which allows a special syntax, <code>@reboot</code>, to hook a command to the reboot sequence.</p>
+
+<p>Simple edit root&rsquo;s crontab</p>
+
+<pre><code>$ sudo crontab -e
+</code></pre>
+
+<p>And then append the following</p>
+
+<pre><code>@reboot echo '1-1.6' &gt; /sys/bus/usb/drivers/usb/unbind
+</code></pre>
+
+<p>Again edit &lsquo;1-1.6&rsquo; to your usb device&rsquo;s number.</p>
+
+<p>And that&rsquo;s it. My laptop can now shutdown without hanging.</p>
+
+<p>Cheers.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Ignores Published: False - GOTCHA]]></title>
+    <link href="http://karlroberts.github.io/blog/2016/01/18/octopress-ignores-published-false-gotcha/"/>
+    <updated>2016-01-18T03:29:13+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2016/01/18/octopress-ignores-published-false-gotcha</id>
+    <content type="html"><![CDATA[<p>I recently had the misfortune that octopress started ignoring my <code>published: false</code> statement in my blogs YAML header section. I have now solved the issue. <!--more--></p>
+
+<p>The <code>published: false</code> statement is meant to prevent the blog from being prematurely published, eg while it is in progress.</p>
+
+<p>The internet told me that running <code>rake generate</code> before <code>rake deploy</code> was supposed to remove blogs marked as <code>published: false</code> from the files to be published. However it was not working for me.</p>
+
+<p>Octopress does allow blogs marked as <code>published: false</code> to be used in the <code>preview</code> task, so you can see your work in progress locally.</p>
+
+<p>Looking through the Rakefile I discovered that a file called <code>.preview-mode</code> is used to handle this exemption.</p>
+
+<p>It turned out that I had accidentally committed the <code>.preview-mode</code> file to git while running the preview. It was now always there! This messed up the deploy and enabled all my in flight blogs to be published.</p>
+
+<p>The fix was simple.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git rm -f ./.preview-mode
+</span><span class='line'>git commit -m <span class="s2">&quot;removed .preview-mode, which was accidentally added&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>SOLVED. <code>rake generate</code> and <code>rake deploy</code> now work properly again.</p>
+
+<p>:-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using JavaScript in Octopress]]></title>
+    <link href="http://karlroberts.github.io/blog/2016/01/14/using-javascript-in-octopress/"/>
+    <updated>2016-01-14T00:24:02+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2016/01/14/using-javascript-in-octopress</id>
+    <content type="html"><![CDATA[<p>I intend to write a series of blogs on JavaScript. It occurred to me that the blog should be able to demonstrate the JS code to make it more accessible.
+OK
+So, first things first, I need to get Octopress (my blogging framework) to use my JavaScript.</p>
+
+<p>This blog intends to catalogue how I got my JS examples into the blog. <!--more--></p>
+
+<p>What do I need? &hellip;</p>
+
+<p>I need to add a <code>script</code> tag in the blog post to include the JavaScript.</p>
+
+<p>Luckily the Octopress markdown syntax that blogs are written in allows pure html, so I can simply add the script tags
+e.g. Here is how to use D3 to generate an SVG</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;rect1&quot;</span> <span class="na">class=</span><span class="s">&quot;chart&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">square</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;#rect1&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">svgContainer</span> <span class="o">=</span> <span class="nx">square</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Draw the Rectangle</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">rectangle</span> <span class="o">=</span> <span class="nx">svgContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<div id="jsinocto20160114-rect1" class="chart"></div>
+
+
+<p>Notice that the <code>&lt;div&gt;</code> tag to hold the generated SVG came before the JavaScript?</p>
+
+<p>If it had come after the JS the Square would not have rendered because the script would run as soon as it was encountered in the normal HTML way but the DOM element it was looking to populate (something with the id=&ldquo;rect1&rdquo;) was not yet on the page.</p>
+
+<p>I could have simply looked for the <code>body</code> and appended it to that in JS or had the JavaScript run in an <code>onload</code> callback e.g.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">drawSquare</span><span class="p">()</span> <span class="p">{...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is all OK but there are a couple of problems I can see.</p>
+
+<ol>
+<li>I may end up importing popular libraries more than once on a page
+
+<ul>
+<li>especially in the blog index that shows many blog pages</li>
+<li>multiple large downloads may impact render times</li>
+</ul>
+</li>
+<li>Because the index page shows many posts on one page..
+
+<ul>
+<li>I may get JavaScript variable name conflicts.</li>
+</ul>
+</li>
+</ol>
+
+
+<p>The solution to point 1 is found in the <a href="http://octopress.org/docs/theme/template/">octopress documentation</a></p>
+
+<blockquote><p>If you want to add scripts or tags to the `<HEAD>` take a look at `/source/_includes/custom/head.html` ...</p><p>If you'd rather inject scripts at the bottom of the page, you can add that to `/source/_includes/custom/after_footer.html`.</p></blockquote>
+
+
+<p>So, I can simply include my common libraries by adding the script tag in <code>/source/_includes/custom/after_footer.html</code></p>
+
+<p>Problem 2 can be solved by adopting a convention. All JavaScript I write will be closed inside an <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression">immediate function</a> named after the blog page and the div&rsquo;s the code interacts with shall have an id that is prefixed by the blog page.</p>
+
+<p>For example</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;blogpost1-rect1&quot;</span> <span class="na">class=</span><span class="s">&quot;chart&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="nx">blogpost1</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">square</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;#blogpost1-rect1&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">svgContainer</span> <span class="o">=</span> <span class="nx">square</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Draw the Rectangle</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">rectangle</span> <span class="o">=</span> <span class="nx">svgContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span><span class='line'><span class="p">})();</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- add my JavaScript -->
+
+
+<script>
+(function jsinocto20160114() {
+var square = d3.select("#jsinocto20160114-rect1");
+
+var svgContainer = square.append("svg")
+    .attr("width", 100).attr("height", 100);
+
+//Draw the Rectangle
+var rectangle = svgContainer.append("rect")
+    .attr("x", 10).attr("y", 10).attr("width", 50)
+    .attr("height", 60).attr("fill", "red")
+    .attr("stroke", "blue").attr("stroke-width", 5);
+})();
+</script>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Working With Terraform Remote Statefile]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile/"/>
+    <updated>2015-09-01T01:04:11+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile</id>
+    <content type="html"><![CDATA[<h4>Remote state</h4>
+
+<p>There are gotcha&rsquo;s when working with remote state in terraform that this blog attempts to explain and workaround. <!--more--></p>
+
+<p><a href="https://www.terraform.io/docs/index.html">Terraform</a>  is a pretty cool infrastructure provisioner.
+It lets me set up infrastructure that can span cloud providers, eg AWS and/or Azure.</p>
+
+<h4>working with terraform</h4>
+
+<p>By writing terraform config files you declaritivly describe the infrastructure that you want,
+for example which AWS IAM users, groups, roles and policies on which S3 buckets and EC2 instances.</p>
+
+<p>by running <code>terraform plan</code> terraform create a terraform.tfstate file that describes the full state as described in your config
+and compares it to the previous tfstate file to show you what changes will be made.</p>
+
+<p>This is cool, you can see what will happen before you run <code>terraform apply</code>.</p>
+
+<h4>What&rsquo;s the catch?</h4>
+
+<p>It is important to realise that terraform is a state machine.</p>
+
+<p>if your previous state added a user, and your new state does not mention that user (ie you removed him from one of the config files) then next time you run <code>terraform plan</code> or <code>terraform apply</code> you will see that the user will be removed so that the terraformed environment matches the new desired state.</p>
+
+<p>That doesn&rsquo;t seem so bad. Your config (which I presume you are version controlling in git?) grows and consistently matches the desired end stateof your environment, effectivly documenting the infrastructure. Cool.</p>
+
+<p>So what&rsquo;s the problem?</p>
+
+<h4>The problem</h4>
+
+<p>What happens when your mate runs apply from his dev machine?</p>
+
+<p>Obviously terraform will apply the state to the environment as described in his config.
+But what if he deletes something that you are still depending on? You can quite quickly destroy each others infrastructure.</p>
+
+<p>This can be avoided using normal Version control practice, eg rebasing from git before you run <code>terraform plan</code> and <code>terraform apply</code> but almost enevitably you will always be merging conflicts by hand in the <code>terraform.tfstate</code> JSON file. This is not too bad if you always have a conflict as you&rsquo;ll know that you need to merge, but as with all structured text files it&rsquo;s possible that a clause will be inserted at a different line to your changes that doesn&rsquo;t conflict in a diff sense but does change the meaning of the file in an inconsitent way, ege a group gould be removed from one place but depended on in another. terraform will fail in this case but then you&rsquo;ll need to manually fix it up, which is a pain, but I can imagine changes that could happen that would not be conflicts and dont screw up the file, but do dramatically impact the generated infrastucture, such as adding a policy or group that together work to lower the expected security contraints of the infrastructure.</p>
+
+<h5>How do we deal with this?</h5>
+
+<p>Terraform handles this scenario by allowing a Remote statefile, that can live in Consul, AWS S3 or Atlas.</p>
+
+<p>Running the <code>terraform remote</code> command can set up your local terraform.tfstate file to match the remote one before seeing what the diffs are.</p>
+
+<p><strong>Gotcha 1</strong> NB even with a remote statefile terraform does not support concurrent <code>terraform apply</code> commands as it doesn&rsquo;t manage locking of the stanza&rsquo;s in the statefile, so talk to your mate before running it!</p>
+
+<p>This is all OK now&hellip;. or is it?</p>
+
+<p>There are still a couple of anoying problems that prevent this feature working as you&rsquo;d expect.</p>
+
+<p>The way I&rsquo;d like to work with this, is prevent git from commiting the <code>.terraform/terraform.tfstate</code> file in the gitignore file, so that the remote one is auto downloaded to compare with my generated new state before calulateing the combined next state.</p>
+
+<p><strong>Gotcha 2</strong> If you don&rsquo;t have a local <code>terraform.tfstate</code> file then <code>terraform apply</code> fails beacuse it assumes it needs to create resources that already may already exist but it doesn&rsquo;t know because it doesn&rsquo;t have the current state.</p>
+
+<h4>The workaround</h4>
+
+<p>You could fetch the latest remote state file and copy it to <code>.terraform/terraform.tfstate</code> the first time, but this means you be forever explaining to people what to do.</p>
+
+<p>my current recommendation is to use a Makefile to run terraform, which by default sets up the copy of remote state if it doesn&rsquo;t exist and then runs <code>terraform plan</code> with a seperate target for <code>terraform apply</code>.</p>
+
+<p>In this way you don&rsquo;t need to check in the statefile so you cna be sure that you are in sync and you don&rsquo;t need to remember to get it first (Chicken and Egg scenario)</p>
+
+<p>here is the Makefile using and AWS bucket for this terraform remote state:-</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Makefile to kick of the terraform for this project
+</span><span class='line'>#
+</span><span class='line'># You should set the following environment variable to authenticate 
+</span><span class='line'># with AWS so you can store and retrieve the remote state befor you run this Makefile.
+</span><span class='line'>#
+</span><span class='line'># export AWS_ACCESS_KEY_ID= &lt;your key&gt;
+</span><span class='line'># export AWS_SECRET_ACCESS_KEY= &lt;your secret&gt;
+</span><span class='line'># export AWS_DEFAULT_REGION= &lt;your bucket region eg ap-southeast-2&gt;
+</span><span class='line'># export TF_VAR_access_key=$AWS_ACCESS_KEY # exposed as access_key in the terraform scripts
+</span><span class='line'># export TF_VAR_secret_key=$AWS_SECRET_ACCESS_KEY
+</span><span class='line'>#
+</span><span class='line'># ####################################################
+</span><span class='line'>#
+</span><span class='line'>STATEBUCKET = my-statefile-bucket-name
+</span><span class='line'>PREFIX = myterraformprojectname
+</span><span class='line'>
+</span><span class='line'># # Before we start test that we have the manditory executables avilable
+</span><span class='line'> EXECUTABLES = git terraform
+</span><span class='line'> K := $(foreach exec,$(EXECUTABLES),\
+</span><span class='line'>  $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH, consider apt-get install $(exec)")))
+</span><span class='line'>#
+</span><span class='line'>#     .PHONY: all s3bucket plan
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>.PHONY: all plan apply
+</span><span class='line'>
+</span><span class='line'>all: init.txt plan
+</span><span class='line'>  echo "All"
+</span><span class='line'>
+</span><span class='line'>plan: 
+</span><span class='line'>  @echo "running terraform plan"
+</span><span class='line'>  terraform plan
+</span><span class='line'>
+</span><span class='line'>apply:
+</span><span class='line'>  @echo running terraform apply
+</span><span class='line'>  terraform apply
+</span><span class='line'>
+</span><span class='line'># little hack target to prevent it running again without need
+</span><span class='line'># for second nested Makefile
+</span><span class='line'>init.txt:
+</span><span class='line'>  @echo "initialise remote statefile"
+</span><span class='line'>  terraform remote config -backend=s3 -backend-config="bucket=terrastate" -backend-config="key=$(PREFIX)/terraform.tfstate"
+</span><span class='line'>  echo "ran terraform remote config -backend=s3 -backend-config=\"bucket=$(STATEBUCKET)\" -backend-config=\"key=$(PREFIX)/terraform.tfstate\"" &gt; ./init.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>here is the .gitignore file</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>*.swp
+</span><span class='line'>.terraform/terraform.tfstate*
+</span><span class='line'>init.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>here is the terraform config to set up remote state, remote.tf :-</p>
+
+<pre><code># found from env var TF_VAR_acces_key
+variable "access_key" {}
+
+variable "secret_key" {}
+
+provider "aws" {
+    access_key = "${var.access_key}"
+    secret_key = "${var.secret_key}"
+    region = "ap-southeast-2"
+}
+
+resource "terraform_remote_state" "remote_state" {
+    backend = "s3"
+    config {
+      bucket = "my-statefile-bucket-name"
+      key    = "myterraformprojectname/terraform.tfstate"
+     # region = "ap-southeast-2"
+    }
+}
+</code></pre>
+
+<h5>Usage</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># run 'terraform plan'
+</span><span class='line'>make</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># run 'terraform apply'
+</span><span class='line'>make apply</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Private Websites in S3 Buckets]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/08/26/using-aws-s3-for-intranets/"/>
+    <updated>2015-08-26T04:25:25+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/08/26/using-aws-s3-for-intranets</id>
+    <content type="html"><![CDATA[<p>Many people now realise that you can use Amazon Web Services (AWS) S3 buckets to <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html">host a static website</a>.</p>
+
+<p>This is cool because it is very reliable and extremly cheap.
+You don&rsquo;t pay to have an EC2 instance constantly running <!--more--></p>
+
+<ul>
+<li>you just get charged s3 costs</li>
+<li>$0.03 per GB and $0.004 per 10000 requests.</li>
+</ul>
+
+
+<p>But what if I want to host my company private web pages?
+Can I use S3?
+Will other people be able to see my stuff?</p>
+
+<p>The answer is yes you can use S3.</p>
+
+<p>The trick is you need to modify the bucket policy to have constraints.</p>
+
+<p>For example here is a public s3 buckets policy:-</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "Version": "2012-10-17",
+</span><span class='line'>    "Statement": [
+</span><span class='line'>      {
+</span><span class='line'>        "Sid": "PublicReadGetObject",
+</span><span class='line'>        "Effect": "Allow",
+</span><span class='line'>        "Principal": "*",
+</span><span class='line'>        "Action": "s3:GetObject",
+</span><span class='line'>        "Resource": "arn:aws:s3:::testfoo/*"
+</span><span class='line'>        }
+</span><span class='line'>      }
+</span><span class='line'>    ]
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here is a policy that allows access only from my ip address or CIDR range
+and denies a some other specified ip-addreses that would otherise be included.</p>
+
+<p>NB any other ip is automatically excluded too</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "Version": "2012-10-17",
+</span><span class='line'>    "Statement": [
+</span><span class='line'>      {
+</span><span class='line'>        "Sid": "PublicReadGetObject",
+</span><span class='line'>        "Effect": "Allow",
+</span><span class='line'>        "Principal": "*",
+</span><span class='line'>        "Action": "s3:GetObject",
+</span><span class='line'>        "Resource": "arn:aws:s3:::testfoo/*",
+</span><span class='line'>        "Condition": {
+</span><span class='line'>          "IpAddress": {
+</span><span class='line'>            "aws:SourceIp": "150.101.204.0/24"
+</span><span class='line'>          },
+</span><span class='line'>          "NotIpAddress": {
+</span><span class='line'>            "aws:SourceIp": "150.101.204.188/32"
+</span><span class='line'>          }
+</span><span class='line'>        }
+</span><span class='line'>      }
+</span><span class='line'>    ]
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The full list of AWS Condition keys is available <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#AvailableKeys">here</a></p>
+
+<p>Cheap private web hosting here I come!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Passwordless Ssh on Synology]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/06/27/passwordless-ssh-on-synology/"/>
+    <updated>2015-06-27T07:43:13+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/06/27/passwordless-ssh-on-synology</id>
+    <content type="html"><![CDATA[<p>I want the rsync user on my Synology box (called synology) to use ssh with no password. <!--more--></p>
+
+<p>First I create the ssh key</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-keygen -t rsa</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When asked for the password for the key simply hit <code>enter</code> key, and again.
+This will create a private key and public key in</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>~/.ssh/id_rsa
+</span><span class='line'>~/.ssh/id_rsa.pub</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Over on the Synology box (I assume you have ssh&rsquo;d there as root)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh root@synology</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Some hoops need to be jumped.</p>
+
+<p>By default you can&rsquo;t get to the home directory of a user, it is mapped to a fake place
+Get around that by:-</p>
+
+<ul>
+<li>go to Users admin page
+
+<ul>
+<li>click advanced</li>
+<li>turn on &ldquo;home services&rdquo;</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Now you need to modify the home dir permissions</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /var/services/homes
+</span><span class='line'>
+</span><span class='line'>chmod 755 user user # by default synology setts 777 and sshd is picky</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you need to actually give your user a shell.
+as root edit <code>/etc/passwd</code></p>
+
+<p>You need an entry like</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rsync:x:1031:100:linux backup user:/var/services/homes/rsync:/bin/ash</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice that the last section is a real shell /bin/ash  if it is not a shell you can&rsquo;t log in.</p>
+
+<p>Now you need to modify <code>/etc/ssh/sshd_config</code> make sure it has the following lines:-</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>RSAAuthentication yes
+</span><span class='line'>PubkeyAuthentication yes
+</span><span class='line'>AuthorizedKeysFile  .ssh/authorized_keys</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally you need to create the authorized_keys file in the users account an add a public key to it.
+Beware that file permissions are crucial here or ssh will refuse you.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>su -s /bin/ash rsync
+</span><span class='line'>cd $HOME
+</span><span class='line'>pwd # make sure you are in /var/services/homes/rsync
+</span><span class='line'>
+</span><span class='line'>mkdir ./.ssh
+</span><span class='line'>chmod 700 ./.ssh
+</span><span class='line'>touch ./.ssh/authorized_keys
+</span><span class='line'>chmod 600 ./.ssh/authorized_keys</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then add a public key corresponding to a private key that you own on one line in the file
+either use vi an paste it in or from another PC you can use ssh and cat (you&rsquo;ll need to use password for the user until you are done)</p>
+
+<p>Assume my pub key is at ~/.ssh/id_rsa.pub and I want the rsync users authorized_keys file to hold contain that key..</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh rsync@synology "/bin/cat &gt;&gt; ./.ssh/authorized_keys" &lt; ~/.ssh/id_rsa.pub</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After being prompted for the password the key will be in place.. now restart  synology or quicker just get the ssh daemon to re-read its config</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>synology&gt; ps | grep sshd
+</span><span class='line'>16783 root     16772 S    /usr/bin/sshd
+</span><span class='line'>
+</span><span class='line'>synology&gt; kill -HUP 16783</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You should now be able to ssh to synology as rsync with no password</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh rsync@synology</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Testing angular.js at the Console]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/06/16/testing-angular-dot-js-at-the-console/"/>
+    <updated>2015-06-16T04:54:54+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/06/16/testing-angular-dot-js-at-the-console</id>
+    <content type="html"><![CDATA[<h3>You&rsquo;ve deployed your angular app</h3>
+
+<p>and now you want to test a Service or Controller quickly.</p>
+
+<p>sure you can (and should) write a unit test but you just need to sanity check
+the service is doing the right thing.</p>
+
+<p>Well the browser has a javascript console (f12) which has all your code loaded in it,
+so we should be able just run the service. <!--more--></p>
+
+<p>But the service is wrapped in a clousure, how can I get it to run it&rsquo;s methods?</p>
+
+<p>Luckily Angular uses a dependency Injection (DI) mechanism, and we can get access to the injector.
+Once we have the injector we can ask for the service &ldquo;by Name&rdquo; :-)</p>
+
+<p>Assume I have a service called RouteService that has a method called <code>routes()</code> on it that returns an array of route Objects.
+I can run the method like this from the console:-</p>
+
+<pre><code>var myinjector = angular.element(document.body).injector();   
+var myRouteService = myinjector.get('RouteService');
+var routes = myRouteService.routes();
+</code></pre>
+
+<p>voila! we now have the routes in a variable&hellip; we can see them by typing the name of the varible in the javascript console:-</p>
+
+<pre><code>routes
+[Object, Object, Object]
+</code></pre>
+
+<p>In Chrome the object is compressed onto one line with a little &ldquo;expandme&rdquo; triangle next to it, click the triangle to see the values in the route Objects.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Batch Size for Software]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/03/02/batch-size-for-software/"/>
+    <updated>2015-03-02T21:49:42+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/03/02/batch-size-for-software</id>
+    <content type="html"><![CDATA[<p>We software developers all want to be efficient. There is a sweet self applied kudos from knowing that your code takes less CPU and runs faster than someone else&rsquo;s, or quickly knocking up a feature because you spent time extracting a library that made it a breeze. But what about in our processes?</p>
+
+<p>As usual, I was thinking about algorithms <!--more--> while doing my household chores. This morning I was emptying the cutlery from my dishwasher. My normal way to do this is to select all the knives, hold them all between two fingers in one hand, then select all the forks, hold them all between another couple of fingers and repeat for spoons and teaspoons. Then with a big bunch of cutlery I walk to the drawer and quickly and efficiently grab each finger full of cutlery and dump that whole lot in it&rsquo;s tray. All the knives go at once, then forks etc. etc.</p>
+
+<p>This pre-sorting algorithm works fine for me and minimises my trips from the dishwasher to the cutlery drawer. Also no-one is waiting on my output. But what if my house was a busy restaurant and someone was waiting to lay the tables and there was no cutlery in the tray? In this case my dishwasher emptying algorithm is sub-optimal because the person waiting would have to wait for me to fully empty the dishwasher before they could get any work done. It would be better in that case if I simply grab a handful of any items and sort them directly into the tray. In this way the other person can start some work almost immediately.</p>
+
+<p><a href="http://www.factoryphysics.com/Principle/LittlesLaw.htm">Little&rsquo;s Law</a> shows that by shrinking the Work In Progress (WIP) we can reduce flow time through the system while holding throughput constant. We can make use of this in our development cycles.</p>
+
+<p>Developers have, IMHO, a natural tendency to hoard their work, in the same way an artist may refuse to let you see a painting before it is finished, a developer will not release his code until it is beautiful.
+It&rsquo;s as if we believe that &ldquo;showing the workings&rdquo; exposes the magic trick. The beautiful unique snowflake, that is our software, was not magicked into existence in one fell swoop but was instead wrought out of the aether by hard work, determination and skill. We seem to think that doing this would in some way cheapen the final product.</p>
+
+<p>This is a shame. We see examples everywhere that if people see the work in progress then the final product is improved, either directly or by providing critical feedback.
+For example how many times have you explained some software design to BA&rsquo;s or project stakeholders and they just looked at you funny? But when you show them a demo GUI they can instantly grasp the concept and help refine it.</p>
+
+<p>Most people are quite good at incrementally improving a design, but not all are good at initialising a design. Getting &ldquo;eyes on early&rdquo; is a great strategy for producing great products. Engineers have done this since time immemorial, by producing prototypes to allow for early and cheaper testing and re-design.</p>
+
+<p>Gathering critical feedback and design improvements is not the only benefit from transparently showing your workings. More eyes mean less bugs!  This is true whether it is a restaurant with an openly visible kitchen, allowing customers to check hygiene standards for themselves or the open source software community where transparency allows Techos to find and fix bugs and security flaws preventing mal-ware and viruses from quietly taking hold.</p>
+
+<p>So clearly releasing work early and often is going to be a big win. How big? I urge you to watch <a href="https://yow.eventer.com/yow-2012-1012/the-practical-science-of-batch-size-by-don-reinertsen-1269">Don Reinersten&rsquo;s talk at YOW 2012</a>. IMHO it should be recommended or <em>required?</em> viewing for all developers and managers in general.</p>
+
+<p>But how do we do this? The key is to understand what a batch, and hence batch size, is in the Software Development Life cycle (SDLC). A Batch for a developer is a deployable artefact it just needs to compile and run. Once an artefact is released the next people or robots in the chain can work with it, be they QA Testers or Load testers or client representatives who can provide feedback quickly. Quick turnaround of feedback can massively improve the development time, one simple example is that the context of the work will probably still be in the developer&rsquo;s head allowing him to immediately fix or modify the code without a lengthy analysis session.</p>
+
+<p>Shrinking the batch time of each stage in the SDLC pipeline is critical to building quality software and reducing development time.</p>
+
+<p>Think Dev-Ops.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Scala Implicit Class Pimp Gotcha]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha/"/>
+    <updated>2014-12-14T21:59:25+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/12/14/scala-implicit-class-pimp-gotcha</id>
+    <content type="html"><![CDATA[<p>Since Scala 2.10 we&rsquo;ve had the convenience to &ldquo;Pimp&rdquo; a library using implicit classes.
+For the details see <a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">Implicit Classes</a></p>
+
+<p>This makes it trivial to add methods to previously closed classes. However there are some gotcha&rsquo;s to beware of. In particular make sure you <a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html#restrictions">read the rules</a></p>
+
+<p>The reason I&rsquo;m writing this blog is that I fell foul of restriction 3. It took me ages to work it out.</p>
+
+<!--more-->
+
+
+<p>Restriction 3 says:-</p>
+
+<blockquote><p>&ldquo;There may not be any method, member or object in scope with the same name as the implicit class.</p>
+
+<p>Note: This means an implicit class cannot be a case class."</p></blockquote>
+
+<p>The mistake I made was to have a companion Object for my Implicit class. The compiler spits out an error message like this :</p>
+
+<pre><code>[error] /home/projects/myproj/src/test/scala/com/owtelse/FooTest.scala:27: value myPimpedMethod is not a member of com.owtelse.Foo
+[error]     val f2: Foo = foo.myPimpedMethod(false)
+[error]                       ^
+[error] one error found
+[error] (scazelcast-api/test:compile) Compilation failed
+[error] Total time: 2 s, completed 15/12/2014 8:24:05 AM
+</code></pre>
+
+<p>This had me pulling my hair out! I could see my implicit class was in scope and so the method should have been available to Foo.
+The problem was of course that I had an object named the same as my implicit class as a companion object.
+Rather than tell me that the compiler simply discounted my implicit class and simply reported that the myPimpedMethod was not available on type Foo.</p>
+
+<p><strong>As soon as I deleted the companion object every thing worked.</strong></p>
+
+<p>While I was a bit annoyed with this behaviour, it makes sense.
+The only purpose of the implicit class is as a convenience to wrap the underlying class you wish to pimp and is only meant to be used as an implicit conversion.
+As such you should have no need to instantiate the class in any other way and so should have no need for companion object,
+plus I bet it makes it easier for the compiler writers to apply the conversion where needed if they don&rsquo;t have to disambiguate symbols :-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Google Contacts - Installed App Workflow HOWTO]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/07/07/google-contacts-installed-app-workflow-howto/"/>
+    <updated>2014-07-07T01:09:20+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/07/07/google-contacts-installed-app-workflow-howto</id>
+    <content type="html"><![CDATA[<p>Installed apps typically mean apps that are not web apps.
+Using the installed app authentication flow is sometimes better than using a Service Account.</p>
+
+<h3>Pro</h3>
+
+<ul>
+<li>don&rsquo;t need your admin to assign special &ldquo;impersonate&rdquo; permissions to the service account (once assigned it can impersonate anyone in the domain)</li>
+<li>don&rsquo;t need a Google Domain (see link ???)</li>
+<li>app can use the refresh token to continue to fetch from Google API&rsquo;s until the user is revoked.</li>
+</ul>
+
+
+<h3>Con</h3>
+
+<ul>
+<li>A user needs to accept the Scope of the app, not too bad as once accepted it can continue to use the refresh token to keep accessing the API</li>
+<li>con you can&rsquo;t choose the OAuth2 redurect_URI just get magig top of page or <a href="http://localhost">http://localhost</a> (any port you want) so no good for webapps&hellip; but then they have a Web-AppClient if you want that.</li>
+</ul>
+
+
+<!--more-->
+
+
+<h2>Create a project in <a href="https://console.developers.google.com">Google Dev Console</a></h2>
+
+<p>The Google page explaining how to use it is <a href="https://developers.google.com/accounts/docs/OAuth2InstalledApp">here</a> but here is a concreate example.</p>
+
+<ol>
+<li>Click &ldquo;Create a client ID&rdquo; -> &ldquo;Installed application&rdquo;</li>
+<li><p>This give you a client with these details:-</p>
+
+<p>Client ID for native application</p>
+
+<p>CLIENT ID 758647508586-0vnrjg9dv7gr9h1qvqle58rd4kq0lu45.apps.googleusercontent.com
+CLIENT SECRET  _Br_xUcZSfgmsuPrRmxkavV9</p>
+
+<p>REDIRECT URIS<br/>
+  urn:ietf:wg:oauth:2.0:oob
+  <a href="http://localhost">http://localhost</a></p></li>
+<li><p>Request the authentication code <a href="https://developers.google.com/google-apps/contacts/v3/#authorizing_requests_with_oauth_20">I&rsquo;m requesting auth for the contacts API see the scope (here</a></p></li>
+<li>The request is made up of :-</li>
+<li>The Google oath code request URI = <a href="https://accounts.google.com/o/oauth2/auth">https://accounts.google.com/o/oauth2/auth</a></li>
+<li>The Google ContactAPI read/write scope = <a href="https://www.google.com/m8/feeds">https://www.google.com/m8/feeds</a></li>
+<li>The redirect uri to put the code in the page title and code div = urn:ietf:wg:oauth:2.0:oob  <a href="https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi">see googledocs</a></li>
+<li>response_type = code</li>
+<li><p>client_id = the Client_ID found in the dev console, see above</p>
+
+<p><a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob&amp;response_type=code&amp;client_id=758647508586-0vnrjg9dv7gr9h1qvqle58rd4kq0lu45.apps.googleusercontent.com">https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob&amp;response_type=code&amp;client_id=758647508586-0vnrjg9dv7gr9h1qvqle58rd4kq0lu45.apps.googleusercontent.com</a></p></li>
+<li><p>look at the response there will be a code in the page title and also in a div with id=&lsquo;code&rsquo; in the page like below</p>
+
+<p> 4/7x7B5YMMVMQ1S7iWQ1PnOcFRGqyj.cuXlXIEu_icYdJfo-QBMszswfSocjgI</p></li>
+<li><p>now we have the authorisation code we need to exchange it for an access token, this is done with a POST <a href="https://developers.google.com/accounts/docs/OAuth2InstalledApp#handlingtheresponse">see here</a></p>
+
+<p> POST <a href="https://accounts.google.com/o/oauth2/token">https://accounts.google.com/o/oauth2/token</a></p>
+
+<p> code=4/7x7B5YMMVMQ1S7iWQ1PnOcFRGqyj.cuXlXIEu_icYdJfo-QBMszswfSocjgI&amp;client_id=758647508586-0vnrjg9dv7gr9h1qvqle58rd4kq0lu45.apps.googleusercontent.com&amp;client_secret=_Br_xUcZSfgmsuPrRmxkavV9&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob&amp;grant_type=authorization_code</p></li>
+<li><p>parse the result (see below) we&rsquo;ll need to store the access_token and the refresh_token.</p>
+
+<p> {
+     &ldquo;access_token&rdquo; : &ldquo;ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg&rdquo;,
+     &ldquo;token_type&rdquo; : &ldquo;Bearer&rdquo;,
+     &ldquo;expires_in&rdquo; : 3600,
+     &ldquo;refresh_token&rdquo; : &ldquo;1/m8wiWvc63swre62YXwrECE-SEqlQBf1Vb62Zb28-3lE&rdquo;
+ }</p></li>
+<li><p>Use the access token to finally make a Google API call</p></li>
+<li>here I&rsquo;m calling the Contacts API asking for all contacts (for the user who authenticated in step 1)</li>
+<li><p>you can add the token in a header or as a parameter (header is better as it won&rsquo;t be stored in the URL)</p>
+
+<p><a href="https://www.google.com/m8/feeds/contacts/default/full">https://www.google.com/m8/feeds/contacts/default/full</a></p>
+
+<p>Authorization: Bearer ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg</p>
+
+<p>eg</p>
+
+<p>curl <a href="https://www.google.com/m8/feeds/contacts/default/full?access_token=ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg">https://www.google.com/m8/feeds/contacts/default/full?access_token=ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg</a></p>
+
+<p>or
+curl -H &ldquo;Authorization: Bearer ya29.OwAPW_yxF27ZMB4AAACPwV13K2FYvOqzrCppl-9wp4poGBiYfvl6ibeqHPwYgg&rdquo; <a href="https://www.google.com/m8/feeds/contacts/default/full">https://www.google.com/m8/feeds/contacts/default/full</a></p></li>
+<li><p>Read the results :-) Enjoy.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Google Contacts API - Service Account Howto]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/07/06/google-contacts-api-service-account-howto/"/>
+    <updated>2014-07-06T00:29:39+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/07/06/google-contacts-api-service-account-howto</id>
+    <content type="html"><![CDATA[<h2>Overview</h2>
+
+<p>I want to set up a server side App that can read list and filter the Google contacts in our company domain &ldquo;mycompany.com&rdquo;. This server side app can then be queried by some of our internal webapps to display helpful info.</p>
+
+<!--more-->
+
+
+<h3>Why not simply do it all in javascript?</h3>
+
+<p>Dunno. maybe that would be better. We&rsquo;ll See.</p>
+
+<h3>Problems</h3>
+
+<p>There are a number of gotchas involved, and misleading documentation to contend with, so I&rsquo;m going to go through setting up a service account to access your users contact info.</p>
+
+<h2>Google Project <small>Authentication Authorisation</small></h2>
+
+<p>This is likely to be the most confusing part.</p>
+
+<p>For any app to use Googles API&rsquo;s it&rsquo;ll need to ble to authenticate with Google and be authorised to use the API&rsquo;s you want to use, or a subset of the API, eg the ability to read contact info but not edit it, it may also need to be granted permission from a user to see their data.</p>
+
+<p>To allow any of this you need to set up a &ldquo;Google Project&rdquo; for your app in the <a href="https://console.developers.google.com">Google Developer Console</a>. The project manages the app&rsquo;s authentication as well as which API&rsquo;s it can use.
+In the &ldquo;API&rsquo;s &amp; Auth&rdquo; -> API section, add the Contacts api.
+Don&rsquo;t add any others yet, it is best to keep things as simple as possible while setting up your app and to test that your app can connect to the requested API before other authorisations are layered on it.</p>
+
+<h2>Gotchas</h2>
+
+<ul>
+<li>You NEED to make the scope exact including not trailing slashes!
+
+<ul>
+<li>eg use <code>https://www.google.com/m8/feeds</code> not <code>https://www.google.com/m8/feeds/</code></li>
+</ul>
+</li>
+<li>The Sevice Account ID is the Service account EMAIL NOT it&rsquo;s Client ID
+
+<ul>
+<li>eg <code>blahblah@@developer.gserviceaccount.com</code> not <code>blahblah.apps.googleusercontent.com</code></li>
+</ul>
+</li>
+<li>The service account must be delegated access to the the SCOPE you want it to use
+
+<ul>
+<li>see <a href="https://developers.google.com/admin-sdk/directory/v1/guides/delegation">The Admin SDK Google Docs</a></li>
+</ul>
+</li>
+<li>The sevice account has no contacts of it&rsquo;s own so you must supply a User who&rsquo;s contactas you want to snarf, eg <code>GoogleCredential.Builder().setServiceAccountUser("me@mydomain.com")</code></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Deploying Octopress: The Missing Manual]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/06/25/deploying-octopress-the-missing-manual/"/>
+    <updated>2014-06-25T06:12:59+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/06/25/deploying-octopress-the-missing-manual</id>
+    <content type="html"><![CDATA[<h2>Github Deploy</h2>
+
+<p>The <a href="http://octopress.org/docs/deploying/github/">Octopress Doco</a> does a pretty good job but it misses out one crucial step.</p>
+
+<ul>
+<li>You need to commit the master branch and push it up to github.</li>
+</ul>
+
+
+<p>But before you do please read on to see how to do that the octopress way.</p>
+
+<!--more-->
+
+
+<h3>Where are all my blogs and pages?</h3>
+
+<p>If you&rsquo;ve followed octpresses Doco, then under your <code>octopress</code> directory you&rsquo;ll have a <code>source</code> folder.</p>
+
+<ul>
+<li>Web pages are in directories directly under <code>source</code>.</li>
+<li>Blog posts are under the <code>_posts</code> directory.</li>
+</ul>
+
+
+<p>running <code>rake generate</code> will copy the content to the <code>_deploy</code> directory and check it into git.
+running <code>rake deploy</code> commits it and pushes the deploy directory to github</p>
+
+<p>Job done right?</p>
+
+<p>Unfortunatly it&rsquo;s not always that easy. All the code under source will be on the git branch <code>source</code>. If you follow the instructions in the doco you&rsquo;ll commit this code and push it to git hub with this command</p>
+
+<pre><code>git add .
+git commit -m 'your message'
+git push origin source
+</code></pre>
+
+<p>This pushes your &ldquo;source&rdquo; to github into the <code>source</code> directory.</p>
+
+<h3>Why can&rsquo;t I see my stuff in Github</h3>
+
+<p>The problem is the pages that get rendered as the blog in github is the stuff in the <code>master</code> branch. That was supposed to be pushed by running <code>rake deploy</code></p>
+
+<p>However sometimes that git simply failes to do that for you. Why? Well perhaps you have accidentally modified the code under <code>_deploy</code> and git is actually complaining but the rake task doesn&rsquo;t show you that?</p>
+
+<p>To check simply</p>
+
+<pre><code>cd _deploy
+git status # notice that the _deploy dir is in the master branch :-)
+git push origin master # this may fail and tell you why
+</code></pre>
+
+<p>For me the last step did fail. I fixed it by doing</p>
+
+<pre><code>cd _deploy
+git fetch origin master
+git merge origin/master  # you may need to fix conflicts here
+git push origin master
+</code></pre>
+
+<p>And that sorted it :-)</p>
+
+<p>From then on my <code>rake deploy</code> worked as expected. lesson learned, leave the <code>_deploy</code> dir alone!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Octopress: The Missing Manual]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/06/03/installing-octopress-the-missing-manual/"/>
+    <updated>2014-06-03T02:36:13+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/06/03/installing-octopress-the-missing-manual</id>
+    <content type="html"><![CDATA[<h2>Ruby pain</h2>
+
+<p>The main problems installing octopress is that it relies on a ruby environment.
+This would be fine except it also relies on Ruby having been compiled with certain libraries available in order for the bundler to work as per the octopress doco.</p>
+
+<!--more-->
+
+
+<h2>Missing libraries</h2>
+
+<p>During the Octopress install Ruby or rbenv or bundler will moan that Ruby needs to be compiled with zlib or OpenSSL. to get these on ubuntu do:-</p>
+
+<pre><code>apt-get install zlib1g-dev
+apt-get install libssl-dev openssl
+apt-get install -y libreadline-dev
+</code></pre>
+
+<p>if you are not on ubuntu look at <a href="https://github.com/sstephenson/ruby-build/wiki">this blog</a> for common ruby gotchas and solutions on different Linuxes.</p>
+
+<h2>Install Ruby</h2>
+
+<p>Then as per the Octopress Doco <a href="http://octopress.org/docs/setup/rbenv/">install Ruby</a> except where it shows <code>&gt;&gt; ~/.bash_profile</code> instead you shoul send it to ~/.bashrc or else each time you open a Terminal in your desktop you&rsquo;ll need to source ~/.bash_profile so instead do this :-</p>
+
+<pre><code>cd
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bashrc
+git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+source ~/.bashrc
+</code></pre>
+
+<p>Now each time you open a terminal from your Desktop environment it&rsquo;ll make sure that rbenv and ruby are in your path, allowing octopress rake commands to work.</p>
+
+<p>Once that is done the Octopress install, as per <a href="http://octopress.org/docs/setup/">this doco</a>, should work fine&hellip; well&hellip;. it worked on my machine (Ubuntu 14.4  ;-) )</p>
+]]></content>
+  </entry>
+  
+</feed>

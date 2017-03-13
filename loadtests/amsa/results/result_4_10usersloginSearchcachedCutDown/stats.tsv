@@ -1,0 +1,16 @@
+name	nbRequest	nbRequestOK	nbRequestKO	minResponseTime	minResponseTimeOK	minResponseTimeKO	maxResponseTime	maxResponseTimeOK	maxResponseTimeKO	meanResponseTime	meanResponseTimeOK	meanResponseTimeKO	deviation	deviationOK	deviationKO	percentile1	percentile1OK	percentile1KO	percentile2	percentile2OK	percentile2KO	group1Name	group1Count	group1Percentage	group2Name	group2Count	group2Percentage	group3Name	group3Count	group3Percentage	group4Name	group4Count	group4Percentage	meanNumberOfRequestsPerSecond	meanNumberOfRequestsPerSecondOK	meanNumberOfRequestsPerSecondKO
+Global Information	1090	1090	0	150	150	-1	5570	5570	-1	3245	3245	-1	958	958	-1	4390	4390	-1	5230	5230	-1	t < 800 ms	77	7	800 ms < t < 1200 ms	3	0	t > 1200 ms	1010	92	failed	0	0	2	2	-1
+Login	10	10	0	8360	8360	-1	8550	8550	-1	8452	8452	-1	72	72	-1	8550	8550	-1	8550	8550	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	10	100	failed	0	0	0	0	-1
+Login / request_1	10	10	0	1290	1290	-1	2360	2360	-1	1480	1480	-1	297	297	-1	2360	2360	-1	2360	2360	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	10	100	failed	0	0	0	0	-1
+Login / request_2	10	10	0	170	170	-1	190	190	-1	176	176	-1	8	8	-1	190	190	-1	190	190	-1	t < 800 ms	10	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+Login / request_2 Redirect 1	10	10	0	380	380	-1	420	420	-1	395	395	-1	16	16	-1	420	420	-1	420	420	-1	t < 800 ms	10	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+Login / request_3	10	10	0	460	460	-1	500	500	-1	475	475	-1	14	14	-1	500	500	-1	500	500	-1	t < 800 ms	10	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+click search	10	10	0	4700	4700	-1	4850	4850	-1	4785	4785	-1	50	50	-1	4850	4850	-1	4850	4850	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	10	100	failed	0	0	0	0	-1
+click search / request_23	10	10	0	680	680	-1	840	840	-1	777	777	-1	46	46	-1	840	840	-1	840	840	-1	t < 800 ms	7	70	800 ms < t < 1200 ms	3	30	t > 1200 ms	0	0	failed	0	0	0	0	-1
+do person search	10	10	0	415050	415050	-1	422500	422500	-1	418615	418615	-1	0	0	-1	422500	422500	-1	422500	422500	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	10	100	failed	0	0	0	0	-1
+do person search / request_27	1000	1000	0	2120	2120	-1	5570	5570	-1	3494	3494	-1	485	485	-1	4420	4420	-1	5250	5250	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	1000	100	failed	0	0	2	2	-1
+logout	10	10	0	3920	3920	-1	4270	4270	-1	4030	4030	-1	100	100	-1	4270	4270	-1	4270	4270	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	10	100	failed	0	0	0	0	-1
+logout / request_30	10	10	0	160	160	-1	180	180	-1	167	167	-1	8	8	-1	180	180	-1	180	180	-1	t < 800 ms	10	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+logout / request_30 Redirect 1	10	10	0	150	150	-1	230	230	-1	167	167	-1	22	22	-1	230	230	-1	230	230	-1	t < 800 ms	10	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+logout / request_30 Redirect 2	10	10	0	310	310	-1	470	470	-1	359	359	-1	50	50	-1	470	470	-1	470	470	-1	t < 800 ms	10	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+logout / request_31	10	10	0	320	320	-1	470	470	-1	345	345	-1	44	44	-1	470	470	-1	470	470	-1	t < 800 ms	10	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1

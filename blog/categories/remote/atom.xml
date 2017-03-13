@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Remote | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/remote/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-13T01:37:18+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Working With Terraform Remote Statefile]]></title>
+    <link href="http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile/"/>
+    <updated>2015-09-01T01:04:11+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2015/09/01/working-with-terraform-remote-statefile</id>
+    <content type="html"><![CDATA[<h4>Remote state</h4>
+
+<p>There are gotcha&rsquo;s when working with remote state in terraform that this blog attempts to explain and workaround. <!--more--></p>
+
+<p><a href="https://www.terraform.io/docs/index.html">Terraform</a>  is a pretty cool infrastructure provisioner.
+It lets me set up infrastructure that can span cloud providers, eg AWS and/or Azure.</p>
+
+<h4>working with terraform</h4>
+
+<p>By writing terraform config files you declaritivly describe the infrastructure that you want,
+for example which AWS IAM users, groups, roles and policies on which S3 buckets and EC2 instances.</p>
+
+<p>by running <code>terraform plan</code> terraform create a terraform.tfstate file that describes the full state as described in your config
+and compares it to the previous tfstate file to show you what changes will be made.</p>
+
+<p>This is cool, you can see what will happen before you run <code>terraform apply</code>.</p>
+
+<h4>What&rsquo;s the catch?</h4>
+
+<p>It is important to realise that terraform is a state machine.</p>
+
+<p>if your previous state added a user, and your new state does not mention that user (ie you removed him from one of the config files) then next time you run <code>terraform plan</code> or <code>terraform apply</code> you will see that the user will be removed so that the terraformed environment matches the new desired state.</p>
+
+<p>That doesn&rsquo;t seem so bad. Your config (which I presume you are version controlling in git?) grows and consistently matches the desired end stateof your environment, effectivly documenting the infrastructure. Cool.</p>
+
+<p>So what&rsquo;s the problem?</p>
+
+<h4>The problem</h4>
+
+<p>What happens when your mate runs apply from his dev machine?</p>
+
+<p>Obviously terraform will apply the state to the environment as described in his config.
+But what if he deletes something that you are still depending on? You can quite quickly destroy each others infrastructure.</p>
+
+<p>This can be avoided using normal Version control practice, eg rebasing from git before you run <code>terraform plan</code> and <code>terraform apply</code> but almost enevitably you will always be merging conflicts by hand in the <code>terraform.tfstate</code> JSON file. This is not too bad if you always have a conflict as you&rsquo;ll know that you need to merge, but as with all structured text files it&rsquo;s possible that a clause will be inserted at a different line to your changes that doesn&rsquo;t conflict in a diff sense but does change the meaning of the file in an inconsitent way, ege a group gould be removed from one place but depended on in another. terraform will fail in this case but then you&rsquo;ll need to manually fix it up, which is a pain, but I can imagine changes that could happen that would not be conflicts and dont screw up the file, but do dramatically impact the generated infrastucture, such as adding a policy or group that together work to lower the expected security contraints of the infrastructure.</p>
+
+<h5>How do we deal with this?</h5>
+
+<p>Terraform handles this scenario by allowing a Remote statefile, that can live in Consul, AWS S3 or Atlas.</p>
+
+<p>Running the <code>terraform remote</code> command can set up your local terraform.tfstate file to match the remote one before seeing what the diffs are.</p>
+
+<p><strong>Gotcha 1</strong> NB even with a remote statefile terraform does not support concurrent <code>terraform apply</code> commands as it doesn&rsquo;t manage locking of the stanza&rsquo;s in the statefile, so talk to your mate before running it!</p>
+
+<p>This is all OK now&hellip;. or is it?</p>
+
+<p>There are still a couple of anoying problems that prevent this feature working as you&rsquo;d expect.</p>
+
+<p>The way I&rsquo;d like to work with this, is prevent git from commiting the <code>.terraform/terraform.tfstate</code> file in the gitignore file, so that the remote one is auto downloaded to compare with my generated new state before calulateing the combined next state.</p>
+
+<p><strong>Gotcha 2</strong> If you don&rsquo;t have a local <code>terraform.tfstate</code> file then <code>terraform apply</code> fails beacuse it assumes it needs to create resources that already may already exist but it doesn&rsquo;t know because it doesn&rsquo;t have the current state.</p>
+
+<h4>The workaround</h4>
+
+<p>You could fetch the latest remote state file and copy it to <code>.terraform/terraform.tfstate</code> the first time, but this means you be forever explaining to people what to do.</p>
+
+<p>my current recommendation is to use a Makefile to run terraform, which by default sets up the copy of remote state if it doesn&rsquo;t exist and then runs <code>terraform plan</code> with a seperate target for <code>terraform apply</code>.</p>
+
+<p>In this way you don&rsquo;t need to check in the statefile so you cna be sure that you are in sync and you don&rsquo;t need to remember to get it first (Chicken and Egg scenario)</p>
+
+<p>here is the Makefile using and AWS bucket for this terraform remote state:-</p>
+
+<pre><code># Makefile to kick of the terraform for this project
+#
+# You should set the following environment variable to authenticate 
+# with AWS so you can store and retrieve the remote state befor you run this Makefile.
+#
+# export AWS_ACCESS_KEY_ID= &lt;your key&gt;
+# export AWS_SECRET_ACCESS_KEY= &lt;your secret&gt;
+# export AWS_DEFAULT_REGION= &lt;your bucket region eg ap-southeast-2&gt;
+# export TF_VAR_access_key=$AWS_ACCESS_KEY # exposed as access_key in the terraform scripts
+# export TF_VAR_secret_key=$AWS_SECRET_ACCESS_KEY
+#
+# ####################################################
+#
+STATEBUCKET = my-statefile-bucket-name
+PREFIX = myterraformprojectname
+
+# # Before we start test that we have the manditory executables avilable
+ EXECUTABLES = git terraform
+ K := $(foreach exec,$(EXECUTABLES),\
+    $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH, consider apt-get install $(exec)")))
+#
+#   .PHONY: all s3bucket plan
+
+
+.PHONY: all plan apply
+
+all: init.txt plan
+    echo "All"
+
+plan: 
+    @echo "running terraform plan"
+    terraform plan
+
+apply:
+    @echo running terraform apply
+    terraform apply
+
+# little hack target to prevent it running again without need
+# for second nested Makefile
+init.txt:
+    @echo "initialise remote statefile"
+    terraform remote config -backend=s3 -backend-config="bucket=terrastate" -backend-config="key=$(PREFIX)/terraform.tfstate"
+    echo "ran terraform remote config -backend=s3 -backend-config=\"bucket=$(STATEBUCKET)\" -backend-config=\"key=$(PREFIX)/terraform.tfstate\"" &gt; ./init.txt
+</code></pre>
+
+<p>here is the .gitignore file
+<code>
+*.swp
+.terraform/terraform.tfstate*
+init.txt
+</code></p>
+
+<p>here is the terraform config to set up remote state, remote.tf :-</p>
+
+<pre><code># found from env var TF_VAR_acces_key
+variable "access_key" {}
+
+variable "secret_key" {}
+
+provider "aws" {
+    access_key = "${var.access_key}"
+    secret_key = "${var.secret_key}"
+    region = "ap-southeast-2"
+}
+
+resource "terraform_remote_state" "remote_state" {
+    backend = "s3"
+    config {
+      bucket = "my-statefile-bucket-name"
+      key    = "myterraformprojectname/terraform.tfstate"
+     # region = "ap-southeast-2"
+    }
+}
+</code></pre>
+
+<h5>Usage</h5>
+
+<pre><code># run 'terraform plan'
+make
+</code></pre>
+
+<pre><code># run 'terraform apply'
+make apply
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
