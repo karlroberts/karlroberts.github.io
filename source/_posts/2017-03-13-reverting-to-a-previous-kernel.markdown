@@ -35,10 +35,11 @@ has the effect of blacklisting it then try the next kernel when it comes out.
 
 ### Howto
 ##### Boot from previous kernel
-1. Hold the shift key while booting to get to the `grub` options
-2. Choose advanced grub options
+1. Hold the shift key when you see the Grub screen, to get to the `grub` options.
+  - you may have better luck holding the shift key all the time through the boot if you have a fast system.
+2. Choose `Advanced options for Ubuntu`
 3. Make a note of the current kernel numbers (top of the list) you'll need them later to remove it.
-4. Use the arrow key to pick a previous kernel and boot into it.
+4. Use the arrow key to pick a previous kernel and boot into it, hit `enter`.
 
 ##### Remove the dodgy kernel
 This will remove the broken kernel and drivers, and lets the package manager know that you don't want it again if you do an update.
