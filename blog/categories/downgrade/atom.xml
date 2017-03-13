@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Downgrade | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/downgrade/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2017-03-13T01:37:18+00:00</updated>
+  <updated>2017-03-13T02:00:14+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -47,10 +47,11 @@ has the effect of blacklisting it then try the next kernel when it comes out.</p
 <h5>Boot from previous kernel</h5>
 
 <ol>
-<li>Hold the shift key while booting to get to the <code>grub</code> options</li>
-<li>Choose advanced grub options</li>
+<li>Hold the shift key when you see the Grub screen, to get to the <code>grub</code> options.</li>
+<li>you may have better luck holding the shift key all the time through the boot if you have a fast system.</li>
+<li>Choose <code>Advanced options for Ubuntu</code></li>
 <li>Make a note of the current kernel numbers (top of the list) you&rsquo;ll need them later to remove it.</li>
-<li>Use the arrow key to pick a previous kernel and boot into it.</li>
+<li>Use the arrow key to pick a previous kernel and boot into it, hit <code>enter</code>.</li>
 </ol>
 
 
