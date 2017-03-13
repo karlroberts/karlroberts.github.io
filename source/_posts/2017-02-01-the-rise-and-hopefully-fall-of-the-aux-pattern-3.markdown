@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 layout: post
 title: "The Rise and (hopefully) fall of the Aux Pattern 3"
 date: 2017-01-31 08:36:16 +1100
