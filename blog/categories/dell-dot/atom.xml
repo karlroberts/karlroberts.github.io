@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Dell.. | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/dell-dot/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2017-03-14T05:07:56+00:00</updated>
+  <updated>2017-03-14T05:25:10+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -18,15 +18,24 @@
     <link href="http://karlroberts.github.io/blog/2017/03/14/double-your-speed-with-a-hardware-upgrade/"/>
     <updated>2017-03-14T07:30:32+00:00</updated>
     <id>http://karlroberts.github.io/blog/2017/03/14/double-your-speed-with-a-hardware-upgrade</id>
-    <content type="html"><![CDATA[<p>As a developer I&rsquo;ve often seen (and been the culprit) of premature optimisation. Developers, in our desire to write
-fast software often, mistakenly, sacriface readability, maintainability and correctness in favour of speed.</p>
+    <content type="html"><![CDATA[<p>As a developer I&rsquo;ve often seen (and been the culprit) of premature optimisation. Developers, in our desire to write fast software often, mistakenly, sacriface readability, maintainability and correctness in favour of speed.</p>
 
 <p><blockquote><p>Premature optimization is the root of all evil &hellip; in programming</p><footer><strong>Donuld Knuth <a href="https://en.wikiquote.org/wiki/Donald_Knuth">https://en.wikiquote.org/wiki/Donald_Knuth</a> Computer Programming as an Art (1974)</strong></footer></blockquote></p>
+
+<!-- more -->
+
 
 <p>It is far better to have clean code and optimise where necessary
 after measuring everything in a production like environment.</p>
 
 <p>Surround your pullquote like this {" text to be quoted "}</p>
+
+<p><a name="video"></p>
+
+<iframe width="640" height="320" src="https://www.youtube.com/embed/Q4yvo1o52Xw" frameborder="0" allowfullscreen></iframe>
+
+
+<p></a></p>
 
 <p>My old laptop was no donkey. A Samsung New Series 9
 and yet next to my new Dell XPS 9560 it looks positivly pedestrian.</p>
@@ -71,15 +80,9 @@ and yet next to my new Dell XPS 9560 it looks positivly pedestrian.</p>
 
 <p><br/>
 I have the same version of Ubuntu 16.04 with the latest patches running on both machines, and I downloaded the same project I&rsquo;m currently
-working on and then started a Maven build side-by-side to compile and package the whole application, a task feature in a development environment.</p>
+working on and then started a Maven build side-by-side to compile and package the whole application i&rsquo;m currently working on.</p>
 
-<p><a name="video"></p>
-
-<iframe width="640" height="320" src="https://www.youtube.com/embed/Q4yvo1o52Xw" frameborder="0" allowfullscreen></iframe>
-
-
-<p></a>
-My new laptop is almost twice as fast as my previous fast laptop</p>
+<p>My new laptop is almost twice as fast as my previous fast laptop</p>
 
 <p>new Dell XPS 9560 => <strong>12.329 seconds</strong>
 vs
