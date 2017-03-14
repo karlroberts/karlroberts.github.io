@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Xps 9560 | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/xps-9560/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-03-14T04:42:54+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Don't Sacrifice Code Quality for Performance]]></title>
+    <link href="http://karlroberts.github.io/blog/2017/03/14/double-your-speed-with-a-hardware-upgrade/"/>
+    <updated>2017-03-14T07:30:32+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2017/03/14/double-your-speed-with-a-hardware-upgrade</id>
+    <content type="html"><![CDATA[<p>As a developer I&rsquo;ve often seen (and been the culprit) of premature optimisation. Developers, in our desire to write
+fast software often, mistakenly, sacriface readability, maintainability and correctness in favour of speed.</p>
+
+<p><blockquote><p>Premature optimization is the root of all evil &hellip; in programming</p><footer><strong>Donuld Knuth <a href="https://en.wikiquote.org/wiki/Donald_Knuth">https://en.wikiquote.org/wiki/Donald_Knuth</a> Computer Programming as an Art (1974)</strong></footer></blockquote></p>
+
+<p>It is far better to have clean code and optimise where necessary
+after measuring everything in a production like environment.</p>
+
+<p>Surround your pullquote like this {" text to be quoted "}</p>
+
+<p>My old laptop was no donkey. A Samsung New Series 9
+and yet next to my new Dell XPS 9560 it looks positivly pedestrian.</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;"> Feature </th>
+<th style="text-align:center;"> Samsung NP900X4C </th>
+<th style="text-align:center;"> Dell XPS 9560 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> CPU       </td>
+<td style="text-align:center;"> 3rd gen i7-3517U         </td>
+<td style="text-align:center;"> 7th gen i7-7700HQ          </td>
+</tr>
+<tr>
+<td style="text-align:left;"> CPU speed </td>
+<td style="text-align:center;"> 3M cache, 1.7 GHz        </td>
+<td style="text-align:center;"> 6M cache, 3.8 GHz          </td>
+</tr>
+<tr>
+<td style="text-align:left;"> CPU cores </td>
+<td style="text-align:center;"> 2                        </td>
+<td style="text-align:center;"> 4                          </td>
+</tr>
+<tr>
+<td style="text-align:left;"> memory    </td>
+<td style="text-align:center;"> 16Gb DDR3 (1600MHz)      </td>
+<td style="text-align:center;"> 16GB DDR4-2400MHz          </td>
+</tr>
+<tr>
+<td style="text-align:left;"> disk      </td>
+<td style="text-align:center;"> Samsung 840 m.2 SATA SSD </td>
+<td style="text-align:center;"> Samsung PM961 m.2 PCIe SSD </td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+I have the same version of Ubuntu 16.04 with the latest patches running on both machines, and I downloaded the same project I&rsquo;m currently
+working on and then started a Maven build side-by-side to compile and package the whole application, a task feature in a development environment.</p>
+
+<p>Error processing input, expected syntax: {% video url/to/video [url/to/video] [url/to/video] [width height] [url/to/poster] %}</p>
+
+<p>My new laptop is almost twice as fast as my previous fast laptop</p>
+
+<p>new Dell XPS 9560 => <strong>12.329 seconds</strong>
+vs
+old Samsung &ldquo;New&rdquo; series 9 => <strong>21.365 seconds</strong></p>
+
+<p>A 12 second pause is no way as distracting as a 20 second pause, allowing me to stay in context and keep coding.</p>
+
+<p>Nice.</p>
+]]></content>
+  </entry>
+  
+</feed>
