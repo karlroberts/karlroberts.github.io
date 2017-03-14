@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Xps 9560 | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/xps-9560/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2017-03-14T04:50:38+00:00</updated>
+  <updated>2017-03-14T05:07:56+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -73,9 +73,13 @@ and yet next to my new Dell XPS 9560 it looks positivly pedestrian.</p>
 I have the same version of Ubuntu 16.04 with the latest patches running on both machines, and I downloaded the same project I&rsquo;m currently
 working on and then started a Maven build side-by-side to compile and package the whole application, a task feature in a development environment.</p>
 
-<p>Error processing input, expected syntax: {% video url/to/video [url/to/video] [url/to/video] [width height] [url/to/poster] %}</p>
+<p><a name="video"></p>
 
-<p>My new laptop is almost twice as fast as my previous fast laptop</p>
+<iframe width="640" height="320" src="https://www.youtube.com/embed/Q4yvo1o52Xw" frameborder="0" allowfullscreen></iframe>
+
+
+<p></a>
+My new laptop is almost twice as fast as my previous fast laptop</p>
 
 <p>new Dell XPS 9560 => <strong>12.329 seconds</strong>
 vs
