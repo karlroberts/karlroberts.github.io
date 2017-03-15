@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://karlroberts.github.io/blog/2017/03/15/python-is-faster-than-node-dot-js/</loc>
+<lastmod>2017-03-15T07:03:10+00:00</lastmod>
+</url>
+<url>
 <loc>http://karlroberts.github.io/blog/2017/03/15/aws-lambda-musings/</loc>
 <lastmod>2017-03-15T00:50:55+00:00</lastmod>
 </url>
@@ -232,6 +236,18 @@
 </url>
 <url>
 <loc>http://karlroberts.github.io/blog/categories/serverless/</loc>
+</url>
+<url>
+<loc>http://karlroberts.github.io/blog/categories/aws/</loc>
+</url>
+<url>
+<loc>http://karlroberts.github.io/blog/categories/python/</loc>
+</url>
+<url>
+<loc>http://karlroberts.github.io/blog/categories/node-dot-js/</loc>
+</url>
+<url>
+<loc>http://karlroberts.github.io/blog/categories/lambda/</loc>
 </url>
 <url>
 <loc>http://karlroberts.github.io/pertests/amsa/test1/req_logout---request-30-redirect-2-62d2cbf83289e5965f92da2d32b90d79.html</loc>
