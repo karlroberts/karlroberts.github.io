@@ -9,7 +9,7 @@ categories:
 - launch speed
 - serverless
 ---
-I was thinking about AWS lambda's last night after a colleague asked how long they take to start?
+I was thinking about AWS lambda's last night after a colleague asked how long they take to start? <!-- more -->
 
 For those who don't know, an AWS Lambda enables so-called "Serverless" event processing. On an "event" or "request" AWS will run your Lambda code function, and charge you just for the time it takes to run rather than paying for the time of a full EC2 instance running for hours. So if your application only need to sporadically answer requests it may be a good cost trade-off.
 
