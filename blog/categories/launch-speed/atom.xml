@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Launch Speed | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/launch-speed/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2017-03-15T02:12:24+00:00</updated>
+  <updated>2017-03-15T02:15:18+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -18,7 +18,7 @@
     <link href="http://karlroberts.github.io/blog/2017/03/15/aws-lambda-musings/"/>
     <updated>2017-03-15T00:50:55+00:00</updated>
     <id>http://karlroberts.github.io/blog/2017/03/15/aws-lambda-musings</id>
-    <content type="html"><![CDATA[<p>I was thinking about AWS lambda&rsquo;s last night after a colleague asked how long they take to start?</p>
+    <content type="html"><![CDATA[<p>I was thinking about AWS lambda&rsquo;s last night after a colleague asked how long they take to start? <!-- more --></p>
 
 <p>For those who don&rsquo;t know, an AWS Lambda enables so-called &ldquo;Serverless&rdquo; event processing. On an &ldquo;event&rdquo; or &ldquo;request&rdquo; AWS will run your Lambda code function, and charge you just for the time it takes to run rather than paying for the time of a full EC2 instance running for hours. So if your application only need to sporadically answer requests it may be a good cost trade-off.</p>
 
