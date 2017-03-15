@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AWS Lambda Musings - Launch Times - Karl's Code</title>
+  <meta name="author" content="Karl Roberts">
+
+  
+  <meta name="description" content="I was thinking about AWS lambda&rsquo;s last night after a colleague asked how long they take to start? For those who don&rsquo;t know, an AWS Lambda &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karlroberts.github.io/blog/2017/03/15/aws-lambda-musings/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
+
+  <!-- add scripts I want to add first if the keywords section in YML frontmatter exists -->
+
+
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- custom style for morkdown tables -->
+<link href="/stylesheets/table-data.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-72539490-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karl's Code</a></h1>
+  
+    <h2>and other code related stuff</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="karlroberts.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">AWS Lambda Musings - Launch Times</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-03-15T00:50:55+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>12:50 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I was thinking about AWS lambda&rsquo;s last night after a colleague asked how long they take to start?</p>
+
+<p>For those who don&rsquo;t know, an AWS Lambda enables so-called &ldquo;Serverless&rdquo; event processing. On an &ldquo;event&rdquo; or &ldquo;request&rdquo; AWS will run your Lambda code function, and charge you just for the time it takes to run rather than paying for the time of a full EC2 instance running for hours. So if your application only need to sporadically answer requests it may be a good cost trade-off.</p>
+
+<p>The down side is that your application becomes more fragmented, which can become an Operations and maintenance issue, and you are now definitely tied to your cloud provider. If you need super responsive queries you may be better to run a traditional application on EC2 that can be ready and listening and pay for its uptime.</p>
+
+<p>Anyway back to my topic of AWS Lambda response times&hellip;</p>
+
+<p><a href="https://aws.amazon.com/blogs/compute/container-reuse-in-lambda/">According to this link</a> they are run in &ldquo;containers&rdquo; I imagine that is similar to a docker container but a custom to AWS &ldquo;chroot&rdquo; jail?</p>
+
+<p>If the container is still running from a previous invocation then there is no start up time for the container just the start-up time for the AWS lambda function.</p>
+
+<p>Even if there is a container start-up time, if the underlying host is running (likely) then Docker containers are quick to start, like starting a process and a custom chroot jail may be quicker still. However some <a href="https://forums.aws.amazon.com/thread.jspa?threadID=226136">developer forums</a> have stated that they can get 50-100ms response times from their Lambda&rsquo;s but occasionally see significant 12-15 second delays for infrequent invocations.</p>
+
+<p>One can only guess at the reason but some kind of provisioning or resource sharing bottleneck seems likely. No doubt AWS teams are working on this as &ldquo;Serverless&rdquo; compute becomes the new Cloud buzzword and battleground.</p>
+
+<p>But, as I mentioned earlier, the true benefit of Serverless is cheaper running for request or event processing not blazingly fast performance and response times</p>
+
+<h3>On another topic &hellip;</h3>
+
+<p>AWS Lambda currently supports Lambdas written in <a href="https://aws.amazon.com/lambda/details/#Bring_Your_Own_Code">Java, Node.js, C#, and Python code</a> with more language support coming in the future.</p>
+
+<p>I was thinking about how to run a very fast native function, e.g. compiled with Rust with no dynamically linked libs (all static) and found an <a href="http://julienblanchard.com/2015/rust-on-aws-lambda/">article showing how to launch the executable</a> even though it is not yet directly supported by AWS by wrapping it in a node.js lambda.</p>
+
+<p>This got me thinking, is node the fastest way to do this, after all if I&rsquo;m a speed freak and writing Rust then launch times are important to me&hellip;</p>
+
+<p>So I looked at at launching a process from node and python and timing it, I did not investigate C# or Java as they will always take longer to start because their runtime is doing more stuff.</p>
+
+<p>This is not a statistically viable experiment (I only ran it once :-) but I built a shell tool called <a href="https://gist.github.com/karlroberts/141e1e7b38ca85ac3da7b88297d48a97">launch.sh</a>, see the <a href="https://gist.github.com/karlroberts/141e1e7b38ca85ac3da7b88297d48a97">gist</a>, to spit out a date including nanoseconds (my laptop supports this) then kick of a python app that uses a subprocess to run the same date command twice from within the python app. It then does the same using node.js.</p>
+
+<p>Running it I get this data :-</p>
+
+<pre><code>me@storm:~/bin$ ./launch.sh 
+start launch python data subprocess...
+09:57:25 1489532245 519378382
+09:57:25 1489532245 530775400
+09:57:25 1489532245 531650629
+
+start launch python compiled data subprocess...
+09:57:25 1489532245 533984993
+09:57:25 1489532245 541690675
+09:57:25 1489532245 542552837
+
+Now using node v7.6.0 (npm v4.1.2)
+start launch node subprocess
+09:57:25 1489532245 712281203
+09:57:25 1489532245 750742945
+09:57:25 1489532245 751821095
+</code></pre>
+
+<p>The first date in each triplet is the date at the shell before launching python or node followed by the subprocess date commands inside the python or node script.</p>
+
+<p>The last set of numbers on each line is nanoseconds.</p>
+
+<p>I also pre-compiled a python script to see if it was faster than executing the script, but forgot that python would do a search for pre-compiled scripts version of commands so the results of the first two are probably actually running the compiled version, the first is slower to launch presumably searching to see if there is a pre-compiled version in the directory (N.B. this is a guess as I don&rsquo;t have enough data here to prove it). Regardless I removed the compiled python and ran again to get un-compiled time data:</p>
+
+<pre><code>start launch python data subprocess...
+10:34:30 1489534470 041312697
+10:34:30 1489534470 054794071
+10:34:30 1489534470 055933101
+</code></pre>
+
+<h5>The results are :-</h5>
+
+<pre><code>Uncompiled python takes 13481374 ns to launch and run the subprocess
+Uncompiled python takes  1139030 ns to launch and run a subprocess once it is already running
+
+  Compiled python takes  7705682 ns to launch and run the subprocess
+  Compiled python takes   862162 ns to launch and run a subprocess once it is already running 
+
+node.js           takes 38461742 ns to launch and run the subprocess
+node.js           takes  1078150 ns to launch and run a subprocess once it is already running 
+</code></pre>
+
+<p>So the results show it is currently best to use compiled python to kick off a sub process e.g. a Rust or Go procedure in AWS lambda</p>
+
+<p>When Go or Rust are natively supported by AWS Lambda containers no doubt the story will change.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Karl Roberts</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2017-03-15T00:50:55+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>12:50 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/aws-lambda/'>aws lambda</a>, <a class='category' href='/blog/categories/launch-speed/'>launch speed</a>, <a class='category' href='/blog/categories/serverless/'>serverless</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/blog/2017/03/15/aws-lambda-musings/" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/blog/2017/03/15/aws-lambda-musings/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/03/14/double-your-speed-with-a-hardware-upgrade/" title="Previous Post: Don't sacrifice code quality for performance">&laquo; Don't sacrifice code quality for performance</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/03/15/aws-lambda-musings/">AWS Lambda Musings - Launch Times</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/14/double-your-speed-with-a-hardware-upgrade/">Don't Sacrifice Code Quality for Performance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/13/reverting-to-a-previous-kernel/">Reverting to a Previous Kernel</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/25/push-a-docker-image-to-personal-repository/">Push a Docker Image to a Personal Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/disabling-usb-ports-on-linux/">Disabling the Webcam or USB Ports on Linux</a>
+      </li>
+    
+  </ul>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="6142720898"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+</script>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'karlroberts',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode-leader1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="4526386891"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- <p> adsense here todo... </p> -->
+<p>
+Copyright &copy; 2017 - Karl Roberts -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'karlcode';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://karlroberts.github.io/blog/2017/03/15/aws-lambda-musings/';
+        var disqus_url = 'http://karlroberts.github.io/blog/2017/03/15/aws-lambda-musings/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
