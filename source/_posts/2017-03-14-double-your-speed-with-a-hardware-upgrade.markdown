@@ -11,7 +11,7 @@ categories:
 - x2 speed
 ---
 
-As a developer I've often seen (and been the culprit) of premature optimisation. Developers, in our desire to write fast software often, mistakenly, sacriface readability, maintainability and correctness in favour of speed.
+As a developer, I've often seen (and been the culprit) of premature optimisation. Developers, in our desire to write fast software often, mistakenly, sacrifice readability, maintainability and correctness in favour of speed.
 
 {% blockquote Donuld Knuth https://en.wikiquote.org/wiki/Donald_Knuth Computer Programming as an Art (1974) %}
 Premature optimization is the root of all evil ... in programming
@@ -26,9 +26,9 @@ In fact it may not be necessary to mess up the code, perhaps the solution is to 
 
 **[Check out the video below.](#video)**
 
-I recently upgraded my laptop after 4 years of usage, and as well as the usual smug appreciation of my new hardware, I am blown away by the performcance hike. {" Double your speed with a hardware upgrade "}
+I recently upgraded my laptop after 4 years of usage, and as well as the usual smug appreciation of my new hardware, I am blown away by the performance hike. {" Double your speed with a hardware upgrade "}
 
-Like watching grass grow we don't usually notice the ongoing benefit of the advances in computer hardware until you get to see it in timelapse.
+Like watching grass grow we don't usually notice the ongoing benefit of the advances in computer hardware until you get to see it in time-lapse.
 {% endpullquote %}
 
 <a name="video">
@@ -36,7 +36,7 @@ Like watching grass grow we don't usually notice the ongoing benefit of the adva
 </a>
 
 My old laptop was no donkey. A Samsung New Series 9
-and yet next to my new Dell XPS 9560 it looks positivly pedestrian.
+and yet next to my new Dell XPS 9560 it looks positively pedestrian.
 
 | Feature | Samsung NP900X4C | Dell XPS 9560 |
 |:----------|:-------------------------:|:---------------------------:|
@@ -48,11 +48,11 @@ and yet next to my new Dell XPS 9560 it looks positivly pedestrian.
 
 <br/>
 I have the same version of Ubuntu 16.04 with the latest patches running on both machines, and I downloaded the same project I'm currently
-working on and then started a Maven build side-by-side to compile and package the whole application i'm currently working on.
+working on. I then started a Maven build side-by-side to compile and package the whole application I'm currently working on.
 
 My new laptop is almost twice as fast as my previous fast laptop
 
-new Dell XPS 9560 => **12.329 seconds**
+New Dell XPS 9560 => **12.329 seconds**
 vs
 old Samsung "New" series 9 => **21.365 seconds**
 

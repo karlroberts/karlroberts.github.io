@@ -26,5 +26,3 @@ Even if there is a container start-up time, if the underlying host is running (l
 One can only guess at the reason but some kind of provisioning or resource sharing bottleneck seems likely. No doubt AWS teams are working on this as "Serverless" compute becomes the new Cloud buzzword and battleground.
 
 But, as I mentioned earlier, the true benefit of Serverless is cheaper running for request or event processing not blazingly fast performance and response times
-
-
