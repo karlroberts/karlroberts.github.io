@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Auxpattern | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/auxpattern/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-05-16T06:18:30+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Rise and (Hopefully) Fall of the Aux Pattern 2]]></title>
+    <link href="http://karlroberts.github.io/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/"/>
+    <updated>2017-04-11T21:36:16+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2</id>
+    <content type="html"><![CDATA[<p>This Blog is about the Aux Pattern as seen all over the Shapeless library. <!-- more --></p>
+
+<p><small>It is also a slide deck for a talk givn at Scalasyd April 2017.<br/>
+To switch between modes press a number as follows :<br/></p>
+
+<ul>
+<li>&lsquo;1&rsquo; -&gt; Doc mode:
+
+<ul>
+<li>shows the document as intended.</li>
+</ul>
+</li>
+<li>&lsquo;2&rsquo; -&gt; Deck mode, see the slides
+
+<ul>
+<li>see the slides</li>
+</ul>
+</li>
+<li>&lsquo;4&rsquo; -&gt; Lecture Mode
+
+<ul>
+<li>enter zooms current navigated to section</li>
+<li>click zooms div or block clicked</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Arrow keys navigate to next or previous section. or slide
+</small></p>
+
+<p><section data-slide>
+  <h1 align="center">The Rise (and hopefully fall) of</h1>
+  <h2 align="center">The Aux Pattern</h2>
+  <div align="center">
+    <span>12th April 2017</span>
+  </div>
+  <div style="height:100px"></div>
+  <div>
+    <a href="http://www.avocadoconsulting.com.au">
+      <img src="http://karlroberts.github.io/images/avocado-trans.png" style="max-height: 200px" alt="Avocado Logo"/>
+    </a>
+  </div>
+  <div style="margin-top:100px; text-align: center;">
+    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view.
+        See <a href="http://github.com/suited">suited.js</a>
+    </small></small>
+  </div></p>
+
+<p></section></p>
+
+<p>This Blog is my talk for Scalasyd April 12th 2017. It is about the Aux Pattern as seen all over the Shapeless library. <!-- more --></p>
+
+<p><section data-slide></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala
+
+<ul>
+<li>Not a Haskel talk dressed up in scala rags.</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala
+
+<ul>
+<li>Not a Haskel talk dressed up in scala rags.</li>
+</ul>
+</li>
+<li>About the scala type system
+
+<ul>
+<li>dependant types</li>
+<li>type inference</li>
+<li>implicits</li>
+</ul>
+</li>
+<li>&nbsp;
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala
+
+<ul>
+<li>Not a Haskel talk dressed up in scala rags.</li>
+</ul>
+</li>
+<li>About the scala type system
+
+<ul>
+<li>dependant types</li>
+<li>type inference</li>
+<li>implicits</li>
+</ul>
+</li>
+<li>About a cluncky work around
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>Aim</h3>
+
+<ul>
+<li>De-mystify Shapeless code
+</section></li>
+</ul>
+
+
+<p>We&rsquo;ve all seen code like this:-</p>
+
+<p><section data-figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">IsHCons</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">apply</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;implicit%20isHCons:%20IsHCons[L]&quot;</span><span class="o">&gt;</span><span class="n">L</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="k">:</span> <span class="kt">HList&lt;/a</span><span class="k">&gt;:</span> <span class="kt">Aux</span><span class="o">[</span><span class="kt">L</span>, <span class="kt">isHCons.H</span>, <span class="kt">isHCons.T</span><span class="o">]</span> <span class="k">=</span> <span class="n">isHCons</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">type</span> <span class="kt">Aux</span><span class="o">[</span><span class="kt">L</span> <span class="kt">&amp;lt</span><span class="err">;</span><span class="kt">:</span> <span class="kt">HList</span>, <span class="kt">H0</span>, <span class="kt">T0</span> <span class="kt">&amp;lt</span><span class="err">;</span><span class="kt">:</span> <span class="kt">HList</span><span class="o">]</span> <span class="k">=</span> <span class="nc">IsHCons</span><span class="o">[</span><span class="kt">L</span><span class="o">]</span> <span class="o">{</span> <span class="k">type</span> <span class="kt">H</span> <span class="o">=</span> <span class="n">H0</span><span class="o">;</span> <span class="k">type</span> <span class="kt">T</span> <span class="o">=</span> <span class="n">T0</span> <span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">implicit</span> <span class="k">def</span> <span class="n">hlistIsHCons</span><span class="o">[</span><span class="kt">H0</span>, <span class="kt">T0</span> <span class="kt">&amp;lt</span><span class="err">;</span><span class="kt">:</span> <span class="kt">HList</span><span class="o">]</span><span class="k">:</span> <span class="kt">Aux</span><span class="o">[</span><span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span>, <span class="kt">H0</span>, <span class="kt">T0</span><span class="o">]</span> <span class="k">=</span>
+</span><span class='line'>    <span class="k">new</span> <span class="nc">IsHCons</span><span class="o">[</span><span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span><span class="o">]</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">type</span> <span class="kt">H</span> <span class="o">=</span> <span class="n">H0</span>
+</span><span class='line'>      <span class="k">type</span> <span class="kt">T</span> <span class="o">=</span> <span class="n">T0</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="n">head</span><span class="o">(</span><span class="n">l</span> <span class="k">:</span> <span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span><span class="o">)</span> <span class="k">:</span> <span class="kt">H</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">head</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">tail</span><span class="o">(</span><span class="n">l</span> <span class="k">:</span> <span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span><span class="o">)</span> <span class="k">:</span> <span class="kt">T</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">tail</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">cons</span><span class="o">(</span><span class="n">h</span> <span class="k">:</span> <span class="kt">H0</span><span class="o">,</span> <span class="n">t</span> <span class="k">:</span> <span class="kt">T0</span><span class="o">)</span> <span class="k">:</span> <span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span> <span class="o">=</span> <span class="n">h</span> <span class="o">::</span> <span class="n">t</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure>
+</section></p>
+
+<p>Alphabet soup if ever there was some. Hopefully at the end of this, we&rsquo;ll all be able to read this.
+But before I skip on, notice the <code>Aux</code> all over that code. This is the source of the name of the <code>Aux</code> pattern.</p>
+
+<p><section data-slide></p>
+
+<h2>The Aux Pattern</h2>
+
+<p></section></p>
+
+<p>The first thing to realise is that it is not a Pattern that can apply to a programming paradidm
+It is really a hack. An elegant hack, but never-the-less a hack.
+Definatly a hack.</p>
+
+<p><section data-slide></p>
+
+<h2>The Aux Hack</h2>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h2>The Aux Idiom</h2>
+
+<p></section></p>
+
+<p>To be kinds to it, it has become quite pervasive as a way to work around
+a problem so I guess I can call it an idiom specific to Scala and its type system.</p>
+
+<p>Being an idom it has become a common way to get stuff done in scala, but what is it solving?
+To answer that we need a little ramble around the scala type system.</p>
+
+<h3>Type inference</h3>
+
+<p>First let&rsquo;s talk about <code>type inference</code></p>
+
+<p><section data-slide></p>
+
+<h3>Type inference</h3>
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Type inference</h3>
+
+<ul>
+<li>the compiler can work out the type of a thing</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Type inference</h3>
+
+<ul>
+<li>the compiler can work out the type of a thing</li>
+<li>without us supplying a clue</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Type inference</h3>
+
+<ul>
+<li>the compiler can work out the type of a thing</li>
+<li>without us supplying a clue</li>
+<li>based on info it already has.</li>
+</ul>
+
+
+<p></section></p>
+
+<p>A pretty useful feature to have, as I&rsquo;m sure you&rsquo;ll agree, as it helps cut down on &ldquo;Type boiler-plate&rdquo;, while letting the compiler asset correctness for us.</p>
+
+<p>So let&rsquo;s look an simple example</p>
+
+<p><section data-figure></p>
+
+<h3>Type inference</h3>
+
+<pre><code>object InferenceTest1 extends Application {
+  val x = 1 + 2 * 3         // the type of x is Int
+  val y = x.toString()      // the type of y is String
+  def succ(x: Int) = x + 1  // method succ returns Int values
+}
+</code></pre>
+
+<p></section></p>
+
+<p>As we can see the compiler is able to infer some types from the context.
+The next example shows that even with generic types we can infer types at the call site.
+I.e. when the specific type is first used.</p>
+
+<p><section data-figure></p>
+
+<h3>Type inference</h3>
+
+<pre><code>case class MyPair[A, B](x: A, y: B);
+object InferenceTest3 extends Application {
+  def id[T](x: T) = x            // return type: T
+  val p = new MyPair(1, "scala") // type: MyPair[Int, String]
+  val q = id(1)                  // type: Int
+}
+</code></pre>
+
+<p></section></p>
+
+<p>with no hints the compiler knows that <code>p</code> is a <code>MyPair[Int, String]</code> and <code>q</code> is an int</p>
+
+<p>as an aside, the hints I&rsquo;m talking about are &ldquo;type ascription&rdquo; sometimes mislabled &ldquo;type annotation&rdquo;,
+for example here is the some code with more type ascription than is necessary in scala</p>
+
+<p><section data-figure></p>
+
+<h3>Type ascription</h3>
+
+<pre><code>def id[T](x: T): T = x
+val p: MyPair[Int, String] = new MyPair[Int, String](1, "scala")
+val q: Int = id[Int](1)
+
+val b = 2 : Byte
+</code></pre>
+
+<p></section></p>
+
+<p>The only necessary ascription here was on on <code>val b</code> which we want to be a <code>Byte</code> rather than let the default inference of <code>Int</code>.</p>
+
+<h3>Path Dependent Types</h3>
+
+<p>OK no lets switch to another Scala feature, <code>path dependant types</code>.</p>
+
+<p><section data-slide></p>
+
+<h3>Path-dependent types</h3>
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Path-dependent types</h3>
+
+<ul>
+<li>the type depends on the path</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Path-dependent types</h3>
+
+<ul>
+<li>the type depends on the path</li>
+<li>so we can have types that depend on the Object that defines them.</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Path-dependent types</h3>
+
+<ul>
+<li>the type depends on the path</li>
+<li>so we can have types that depend on the Object that defines them.
+
+<ul>
+<li>we can reference these types in out functions and methods.</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p>Why do I care?</p>
+
+<p>let&rsquo;s see an example</p>
+
+<p><section data-figure></p>
+
+<h4>bad example</h4>
+
+<pre><code>trait Food {
+  override def toString(): String
+}
+
+object grass extends Food {
+  override def toString: String = "grass"
+}
+
+object dogfood extends Food {
+  override def toString: String = "dogfood"
+}
+</code></pre>
+
+<p></section></p>
+
+<p>In good OOP style I&rsquo;ve used <code>inheritance</code> to create a type hierarchy.</p>
+
+<p>I can then use these types to define some object instances.</p>
+
+<p><section data-figure></p>
+
+<h4>bad example</h4>
+
+<pre><code>abstract class BadAnimal  {
+  def eat(fodder: Food): Unit = {
+    println(s" ${this.getClass} Eating my food: "+ fodder)
+  }
+}
+
+object badfeeder {
+  def feed(animal: BadAnimal, food: Food): Unit = {
+    animal.eat(food)
+  }
+}
+
+class Cow extends BadAnimal with Food {
+  override def toString = "Cow"
+}
+</code></pre>
+
+<p></section></p>
+
+<p>Now I can use the <code>badfeeder</code> object to feed Daisy the cow.</p>
+
+<p><section data-figure></p>
+
+<h4>bad example, so far so good</h4>
+
+<pre><code>val Daisy = new Cow
+
+//Acceptable
+badfeeder.feed(Daisy, grass)
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>bad example, errrm?</h4>
+
+<pre><code>val Daisy = new Cow
+
+//naughty
+badfeeder.feed(Daisy, dogfood)
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>bad example, WTF!</h4>
+
+<pre><code>val Daisy = new Cow
+
+//totally unacceptable. Canibalism
+badfeeder.feed(Daisy, Daisy)
+</code></pre>
+
+<p></section></p>
+
+<p>As you can see <code>badfeeder</code> was allowed by the compiler to turn Daisy into a masochistic canible.</p>
+
+<p>The problem is that the feeder was allowed to give <code>Food</code> to an <code>BadAnimal</code>, and Daisy was Food as well as an <code>BadAnimal</code> .
+What we need is that an Animal can only eat food suitable for that animal.</p>
+
+<p>But at the time we declare the Animal supertype we don&rsquo;t know what is suitable food.
+The solution is to create an abstract type in Animal that will be specialised by each animal kind when
+we extend Animal. So as before&hellip;</p>
+
+<p><section data-figure></p>
+
+<h4>good example (same food)</h4>
+
+<pre><code>trait Food {
+  override def toString(): String
+}
+
+object grass extends Food {
+  override def toString: String = "grass"
+}
+
+object dogfood extends Food {
+  override def toString: String = "dogfood"
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>good example, better Animals</h4>
+
+<pre><code>abstract class GoodAnimal {
+  // path dependent type
+  type SuitableFood &lt;: Food
+
+  def eat(food: SuitableFood): Unit = {
+      println(s" ${this.getClass} Eating my food: "+ food)
+  }
+}
+
+class Cow extends GoodAnimal with Food {
+  type SuitableFood = grass.type
+}
+</code></pre>
+
+<p></section></p>
+
+<p>Now we are saying that an Animal can only eat food that is suitable, we don&rsquo;t know what that is when we create the
+<code>GoodAnimal</code> class so we make it abstract and give it an Abstract type.</p>
+
+<p>Subclasses can declare what the type is.
+Notice that we can refer to the abstract type in the method eat.</p>
+
+<p>Now let&rsquo;s try to define the feed function. We might be tempted to try using the <code>#</code> operator (type projectionn) to
+access the type defined inside the <code>GoodAnimal</code> &hellip;</p>
+
+<p><section data-slide></p>
+
+<h4>good example, feeding time..</h4>
+
+<pre><code>def feed(animal: GoodAnimal, food: GoodAnimal#SuitableFood): Unit = {
+
+
+
+  animal.eat(food)
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>good example, wont compile!</h4>
+
+<pre><code>def feed(animal: GoodAnimal, food: GoodAnimal#SuitableFood): Unit = {
+//    OOPS cant do this it says
+//     expected animal.Suitablefood, actual:GoodAnimal#SuitableFood
+//
+  animal.eat(food)
+}
+</code></pre>
+
+<p></section></p>
+
+<p>It won&rsquo;t compile. Carefully reading the error message we see that we need <code>animal.Suitablefood</code>, notice that this is specific to this <code>animal</code> object instance!</p>
+
+<p><section data-slide></p>
+
+<h4>good example, feeding time..</h4>
+
+<pre><code>//
+//
+//
+def feed1(animal: GoodAnimal, food: animal.SuitableFood): Unit = {
+      animal.eat(food)
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>good example, wont compile!</h4>
+
+<pre><code>// OOPs cant resolve symbol animal
+// can't re-refer to a param in same parameter list
+// type system works left to right
+def feed1(animal: GoodAnimal, food: animal.SuitableFood): Unit = {
+      animal.eat(food)
+}
+</code></pre>
+
+<p></section></p>
+
+<p>The problem here is that the Scala compiler&rsquo;s type inferencer expects to be able to resolve all types statically in a parameter list,
+but when declaring <code>food</code> we don&rsquo;t know yet what the type of actual type of animal is, we only know its abstract supertype.
+The compiler has a rule to prevent this problem, as it says in the error, you  <code>can't re-refer to a param in same parameter list</code></p>
+
+<p>This is getting tricky. How can I use this fancy good animal?</p>
+
+<p>The solution is to give the Compiler and type inference system a chance to work it out statically using another
+scala feature</p>
+
+<h3>Multiple parameter lists</h3>
+
+<p><section data-figure>
+* We need to delay type resolution
+* To give the compiler a chance to work it out
+</section></p>
+
+<p><section data-slide></p>
+
+<h4>good example, multi parameter list</h4>
+
+<pre><code>// 
+// 
+def feed2(animal: GoodAnimal)( food: animal.SuitableFood): Unit = {
+  animal.eat(food)
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>good example, multi parameter list</h4>
+
+<pre><code>// solution is add a second parameter list now type is known at call site
+// type resolution works left to right
+def feed2(animal: GoodAnimal)( food: animal.SuitableFood): Unit = {
+  animal.eat(food)
+}
+</code></pre>
+
+<p></section></p>
+
+<p>As shown in the previous section, by using multiple parameter lists we can use the type <code>animal.SuitableFood</code> in the second list because
+the compiler will have been able to reason about the type of <code>GoodAnimal</code> in the first list from its use at the call site.</p>
+
+<p>Now the bad example are impossible.</p>
+
+<p><section data-slide></p>
+
+<h4>good example, feeding time..</h4>
+
+<pre><code>val Daisy = new Cow
+// Acceptable
+goodfeeder.feed2(Daisy)(grass)
+
+// naughty
+// 
+//
+
+// totally unacceptable. Canabalism
+//
+//
+</code></pre>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h4>good example, feeding time..</h4>
+
+<pre><code>val Daisy = new Cow
+//Acceptable
+goodfeeder.feed2(Daisy)(grass)
+
+// naughty
+// wont compile says: expected Cow:SuitableFood, actual dogfood.type
+//goodfeeder.feed2(Daisy)(dogfood)
+
+//
+// 
+//
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>good example, feeding time..</h4>
+
+<pre><code>val Daisy = new Cow
+//Acceptable
+goodfeeder.feed2(Daisy)(grass)
+
+//naughty
+// wont compile says: expected Cow:SuitableFood, actual dogfood.type
+//goodfeeder.feed2(Daisy)(dogfood)
+
+//totally unacceptable. Canabalism
+// wont compile says: expected Cow:SuitableFood, actual GoodAnimal.Daisy.type
+// goodfeeder.feed2(Daisy)(Daisy)
+</code></pre>
+
+<p><small>
+<small></p>
+
+<p>The &ldquo;multiple parameter list&rdquo; feature is used all over scala and has more than one use. I found a good summary for <a href="http://stackoverflow.com/questions/18116303/whats-the-advantage-of-using-multiple-lists-of-function-parameters">uses of multiple parameter lists  here on stack overflow</a>.</p>
+
+<p></small>
+</small></p>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>Multiple parameter lists</h4>
+
+<ul>
+<li>Allow us to delay type resolution</li>
+<li>while still allowing call site inference
+</section></li>
+</ul>
+
+
+<p>So far so good.</p>
+
+<p><section data-slide></p>
+
+<h4>How About with Type-Classes?</h4>
+
+<ul>
+<li><p></section></p></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h4>How About with Type-Classes?</h4>
+
+<ul>
+<li>Now we are getting close to what the Aux pattern is about
+</section></li>
+</ul>
+
+
+<p>You will often see this kind of code in scala libraries.</p>
+
+<p><section data-figure></p>
+
+<h4>implicit parameter lists (context bound sugar)</h4>
+
+<pre><code>def join[A: Monoid](a: A, b: A): A = {
+  a |+| b
+}
+</code></pre>
+
+<p></section></p>
+
+<p>the form <code>[S : T]</code> in the type parameter list is actually syntactic sugar, called <code>context bound</code>, for this:-</p>
+
+<p><section data-figure></p>
+
+<h4>implicit parameter lists</h4>
+
+<pre><code>def join[A](a: A, b: A)(implicit ev: Monoid[A]): A = {
+  a |+| b
+}
+</code></pre>
+
+<p></section></p>
+
+<p>There is implicit evidence available that a Monaid[A] exists, and so we can use the <code>|+|</code> function from Monoid, nowing that an implicit converion to Monoid is available.</p>
+
+<p><section data-slide></p>
+
+<h4>What if my Typeclass has path dependent types?</h4>
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;
+</section></li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h4>What if my Typeclass has path dependent types?</h4>
+
+<ul>
+<li>can I have multiple implicit parameter lists to delay type resolution?</li>
+<li>&nbsp;</li>
+<li>&nbsp;
+</section></li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h4>What if my Typeclass has path dependent types?</h4>
+
+<ul>
+<li>can I have multiple implicit parameter lists to delay type resolution?</li>
+<li>no.</li>
+<li>&nbsp;
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h4>What if my Typeclass has path dependant types?</h4>
+
+<ul>
+<li>can I have multiple implicit parameter lists to delay type resolution?</li>
+<li>no.</li>
+<li>s#1t
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h4>Scala says no</h4>
+
+<ul>
+<li>to multiple implicit parameter lists
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h4>my Magic Typeclass</h4>
+
+<pre><code>trait MyTypeClass[T] {
+  type In
+  type Out
+
+  def doMagic(foo: T, param1: In): Out
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>can&rsquo;t have stuff like this API</h4>
+
+<p>  def voodoo<a href="foo:%20T,%20sayThis:%20Out0">T: MyTypeClass, In0</a>(implicit ev: MyTypeClass.[T])(implicit out: ev.Out) : ev.Out = {
+    ev.doMagic(foo, sayThis): ev.Out
+  }
+</section></p>
+
+<p>not only are there too many implicit param lists but we also have no way to tie the <code>In0</code> type to <code>ev.In</code></p>
+
+<p><section data-figure></p>
+
+<h4>Aux to the rescue</h4>
+
+<ul>
+<li>we can create a type alias to capture/keep track of the types
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h4>Aux to the rescue</h4>
+
+<pre><code>object MyTypeClass {
+//aux pattern
+type Aux[T0, In0, Out0] = MyTypeClass[T0] {type In = In0; type Out = Out0}
+
+// convenience Summoner so I don't need to use instead of `implicitly` 
+def apply[T](implicit evidence: MyTypeClass[T]): Aux[T, evidence.In, evidence.Out] = evidence
+}
+</code></pre>
+
+<p></section></p>
+
+<p>So we create a type alias to my type, that allows all the path dependent types to be seen on the outside.</p>
+
+<p>We also create a handy typeclass summoner that an be used instead of implitly when we need it.</p>
+
+<p><section data-figure></p>
+
+<h4>Aux to the rescue</h4>
+
+<ul>
+<li>interestingly, when we bind In0 at a call site that also binds the inner type In.</li>
+<li><code>=</code> in the <code>type</code> alias is like mathematical equality.</li>
+<li>so if <code>In0</code> = apple, and <code>type In = In0</code>, then</li>
+<li><code>type In = apple</code>
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h4>so we can do stuff like this ..</h4>
+
+<pre><code>case class Greeter(name: String) {
+
+  def greeting(greeting: String): String = {
+    s"$greeting, $name"
+  }
+}
+
+case object ImAnAlien {
+
+  @tailrec
+  private def sayThis(thing: String, accumlator: String, numTimes: Int): String = numTimes match {
+    //base case
+    case 0 =&gt; accumlator
+    //recurse
+    case _ =&gt; sayThis(thing, accumlator + " " + thing, (numTimes - 1))
+
+  }
+
+  def say(num: Int): String = {
+    sayThis("I'm an Alien", "", num)
+  }
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure>
+* two differnt classes but if you squint&hellip;.</p>
+
+<pre><code>def foo[A,B](a:A):B 
+</code></pre>
+
+<ul>
+<li>so I can make them conform to MyTypeclass
+</section></li>
+</ul>
+
+
+<p><section data-figure>
+    object MyTypeClass {
+      //aux pattern
+      type Aux[T0, In0, Out0] = MyTypeClass[T0] {type In = In0; type Out = Out0}</p>
+
+<pre><code>  // known type class members
+  implicit val greeterToTypeclass: Aux[Greeter, String, String] = new MyTypeClass[Greeter] {
+    type In = String
+    type Out = String
+
+    override def doMagic(foo: Greeter, param1: In): Out = foo.greeting(param1)
+  }
+
+  implicit val imAnAlienToTypeclass: Aux[ImAnAlien.type, Int, String] = new MyTypeClass[ImAnAlien.type] {
+    type In = Int
+    type Out = String
+
+    override def doMagic(foo: ImAnAlien.type, param1: In): Out = foo.say(param1)
+  }   
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>fancy API &hellip;</h4>
+
+<pre><code>object SomeApi {
+  def voodoo[T, In0, Out0](foo: T, sayThis: In0)(implicit ev: MyTypeClass.Aux[T, In0, Out0]): Out0 = {
+    val tc = MyTypeClass[T]
+    tc.doMagic(foo, sayThis)
+    ev.doMagic(foo, sayThis)
+  }
+}
+</code></pre>
+
+<ul>
+<li><p>use it:-</p>
+
+<p>  //bring typeclass instance into scope
+  import MyTypeClass.<em>
+  import SomeApi.</em></p>
+
+<p>  println(&ldquo;Greeting:- &rdquo;)
+  println(voodoo(Greeter(&ldquo;karl&rdquo;), &ldquo;wassup&rdquo;))</p>
+
+<p>  println(&ldquo;\nAliens:- &rdquo;)
+  println(voodoo(ImAnAlien, 3))</p></li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure>
+    Greeting:-
+    wassup, karl</p>
+
+<pre><code>Aliens:- 
+ I'm an Alien I'm an Alien I'm an Alien
+</code></pre>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h4>But why that Summoner?</h4>
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h4>But why that Summoner?</h4>
+
+<ul>
+<li>because implicitly will loose type information that we may want to use again</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>But why that Summoner?</h4>
+
+<ul>
+<li>because implicitly will loose type information that we may want to use again
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">shapeless.</span><span class="o">{</span><span class="nc">HList</span><span class="o">,</span> <span class="o">::,</span> <span class="nc">HNil</span><span class="o">}</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">shapeless.ops.hlist.Last</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span><span class="n">use</span> <span class="n">the</span> <span class="n">implicitly</span>
+</span><span class='line'><span class="n">implicitly</span><span class="o">[</span><span class="kt">Last</span><span class="o">[</span><span class="kt">String</span> <span class="kt">::</span> <span class="kt">Int</span> <span class="kt">::</span> <span class="kt">HNil</span><span class="o">]]</span>
+</span><span class='line'><span class="c1">// res6: shapeless.ops.hlist.Last[shapeless.::[String,shapeless.::[Int,shapeless.HNil]]] =shapeless.ops.hlist$Last$$anon$34@20bd5df0&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">summoner</span>
+</span><span class='line'><span class="nc">Last</span><span class="o">[</span><span class="kt">String</span> <span class="kt">::</span> <span class="kt">Int</span> <span class="kt">::</span> <span class="kt">HNil</span><span class="o">]</span>
+</span><span class='line'><span class="c1">// res7: shapeless.ops.hlist.Last\</span>
+</span><span class='line'><span class="c1">// [shapeless.::[String,shapeless.::[Int,shapeless.HNil]]]{type Out = Int} =shapeless.ops.hlist$Last$$anon$34@4ac2f6f</span>
+</span></code></pre></td></tr></table></div></figure>
+</section></p>
+
+<p>Notice that with <code>implicitly</code> we loose information that <code>Out</code> is <code>Int</code></p>
+
+<p><section data-figure></p>
+
+<h4>so this makes sense now, right?</h4>
+
+<pre><code>object IsHCons {
+  def apply[L &lt;: HList](implicit isHCons: IsHCons[L]): Aux[L, isHCons.H, isHCons.T] = isHCons
+
+  type Aux[L &lt;: HList, H0, T0 &lt;: HList] = IsHCons[L] { type H = H0; type T = T0 }
+
+  implicit def hlistIsHCons[H0, T0 &lt;: HList]: Aux[H0 :: T0, H0, T0] =
+    new IsHCons[H0 :: T0] {
+      type H = H0
+      type T = T0
+
+      def head(l : H0 :: T0) : H = l.head
+      def tail(l : H0 :: T0) : T = l.tail
+      def cons(h : H0, t : T0) : H0 :: T0 = h :: t
+    }
+}
+</code></pre>
+
+<p></section></p>
+
+<p>We can now see that we have an <code>Aux</code> type that promotes the <code>HCons</code>&rsquo;s abstrat types for head and tail of the HList, <code>H</code> and <code>T</code> into type parameters so they can be captured or bound.</p>
+
+<p>We provide an implict function to produce an Aux tpe when needed that uses the IsHCons typeclass and fills in or binds the H and T to the type parameters in the Aux. and we also provide a summoner method to fetch the Aux from the  implicit scope if it is available, ie if there is an IsHCons implicity available that matches the desired type parameters.</p>
+
+<p><section data-figure></p>
+
+<h4>Finally&hellip;.</h4>
+
+<ul>
+<li>This will hopefully all go away</li>
+<li>see <a href="https://github.com/scala/scala/pull/5108">miles sabin sugests a fix in multiple param lists
+</a></li>
+<li>see <a href="https://github.com/scala/scala.github.com/pull/520/files/e4e08a8fb3734d9fc992a7cf2a48ede9c54cfe14">pull req sip 520</a></li>
+</ul>
+
+
+<p></section></p>
+
+<p>It seems that they compiler restriction to prevent multiple implicit parameter lists is simply a syntactic sugar restriction.
+Miles Sabin, the initiator of the Shapeless library has proposed a change to remove the restriction, which looks like it will get accepted into a future version of Scala.</p>
+
+<p>So while many use cases of the Aux pattern will be able to be expressed at the call site in terms of multiple implicit parameter lists, the Aux pattern is still a useful object lesson in how to use the type system to gain access to the Abstract types defined inside other types which could still be useful to keep the API of a library simple.</p>
+
+<p><section data-figure></p>
+
+<h4>Thanks&hellip;.</h4>
+
+<ul>
+<li>code used at <a href="https://bitbucket.org/karl_roberts/typefubar">https://bitbucket.org/karl_roberts/typefubar</a></li>
+<li>deck and talk @ <a href="http://talks.aws.owtelse.com/scalasyd/2017/04/auxpattern/index.html?mode=doc#slide-0">http://talks.aws.owtelse.com/scalasyd/2017/04/auxpattern/index.html?mode=doc#slide-0</a></li>
+<li>me @MrK4rl</li>
+<li>ref <a href="http://underscore.io/books/shapeless-guide/">The Type Astronaut&rsquo;s Guide to Shapeless http://underscore.io/books/shapeless-guide/</a>
+</section></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
