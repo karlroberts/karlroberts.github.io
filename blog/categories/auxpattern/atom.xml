@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Auxpattern | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/auxpattern/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2017-05-16T06:18:30+00:00</updated>
+  <updated>2017-09-13T08:29:39+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -343,7 +343,7 @@ object InferenceTest3 extends Application {
 
 <p>with no hints the compiler knows that <code>p</code> is a <code>MyPair[Int, String]</code> and <code>q</code> is an int</p>
 
-<p>as an aside, the hints I&rsquo;m talking about are &ldquo;type ascription&rdquo; sometimes mislabled &ldquo;type annotation&rdquo;,
+<p>as an a2tion" sometimes mislabled &ldquo;type annotation&rdquo;,
 for example here is the some code with more type ascription than is necessary in scala</p>
 
 <p><section data-figure></p>

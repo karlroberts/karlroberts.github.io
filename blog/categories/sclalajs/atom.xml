@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sclalajs | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/sclalajs/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2017-09-13T08:29:39+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ScalaJs Markdown Combinator Parser]]></title>
+    <link href="http://karlroberts.github.io/blog/2017/07/09/scala-js-markdown-combinator-parser/"/>
+    <updated>2017-07-09T18:20:05+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2017/07/09/scala-js-markdown-combinator-parser</id>
+    <content type="html"><![CDATA[<p>This Blog is about Scala Combinator Parsers but exitingly about compiling the scala to JavaScript using Scal.js. <!-- more --></p>
+
+<p><small>It is also a slide deck for a talk givn at Scalasyd Sept 2017.<br/>
+To switch between modes press a number as follows :<br/></p>
+
+<ul>
+<li>&lsquo;1&rsquo; -&gt; Doc mode:
+
+<ul>
+<li>shows the document as intended.</li>
+</ul>
+</li>
+<li>&lsquo;2&rsquo; -&gt; Deck mode, see the slides
+
+<ul>
+<li>see the slides</li>
+</ul>
+</li>
+<li>&lsquo;4&rsquo; -&gt; Lecture Mode
+
+<ul>
+<li>enter zooms current navigated to section</li>
+<li>click zooms div or block clicked</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Arrow keys navigate to next or previous section. or slide
+</small></p>
+
+<p><section data-slide>
+  <h1 align="center">A Markdown combinator parser in</h1>
+  <h2 align="center">Scala</h2>
+  <div align="center">
+    <span>13th September 2017</span>
+  </div>
+  <div style="height:100px"></div>
+  <div>
+    <a href="http://www.avocadoconsulting.com.au">
+      <img src="http://karlroberts.github.io/images/avocado-trans.png" style="max-height: 200px" alt="Avocado Logo"/>
+    </a>
+  </div>
+  <div style="margin-top:100px; text-align: center;">
+    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view.
+        See <a href="http://github.com/suited">suited.js</a>
+    </small></small>
+  </div></p>
+
+<p></section></p>
+
+<p><section data-slide>
+  <h1 align="center">A Markdown combinator parser in</h1>
+  <h2 align="center">Scala.js</h2>
+  <div align="center">
+    <span>13th September 2017</span>
+  </div>
+  <div style="height:100px"></div>
+  <div>
+    <a href="http://www.avocadoconsulting.com.au">
+      <img src="http://karlroberts.github.io/images/avocado-trans.png" style="max-height: 200px" alt="Avocado Logo"/>
+    </a>
+  </div>
+  <div style="margin-top:100px; text-align: center;">
+    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view.
+        See <a href="http://github.com/suited">suited.js</a>
+    </small></small>
+  </div></p>
+
+<p></section></p>
+
+<p>This Blog is my talk for Scalasyd September 13th 2017. It is about Scala combinator parsers annd Scala.js <!-- more --></p>
+
+<p><section data-slide></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala.js
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala.js
+
+<ul>
+<li>Combinator Parsing</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala.js
+
+<ul>
+<li>Combinator Parsing</li>
+<li>Markdown</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Intro</h3>
+
+<ul>
+<li>This talk is about Scala.js
+
+<ul>
+<li>Combinator Parsing</li>
+<li>Markdown</li>
+<li>suited.js</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p>Before diving into nitty gritty details it&rsquo;s helpful to explain my motivation for this.</p>
+
+<p><section data-slide></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>LambdaJam 2017
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>LambdaJam 2017
+
+<ul>
+<li>compile all the things to other languages</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>LambdaJam 2017
+
+<ul>
+<li>compile all the things to other languages</li>
+<li>treat javascript like assembly lang for the web</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>LambdaJam 2017
+
+<ul>
+<li>compile all the things to other languages</li>
+<li>treat javascript like assembly lang for the web</li>
+</ul>
+</li>
+<li>Wanted to explore Scala.js</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>LambdaJam 2017
+
+<ul>
+<li>compile all the things to other languages</li>
+<li>treat javascript like assembly lang for the web</li>
+</ul>
+</li>
+<li>Wanted to explore Scala.js</li>
+<li>I needed yet another partial project
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>LambdaJam 2017
+
+<ul>
+<li>compile all the things to other languages</li>
+<li>treat javascript like assembly lang for the web</li>
+</ul>
+</li>
+<li>Wanted to explore Scala.js</li>
+<li>I needed yet another partial project
+
+<ul>
+<li>devs seem to like starting projects</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>LambdaJam 2017
+
+<ul>
+<li>compile all the things to other languages</li>
+<li>treat javascript like assembly lang for the web</li>
+</ul>
+</li>
+<li>Wanted to explore Scala.js</li>
+<li>I needed yet another partial project
+
+<ul>
+<li>devs seem to like starting projects</li>
+</ul>
+</li>
+<li>I had too much time on my hands one day.
+
+<ul>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>Why?</h3>
+
+<ul>
+<li>LambdaJam 2017
+
+<ul>
+<li>compile all the things to other languages</li>
+<li>treat javascript like assembly lang for the web</li>
+</ul>
+</li>
+<li>Wanted to explore Scala.js</li>
+<li>I needed yet another partial project
+
+<ul>
+<li>devs seem to like starting projects</li>
+</ul>
+</li>
+<li>I had too much time on my hands one day.
+
+<ul>
+<li>solved!
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p>So apart from getting down with all the transpilling kool kids I actually have a need to do some Javascript jiggery-pokery.</p>
+
+<p><section data-slide></p>
+
+<h3>What?</h3>
+
+<ul>
+<li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
+
+<ul>
+<li>a Javascript library</li>
+<li>Allows a single document to render as page or slide deck
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>What?</h3>
+
+<ul>
+<li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
+
+<ul>
+<li>a Javascript library</li>
+<li>Allows a single document to render as page or slide deck
+
+<ul>
+<li>this slide deck is actually my in blog</li>
+<li>&nbsp;
+</section></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>What?</h3>
+
+<ul>
+<li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
+
+<ul>
+<li>a Javascript library</li>
+<li>Allows a single document to render as page or slide deck
+
+<ul>
+<li>this slide deck is actually my in blog</li>
+<li>hint: hit key 1,2 or 4 for fun
+</section></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3><a href="https://github.com/suited">suited.js</a></h3>
+
+<ul>
+<li>was written by <a href="http://karlcode.owtelse.com/">me</a> and <a href="http://pappanyn.me/">Dirk</a>
+
+<ul>
+<li>a small library</li>
+<li>uses no other js lib</li>
+</ul>
+</li>
+<li>event driven</li>
+<li>plugin architecture</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3><a href="https://github.com/suited">suited.js</a></h3>
+
+<ul>
+<li>but then we wanted markdown
+</section></li>
+</ul>
+
+
+<p>Suited is cool and I&rsquo;ve given many talks using it and the same document can be a blog or article too.
+But we always want it to do more for instance we wanted to write out talks in markdown.</p>
+
+<p>So we needed a markdown plugin, but we also wanted a magic syntax to add slides and figures in markdown.</p>
+
+<p><section data-figure></p>
+
+<h3>markdown slides</h3>
+
+<pre><code>~~* **your bold stuff** *~~
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>markdown figures</h3>
+
+<pre><code>~~: **your bold and _italic_ stuff** :~~
+</code></pre>
+
+<p></section></p>
+
+<p>So we implemented a markdown plugin, but delegated to markdown-it</p>
+
+<p>But it has a fatal flaw. It has no parser to implement fragments</p>
+
+<p><section data-figure></p>
+
+<h3>suited.js</h3>
+
+<ul>
+<li>Fragmennts are no fun
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>fragments</h3>
+
+<pre><code>&lt;section data-slide&gt;
+### Why?
+* &amp;amp;nbsp;
+  - &amp;amp;nbsp;
+&lt;/section&gt;
+
+&lt;section data-slide&gt;
+### Why?
+* because
+  - &amp;amp;nbsp;
+&lt;/section&gt;
+
+&lt;section data-figure&gt;
+### Why?
+* because
+  - it's like that!
+&lt;/section&gt;
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>markdown-it plugin?</h3>
+
+<ul>
+<li>I dont want to write another markdownit plugin</li>
+<li>especially a complex one
+
+<ul>
+<li>potentially adds javascript to the markup
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>so I wrote my own markdown parser?</h3>
+
+<ul>
+<li>how hard can it be?
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>Parser recap</h3>
+
+<pre><code>case class Parser[A](run: String =&gt; ParseState[A])
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Parser recap</h3>
+
+<pre><code>sealed trait ParseState[A]
+
+case class ParseOk[A](input: String, value: A) extends ParseState[A]
+case class ParseKo[A](message: String) extends ParseState[A]
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Transformer typeclass</h3>
+
+<pre><code>trait Transformer[T] {
+  type IN
+  type OUT
+
+  def run(t: T, in: IN): OUT
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Pimp and Aux Pattern</h3>
+
+<pre><code>// syntax pimps
+implicit class TransformerOps[T0](foo: T0) {
+
+  /**
+    * magic wand. pimp alias of Transformer.run eg a transform function
+    */
+  def ---*[A,B](bar: A)(implicit aux: Transformer.Aux[T0,A,B]) : B = {
+    aux.run(foo, bar)
+  }
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Markdown transformer</h3>
+
+<pre><code>case class MarkdownToHtml(p: String =&gt; ParseState[MarkdownDoc], r: ParseState[MarkdownDoc] =&gt; Html)
+</code></pre>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h1></h1>
+
+<h3>Demo<del>lition</del> time</h3>
+
+<ul>
+<li>scala parser and render in the sbt console
+</section></li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h1></h1>
+
+<h3>Demo<del>lition</del> time</h3>
+
+<ul>
+<li>scala.js
+
+<ul>
+<li>modify the build to do javascript and demo
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h1></h1>
+
+<h3>So&hellip; performance?</h3>
+
+<p></section></p>
+
+<p>What about Performance?</p>
+
+<p>from the sbt command line or add to build.sbt
+<section data-figure></p>
+
+<h3>performance</h3>
+
+<pre><code>set scalaJSStage in Global := FastOptStage
+
+set scalaJSStage in Global := FullOptStage
+</code></pre>
+
+<ul>
+<li>Now we have almost as fast as JVM</li>
+</ul>
+
+
+<p><small><small>caveat no code optimisation has been done yet</small></small>
+</section></p>
+
+<p><section data-slide></p>
+
+<h1></h1>
+
+<h3>So&hellip; how do I run it in my browser?</h3>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Javascript interop</h3>
+
+<ul>
+<li>RTF<a href="https://www.scala-js.org/doc/">M https://www.scala-js.org/doc/</a></li>
+<li>RTF<a href="https://www.scala-js.org/tutorial/">T https://www.scala-js.org/tutorial/</a>
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h4>TODO&hellip;.</h4>
+
+<ul>
+<li>just use scala lib ratpack parser (or sbt-rats?)
+
+<ul>
+<li>better error messages</li>
+<li>faster</li>
+</ul>
+</li>
+<li>add the plugin interface</li>
+<li>write the fragments plugin</li>
+<li>re-write suited.js in scala.js</li>
+<li>look at a recursion scheme for render</li>
+<li>Free Monad/Applicative for renderer/interpreter</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>Thanks&hellip;.</h4>
+
+<ul>
+<li>code used at <a href="https://bitbucket.org/suited/markdownem">https://bitbucket.org/suited/markdownem</a></li>
+<li>deck and talk @ <a href="http://talks.aws.owtelse.com/scalasyd/2017/04/auxpattern/index.html?mode=doc#slide-0">http://talks.aws.owtelse.com/scalasyd/2017/04/auxpattern/index.html?mode=doc#slide-0</a></li>
+<li>me @MrK4rl</li>
+<li>ref <a href="http://underscore.io/books/shapeless-guide/">The Type Astronaut&rsquo;s Guide to Shapeless http://underscore.io/books/shapeless-guide/</a></li>
+<li><a href="https://www.scala-js.org/doc/">doco</a>
+</section></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
