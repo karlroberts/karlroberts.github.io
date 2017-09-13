@@ -4,7 +4,7 @@
   <title><![CDATA[Karl's Code]]></title>
   <link href="http://karlroberts.github.io/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2017-09-13T08:29:39+00:00</updated>
+  <updated>2017-09-13T08:33:52+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -811,7 +811,7 @@ set scalaJSStage in Global := FullOptStage
 
 <ul>
 <li>code used at <a href="https://bitbucket.org/suited/markdownem">https://bitbucket.org/suited/markdownem</a></li>
-<li>deck and talk @ <a href="http://talks.aws.owtelse.com/scalasyd/2017/04/auxpattern/index.html?mode=doc#slide-0">http://talks.aws.owtelse.com/scalasyd/2017/04/auxpattern/index.html?mode=doc#slide-0</a></li>
+<li>deck and talk @ <a href="http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0">http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0</a></li>
 <li>me @MrK4rl</li>
 <li>ref <a href="http://underscore.io/books/shapeless-guide/">The Type Astronaut&rsquo;s Guide to Shapeless http://underscore.io/books/shapeless-guide/</a></li>
 <li><a href="https://www.scala-js.org/doc/">doco</a>
