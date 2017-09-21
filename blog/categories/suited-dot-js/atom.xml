@@ -4,7 +4,7 @@
   <title><![CDATA[Category: suited.js | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/suited-dot-js/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2017-09-13T08:33:52+00:00</updated>
+  <updated>2017-09-21T02:22:08+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -18,9 +18,9 @@
     <link href="http://karlroberts.github.io/blog/2017/07/09/scala-js-markdown-combinator-parser/"/>
     <updated>2017-07-09T18:20:05+00:00</updated>
     <id>http://karlroberts.github.io/blog/2017/07/09/scala-js-markdown-combinator-parser</id>
-    <content type="html"><![CDATA[<p>This Blog is about Scala Combinator Parsers but exitingly about compiling the scala to JavaScript using Scal.js. <!-- more --></p>
+    <content type="html"><![CDATA[<p>This Blog is about Scala Combinator Parsers but excitingly about compiling the Scala to JavaScript using Scala.js. <!-- more --></p>
 
-<p><small>It is also a slide deck for a talk givn at Scalasyd Sept 2017.<br/>
+<p><small>It is also a slide deck for a talk given at the ScalaSyd meetup Sept 2017.<br/>
 To switch between modes press a number as follows :<br/></p>
 
 <ul>
@@ -46,7 +46,7 @@ To switch between modes press a number as follows :<br/></p>
 </ul>
 
 
-<p>Arrow keys navigate to next or previous section. or slide
+<p>Arrow keys navigate to next or previous section or slide
 </small></p>
 
 <p><section data-slide>
@@ -89,7 +89,7 @@ To switch between modes press a number as follows :<br/></p>
 
 <p></section></p>
 
-<p>This Blog is my talk for Scalasyd September 13th 2017. It is about Scala combinator parsers annd Scala.js <!-- more --></p>
+<p>This Blog is my talk for ScalaSyd meetup on September 13th 2017. It is about Scala combinator parsers and Scala.js <!-- more --></p>
 
 <p><section data-slide></p>
 
@@ -181,7 +181,7 @@ To switch between modes press a number as follows :<br/></p>
 
 <p></section></p>
 
-<p>Before diving into nitty gritty details it&rsquo;s helpful to explain my motivation for this.</p>
+<p>Before diving into nitty-gritty details it&rsquo;s helpful to explain my motivation for this.</p>
 
 <p><section data-slide></p>
 
@@ -444,7 +444,7 @@ To switch between modes press a number as follows :<br/></p>
 </ul>
 
 
-<p>So apart from getting down with all the transpilling kool kids I actually have a need to do some Javascript jiggery-pokery.</p>
+<p>So apart from getting down with all the transpiling kool kids I actually have a need to do some JavaScript jiggery-pokery.</p>
 
 <p><section data-slide></p>
 
@@ -454,7 +454,7 @@ To switch between modes press a number as follows :<br/></p>
 <li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
 
 <ul>
-<li>a Javascript library</li>
+<li>a JavaScript library</li>
 <li>Allows a single document to render as page or slide deck
 
 <ul>
@@ -476,7 +476,7 @@ To switch between modes press a number as follows :<br/></p>
 <li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
 
 <ul>
-<li>a Javascript library</li>
+<li>a JavaScript library</li>
 <li>Allows a single document to render as page or slide deck
 
 <ul>
@@ -498,13 +498,18 @@ To switch between modes press a number as follows :<br/></p>
 <li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
 
 <ul>
-<li>a Javascript library</li>
+<li>a JavaScript library</li>
 <li>Allows a single document to render as page or slide deck
 
 <ul>
 <li>this slide deck is actually my in blog</li>
 <li>hint: hit key 1,2 or 4 for fun
+
+<ul>
+<li>mode 4 will zoom on <code>enter</code> or click
 </section></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -517,7 +522,7 @@ To switch between modes press a number as follows :<br/></p>
 <h3><a href="https://github.com/suited">suited.js</a></h3>
 
 <ul>
-<li>was written by <a href="http://karlcode.owtelse.com/">me</a> and <a href="http://pappanyn.me/">Dirk</a>
+<li>was written by <a href="http://pappanyn.me/">Dirk</a> and <a href="http://karlcode.owtelse.com/">myself</a>
 
 <ul>
 <li>a small library</li>
@@ -544,7 +549,9 @@ To switch between modes press a number as follows :<br/></p>
 <p>Suited is cool and I&rsquo;ve given many talks using it and the same document can be a blog or article too.
 But we always want it to do more for instance we wanted to write out talks in markdown.</p>
 
-<p>So we needed a markdown plugin, but we also wanted a magic syntax to add slides and figures in markdown.</p>
+<p>So we needed a markdown plugin, but we also wanted a magic syntax to add slides and figures in markdown,
+Suited.js uses <code>&lt;section data-figure&gt;</code> and <code>&lt;section data-slide&gt;</code> to mark out sections of the contents to appear as navigable
+sections. Slides are just visible in the slide show whereas figures are visible in doc mode and also in the slide show.</p>
 
 <p><section data-figure></p>
 
@@ -564,16 +571,16 @@ But we always want it to do more for instance we wanted to write out talks in ma
 
 <p></section></p>
 
-<p>So we implemented a markdown plugin, but delegated to markdown-it</p>
+<p>So we implemented a markdown plugin, but delegated to markdown-it.</p>
 
-<p>But it has a fatal flaw. It has no parser to implement fragments</p>
+<p>But suited has a fatal flaw. It has no parser to implement fragments</p>
 
 <p><section data-figure></p>
 
 <h3>suited.js</h3>
 
 <ul>
-<li>Fragmennts are no fun
+<li>Fragments are no fun
 </section></li>
 </ul>
 
@@ -612,7 +619,7 @@ But we always want it to do more for instance we wanted to write out talks in ma
 <li>especially a complex one
 
 <ul>
-<li>potentially adds javascript to the markup
+<li>it will probably add javascript to the markup
 </section></li>
 </ul>
 </li>
@@ -621,17 +628,22 @@ But we always want it to do more for instance we wanted to write out talks in ma
 
 <p><section data-figure></p>
 
-<h3>so I wrote my own markdown parser?</h3>
+<h3>so I wrote my own markdown parser for Javascript?</h3>
 
 <ul>
+<li>Using Scala.js</li>
 <li>how hard can it be?
 </section></li>
 </ul>
 
 
+<p>Because I want to rely on a few libraries as possible while experimenting with Scala.js I decided to use
+Mark Hibberd&rsquo;s Combinator Parser <a href="github.com/markhibberd/dont-fear-the-parser">demo code</a> from his previous
+Scalasyd talk <a href="http://mth.io/talks/dont-fear-the-parser/">&ldquo;Dont fear the parser&rdquo;</a> as a starting point.</p>
+
 <p><section data-figure></p>
 
-<h3>Parser recap</h3>
+<h3><a href="https://github.com/markhibberd/dont-fear-the-parser">Parser recap</a></h3>
 
 <pre><code>case class Parser[A](run: String =&gt; ParseState[A])
 </code></pre>
@@ -642,7 +654,7 @@ But we always want it to do more for instance we wanted to write out talks in ma
 
 <h3>Parser recap</h3>
 
-<pre><code>sealed trait ParseState[A]
+<pre><code class="scala">sealed trait ParseState[A]
 
 case class ParseOk[A](input: String, value: A) extends ParseState[A]
 case class ParseKo[A](message: String) extends ParseState[A]
@@ -650,11 +662,13 @@ case class ParseKo[A](message: String) extends ParseState[A]
 
 <p></section></p>
 
+<p>Parsing is OK but I also want to render the parse tree into HTML, this is what Transformers are for.</p>
+
 <p><section data-figure></p>
 
 <h3>Transformer typeclass</h3>
 
-<pre><code>trait Transformer[T] {
+<pre><code class="scala">trait Transformer[T] {
   type IN
   type OUT
 
@@ -666,26 +680,90 @@ case class ParseKo[A](message: String) extends ParseState[A]
 
 <p><section data-figure></p>
 
-<h3>Pimp and Aux Pattern</h3>
+<h3>Syntax pimp and <a href="http://karlcode.owtelse.com/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/?mode=doc#slide-0">Aux Pattern</a></h3>
 
-<pre><code>// syntax pimps
+<pre><code class="scala">// syntax pimps
 implicit class TransformerOps[T0](foo: T0) {
 
   /**
-    * magic wand. pimp alias of Transformer.run eg a transform function
-    */
+   * magic wand. pimp alias of Transformer.run eg a transform function
+   */
   def ---*[A,B](bar: A)(implicit aux: Transformer.Aux[T0,A,B]) : B = {
     aux.run(foo, bar)
   }
+  ...
+}
 </code></pre>
+
+<p></section></p>
+
+<p>See my previous talk on the <a href="http://karlcode.owtelse.com/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/?mode=doc#slide-0">Aux Pattern</a></p>
+
+<p>Now lets look at a specific member of the Transformer typeclass. The <code>MarkdownToHtml</code> transformer.</p>
+
+<p>I wanted to split the transform function into two parts, one to parse, and of course I want to use my markdown parser&rsquo;s run  function in this place, and one to render the <code>ParseResult</code> into HTML.</p>
+
+<p>Not only does this make it easier to reason about but also (I Hope) easier to build a plugin interface where you can supply a function to parse modified markdown as long as it still produces a <code>ParseResult[Markdown]</code> and one to enrich the HTML or even transform it completely, say into rich text or PDF</p>
+
+<p><section data-figure></p>
+
+<h3>MarkdownToHtml</h3>
+
+<pre><code class="scala">case class MarkdownToHtml(
+    p: String =&gt; ParseState[MarkdownDoc],
+    r: ParseState[MarkdownDoc] =&gt; Html)
+</code></pre>
+
+<ul>
+<li>notice I&rsquo;ve split it into 2 functions
+
+<ul>
+<li>one to parse, p</li>
+<li>and one to render, r</li>
+</ul>
+</li>
+</ul>
+
 
 <p></section></p>
 
 <p><section data-figure></p>
 
-<h3>Markdown transformer</h3>
+<h3><a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L76">MarkdownToHtml</a></h3>
 
-<pre><code>case class MarkdownToHtml(p: String =&gt; ParseState[MarkdownDoc], r: ParseState[MarkdownDoc] =&gt; Html)
+<h5>use <code>instance</code> to join the Transformer typeclass</h5>
+
+<pre><code class="scala">object MarkdownToHtml {
+  import Transformer._
+  import ast._
+
+  // Use `instance` typeclass constructor to add MarkdownToHtml to the Transformer typeclass
+  implicit val m2hTransformer:
+     Transformer.Aux[MarkdownToHtml,String, parser.Html] =
+       instance( (t, in) =&gt; t.r(t.p(in)) ) 
+  ...
+}
+</code></pre>
+
+<p></section>
+see <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L76">MarkdownToHtml</a></p>
+
+<p><section data-figure></p>
+
+<h3>MarkdownToHtml <code>---*</code> function</h3>
+
+<ul>
+<li>Now MarkdownToHtml is in the Transformer typeclass
+
+<ul>
+<li>It has access to the transformer Magic Wand function</li>
+<li>so my <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L87"><code>simple</code> implementation</a>  can use it like so</li>
+</ul>
+</li>
+</ul>
+
+
+<pre><code>simple ---* """## this is h2 i presume"""
 </code></pre>
 
 <p></section></p>
@@ -697,283 +775,63 @@ implicit class TransformerOps[T0](foo: T0) {
 <h3>Demo<del>lition</del> time</h3>
 
 <ul>
-<li>scala parser and render in the sbt console
+<li>Scala parser and render in the sbt console
 </section></li>
 </ul>
 
 
-<p><section data-slide></p>
+<p>So let&rsquo;s demonstrate the parser and renderer in the console.</p>
 
-<h1></h1>
+<p><section data-figure></p>
 
-<h3>Demo<del>lition</del> time</h3>
+<h3>Demo parser: start console</h3>
 
-<ul>
-<li>scala.js
-
-<ul>
-<li>modify the build to do javascript and demo
-</section></li>
-</ul>
-</li>
-</ul>
-
-
-<p><section data-slide></p>
-
-<h1></h1>
-
-<h3>So&hellip; performance?</h3>
-
-<p></section></p>
-
-<p>What about Performance?</p>
-
-<p>from the sbt command line or add to build.sbt
-<section data-figure></p>
-
-<h3>performance</h3>
-
-<pre><code>set scalaJSStage in Global := FastOptStage
-
-set scalaJSStage in Global := FullOptStage
+<pre><code>me@host $ sbt
+sbt:Markdownem&gt; console
+scala&gt; :paste consoleimports.txt
+Pasting file consoleimports.txt...
+import parser._
+import parser.markdownParser._
+import transformers._
+import transformers.Transformer._
+import transformers.MarkdownToHtml._
 </code></pre>
 
-<ul>
-<li>Now we have almost as fast as JVM</li>
-</ul>
-
-
-<p><small><small>caveat no code optimisation has been done yet</small></small>
-</section></p>
-
-<p><section data-slide></p>
-
-<h1></h1>
-
-<h3>So&hellip; how do I run it in my browser?</h3>
-
 <p></section></p>
 
-<p><section data-slide></p>
+<p>Notice that</p>
 
-<h3>Javascript interop</h3>
+<pre><code>[warn] Scala REPL doesn't work with Scala.js. You are running a JVM REPL.
+</code></pre>
 
-<ul>
-<li>RTF<a href="https://www.scala-js.org/doc/">M https://www.scala-js.org/doc/</a></li>
-<li>RTF<a href="https://www.scala-js.org/tutorial/">T https://www.scala-js.org/tutorial/</a>
-</section></li>
-</ul>
+<p>The Scala REPL is only available to the Scala code. So only code built without depending on
+JavaScript libraries will work in this REPL demo.</p>
 
+<p>But that&rsquo;s OK, this demo has no JavaScript dependencies, it just generate JavaScript output.</p>
 
 <p><section data-figure></p>
 
-<h4>TODO&hellip;.</h4>
+<h3>Demo headerParser</h3>
 
-<ul>
-<li>just use scala lib ratpack parser (or sbt-rats?)
+<pre><code>scala&gt; headerParser.run("""## this is h2 i presume""")
+</code></pre>
 
-<ul>
-<li>better error messages</li>
-<li>faster</li>
-</ul>
-</li>
-<li>add the plugin interface</li>
-<li>write the fragments plugin</li>
-<li>re-write suited.js in scala.js</li>
-<li>look at a recursion scheme for render</li>
-<li>Free Monad/Applicative for renderer/interpreter</li>
-</ul>
-
+<pre><code>res0: parser.ParseState[ast.Markdown] =
+  ParseOk(,H2(List(this is h2 i presume)))
+</code></pre>
 
 <p></section></p>
 
 <p><section data-figure></p>
 
-<h4>Thanks&hellip;.</h4>
+<h3>Demo headerParser</h3>
 
-<ul>
-<li>code used at <a href="https://bitbucket.org/suited/markdownem">https://bitbucket.org/suited/markdownem</a></li>
-<li>deck and talk @ <a href="http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0">http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0</a></li>
-<li>me @MrK4rl</li>
-<li>ref <a href="http://underscore.io/books/shapeless-guide/">The Type Astronaut&rsquo;s Guide to Shapeless http://underscore.io/books/shapeless-guide/</a></li>
-<li><a href="https://www.scala-js.org/doc/">doco</a>
-</section></li>
-</ul>
+<pre><code>scala&gt; headerParser.run("""## this is h2 i presume
+     | more input not in header""")
+</code></pre>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Rise and (Hopefully) Fall of the Aux Pattern 2]]></title>
-    <link href="http://karlroberts.github.io/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/"/>
-    <updated>2017-04-11T21:36:16+00:00</updated>
-    <id>http://karlroberts.github.io/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2</id>
-    <content type="html"><![CDATA[<p>This Blog is about the Aux Pattern as seen all over the Shapeless library. <!-- more --></p>
-
-<p><small>It is also a slide deck for a talk givn at Scalasyd April 2017.<br/>
-To switch between modes press a number as follows :<br/></p>
-
-<ul>
-<li>&lsquo;1&rsquo; -&gt; Doc mode:
-
-<ul>
-<li>shows the document as intended.</li>
-</ul>
-</li>
-<li>&lsquo;2&rsquo; -&gt; Deck mode, see the slides
-
-<ul>
-<li>see the slides</li>
-</ul>
-</li>
-<li>&lsquo;4&rsquo; -&gt; Lecture Mode
-
-<ul>
-<li>enter zooms current navigated to section</li>
-<li>click zooms div or block clicked</li>
-</ul>
-</li>
-</ul>
-
-
-<p>Arrow keys navigate to next or previous section. or slide
-</small></p>
-
-<p><section data-slide>
-  <h1 align="center">The Rise (and hopefully fall) of</h1>
-  <h2 align="center">The Aux Pattern</h2>
-  <div align="center">
-    <span>12th April 2017</span>
-  </div>
-  <div style="height:100px"></div>
-  <div>
-    <a href="http://www.avocadoconsulting.com.au">
-      <img src="http://karlroberts.github.io/images/avocado-trans.png" style="max-height: 200px" alt="Avocado Logo"/>
-    </a>
-  </div>
-  <div style="margin-top:100px; text-align: center;">
-    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view.
-        See <a href="http://github.com/suited">suited.js</a>
-    </small></small>
-  </div></p>
-
-<p></section></p>
-
-<p>This Blog is my talk for Scalasyd April 12th 2017. It is about the Aux Pattern as seen all over the Shapeless library. <!-- more --></p>
-
-<p><section data-slide></p>
-
-<h3>Intro</h3>
-
-<ul>
-<li>This talk is about Scala
-
-<ul>
-<li>&nbsp;</li>
-</ul>
-</li>
-<li>&nbsp;
-
-<ul>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-</ul>
-</li>
-<li>&nbsp;</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h3>Intro</h3>
-
-<ul>
-<li>This talk is about Scala
-
-<ul>
-<li>Not a Haskel talk dressed up in scala rags.</li>
-</ul>
-</li>
-<li>&nbsp;
-
-<ul>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-</ul>
-</li>
-<li>&nbsp;</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h3>Intro</h3>
-
-<ul>
-<li>This talk is about Scala
-
-<ul>
-<li>Not a Haskel talk dressed up in scala rags.</li>
-</ul>
-</li>
-<li>About the scala type system
-
-<ul>
-<li>dependant types</li>
-<li>type inference</li>
-<li>implicits</li>
-</ul>
-</li>
-<li>&nbsp;
-</section></li>
-</ul>
-
-
-<p><section data-figure></p>
-
-<h3>Intro</h3>
-
-<ul>
-<li>This talk is about Scala
-
-<ul>
-<li>Not a Haskel talk dressed up in scala rags.</li>
-</ul>
-</li>
-<li>About the scala type system
-
-<ul>
-<li>dependant types</li>
-<li>type inference</li>
-<li>implicits</li>
-</ul>
-</li>
-<li>About a cluncky work around
-</section></li>
-</ul>
-
-
-<p><section data-figure></p>
-
-<h3>Aim</h3>
-
-<ul>
-<li>De-mystify Shapeless code
-</section></li>
-</ul>
-
-
-<p>We&rsquo;ve all seen code like this:-</p>
-
-<p><section data-figure>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>The header parser just parses a single header.
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -990,860 +848,106 @@ To switch between modes press a number as follows :<br/></p>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">IsHCons</span> <span class="o">{</span>
-</span><span class='line'>  <span class="k">def</span> <span class="n">apply</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;implicit%20isHCons:%20IsHCons[L]&quot;</span><span class="o">&gt;</span><span class="n">L</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="k">:</span> <span class="kt">HList&lt;/a</span><span class="k">&gt;:</span> <span class="kt">Aux</span><span class="o">[</span><span class="kt">L</span>, <span class="kt">isHCons.H</span>, <span class="kt">isHCons.T</span><span class="o">]</span> <span class="k">=</span> <span class="n">isHCons</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>res3: parser.ParseState[ast.Markdown] =
+</span><span class='line'>  ParseOk(more input not in header,
+</span><span class='line'>    H2(List(this is h2 i presume)))&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">type</span> <span class="kt">Aux</span><span class="o">[</span><span class="kt">L</span> <span class="kt">&amp;lt</span><span class="err">;</span><span class="kt">:</span> <span class="kt">HList</span>, <span class="kt">H0</span>, <span class="kt">T0</span> <span class="kt">&amp;lt</span><span class="err">;</span><span class="kt">:</span> <span class="kt">HList</span><span class="o">]</span> <span class="k">=</span> <span class="nc">IsHCons</span><span class="o">[</span><span class="kt">L</span><span class="o">]</span> <span class="o">{</span> <span class="k">type</span> <span class="kt">H</span> <span class="o">=</span> <span class="n">H0</span><span class="o">;</span> <span class="k">type</span> <span class="kt">T</span> <span class="o">=</span> <span class="n">T0</span> <span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;&lt;/section&gt;
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">implicit</span> <span class="k">def</span> <span class="n">hlistIsHCons</span><span class="o">[</span><span class="kt">H0</span>, <span class="kt">T0</span> <span class="kt">&amp;lt</span><span class="err">;</span><span class="kt">:</span> <span class="kt">HList</span><span class="o">]</span><span class="k">:</span> <span class="kt">Aux</span><span class="o">[</span><span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span>, <span class="kt">H0</span>, <span class="kt">T0</span><span class="o">]</span> <span class="k">=</span>
-</span><span class='line'>    <span class="k">new</span> <span class="nc">IsHCons</span><span class="o">[</span><span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span><span class="o">]</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">type</span> <span class="kt">H</span> <span class="o">=</span> <span class="n">H0</span>
-</span><span class='line'>      <span class="k">type</span> <span class="kt">T</span> <span class="o">=</span> <span class="n">T0</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>Notice that this is a successful parse, and that the `ParseOK` case class also contains the remaining input for further processing
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="n">head</span><span class="o">(</span><span class="n">l</span> <span class="k">:</span> <span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span><span class="o">)</span> <span class="k">:</span> <span class="kt">H</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">head</span>
-</span><span class='line'>  <span class="k">def</span> <span class="n">tail</span><span class="o">(</span><span class="n">l</span> <span class="k">:</span> <span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span><span class="o">)</span> <span class="k">:</span> <span class="kt">T</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">tail</span>
-</span><span class='line'>  <span class="k">def</span> <span class="n">cons</span><span class="o">(</span><span class="n">h</span> <span class="k">:</span> <span class="kt">H0</span><span class="o">,</span> <span class="n">t</span> <span class="k">:</span> <span class="kt">T0</span><span class="o">)</span> <span class="k">:</span> <span class="kt">H0</span> <span class="kt">::</span> <span class="kt">T0</span> <span class="o">=</span> <span class="n">h</span> <span class="o">::</span> <span class="n">t</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>Also notice that the H2 contains a List of more Markdown, in this case `rawHtml`.
+</span><span class='line'>This is because the link text could contain more inline markdown, like so...
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>&lt;section data-figure&gt;
+</span><span class='line'>### Demo headerParser
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;scala&gt; headerParser.run(&ldquo;&rdquo;&ldquo;## this &lt;em&gt;is&lt;/em&gt; h2 i &lt;strong&gt;presume&lt;/strong&gt;&rdquo;&ldquo;&rdquo;)&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;res1: parser.ParseState[ast.Markdown] =
+</span><span class='line'>  ParseOk(,H2(List(this ,
+</span><span class='line'>                Italic(List(is)),
+</span><span class='line'>                h2 i , Bold(List(presume)))))</span></code></pre></td></tr></table></div></figure>
 </section></p>
 
-<p>Alphabet soup if ever there was some. Hopefully at the end of this, we&rsquo;ll all be able to read this.
-But before I skip on, notice the <code>Aux</code> all over that code. This is the source of the name of the <code>Aux</code> pattern.</p>
-
-<p><section data-slide></p>
-
-<h2>The Aux Pattern</h2>
-
-<p></section></p>
-
-<p>The first thing to realise is that it is not a Pattern that can apply to a programming paradidm
-It is really a hack. An elegant hack, but never-the-less a hack.
-Definatly a hack.</p>
-
-<p><section data-slide></p>
-
-<h2>The Aux Hack</h2>
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h2>The Aux Idiom</h2>
-
-<p></section></p>
-
-<p>To be kinds to it, it has become quite pervasive as a way to work around
-a problem so I guess I can call it an idiom specific to Scala and its type system.</p>
-
-<p>Being an idom it has become a common way to get stuff done in scala, but what is it solving?
-To answer that we need a little ramble around the scala type system.</p>
-
-<h3>Type inference</h3>
-
-<p>First let&rsquo;s talk about <code>type inference</code></p>
-
-<p><section data-slide></p>
-
-<h3>Type inference</h3>
-
-<ul>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h3>Type inference</h3>
-
-<ul>
-<li>the compiler can work out the type of a thing</li>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h3>Type inference</h3>
-
-<ul>
-<li>the compiler can work out the type of a thing</li>
-<li>without us supplying a clue</li>
-<li>&nbsp;</li>
-</ul>
-
-
-<p></section></p>
-
 <p><section data-figure></p>
 
-<h3>Type inference</h3>
+<h3>Demo headerParser failing</h3>
 
-<ul>
-<li>the compiler can work out the type of a thing</li>
-<li>without us supplying a clue</li>
-<li>based on info it already has.</li>
-</ul>
+<pre><code>scala&gt; headerParser.run("""this _is_ NOT h2 i presume""")
+</code></pre>
 
-
-<p></section></p>
-
-<p>A pretty useful feature to have, as I&rsquo;m sure you&rsquo;ll agree, as it helps cut down on &ldquo;Type boiler-plate&rdquo;, while letting the compiler asset correctness for us.</p>
-
-<p>So let&rsquo;s look an simple example</p>
-
-<p><section data-figure></p>
-
-<h3>Type inference</h3>
-
-<pre><code>object InferenceTest1 extends Application {
-  val x = 1 + 2 * 3         // the type of x is Int
-  val y = x.toString()      // the type of y is String
-  def succ(x: Int) = x + 1  // method succ returns Int values
-}
+<pre><code>scala&gt; headerParser.run("""this _is_ NOT h2 i presume""")
+headerParser.run("""this _is_ NOT h2 i presume""")
+res0: parser.ParseState[ast.Markdown] =
+  ParseKo(Input failed to match predicate.: instead saw char 't')
 </code></pre>
 
 <p></section></p>
 
-<p>As we can see the compiler is able to infer some types from the context.
-The next example shows that even with generic types we can infer types at the call site.
-I.e. when the specific type is first used.</p>
+<p>Admittedly, this is not the best error message (for better errors use the built in Scala combinator parser library rather than this demo).
+It failed to see a <code>#</code> as the first char in a header and so produced a <code>ParseKo</code> instead of <code>ParseOk</code>.</p>
+
+<p>The important thing to see is that a parser stops as soon as it can go no further.</p>
+
+<p>In order to parse a whole document we can use the combinator methods, such as <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/parser/parsers.scala#L76">|||</a> i.e. <code>or</code> on <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/parser/parsers.scala">Parser</a> and some of the parsers such a <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/parser/parsers.scala#L145">list</a> to compose more powerful
+parsers that continue parsing input by trying one parser after another.</p>
+
+<p>An example is the <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/parser/markdownParser.scala#L50">markdownParser</a> which will try all blockParsers followed by the inlineParsers continuously until it can parse no more.</p>
+
+<p>However that will only occur when there is no more input because the last parser it tries is always the <a href="">rawHtml</a> parser which will always succeed because any input that is not parsed as markdown must be is just treated as <code>RawHtml</code>.</p>
 
 <p><section data-figure></p>
 
-<h3>Type inference</h3>
+<h3>Demo markdownParser</h3>
 
-<pre><code>case class MyPair[A, B](x: A, y: B);
-object InferenceTest3 extends Application {
-  def id[T](x: T) = x            // return type: T
-  val p = new MyPair(1, "scala") // type: MyPair[Int, String]
-  val q = id(1)                  // type: Int
-}
+<pre><code>scala&gt; markdownParser.run("""this _is_ NOT h2 i presume
+     | ## but this _is **h2**_""")
+</code></pre>
+
+<pre><code>res4: parser.ParseState[List[ast.Markdown]] =
+  ParseOk(,List(this ,
+             Italic(List(is)),
+              NOT h2 i presume,
+             Hardwrap,
+             H2(List(but this ,
+               Italic(List(is , Bold(List(h2))))))))
 </code></pre>
 
 <p></section></p>
 
-<p>with no hints the compiler knows that <code>p</code> is a <code>MyPair[Int, String]</code> and <code>q</code> is an int</p>
+<p>Now we can see that the input parses into a List of <code>Markdown</code>. This is all very well but it&rsquo;d be nice to see the rendered HTML.</p>
 
-<p>as an a2tion" sometimes mislabled &ldquo;type annotation&rdquo;,
-for example here is the some code with more type ascription than is necessary in scala</p>
+<p>This is where <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L87">simple</a> MarkdownToHtml Transformer comes in.</p>
+
+<p>I can now use the <code>---*</code> magic wand function</p>
 
 <p><section data-figure></p>
 
-<h3>Type ascription</h3>
+<h3>Demo <code>simple</code> render</h3>
 
-<pre><code>def id[T](x: T): T = x
-val p: MyPair[Int, String] = new MyPair[Int, String](1, "scala")
-val q: Int = id[Int](1)
-
-val b = 2 : Byte
+<pre><code>scala&gt; simple ---* """this _is_ NOT h2 i presume
+     | ## but this _is **h2**_"""
 </code></pre>
 
-<p></section></p>
+<p>```
+res1: transformers.MarkdownToHtml.m2hTransformer.OUT =
+&ldquo;this <em>is</em> NOT h2 i presume</p>
 
-<p>The only necessary ascription here was on on <code>val b</code> which we want to be a <code>Byte</code> rather than let the default inference of <code>Int</code>.</p>
+<h2>but this <em>is <strong>h2</strong></em></h2>
 
-<h3>Path Dependent Types</h3>
 
-<p>OK no lets switch to another Scala feature, <code>path dependant types</code>.</p>
-
-<p><section data-slide></p>
-
-<h3>Path-dependent types</h3>
-
-<ul>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h3>Path-dependent types</h3>
-
-<ul>
-<li>the type depends on the path</li>
-<li>&nbsp;</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h3>Path-dependent types</h3>
-
-<ul>
-<li>the type depends on the path</li>
-<li>so we can have types that depend on the Object that defines them.</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h3>Path-dependent types</h3>
-
-<ul>
-<li>the type depends on the path</li>
-<li>so we can have types that depend on the Object that defines them.
-
-<ul>
-<li>we can reference these types in out functions and methods.</li>
-</ul>
-</li>
-</ul>
-
-
-<p></section></p>
-
-<p>Why do I care?</p>
-
-<p>let&rsquo;s see an example</p>
-
-<p><section data-figure></p>
-
-<h4>bad example</h4>
-
-<pre><code>trait Food {
-  override def toString(): String
-}
-
-object grass extends Food {
-  override def toString: String = "grass"
-}
-
-object dogfood extends Food {
-  override def toString: String = "dogfood"
-}
-</code></pre>
-
-<p></section></p>
-
-<p>In good OOP style I&rsquo;ve used <code>inheritance</code> to create a type hierarchy.</p>
-
-<p>I can then use these types to define some object instances.</p>
-
-<p><section data-figure></p>
-
-<h4>bad example</h4>
-
-<pre><code>abstract class BadAnimal  {
-  def eat(fodder: Food): Unit = {
-    println(s" ${this.getClass} Eating my food: "+ fodder)
-  }
-}
-
-object badfeeder {
-  def feed(animal: BadAnimal, food: Food): Unit = {
-    animal.eat(food)
-  }
-}
-
-class Cow extends BadAnimal with Food {
-  override def toString = "Cow"
-}
-</code></pre>
-
-<p></section></p>
-
-<p>Now I can use the <code>badfeeder</code> object to feed Daisy the cow.</p>
-
-<p><section data-figure></p>
-
-<h4>bad example, so far so good</h4>
-
-<pre><code>val Daisy = new Cow
-
-//Acceptable
-badfeeder.feed(Daisy, grass)
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>bad example, errrm?</h4>
-
-<pre><code>val Daisy = new Cow
-
-//naughty
-badfeeder.feed(Daisy, dogfood)
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>bad example, WTF!</h4>
-
-<pre><code>val Daisy = new Cow
-
-//totally unacceptable. Canibalism
-badfeeder.feed(Daisy, Daisy)
-</code></pre>
-
-<p></section></p>
-
-<p>As you can see <code>badfeeder</code> was allowed by the compiler to turn Daisy into a masochistic canible.</p>
-
-<p>The problem is that the feeder was allowed to give <code>Food</code> to an <code>BadAnimal</code>, and Daisy was Food as well as an <code>BadAnimal</code> .
-What we need is that an Animal can only eat food suitable for that animal.</p>
-
-<p>But at the time we declare the Animal supertype we don&rsquo;t know what is suitable food.
-The solution is to create an abstract type in Animal that will be specialised by each animal kind when
-we extend Animal. So as before&hellip;</p>
-
-<p><section data-figure></p>
-
-<h4>good example (same food)</h4>
-
-<pre><code>trait Food {
-  override def toString(): String
-}
-
-object grass extends Food {
-  override def toString: String = "grass"
-}
-
-object dogfood extends Food {
-  override def toString: String = "dogfood"
-}
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>good example, better Animals</h4>
-
-<pre><code>abstract class GoodAnimal {
-  // path dependent type
-  type SuitableFood &lt;: Food
-
-  def eat(food: SuitableFood): Unit = {
-      println(s" ${this.getClass} Eating my food: "+ food)
-  }
-}
-
-class Cow extends GoodAnimal with Food {
-  type SuitableFood = grass.type
-}
-</code></pre>
-
-<p></section></p>
-
-<p>Now we are saying that an Animal can only eat food that is suitable, we don&rsquo;t know what that is when we create the
-<code>GoodAnimal</code> class so we make it abstract and give it an Abstract type.</p>
-
-<p>Subclasses can declare what the type is.
-Notice that we can refer to the abstract type in the method eat.</p>
-
-<p>Now let&rsquo;s try to define the feed function. We might be tempted to try using the <code>#</code> operator (type projectionn) to
-access the type defined inside the <code>GoodAnimal</code> &hellip;</p>
-
-<p><section data-slide></p>
-
-<h4>good example, feeding time..</h4>
-
-<pre><code>def feed(animal: GoodAnimal, food: GoodAnimal#SuitableFood): Unit = {
-
-
-
-  animal.eat(food)
-}
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>good example, wont compile!</h4>
-
-<pre><code>def feed(animal: GoodAnimal, food: GoodAnimal#SuitableFood): Unit = {
-//    OOPS cant do this it says
-//     expected animal.Suitablefood, actual:GoodAnimal#SuitableFood
-//
-  animal.eat(food)
-}
-</code></pre>
-
-<p></section></p>
-
-<p>It won&rsquo;t compile. Carefully reading the error message we see that we need <code>animal.Suitablefood</code>, notice that this is specific to this <code>animal</code> object instance!</p>
-
-<p><section data-slide></p>
-
-<h4>good example, feeding time..</h4>
-
-<pre><code>//
-//
-//
-def feed1(animal: GoodAnimal, food: animal.SuitableFood): Unit = {
-      animal.eat(food)
-}
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>good example, wont compile!</h4>
-
-<pre><code>// OOPs cant resolve symbol animal
-// can't re-refer to a param in same parameter list
-// type system works left to right
-def feed1(animal: GoodAnimal, food: animal.SuitableFood): Unit = {
-      animal.eat(food)
-}
-</code></pre>
-
-<p></section></p>
-
-<p>The problem here is that the Scala compiler&rsquo;s type inferencer expects to be able to resolve all types statically in a parameter list,
-but when declaring <code>food</code> we don&rsquo;t know yet what the type of actual type of animal is, we only know its abstract supertype.
-The compiler has a rule to prevent this problem, as it says in the error, you  <code>can't re-refer to a param in same parameter list</code></p>
-
-<p>This is getting tricky. How can I use this fancy good animal?</p>
-
-<p>The solution is to give the Compiler and type inference system a chance to work it out statically using another
-scala feature</p>
-
-<h3>Multiple parameter lists</h3>
-
-<p><section data-figure>
-* We need to delay type resolution
-* To give the compiler a chance to work it out
-</section></p>
-
-<p><section data-slide></p>
-
-<h4>good example, multi parameter list</h4>
-
-<pre><code>// 
-// 
-def feed2(animal: GoodAnimal)( food: animal.SuitableFood): Unit = {
-  animal.eat(food)
-}
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>good example, multi parameter list</h4>
-
-<pre><code>// solution is add a second parameter list now type is known at call site
-// type resolution works left to right
-def feed2(animal: GoodAnimal)( food: animal.SuitableFood): Unit = {
-  animal.eat(food)
-}
-</code></pre>
-
-<p></section></p>
-
-<p>As shown in the previous section, by using multiple parameter lists we can use the type <code>animal.SuitableFood</code> in the second list because
-the compiler will have been able to reason about the type of <code>GoodAnimal</code> in the first list from its use at the call site.</p>
-
-<p>Now the bad example are impossible.</p>
-
-<p><section data-slide></p>
-
-<h4>good example, feeding time..</h4>
-
-<pre><code>val Daisy = new Cow
-// Acceptable
-goodfeeder.feed2(Daisy)(grass)
-
-// naughty
-// 
-//
-
-// totally unacceptable. Canabalism
-//
-//
-</code></pre>
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h4>good example, feeding time..</h4>
-
-<pre><code>val Daisy = new Cow
-//Acceptable
-goodfeeder.feed2(Daisy)(grass)
-
-// naughty
-// wont compile says: expected Cow:SuitableFood, actual dogfood.type
-//goodfeeder.feed2(Daisy)(dogfood)
-
-//
-// 
-//
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>good example, feeding time..</h4>
-
-<pre><code>val Daisy = new Cow
-//Acceptable
-goodfeeder.feed2(Daisy)(grass)
-
-//naughty
-// wont compile says: expected Cow:SuitableFood, actual dogfood.type
-//goodfeeder.feed2(Daisy)(dogfood)
-
-//totally unacceptable. Canabalism
-// wont compile says: expected Cow:SuitableFood, actual GoodAnimal.Daisy.type
-// goodfeeder.feed2(Daisy)(Daisy)
-</code></pre>
-
-<p><small>
-<small></p>
-
-<p>The &ldquo;multiple parameter list&rdquo; feature is used all over scala and has more than one use. I found a good summary for <a href="http://stackoverflow.com/questions/18116303/whats-the-advantage-of-using-multiple-lists-of-function-parameters">uses of multiple parameter lists  here on stack overflow</a>.</p>
-
-<p></small>
-</small></p>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>Multiple parameter lists</h4>
-
-<ul>
-<li>Allow us to delay type resolution</li>
-<li>while still allowing call site inference
-</section></li>
-</ul>
-
-
-<p>So far so good.</p>
-
-<p><section data-slide></p>
-
-<h4>How About with Type-Classes?</h4>
-
-<ul>
-<li><p></section></p></li>
-</ul>
-
-
-<p><section data-figure></p>
-
-<h4>How About with Type-Classes?</h4>
-
-<ul>
-<li>Now we are getting close to what the Aux pattern is about
-</section></li>
-</ul>
-
-
-<p>You will often see this kind of code in scala libraries.</p>
-
-<p><section data-figure></p>
-
-<h4>implicit parameter lists (context bound sugar)</h4>
-
-<pre><code>def join[A: Monoid](a: A, b: A): A = {
-  a |+| b
-}
-</code></pre>
-
-<p></section></p>
-
-<p>the form <code>[S : T]</code> in the type parameter list is actually syntactic sugar, called <code>context bound</code>, for this:-</p>
-
-<p><section data-figure></p>
-
-<h4>implicit parameter lists</h4>
-
-<pre><code>def join[A](a: A, b: A)(implicit ev: Monoid[A]): A = {
-  a |+| b
-}
-</code></pre>
-
-<p></section></p>
-
-<p>There is implicit evidence available that a Monaid[A] exists, and so we can use the <code>|+|</code> function from Monoid, nowing that an implicit converion to Monoid is available.</p>
-
-<p><section data-slide></p>
-
-<h4>What if my Typeclass has path dependent types?</h4>
-
-<ul>
-<li>&nbsp;</li>
-<li>&nbsp;</li>
-<li>&nbsp;
-</section></li>
-</ul>
-
-
-<p><section data-slide></p>
-
-<h4>What if my Typeclass has path dependent types?</h4>
-
-<ul>
-<li>can I have multiple implicit parameter lists to delay type resolution?</li>
-<li>&nbsp;</li>
-<li>&nbsp;
-</section></li>
-</ul>
-
-
-<p><section data-slide></p>
-
-<h4>What if my Typeclass has path dependent types?</h4>
-
-<ul>
-<li>can I have multiple implicit parameter lists to delay type resolution?</li>
-<li>no.</li>
-<li>&nbsp;
-</section></li>
-</ul>
-
-
-<p><section data-figure></p>
-
-<h4>What if my Typeclass has path dependant types?</h4>
-
-<ul>
-<li>can I have multiple implicit parameter lists to delay type resolution?</li>
-<li>no.</li>
-<li>s#1t
-</section></li>
-</ul>
-
-
-<p><section data-figure></p>
-
-<h4>Scala says no</h4>
-
-<ul>
-<li>to multiple implicit parameter lists
-</section></li>
-</ul>
-
-
-<p><section data-figure></p>
-
-<h4>my Magic Typeclass</h4>
-
-<pre><code>trait MyTypeClass[T] {
-  type In
-  type Out
-
-  def doMagic(foo: T, param1: In): Out
-}
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>can&rsquo;t have stuff like this API</h4>
-
-<p>  def voodoo<a href="foo:%20T,%20sayThis:%20Out0">T: MyTypeClass, In0</a>(implicit ev: MyTypeClass.[T])(implicit out: ev.Out) : ev.Out = {
-    ev.doMagic(foo, sayThis): ev.Out
-  }
-</section></p>
-
-<p>not only are there too many implicit param lists but we also have no way to tie the <code>In0</code> type to <code>ev.In</code></p>
-
-<p><section data-figure></p>
-
-<h4>Aux to the rescue</h4>
-
-<ul>
-<li>we can create a type alias to capture/keep track of the types
-</section></li>
-</ul>
-
-
-<p><section data-figure></p>
-
-<h4>Aux to the rescue</h4>
-
-<pre><code>object MyTypeClass {
-//aux pattern
-type Aux[T0, In0, Out0] = MyTypeClass[T0] {type In = In0; type Out = Out0}
-
-// convenience Summoner so I don't need to use instead of `implicitly` 
-def apply[T](implicit evidence: MyTypeClass[T]): Aux[T, evidence.In, evidence.Out] = evidence
-}
-</code></pre>
-
-<p></section></p>
-
-<p>So we create a type alias to my type, that allows all the path dependent types to be seen on the outside.</p>
-
-<p>We also create a handy typeclass summoner that an be used instead of implitly when we need it.</p>
-
-<p><section data-figure></p>
-
-<h4>Aux to the rescue</h4>
-
-<ul>
-<li>interestingly, when we bind In0 at a call site that also binds the inner type In.</li>
-<li><code>=</code> in the <code>type</code> alias is like mathematical equality.</li>
-<li>so if <code>In0</code> = apple, and <code>type In = In0</code>, then</li>
-<li><code>type In = apple</code>
-</section></li>
-</ul>
-
-
-<p><section data-figure></p>
-
-<h4>so we can do stuff like this ..</h4>
-
-<pre><code>case class Greeter(name: String) {
-
-  def greeting(greeting: String): String = {
-    s"$greeting, $name"
-  }
-}
-
-case object ImAnAlien {
-
-  @tailrec
-  private def sayThis(thing: String, accumlator: String, numTimes: Int): String = numTimes match {
-    //base case
-    case 0 =&gt; accumlator
-    //recurse
-    case _ =&gt; sayThis(thing, accumlator + " " + thing, (numTimes - 1))
-
-  }
-
-  def say(num: Int): String = {
-    sayThis("I'm an Alien", "", num)
-  }
-}
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure>
-* two differnt classes but if you squint&hellip;.</p>
-
-<pre><code>def foo[A,B](a:A):B 
-</code></pre>
-
-<ul>
-<li>so I can make them conform to MyTypeclass
-</section></li>
-</ul>
-
-
-<p><section data-figure>
-    object MyTypeClass {
-      //aux pattern
-      type Aux[T0, In0, Out0] = MyTypeClass[T0] {type In = In0; type Out = Out0}</p>
-
-<pre><code>  // known type class members
-  implicit val greeterToTypeclass: Aux[Greeter, String, String] = new MyTypeClass[Greeter] {
-    type In = String
-    type Out = String
-
-    override def doMagic(foo: Greeter, param1: In): Out = foo.greeting(param1)
-  }
-
-  implicit val imAnAlienToTypeclass: Aux[ImAnAlien.type, Int, String] = new MyTypeClass[ImAnAlien.type] {
-    type In = Int
-    type Out = String
-
-    override def doMagic(foo: ImAnAlien.type, param1: In): Out = foo.say(param1)
-  }   
-}
-</code></pre>
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>fancy API &hellip;</h4>
-
-<pre><code>object SomeApi {
-  def voodoo[T, In0, Out0](foo: T, sayThis: In0)(implicit ev: MyTypeClass.Aux[T, In0, Out0]): Out0 = {
-    val tc = MyTypeClass[T]
-    tc.doMagic(foo, sayThis)
-    ev.doMagic(foo, sayThis)
-  }
-}
-</code></pre>
-
-<ul>
-<li><p>use it:-</p>
-
-<p>  //bring typeclass instance into scope
-  import MyTypeClass.<em>
-  import SomeApi.</em></p>
-
-<p>  println(&ldquo;Greeting:- &rdquo;)
-  println(voodoo(Greeter(&ldquo;karl&rdquo;), &ldquo;wassup&rdquo;))</p>
-
-<p>  println(&ldquo;\nAliens:- &rdquo;)
-  println(voodoo(ImAnAlien, 3))</p></li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-figure>
-    Greeting:-
-    wassup, karl</p>
-
-<pre><code>Aliens:- 
- I'm an Alien I'm an Alien I'm an Alien
-</code></pre>
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h4>But why that Summoner?</h4>
-
-<ul>
-<li>&nbsp;</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-slide></p>
-
-<h4>But why that Summoner?</h4>
-
-<ul>
-<li>because implicitly will loose type information that we may want to use again</li>
-</ul>
-
-
-<p></section></p>
-
-<p><section data-figure></p>
-
-<h4>But why that Summoner?</h4>
-
-<ul>
-<li>because implicitly will loose type information that we may want to use again
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>&ldquo;
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1856,20 +960,2743 @@ case object ImAnAlien {
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">shapeless.</span><span class="o">{</span><span class="nc">HList</span><span class="o">,</span> <span class="o">::,</span> <span class="nc">HNil</span><span class="o">}</span>
-</span><span class='line'><span class="k">import</span> <span class="nn">shapeless.ops.hlist.Last</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Demo &lt;code&gt;simple&lt;/code&gt; render a complex list&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;scala&gt; simple ---* """* unordered list item
+</span><span class='line'>     |   1. _nested_ list item
+</span><span class='line'>     |   2. **another _nested_** list item
+</span><span class='line'>     | * unorderd [link](http://foo.bar) list item
+</span><span class='line'>     | 
+</span><span class='line'>     | [a ref link][1] whose url detail is at the end
+</span><span class='line'>     | 
+</span><span class='line'>     | [1] http://the.reflink.com"""
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Demo &lt;code&gt;simple&lt;/code&gt; render a complex list result&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;```
+</span><span class='line'>res0: transformers.MarkdownToHtml.m2hTransformer.OUT =
+</span><span class='line'>&ldquo;&lt;ul&gt;
+</span><span class='line'>    &lt;li&gt;unordered list item&lt;/li&gt;
+</span><span class='line'>    &lt;ol&gt;
+</span><span class='line'>        &lt;li&gt;&lt;em&gt;nested&lt;/em&gt; list item&lt;/li&gt;
+</span><span class='line'>        &lt;li&gt;&lt;strong&gt;another &lt;em&gt;nested&lt;/em&gt;&lt;/strong&gt; list item&lt;/li&gt;
+</span><span class='line'>    &lt;/ol&gt;
+</span><span class='line'>    &lt;li&gt;unorderd &lt;a href="http://foo.bar"&gt;link&lt;/a&gt; list item&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;a href="http://the.reflink.com"&gt;a ref link&lt;/a&gt; whose url detail is at the end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span><span class='line'>&lt;!-- [1] http://the.reflink.com --&gt;&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span><span class="n">use</span> <span class="n">the</span> <span class="n">implicitly</span>
-</span><span class='line'><span class="n">implicitly</span><span class="o">[</span><span class="kt">Last</span><span class="o">[</span><span class="kt">String</span> <span class="kt">::</span> <span class="kt">Int</span> <span class="kt">::</span> <span class="kt">HNil</span><span class="o">]]</span>
-</span><span class='line'><span class="c1">// res6: shapeless.ops.hlist.Last[shapeless.::[String,shapeless.::[Int,shapeless.HNil]]] =shapeless.ops.hlist$Last$$anon$34@20bd5df0&lt;/p&gt;</span>
+</span><span class='line'>&lt;p&gt;&ldquo;</span></code></pre></td></tr></table></div></figure>
+</section></p>
+
+<p><section data-slide></p>
+
+<h1></h1>
+
+<h3>So&hellip; Performance?</h3>
+
+<p></section></p>
+
+<p>What about Performance?</p>
+
+<p>I haven&rsquo;t run proper benchmarks yet, but as a quick and dirty test
+I have added timing output to the <code>main</code> function.</p>
+
+<p><section data-figure></p>
+
+<h3>remember this in <code>build.sbt</code></h3>
+
+<pre><code>scalaJSUseMainModuleInitializer := true
+</code></pre>
+
+<ul>
+<li>After compiling to JavaScript
+
+<ul>
+<li>adds a call to the <code>main</code> function in the <code>MainClass</code></li>
+<li>at the end of the JavaScript.</li>
+</ul>
+</li>
+<li>This makes the main function run when the JS is loaded
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>We can get <code>sbt</code> run task to do the same for us</h3>
+
+<pre><code>sbt
+[info] Loading settings from idea.sbt ...
+[info] Loading global plugins from /home/robertk/.sbt/1.0/plugins
+[info] Loading settings from plugins.sbt ...
+[info] Loading project definition from /home/robertk/projects/skunk/markdownem_js/project
+[info] Loading settings from build.sbt ...
+[info] Set current project to Markdownem (in build file:/home/robertk/projects/skunk/markdownem_js/)
+[info] sbt server started at 127.0.0.1:5300
+sbt:Markdownem&gt; 
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>We can get <code>sbt</code> run task to do the same for us</h3>
+
+<pre><code>sbt:Markdownem&gt; run
+[info] Running tutorial.webapp.TestApp
+[error] java.io.IOException: Cannot run program "node": error=2, No such file or directory
+...
+</code></pre>
+
+<p></section></p>
+
+<p>What happened?</p>
+
+<p>It is an error from sbt as it is trying to run the default JavaScript runtime <code>Node.js</code> to execute the generated JavaScript.</p>
+
+<p>sbt can also run using other JavaScript runners such as <code>PhantomJS</code>, <code>Selenium</code> or <code>Rhino</code> see the <a href="https://www.scala-js.org/doc/project/js-environments.html">docs</a></p>
+
+<p>I had better load NodeJS onto my PATH, i use <code>nvm</code> for this.</p>
+
+<p><section data-slide></p>
+
+<h1>&nbsp;</h1>
+
+<h3>WTF!</h3>
+
+<p></section></p>
+
+<p><section data-slide>
+#</p>
+
+<h3>WTF!</h3>
+
+<ul>
+<li>It was trying to use <code>node</code> to run the JavaScript.</li>
+<li>&nbsp;
+</section></li>
+</ul>
+
+
+<p><section data-slide>
+#</p>
+
+<h3>WTF!</h3>
+
+<ul>
+<li>It was trying to use <code>node</code> to run the JavaScript.</li>
+<li>I better load it onto my PATH
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<pre><code>sbt:Markdownem&gt; exit
+$ nvm use v7.9.0
+Now using node v7.9.0 (npm v4.2.0)
+$ sbt
+[info] Loading settings from idea.sbt ...
+...
+[info] Set current project to Markdownem (in build file:/home/robertk/projects/skunk/markdownem_js/)
+[info] sbt server started at 127.0.0.1:5300
+sbt:Markdownem&gt; 
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>We can get <code>sbt</code> running NodeJs</h3>
+
+<pre><code>sbt:Markdownem&gt; run
+[info] Running tutorial.webapp.TestApp
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 690
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 443
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 434
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 447
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 423
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 430
+[success] Total time: 4 s, completed 21/09/2017 9:53:01 AM
+sbt:Markdownem&gt; 
+...
+</code></pre>
+
+<p></section></p>
+
+<p>The <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/webapp/TestApp.scala">TestApp</a> just renders 112 lines of markdown into HTML a few times.</p>
+
+<p>We can see that after the initial run where it starts the node environment it ends up taking about 430ms.</p>
+
+<p>That seems slow!</p>
+
+<p><section data-slide></p>
+
+<h3>seems a bit slow!</h3>
+
+<ul>
+<li><p>112 lines of markdown in 430ms</p></li>
+<li><p>&nbsp;
+</section></p></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>seems a bit slow!</h3>
+
+<ul>
+<li><p>112 lines of markdown in 430ms</p></li>
+<li><p>lets compare the JS to a scala/JVM run
+</section></p></li>
+</ul>
+
+
+<p>If we comment the JS lines in build.sbt we can build and run the main app in standard Scala on the JVM</p>
+
+<p><section data-figure></p>
+
+<h3>comment Scala.js from build.sbt</h3>
+
+<pre><code>// enablePlugins(ScalaJSPlugin)
+
+// This is an application with a main method
+// change this to true if you want the The TestApp main class to be a JS "Application"
+// scalaJSUseMainModuleInitializer := true
+
+name := "Markdownem"
+scalaVersion := "2.12.2"
+...
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>now run as a ScalaJVM app</h3>
+
+<pre><code>sbt:Markdownem&gt; reload
+sbt:Markdownem&gt; run
+[info] Compiling 8 Scala sources to /home/markdownem_js/target/scala-2.12/classes ...
+[info] Done compiling.
+[info] Packaging /home/markdownem_js/target/scala-2.12/markdownem_2.12-0.1-SNAPSHOT.jar ...
+[info] Done packaging.
+[info] Running tutorial.webapp.TestApp 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 592
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 263
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 234
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 229
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 225
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 235
+</code></pre>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>On the JVM same code runs 200ms faster</h3>
+
+<ul>
+<li><p>112 lines of markdown in ~ 230ms</p></li>
+<li><p>&nbsp;</p></li>
+<li><p>&nbsp;</p></li>
+<li><p>&nbsp;
+</section></p></li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>On the JVM same code runs 200ms faster</h3>
+
+<ul>
+<li><p>112 lines of markdown in ~ 230ms</p></li>
+<li><p>But this is not really a fair comparison with NodeJS</p></li>
+<li><p>&nbsp;</p></li>
+<li><p>&nbsp;
+</section></p></li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>On the JVM same code runs 200ms faster</h3>
+
+<ul>
+<li><p>112 lines of markdown in ~ 230ms</p></li>
+<li><p>But this is not really a fair comparison with NodeJS</p></li>
+<li><p>The Javascript was not fully optomised because it would take longer to compile</p></li>
+<li><p>&nbsp;
+</section></p></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>On the JVM same code runs 200ms faster</h3>
+
+<ul>
+<li><p>112 lines of markdown in ~ 230ms</p></li>
+<li><p>But this is not really a fair comparison with NodeJS</p></li>
+<li><p>The Javascript was not fully optomised because it would take longer to compile</p></li>
+<li><p>So lets optomise it.
+</section></p></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>use the optimising compiler</h3>
+
+<ul>
+<li>The Javascript was compiled with the <code>FastOptStage</code> compiler
+
+<ul>
+<li>meaning it was fast to compile</li>
+</ul>
+</li>
+<li>We can tell sbt to run with the <code>FullOptStage</code> compiler
+
+<ul>
+<li>which will optimise much more
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>un-comment Scala.js, put it back into build.sbt</h3>
+
+<pre><code>enablePlugins(ScalaJSPlugin)
+
+// This is an application with a main method
+// change this to true if you want the The TestApp main class to be a JS "Application"
+scalaJSUseMainModuleInitializer := true
+
+name := "Markdownem"
+scalaVersion := "2.12.2"
+...
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>tell sbt to use Full optimisation</h3>
+
+<pre><code>sbt:Markdownem&gt; reload
+sbt:Markdownem&gt; set scalaJSStage in Global := FullOptStage
+</code></pre>
+
+<ul>
+<li>N.B. we can set it back with</li>
+</ul>
+
+
+<pre><code>sbt:Markdownem&gt; set scalaJSStage in Global := FastOptStage
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>now run optimised Javascript</h3>
+
+<pre><code>sbt:Markdownem&gt; run
+[info] Full optimizing ./target/scala-2.12/markdownem-opt.js
+[info] Closure: 0 error(s), 0 warning(s)
+[info] Running tutorial.webapp.TestApp
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 590
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 298
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 281
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 296
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 270
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ms: -&gt; 259
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Javascript in NodeJS almost as quick as JVM</h3>
+
+<ul>
+<li>112 lines of markdown in 260ms</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>But still it seems slow</h3>
+
+<ul>
+<li>Combinator parsers are recursive decent parsers</li>
+<li>every <code>or</code> <code>|||</code> branch backtracks on the input
+
+<ul>
+<li>and re-parses of the first parser fails</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<h6>&nbsp;</h6>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>But still it seems slow</h3>
+
+<ul>
+<li>Combinator parsers are recursive decent parsers</li>
+<li>every <code>or</code> <code>|||</code> branch backtracks on the input
+
+<ul>
+<li>and re-parses of the first parser fails</li>
+</ul>
+</li>
+<li>Packrat parsing&rsquo;s memoization can massivly improve it.</li>
+</ul>
+
+
+<h6>&nbsp;</h6>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>But still it seems slow</h3>
+
+<ul>
+<li>Combinator parsers are recursive decent parsers</li>
+<li>every <code>or</code> <code>|||</code> branch backtracks on the input
+
+<ul>
+<li>and re-parses of the first parser fails</li>
+</ul>
+</li>
+<li>Packrat parsing&rsquo;s memoization can massivly improve it.</li>
+</ul>
+
+
+<h6>caveat: also I&rsquo;ve done no code optimisation yet</h6>
+
+<p></section></p>
+
+<p>Runing in the sbt prompt is all very well.</p>
+
+<p>But how can I run this code in my browser?</p>
+
+<p><section data-slide></p>
+
+<h1></h1>
+
+<h3>So&hellip; how do I run it in my browser?</h3>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>export a javascript function to the &ldquo;toplevel&rdquo;</h3>
+
+<ul>
+<li>this allows other javascript ion a page to call it.</li>
+<li>add <code>@JSExportTopLevel</code> annotation to the method to export
+
+<ul>
+<li>so in <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L3">MarkdownToHtml.scala line 3</a> uncomment the <code>import</code>
+<code>
+import scala.scalajs.js.annotation.JSExportTopLevel
+</code>
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>export a javascript function to the &ldquo;toplevel&rdquo;</h3>
+
+<ul>
+<li>add <code>@JSExportTopLevel</code> annotation to the method to export
+
+<ul>
+<li>so in <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L3">MarkdownToHtml.scala line 83</a> uncomment the annotation and expose a top level function called <code>mdmagic</code>
+<code>
+@JSExportTopLevel("mdmagic")
+def transform(md: String): String = simple ---* md
+</code>
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>compile the optimised JavaScript</h3>
+
+<pre><code>sbt:Markdownem&gt; fullOptJS
+[info] Compiling 8 Scala sources to ./target/scala-2.12/classes ...
+[info] Done compiling.
+[info] Full optimizing /home/robertk/projects/skunk/markdownem_js/target/scala-2.12/markdownem-opt.js
+[info] Closure: 0 error(s), 0 warning(s)
+[success] Total time: 16 s, completed 21/09/2017 11:26:04 AM
+</code></pre>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>import the markdownem-opt.js in a html page</h3>
+
+<ul>
+<li>see <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/test.html#L9">test.html</a></li>
+</ul>
+
+
+<p>```html</p>
+
+<script type="text/javascript" src="./target/scala-2.12/markdownem-opt.js"></script>
+
+
+<pre><code>
+###### NB you probably want to set `scalaJSUseMainModuleInitializer := false` in build.sbt
+###### to prevent the slow main app test from running when the page loads
+&lt;/section&gt;
+
+&lt;section data-figure&gt;
+##### simply use the [mdmagic](https://github.com/karlroberts/scalasyd-markdownem/blob/master/test.html#L101-L106) function in some javascript
+</code></pre>
+
+<p>element = document.getElementById(elementId)
+theContent = element.innerHTML
+element.innerHTML = mdmagic(theContent)
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+<span class='line-number'>215</span>
+<span class='line-number'>216</span>
+<span class='line-number'>217</span>
+<span class='line-number'>218</span>
+<span class='line-number'>219</span>
+<span class='line-number'>220</span>
+<span class='line-number'>221</span>
+<span class='line-number'>222</span>
+<span class='line-number'>223</span>
+<span class='line-number'>224</span>
+<span class='line-number'>225</span>
+<span class='line-number'>226</span>
+<span class='line-number'>227</span>
+<span class='line-number'>228</span>
+<span class='line-number'>229</span>
+<span class='line-number'>230</span>
+<span class='line-number'>231</span>
+<span class='line-number'>232</span>
+<span class='line-number'>233</span>
+<span class='line-number'>234</span>
+<span class='line-number'>235</span>
+<span class='line-number'>236</span>
+<span class='line-number'>237</span>
+<span class='line-number'>238</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/section&gt;&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">summoner</span>
-</span><span class='line'><span class="nc">Last</span><span class="o">[</span><span class="kt">String</span> <span class="kt">::</span> <span class="kt">Int</span> <span class="kt">::</span> <span class="kt">HNil</span><span class="o">]</span>
-</span><span class='line'><span class="c1">// res7: shapeless.ops.hlist.Last\</span>
-</span><span class='line'><span class="c1">// [shapeless.::[String,shapeless.::[Int,shapeless.HNil]]]{type Out = Int} =shapeless.ops.hlist$Last$$anon$34@4ac2f6f</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;
+</span><span class='line'>* Open test.html in your browser
+</span><span class='line'>  - to see it render the markdown as html
+</span><span class='line'>&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;For Remaining topics eg&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;Javascript interop&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;RTF&lt;a href="https://www.scala-js.org/doc/"&gt;M https://www.scala-js.org/doc/&lt;/a&gt;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;RTF&lt;a href="https://www.scala-js.org/tutorial/"&gt;T https://www.scala-js.org/tutorial/&lt;/a&gt;
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;TODO&hellip;.&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;just use scala lib &lt;a href="http://www.scala-lang.org/api/2.12.3/scala-parser-combinators/scala/util/parsing/combinator/PackratParsers.html"&gt;PackratParsers&lt;/a&gt;
+</span><span class='line'>or &lt;a href="https://bitbucket.org/inkytonik/sbt-rats"&gt;sbt-rats&lt;/a&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;better error messages&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;faster&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;add the plugin interface&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;write the fragments plugin&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;re-write suited.js in scala.js&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;look at a recursion scheme for render&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;Free Monad/Applicative for renderer/interpreter&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;The End&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;Thanks &hellip;.&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;p&gt;me @MrK4rl&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&lt;p&gt;code used in demo &lt;a href="https://bitbucket.org/suited/markdownem"&gt;https://bitbucket.org/suited/markdownem&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;deck and talk (&lt;a href="http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0"&gt;http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0&lt;/a&gt;)&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;ref &lt;a href="https://www.scala-js.org/doc/"&gt;Scala.js doco&lt;/a&gt;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;ref &lt;a href="http://mth.io/talks/dont-fear-the-parser/"&gt;&ldquo;Dont fear the parser&rdquo;&lt;/a&gt; - Mark Hibberd - scalasyd talk&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;ref &lt;a href="http://github.com/markhibberd/dont-fear-the-parser"&gt;&ldquo;Dont fear the parser&rdquo;&lt;/a&gt; - Mark Hibberd - demo code&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;ref &lt;a href="http://underscore.io/books/shapeless-guide/"&gt;The Type Astronaut&rsquo;s Guide to Shapeless http://underscore.io/books/shapeless-guide/&lt;/a&gt;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;ref &lt;a href="http://karlcode.owtelse.com/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2"&gt;&ldquo;The rise and fall of the Aux pattern&rdquo;&lt;/a&gt; - Karl Roberts - scalasyd talk&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>]]&gt;&lt;/content&gt;
+</span><span class='line'>  &lt;/entry&gt;
+</span><span class='line'>  
+</span><span class='line'>  &lt;entry&gt;
+</span><span class='line'>    &lt;title type="html"&gt;&lt;![CDATA[The Rise and (Hopefully) Fall of the Aux Pattern]]&gt;&lt;/title&gt;
+</span><span class='line'>    &lt;link href="http://karlroberts.github.io/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/"/&gt;
+</span><span class='line'>    &lt;updated&gt;2017-04-11T21:36:16+00:00&lt;/updated&gt;
+</span><span class='line'>    &lt;id&gt;http://karlroberts.github.io/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2&lt;/id&gt;
+</span><span class='line'>    &lt;content type="html"&gt;&lt;![CDATA[&lt;p&gt;This Blog is about the Aux Pattern as seen all over the Shapeless library. &lt;!-- more --&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;small&gt;It is also a slide deck for a talk givn at Scalasyd April 2017.&lt;br/&gt;
+</span><span class='line'>To switch between modes press a number as follows :&lt;br/&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lsquo;1&rsquo; -&gt; Doc mode:
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;shows the document as intended.&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&lsquo;2&rsquo; -&gt; Deck mode, see the slides
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;see the slides&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&lsquo;4&rsquo; -&gt; Lecture Mode
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;enter zooms current navigated to section&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;click zooms div or block clicked&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Arrow keys navigate to next or previous section. or slide
+</span><span class='line'>&lt;/small&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;
+</span><span class='line'>  &lt;h1 align="center"&gt;The Rise (and hopefully fall) of&lt;/h1&gt;
+</span><span class='line'>  &lt;h2 align="center"&gt;The Aux Pattern&lt;/h2&gt;
+</span><span class='line'>  &lt;div align="center"&gt;
+</span><span class='line'>    &lt;span&gt;12th April 2017&lt;/span&gt;
+</span><span class='line'>  &lt;/div&gt;
+</span><span class='line'>  &lt;div style="height:100px"&gt;&lt;/div&gt;
+</span><span class='line'>  &lt;div&gt;
+</span><span class='line'>    &lt;a href="http://www.avocadoconsulting.com.au"&gt;
+</span><span class='line'>      &lt;img src="http://karlroberts.github.io/images/avocado-trans.png" style="max-height: 200px" alt="Avocado Logo"/&gt;
+</span><span class='line'>    &lt;/a&gt;
+</span><span class='line'>  &lt;/div&gt;
+</span><span class='line'>  &lt;div style="margin-top:100px; text-align: center;"&gt;
+</span><span class='line'>    &lt;small&gt;&lt;small&gt;To present this document press &lt;code&gt;2&lt;/code&gt;. Press &lt;code&gt;Esc&lt;/code&gt; to get back to document view.
+</span><span class='line'>        See &lt;a href="http://github.com/suited"&gt;suited.js&lt;/a&gt;
+</span><span class='line'>    &lt;/small&gt;&lt;/small&gt;
+</span><span class='line'>  &lt;/div&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;This Blog is my talk for Scalasyd April 12th 2017. It is about the Aux Pattern as seen all over the Shapeless library. &lt;!-- more --&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Intro&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;This talk is about Scala
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Intro&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;This talk is about Scala
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;Not a Haskel talk dressed up in scala rags.&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Intro&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;This talk is about Scala
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;Not a Haskel talk dressed up in scala rags.&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;About the scala type system
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;dependant types&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;type inference&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;implicits&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Intro&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;This talk is about Scala
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;Not a Haskel talk dressed up in scala rags.&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;About the scala type system
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;dependant types&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;type inference&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;implicits&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;About a cluncky work around
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Aim&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;De-mystify Shapeless code
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;We&rsquo;ve all seen code like this:-&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;</span></code></pre></td></tr></table></div></figure> scala
+object IsHCons {
+  def apply<a href="implicit%20isHCons:%20IsHCons[L]">L &lt;: HList</a>: Aux[L, isHCons.H, isHCons.T] = isHCons</p>
+
+<p>  type Aux[L &lt;: HList, H0, T0 &lt;: HList] = IsHCons[L] { type H = H0; type T = T0 }</p>
+
+<p>  implicit def hlistIsHCons[H0, T0 &lt;: HList]: Aux[H0 :: T0, H0, T0] =
+    new IsHCons[H0 :: T0] {
+      type H = H0
+      type T = T0</p>
+
+<pre><code>  def head(l : H0 :: T0) : H = l.head
+  def tail(l : H0 :: T0) : T = l.tail
+  def cons(h : H0, t : T0) : H0 :: T0 = h :: t
+}
+</code></pre>
+
+<p>}
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+<span class='line-number'>215</span>
+<span class='line-number'>216</span>
+<span class='line-number'>217</span>
+<span class='line-number'>218</span>
+<span class='line-number'>219</span>
+<span class='line-number'>220</span>
+<span class='line-number'>221</span>
+<span class='line-number'>222</span>
+<span class='line-number'>223</span>
+<span class='line-number'>224</span>
+<span class='line-number'>225</span>
+<span class='line-number'>226</span>
+<span class='line-number'>227</span>
+<span class='line-number'>228</span>
+<span class='line-number'>229</span>
+<span class='line-number'>230</span>
+<span class='line-number'>231</span>
+<span class='line-number'>232</span>
+<span class='line-number'>233</span>
+<span class='line-number'>234</span>
+<span class='line-number'>235</span>
+<span class='line-number'>236</span>
+<span class='line-number'>237</span>
+<span class='line-number'>238</span>
+<span class='line-number'>239</span>
+<span class='line-number'>240</span>
+<span class='line-number'>241</span>
+<span class='line-number'>242</span>
+<span class='line-number'>243</span>
+<span class='line-number'>244</span>
+<span class='line-number'>245</span>
+<span class='line-number'>246</span>
+<span class='line-number'>247</span>
+<span class='line-number'>248</span>
+<span class='line-number'>249</span>
+<span class='line-number'>250</span>
+<span class='line-number'>251</span>
+<span class='line-number'>252</span>
+<span class='line-number'>253</span>
+<span class='line-number'>254</span>
+<span class='line-number'>255</span>
+<span class='line-number'>256</span>
+<span class='line-number'>257</span>
+<span class='line-number'>258</span>
+<span class='line-number'>259</span>
+<span class='line-number'>260</span>
+<span class='line-number'>261</span>
+<span class='line-number'>262</span>
+<span class='line-number'>263</span>
+<span class='line-number'>264</span>
+<span class='line-number'>265</span>
+<span class='line-number'>266</span>
+<span class='line-number'>267</span>
+<span class='line-number'>268</span>
+<span class='line-number'>269</span>
+<span class='line-number'>270</span>
+<span class='line-number'>271</span>
+<span class='line-number'>272</span>
+<span class='line-number'>273</span>
+<span class='line-number'>274</span>
+<span class='line-number'>275</span>
+<span class='line-number'>276</span>
+<span class='line-number'>277</span>
+<span class='line-number'>278</span>
+<span class='line-number'>279</span>
+<span class='line-number'>280</span>
+<span class='line-number'>281</span>
+<span class='line-number'>282</span>
+<span class='line-number'>283</span>
+<span class='line-number'>284</span>
+<span class='line-number'>285</span>
+<span class='line-number'>286</span>
+<span class='line-number'>287</span>
+<span class='line-number'>288</span>
+<span class='line-number'>289</span>
+<span class='line-number'>290</span>
+<span class='line-number'>291</span>
+<span class='line-number'>292</span>
+<span class='line-number'>293</span>
+<span class='line-number'>294</span>
+<span class='line-number'>295</span>
+<span class='line-number'>296</span>
+<span class='line-number'>297</span>
+<span class='line-number'>298</span>
+<span class='line-number'>299</span>
+<span class='line-number'>300</span>
+<span class='line-number'>301</span>
+<span class='line-number'>302</span>
+<span class='line-number'>303</span>
+<span class='line-number'>304</span>
+<span class='line-number'>305</span>
+<span class='line-number'>306</span>
+<span class='line-number'>307</span>
+<span class='line-number'>308</span>
+<span class='line-number'>309</span>
+<span class='line-number'>310</span>
+<span class='line-number'>311</span>
+<span class='line-number'>312</span>
+<span class='line-number'>313</span>
+<span class='line-number'>314</span>
+<span class='line-number'>315</span>
+<span class='line-number'>316</span>
+<span class='line-number'>317</span>
+<span class='line-number'>318</span>
+<span class='line-number'>319</span>
+<span class='line-number'>320</span>
+<span class='line-number'>321</span>
+<span class='line-number'>322</span>
+<span class='line-number'>323</span>
+<span class='line-number'>324</span>
+<span class='line-number'>325</span>
+<span class='line-number'>326</span>
+<span class='line-number'>327</span>
+<span class='line-number'>328</span>
+<span class='line-number'>329</span>
+<span class='line-number'>330</span>
+<span class='line-number'>331</span>
+<span class='line-number'>332</span>
+<span class='line-number'>333</span>
+<span class='line-number'>334</span>
+<span class='line-number'>335</span>
+<span class='line-number'>336</span>
+<span class='line-number'>337</span>
+<span class='line-number'>338</span>
+<span class='line-number'>339</span>
+<span class='line-number'>340</span>
+<span class='line-number'>341</span>
+<span class='line-number'>342</span>
+<span class='line-number'>343</span>
+<span class='line-number'>344</span>
+<span class='line-number'>345</span>
+<span class='line-number'>346</span>
+<span class='line-number'>347</span>
+<span class='line-number'>348</span>
+<span class='line-number'>349</span>
+<span class='line-number'>350</span>
+<span class='line-number'>351</span>
+<span class='line-number'>352</span>
+<span class='line-number'>353</span>
+<span class='line-number'>354</span>
+<span class='line-number'>355</span>
+<span class='line-number'>356</span>
+<span class='line-number'>357</span>
+<span class='line-number'>358</span>
+<span class='line-number'>359</span>
+<span class='line-number'>360</span>
+<span class='line-number'>361</span>
+<span class='line-number'>362</span>
+<span class='line-number'>363</span>
+<span class='line-number'>364</span>
+<span class='line-number'>365</span>
+<span class='line-number'>366</span>
+<span class='line-number'>367</span>
+<span class='line-number'>368</span>
+<span class='line-number'>369</span>
+<span class='line-number'>370</span>
+<span class='line-number'>371</span>
+<span class='line-number'>372</span>
+<span class='line-number'>373</span>
+<span class='line-number'>374</span>
+<span class='line-number'>375</span>
+<span class='line-number'>376</span>
+<span class='line-number'>377</span>
+<span class='line-number'>378</span>
+<span class='line-number'>379</span>
+<span class='line-number'>380</span>
+<span class='line-number'>381</span>
+<span class='line-number'>382</span>
+<span class='line-number'>383</span>
+<span class='line-number'>384</span>
+<span class='line-number'>385</span>
+<span class='line-number'>386</span>
+<span class='line-number'>387</span>
+<span class='line-number'>388</span>
+<span class='line-number'>389</span>
+<span class='line-number'>390</span>
+<span class='line-number'>391</span>
+<span class='line-number'>392</span>
+<span class='line-number'>393</span>
+<span class='line-number'>394</span>
+<span class='line-number'>395</span>
+<span class='line-number'>396</span>
+<span class='line-number'>397</span>
+<span class='line-number'>398</span>
+<span class='line-number'>399</span>
+<span class='line-number'>400</span>
+<span class='line-number'>401</span>
+<span class='line-number'>402</span>
+<span class='line-number'>403</span>
+<span class='line-number'>404</span>
+<span class='line-number'>405</span>
+<span class='line-number'>406</span>
+<span class='line-number'>407</span>
+<span class='line-number'>408</span>
+<span class='line-number'>409</span>
+<span class='line-number'>410</span>
+<span class='line-number'>411</span>
+<span class='line-number'>412</span>
+<span class='line-number'>413</span>
+<span class='line-number'>414</span>
+<span class='line-number'>415</span>
+<span class='line-number'>416</span>
+<span class='line-number'>417</span>
+<span class='line-number'>418</span>
+<span class='line-number'>419</span>
+<span class='line-number'>420</span>
+<span class='line-number'>421</span>
+<span class='line-number'>422</span>
+<span class='line-number'>423</span>
+<span class='line-number'>424</span>
+<span class='line-number'>425</span>
+<span class='line-number'>426</span>
+<span class='line-number'>427</span>
+<span class='line-number'>428</span>
+<span class='line-number'>429</span>
+<span class='line-number'>430</span>
+<span class='line-number'>431</span>
+<span class='line-number'>432</span>
+<span class='line-number'>433</span>
+<span class='line-number'>434</span>
+<span class='line-number'>435</span>
+<span class='line-number'>436</span>
+<span class='line-number'>437</span>
+<span class='line-number'>438</span>
+<span class='line-number'>439</span>
+<span class='line-number'>440</span>
+<span class='line-number'>441</span>
+<span class='line-number'>442</span>
+<span class='line-number'>443</span>
+<span class='line-number'>444</span>
+<span class='line-number'>445</span>
+<span class='line-number'>446</span>
+<span class='line-number'>447</span>
+<span class='line-number'>448</span>
+<span class='line-number'>449</span>
+<span class='line-number'>450</span>
+<span class='line-number'>451</span>
+<span class='line-number'>452</span>
+<span class='line-number'>453</span>
+<span class='line-number'>454</span>
+<span class='line-number'>455</span>
+<span class='line-number'>456</span>
+<span class='line-number'>457</span>
+<span class='line-number'>458</span>
+<span class='line-number'>459</span>
+<span class='line-number'>460</span>
+<span class='line-number'>461</span>
+<span class='line-number'>462</span>
+<span class='line-number'>463</span>
+<span class='line-number'>464</span>
+<span class='line-number'>465</span>
+<span class='line-number'>466</span>
+<span class='line-number'>467</span>
+<span class='line-number'>468</span>
+<span class='line-number'>469</span>
+<span class='line-number'>470</span>
+<span class='line-number'>471</span>
+<span class='line-number'>472</span>
+<span class='line-number'>473</span>
+<span class='line-number'>474</span>
+<span class='line-number'>475</span>
+<span class='line-number'>476</span>
+<span class='line-number'>477</span>
+<span class='line-number'>478</span>
+<span class='line-number'>479</span>
+<span class='line-number'>480</span>
+<span class='line-number'>481</span>
+<span class='line-number'>482</span>
+<span class='line-number'>483</span>
+<span class='line-number'>484</span>
+<span class='line-number'>485</span>
+<span class='line-number'>486</span>
+<span class='line-number'>487</span>
+<span class='line-number'>488</span>
+<span class='line-number'>489</span>
+<span class='line-number'>490</span>
+<span class='line-number'>491</span>
+<span class='line-number'>492</span>
+<span class='line-number'>493</span>
+<span class='line-number'>494</span>
+<span class='line-number'>495</span>
+<span class='line-number'>496</span>
+<span class='line-number'>497</span>
+<span class='line-number'>498</span>
+<span class='line-number'>499</span>
+<span class='line-number'>500</span>
+<span class='line-number'>501</span>
+<span class='line-number'>502</span>
+<span class='line-number'>503</span>
+<span class='line-number'>504</span>
+<span class='line-number'>505</span>
+<span class='line-number'>506</span>
+<span class='line-number'>507</span>
+<span class='line-number'>508</span>
+<span class='line-number'>509</span>
+<span class='line-number'>510</span>
+<span class='line-number'>511</span>
+<span class='line-number'>512</span>
+<span class='line-number'>513</span>
+<span class='line-number'>514</span>
+<span class='line-number'>515</span>
+<span class='line-number'>516</span>
+<span class='line-number'>517</span>
+<span class='line-number'>518</span>
+<span class='line-number'>519</span>
+<span class='line-number'>520</span>
+<span class='line-number'>521</span>
+<span class='line-number'>522</span>
+<span class='line-number'>523</span>
+<span class='line-number'>524</span>
+<span class='line-number'>525</span>
+<span class='line-number'>526</span>
+<span class='line-number'>527</span>
+<span class='line-number'>528</span>
+<span class='line-number'>529</span>
+<span class='line-number'>530</span>
+<span class='line-number'>531</span>
+<span class='line-number'>532</span>
+<span class='line-number'>533</span>
+<span class='line-number'>534</span>
+<span class='line-number'>535</span>
+<span class='line-number'>536</span>
+<span class='line-number'>537</span>
+<span class='line-number'>538</span>
+<span class='line-number'>539</span>
+<span class='line-number'>540</span>
+<span class='line-number'>541</span>
+<span class='line-number'>542</span>
+<span class='line-number'>543</span>
+<span class='line-number'>544</span>
+<span class='line-number'>545</span>
+<span class='line-number'>546</span>
+<span class='line-number'>547</span>
+<span class='line-number'>548</span>
+<span class='line-number'>549</span>
+<span class='line-number'>550</span>
+<span class='line-number'>551</span>
+<span class='line-number'>552</span>
+<span class='line-number'>553</span>
+<span class='line-number'>554</span>
+<span class='line-number'>555</span>
+<span class='line-number'>556</span>
+<span class='line-number'>557</span>
+<span class='line-number'>558</span>
+<span class='line-number'>559</span>
+<span class='line-number'>560</span>
+<span class='line-number'>561</span>
+<span class='line-number'>562</span>
+<span class='line-number'>563</span>
+<span class='line-number'>564</span>
+<span class='line-number'>565</span>
+<span class='line-number'>566</span>
+<span class='line-number'>567</span>
+<span class='line-number'>568</span>
+<span class='line-number'>569</span>
+<span class='line-number'>570</span>
+<span class='line-number'>571</span>
+<span class='line-number'>572</span>
+<span class='line-number'>573</span>
+<span class='line-number'>574</span>
+<span class='line-number'>575</span>
+<span class='line-number'>576</span>
+<span class='line-number'>577</span>
+<span class='line-number'>578</span>
+<span class='line-number'>579</span>
+<span class='line-number'>580</span>
+<span class='line-number'>581</span>
+<span class='line-number'>582</span>
+<span class='line-number'>583</span>
+<span class='line-number'>584</span>
+<span class='line-number'>585</span>
+<span class='line-number'>586</span>
+<span class='line-number'>587</span>
+<span class='line-number'>588</span>
+<span class='line-number'>589</span>
+<span class='line-number'>590</span>
+<span class='line-number'>591</span>
+<span class='line-number'>592</span>
+<span class='line-number'>593</span>
+<span class='line-number'>594</span>
+<span class='line-number'>595</span>
+<span class='line-number'>596</span>
+<span class='line-number'>597</span>
+<span class='line-number'>598</span>
+<span class='line-number'>599</span>
+<span class='line-number'>600</span>
+<span class='line-number'>601</span>
+<span class='line-number'>602</span>
+<span class='line-number'>603</span>
+<span class='line-number'>604</span>
+<span class='line-number'>605</span>
+<span class='line-number'>606</span>
+<span class='line-number'>607</span>
+<span class='line-number'>608</span>
+<span class='line-number'>609</span>
+<span class='line-number'>610</span>
+<span class='line-number'>611</span>
+<span class='line-number'>612</span>
+<span class='line-number'>613</span>
+<span class='line-number'>614</span>
+<span class='line-number'>615</span>
+<span class='line-number'>616</span>
+<span class='line-number'>617</span>
+<span class='line-number'>618</span>
+<span class='line-number'>619</span>
+<span class='line-number'>620</span>
+<span class='line-number'>621</span>
+<span class='line-number'>622</span>
+<span class='line-number'>623</span>
+<span class='line-number'>624</span>
+<span class='line-number'>625</span>
+<span class='line-number'>626</span>
+<span class='line-number'>627</span>
+<span class='line-number'>628</span>
+<span class='line-number'>629</span>
+<span class='line-number'>630</span>
+<span class='line-number'>631</span>
+<span class='line-number'>632</span>
+<span class='line-number'>633</span>
+<span class='line-number'>634</span>
+<span class='line-number'>635</span>
+<span class='line-number'>636</span>
+<span class='line-number'>637</span>
+<span class='line-number'>638</span>
+<span class='line-number'>639</span>
+<span class='line-number'>640</span>
+<span class='line-number'>641</span>
+<span class='line-number'>642</span>
+<span class='line-number'>643</span>
+<span class='line-number'>644</span>
+<span class='line-number'>645</span>
+<span class='line-number'>646</span>
+<span class='line-number'>647</span>
+<span class='line-number'>648</span>
+<span class='line-number'>649</span>
+<span class='line-number'>650</span>
+<span class='line-number'>651</span>
+<span class='line-number'>652</span>
+<span class='line-number'>653</span>
+<span class='line-number'>654</span>
+<span class='line-number'>655</span>
+<span class='line-number'>656</span>
+<span class='line-number'>657</span>
+<span class='line-number'>658</span>
+<span class='line-number'>659</span>
+<span class='line-number'>660</span>
+<span class='line-number'>661</span>
+<span class='line-number'>662</span>
+<span class='line-number'>663</span>
+<span class='line-number'>664</span>
+<span class='line-number'>665</span>
+<span class='line-number'>666</span>
+<span class='line-number'>667</span>
+<span class='line-number'>668</span>
+<span class='line-number'>669</span>
+<span class='line-number'>670</span>
+<span class='line-number'>671</span>
+<span class='line-number'>672</span>
+<span class='line-number'>673</span>
+<span class='line-number'>674</span>
+<span class='line-number'>675</span>
+<span class='line-number'>676</span>
+<span class='line-number'>677</span>
+<span class='line-number'>678</span>
+<span class='line-number'>679</span>
+<span class='line-number'>680</span>
+<span class='line-number'>681</span>
+<span class='line-number'>682</span>
+<span class='line-number'>683</span>
+<span class='line-number'>684</span>
+<span class='line-number'>685</span>
+<span class='line-number'>686</span>
+<span class='line-number'>687</span>
+<span class='line-number'>688</span>
+<span class='line-number'>689</span>
+<span class='line-number'>690</span>
+<span class='line-number'>691</span>
+<span class='line-number'>692</span>
+<span class='line-number'>693</span>
+<span class='line-number'>694</span>
+<span class='line-number'>695</span>
+<span class='line-number'>696</span>
+<span class='line-number'>697</span>
+<span class='line-number'>698</span>
+<span class='line-number'>699</span>
+<span class='line-number'>700</span>
+<span class='line-number'>701</span>
+<span class='line-number'>702</span>
+<span class='line-number'>703</span>
+<span class='line-number'>704</span>
+<span class='line-number'>705</span>
+<span class='line-number'>706</span>
+<span class='line-number'>707</span>
+<span class='line-number'>708</span>
+<span class='line-number'>709</span>
+<span class='line-number'>710</span>
+<span class='line-number'>711</span>
+<span class='line-number'>712</span>
+<span class='line-number'>713</span>
+<span class='line-number'>714</span>
+<span class='line-number'>715</span>
+<span class='line-number'>716</span>
+<span class='line-number'>717</span>
+<span class='line-number'>718</span>
+<span class='line-number'>719</span>
+<span class='line-number'>720</span>
+<span class='line-number'>721</span>
+<span class='line-number'>722</span>
+<span class='line-number'>723</span>
+<span class='line-number'>724</span>
+<span class='line-number'>725</span>
+<span class='line-number'>726</span>
+<span class='line-number'>727</span>
+<span class='line-number'>728</span>
+<span class='line-number'>729</span>
+<span class='line-number'>730</span>
+<span class='line-number'>731</span>
+<span class='line-number'>732</span>
+<span class='line-number'>733</span>
+<span class='line-number'>734</span>
+<span class='line-number'>735</span>
+<span class='line-number'>736</span>
+<span class='line-number'>737</span>
+<span class='line-number'>738</span>
+<span class='line-number'>739</span>
+<span class='line-number'>740</span>
+<span class='line-number'>741</span>
+<span class='line-number'>742</span>
+<span class='line-number'>743</span>
+<span class='line-number'>744</span>
+<span class='line-number'>745</span>
+<span class='line-number'>746</span>
+<span class='line-number'>747</span>
+<span class='line-number'>748</span>
+<span class='line-number'>749</span>
+<span class='line-number'>750</span>
+<span class='line-number'>751</span>
+<span class='line-number'>752</span>
+<span class='line-number'>753</span>
+<span class='line-number'>754</span>
+<span class='line-number'>755</span>
+<span class='line-number'>756</span>
+<span class='line-number'>757</span>
+<span class='line-number'>758</span>
+<span class='line-number'>759</span>
+<span class='line-number'>760</span>
+<span class='line-number'>761</span>
+<span class='line-number'>762</span>
+<span class='line-number'>763</span>
+<span class='line-number'>764</span>
+<span class='line-number'>765</span>
+<span class='line-number'>766</span>
+<span class='line-number'>767</span>
+<span class='line-number'>768</span>
+<span class='line-number'>769</span>
+<span class='line-number'>770</span>
+<span class='line-number'>771</span>
+<span class='line-number'>772</span>
+<span class='line-number'>773</span>
+<span class='line-number'>774</span>
+<span class='line-number'>775</span>
+<span class='line-number'>776</span>
+<span class='line-number'>777</span>
+<span class='line-number'>778</span>
+<span class='line-number'>779</span>
+<span class='line-number'>780</span>
+<span class='line-number'>781</span>
+<span class='line-number'>782</span>
+<span class='line-number'>783</span>
+<span class='line-number'>784</span>
+<span class='line-number'>785</span>
+<span class='line-number'>786</span>
+<span class='line-number'>787</span>
+<span class='line-number'>788</span>
+<span class='line-number'>789</span>
+<span class='line-number'>790</span>
+<span class='line-number'>791</span>
+<span class='line-number'>792</span>
+<span class='line-number'>793</span>
+<span class='line-number'>794</span>
+<span class='line-number'>795</span>
+<span class='line-number'>796</span>
+<span class='line-number'>797</span>
+<span class='line-number'>798</span>
+<span class='line-number'>799</span>
+<span class='line-number'>800</span>
+<span class='line-number'>801</span>
+<span class='line-number'>802</span>
+<span class='line-number'>803</span>
+<span class='line-number'>804</span>
+<span class='line-number'>805</span>
+<span class='line-number'>806</span>
+<span class='line-number'>807</span>
+<span class='line-number'>808</span>
+<span class='line-number'>809</span>
+<span class='line-number'>810</span>
+<span class='line-number'>811</span>
+<span class='line-number'>812</span>
+<span class='line-number'>813</span>
+<span class='line-number'>814</span>
+<span class='line-number'>815</span>
+<span class='line-number'>816</span>
+<span class='line-number'>817</span>
+<span class='line-number'>818</span>
+<span class='line-number'>819</span>
+<span class='line-number'>820</span>
+<span class='line-number'>821</span>
+<span class='line-number'>822</span>
+<span class='line-number'>823</span>
+<span class='line-number'>824</span>
+<span class='line-number'>825</span>
+<span class='line-number'>826</span>
+<span class='line-number'>827</span>
+<span class='line-number'>828</span>
+<span class='line-number'>829</span>
+<span class='line-number'>830</span>
+<span class='line-number'>831</span>
+<span class='line-number'>832</span>
+<span class='line-number'>833</span>
+<span class='line-number'>834</span>
+<span class='line-number'>835</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Alphabet soup if ever there was some. Hopefully at the end of this, we&rsquo;ll all be able to read this.
+</span><span class='line'>But before I skip on, notice the &lt;code&gt;Aux&lt;/code&gt; all over that code. This is the source of the name of the &lt;code&gt;Aux&lt;/code&gt; pattern.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;The Aux Pattern&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;The first thing to realise is that it is not a Pattern that can apply to a programming paradidm
+</span><span class='line'>It is really a hack. An elegant hack, but never-the-less a hack.
+</span><span class='line'>Definatly a hack.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;The Aux Hack&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;The Aux Idiom&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;To be kinds to it, it has become quite pervasive as a way to work around
+</span><span class='line'>a problem so I guess I can call it an idiom specific to Scala and its type system.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Being an idom it has become a common way to get stuff done in scala, but what is it solving?
+</span><span class='line'>To answer that we need a little ramble around the scala type system.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Type inference&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;First let&rsquo;s talk about &lt;code&gt;type inference&lt;/code&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Type inference&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Type inference&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;the compiler can work out the type of a thing&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Type inference&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;the compiler can work out the type of a thing&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;without us supplying a clue&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Type inference&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;the compiler can work out the type of a thing&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;without us supplying a clue&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;based on info it already has.&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;A pretty useful feature to have, as I&rsquo;m sure you&rsquo;ll agree, as it helps cut down on &ldquo;Type boiler-plate&rdquo;, while letting the compiler asset correctness for us.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;So let&rsquo;s look an simple example&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Type inference&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;object InferenceTest1 extends Application {
+</span><span class='line'>  val x = 1 + 2 * 3         // the type of x is Int
+</span><span class='line'>  val y = x.toString()      // the type of y is String
+</span><span class='line'>  def succ(x: Int) = x + 1  // method succ returns Int values
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;As we can see the compiler is able to infer some types from the context.
+</span><span class='line'>The next example shows that even with generic types we can infer types at the call site.
+</span><span class='line'>I.e. when the specific type is first used.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Type inference&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;case class MyPair[A, B](x: A, y: B);
+</span><span class='line'>object InferenceTest3 extends Application {
+</span><span class='line'>  def id[T](x: T) = x            // return type: T
+</span><span class='line'>  val p = new MyPair(1, "scala") // type: MyPair[Int, String]
+</span><span class='line'>  val q = id(1)                  // type: Int
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;with no hints the compiler knows that &lt;code&gt;p&lt;/code&gt; is a &lt;code&gt;MyPair[Int, String]&lt;/code&gt; and &lt;code&gt;q&lt;/code&gt; is an int&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;as an a2tion" sometimes mislabled &ldquo;type annotation&rdquo;,
+</span><span class='line'>for example here is the some code with more type ascription than is necessary in scala&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Type ascription&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;def id[T](x: T): T = x
+</span><span class='line'>val p: MyPair[Int, String] = new MyPair[Int, String](1, "scala")
+</span><span class='line'>val q: Int = id[Int](1)
+</span><span class='line'>
+</span><span class='line'>val b = 2 : Byte
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;The only necessary ascription here was on on &lt;code&gt;val b&lt;/code&gt; which we want to be a &lt;code&gt;Byte&lt;/code&gt; rather than let the default inference of &lt;code&gt;Int&lt;/code&gt;.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Path Dependent Types&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;OK no lets switch to another Scala feature, &lt;code&gt;path dependant types&lt;/code&gt;.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Path-dependent types&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Path-dependent types&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;the type depends on the path&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Path-dependent types&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;the type depends on the path&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;so we can have types that depend on the Object that defines them.&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Path-dependent types&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;the type depends on the path&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;so we can have types that depend on the Object that defines them.
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;we can reference these types in out functions and methods.&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Why do I care?&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;let&rsquo;s see an example&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;bad example&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;trait Food {
+</span><span class='line'>  override def toString(): String
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>object grass extends Food {
+</span><span class='line'>  override def toString: String = "grass"
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>object dogfood extends Food {
+</span><span class='line'>  override def toString: String = "dogfood"
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;In good OOP style I&rsquo;ve used &lt;code&gt;inheritance&lt;/code&gt; to create a type hierarchy.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;I can then use these types to define some object instances.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;bad example&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;abstract class BadAnimal  {
+</span><span class='line'>  def eat(fodder: Food): Unit = {
+</span><span class='line'>    println(s" ${this.getClass} Eating my food: "+ fodder)
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>object badfeeder {
+</span><span class='line'>  def feed(animal: BadAnimal, food: Food): Unit = {
+</span><span class='line'>    animal.eat(food)
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>class Cow extends BadAnimal with Food {
+</span><span class='line'>  override def toString = "Cow"
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Now I can use the &lt;code&gt;badfeeder&lt;/code&gt; object to feed Daisy the cow.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;bad example, so far so good&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;val Daisy = new Cow
+</span><span class='line'>
+</span><span class='line'>//Acceptable
+</span><span class='line'>badfeeder.feed(Daisy, grass)
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;bad example, errrm?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;val Daisy = new Cow
+</span><span class='line'>
+</span><span class='line'>//naughty
+</span><span class='line'>badfeeder.feed(Daisy, dogfood)
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;bad example, WTF!&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;val Daisy = new Cow
+</span><span class='line'>
+</span><span class='line'>//totally unacceptable. Canibalism
+</span><span class='line'>badfeeder.feed(Daisy, Daisy)
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;As you can see &lt;code&gt;badfeeder&lt;/code&gt; was allowed by the compiler to turn Daisy into a masochistic canible.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;The problem is that the feeder was allowed to give &lt;code&gt;Food&lt;/code&gt; to an &lt;code&gt;BadAnimal&lt;/code&gt;, and Daisy was Food as well as an &lt;code&gt;BadAnimal&lt;/code&gt; .
+</span><span class='line'>What we need is that an Animal can only eat food suitable for that animal.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;But at the time we declare the Animal supertype we don&rsquo;t know what is suitable food.
+</span><span class='line'>The solution is to create an abstract type in Animal that will be specialised by each animal kind when
+</span><span class='line'>we extend Animal. So as before&hellip;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example (same food)&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;trait Food {
+</span><span class='line'>  override def toString(): String
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>object grass extends Food {
+</span><span class='line'>  override def toString: String = "grass"
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>object dogfood extends Food {
+</span><span class='line'>  override def toString: String = "dogfood"
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, better Animals&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;abstract class GoodAnimal {
+</span><span class='line'>  // path dependent type
+</span><span class='line'>  type SuitableFood &lt;: Food
+</span><span class='line'>
+</span><span class='line'>  def eat(food: SuitableFood): Unit = {
+</span><span class='line'>      println(s" ${this.getClass} Eating my food: "+ food)
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>class Cow extends GoodAnimal with Food {
+</span><span class='line'>  type SuitableFood = grass.type
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Now we are saying that an Animal can only eat food that is suitable, we don&rsquo;t know what that is when we create the
+</span><span class='line'>&lt;code&gt;GoodAnimal&lt;/code&gt; class so we make it abstract and give it an Abstract type.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Subclasses can declare what the type is.
+</span><span class='line'>Notice that we can refer to the abstract type in the method eat.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Now let&rsquo;s try to define the feed function. We might be tempted to try using the &lt;code&gt;#&lt;/code&gt; operator (type projectionn) to
+</span><span class='line'>access the type defined inside the &lt;code&gt;GoodAnimal&lt;/code&gt; &hellip;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, feeding time..&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;def feed(animal: GoodAnimal, food: GoodAnimal#SuitableFood): Unit = {
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  animal.eat(food)
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, wont compile!&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;def feed(animal: GoodAnimal, food: GoodAnimal#SuitableFood): Unit = {
+</span><span class='line'>//    OOPS cant do this it says
+</span><span class='line'>//     expected animal.Suitablefood, actual:GoodAnimal#SuitableFood
+</span><span class='line'>//
+</span><span class='line'>  animal.eat(food)
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;It won&rsquo;t compile. Carefully reading the error message we see that we need &lt;code&gt;animal.Suitablefood&lt;/code&gt;, notice that this is specific to this &lt;code&gt;animal&lt;/code&gt; object instance!&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, feeding time..&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;//
+</span><span class='line'>//
+</span><span class='line'>//
+</span><span class='line'>def feed1(animal: GoodAnimal, food: animal.SuitableFood): Unit = {
+</span><span class='line'>      animal.eat(food)
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, wont compile!&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;// OOPs cant resolve symbol animal
+</span><span class='line'>// can't re-refer to a param in same parameter list
+</span><span class='line'>// type system works left to right
+</span><span class='line'>def feed1(animal: GoodAnimal, food: animal.SuitableFood): Unit = {
+</span><span class='line'>      animal.eat(food)
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;The problem here is that the Scala compiler&rsquo;s type inferencer expects to be able to resolve all types statically in a parameter list,
+</span><span class='line'>but when declaring &lt;code&gt;food&lt;/code&gt; we don&rsquo;t know yet what the type of actual type of animal is, we only know its abstract supertype.
+</span><span class='line'>The compiler has a rule to prevent this problem, as it says in the error, you  &lt;code&gt;can't re-refer to a param in same parameter list&lt;/code&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;This is getting tricky. How can I use this fancy good animal?&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;The solution is to give the Compiler and type inference system a chance to work it out statically using another
+</span><span class='line'>scala feature&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Multiple parameter lists&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;
+</span><span class='line'>* We need to delay type resolution
+</span><span class='line'>* To give the compiler a chance to work it out
+</span><span class='line'>&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, multi parameter list&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;// 
+</span><span class='line'>// 
+</span><span class='line'>def feed2(animal: GoodAnimal)( food: animal.SuitableFood): Unit = {
+</span><span class='line'>  animal.eat(food)
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, multi parameter list&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;// solution is add a second parameter list now type is known at call site
+</span><span class='line'>// type resolution works left to right
+</span><span class='line'>def feed2(animal: GoodAnimal)( food: animal.SuitableFood): Unit = {
+</span><span class='line'>  animal.eat(food)
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;As shown in the previous section, by using multiple parameter lists we can use the type &lt;code&gt;animal.SuitableFood&lt;/code&gt; in the second list because
+</span><span class='line'>the compiler will have been able to reason about the type of &lt;code&gt;GoodAnimal&lt;/code&gt; in the first list from its use at the call site.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Now the bad example are impossible.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, feeding time..&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;val Daisy = new Cow
+</span><span class='line'>// Acceptable
+</span><span class='line'>goodfeeder.feed2(Daisy)(grass)
+</span><span class='line'>
+</span><span class='line'>// naughty
+</span><span class='line'>// 
+</span><span class='line'>//
+</span><span class='line'>
+</span><span class='line'>// totally unacceptable. Canabalism
+</span><span class='line'>//
+</span><span class='line'>//
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, feeding time..&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;val Daisy = new Cow
+</span><span class='line'>//Acceptable
+</span><span class='line'>goodfeeder.feed2(Daisy)(grass)
+</span><span class='line'>
+</span><span class='line'>// naughty
+</span><span class='line'>// wont compile says: expected Cow:SuitableFood, actual dogfood.type
+</span><span class='line'>//goodfeeder.feed2(Daisy)(dogfood)
+</span><span class='line'>
+</span><span class='line'>//
+</span><span class='line'>// 
+</span><span class='line'>//
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;good example, feeding time..&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;val Daisy = new Cow
+</span><span class='line'>//Acceptable
+</span><span class='line'>goodfeeder.feed2(Daisy)(grass)
+</span><span class='line'>
+</span><span class='line'>//naughty
+</span><span class='line'>// wont compile says: expected Cow:SuitableFood, actual dogfood.type
+</span><span class='line'>//goodfeeder.feed2(Daisy)(dogfood)
+</span><span class='line'>
+</span><span class='line'>//totally unacceptable. Canabalism
+</span><span class='line'>// wont compile says: expected Cow:SuitableFood, actual GoodAnimal.Daisy.type
+</span><span class='line'>// goodfeeder.feed2(Daisy)(Daisy)
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;small&gt;
+</span><span class='line'>&lt;small&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;The &ldquo;multiple parameter list&rdquo; feature is used all over scala and has more than one use. I found a good summary for &lt;a href="http://stackoverflow.com/questions/18116303/whats-the-advantage-of-using-multiple-lists-of-function-parameters"&gt;uses of multiple parameter lists  here on stack overflow&lt;/a&gt;.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/small&gt;
+</span><span class='line'>&lt;/small&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;Multiple parameter lists&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;Allow us to delay type resolution&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;while still allowing call site inference
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;So far so good.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;How About with Type-Classes?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;p&gt;&lt;/section&gt;&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;How About with Type-Classes?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;Now we are getting close to what the Aux pattern is about
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;You will often see this kind of code in scala libraries.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;implicit parameter lists (context bound sugar)&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;def join[A: Monoid](a: A, b: A): A = {
+</span><span class='line'>  a |+| b
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;the form &lt;code&gt;[S : T]&lt;/code&gt; in the type parameter list is actually syntactic sugar, called &lt;code&gt;context bound&lt;/code&gt;, for this:-&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;implicit parameter lists&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;def join[A](a: A, b: A)(implicit ev: Monoid[A]): A = {
+</span><span class='line'>  a |+| b
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;There is implicit evidence available that a Monaid[A] exists, and so we can use the &lt;code&gt;|+|&lt;/code&gt; function from Monoid, nowing that an implicit converion to Monoid is available.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;What if my Typeclass has path dependent types?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;What if my Typeclass has path dependent types?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;can I have multiple implicit parameter lists to delay type resolution?&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;What if my Typeclass has path dependent types?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;can I have multiple implicit parameter lists to delay type resolution?&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;no.&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;What if my Typeclass has path dependant types?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;can I have multiple implicit parameter lists to delay type resolution?&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;no.&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;s#1t
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;Scala says no&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;to multiple implicit parameter lists
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;my Magic Typeclass&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;trait MyTypeClass[T] {
+</span><span class='line'>  type In
+</span><span class='line'>  type Out
+</span><span class='line'>
+</span><span class='line'>  def doMagic(foo: T, param1: In): Out
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;can&rsquo;t have stuff like this API&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  def voodoo&lt;a href="foo:%20T,%20sayThis:%20Out0"&gt;T: MyTypeClass, In0&lt;/a&gt;(implicit ev: MyTypeClass.[T])(implicit out: ev.Out) : ev.Out = {
+</span><span class='line'>    ev.doMagic(foo, sayThis): ev.Out
+</span><span class='line'>  }
+</span><span class='line'>&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;not only are there too many implicit param lists but we also have no way to tie the &lt;code&gt;In0&lt;/code&gt; type to &lt;code&gt;ev.In&lt;/code&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;Aux to the rescue&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;we can create a type alias to capture/keep track of the types
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;Aux to the rescue&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;object MyTypeClass {
+</span><span class='line'>//aux pattern
+</span><span class='line'>type Aux[T0, In0, Out0] = MyTypeClass[T0] {type In = In0; type Out = Out0}
+</span><span class='line'>
+</span><span class='line'>// convenience Summoner so I don't need to use instead of `implicitly` 
+</span><span class='line'>def apply[T](implicit evidence: MyTypeClass[T]): Aux[T, evidence.In, evidence.Out] = evidence
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;So we create a type alias to my type, that allows all the path dependent types to be seen on the outside.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;We also create a handy typeclass summoner that an be used instead of implitly when we need it.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;Aux to the rescue&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;interestingly, when we bind In0 at a call site that also binds the inner type In.&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&lt;code&gt;=&lt;/code&gt; in the &lt;code&gt;type&lt;/code&gt; alias is like mathematical equality.&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;so if &lt;code&gt;In0&lt;/code&gt; = apple, and &lt;code&gt;type In = In0&lt;/code&gt;, then&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&lt;code&gt;type In = apple&lt;/code&gt;
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;so we can do stuff like this ..&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;case class Greeter(name: String) {
+</span><span class='line'>
+</span><span class='line'>  def greeting(greeting: String): String = {
+</span><span class='line'>    s"$greeting, $name"
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>case object ImAnAlien {
+</span><span class='line'>
+</span><span class='line'>  @tailrec
+</span><span class='line'>  private def sayThis(thing: String, accumlator: String, numTimes: Int): String = numTimes match {
+</span><span class='line'>    //base case
+</span><span class='line'>    case 0 =&gt; accumlator
+</span><span class='line'>    //recurse
+</span><span class='line'>    case _ =&gt; sayThis(thing, accumlator + " " + thing, (numTimes - 1))
+</span><span class='line'>
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  def say(num: Int): String = {
+</span><span class='line'>    sayThis("I'm an Alien", "", num)
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;
+</span><span class='line'>* two differnt classes but if you squint&hellip;.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;def foo[A,B](a:A):B 
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;so I can make them conform to MyTypeclass
+</span><span class='line'>&lt;/section&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;
+</span><span class='line'>    object MyTypeClass {
+</span><span class='line'>      //aux pattern
+</span><span class='line'>      type Aux[T0, In0, Out0] = MyTypeClass[T0] {type In = In0; type Out = Out0}&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;  // known type class members
+</span><span class='line'>  implicit val greeterToTypeclass: Aux[Greeter, String, String] = new MyTypeClass[Greeter] {
+</span><span class='line'>    type In = String
+</span><span class='line'>    type Out = String
+</span><span class='line'>
+</span><span class='line'>    override def doMagic(foo: Greeter, param1: In): Out = foo.greeting(param1)
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  implicit val imAnAlienToTypeclass: Aux[ImAnAlien.type, Int, String] = new MyTypeClass[ImAnAlien.type] {
+</span><span class='line'>    type In = Int
+</span><span class='line'>    type Out = String
+</span><span class='line'>
+</span><span class='line'>    override def doMagic(foo: ImAnAlien.type, param1: In): Out = foo.say(param1)
+</span><span class='line'>  }   
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;fancy API &hellip;&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;object SomeApi {
+</span><span class='line'>  def voodoo[T, In0, Out0](foo: T, sayThis: In0)(implicit ev: MyTypeClass.Aux[T, In0, Out0]): Out0 = {
+</span><span class='line'>    val tc = MyTypeClass[T]
+</span><span class='line'>    tc.doMagic(foo, sayThis)
+</span><span class='line'>    ev.doMagic(foo, sayThis)
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;p&gt;use it:-&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  //bring typeclass instance into scope
+</span><span class='line'>  import MyTypeClass.&lt;em&gt;
+</span><span class='line'>  import SomeApi.&lt;/em&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  println(&ldquo;Greeting:- &rdquo;)
+</span><span class='line'>  println(voodoo(Greeter(&ldquo;karl&rdquo;), &ldquo;wassup&rdquo;))&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  println(&ldquo;\nAliens:- &rdquo;)
+</span><span class='line'>  println(voodoo(ImAnAlien, 3))&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;
+</span><span class='line'>    Greeting:-
+</span><span class='line'>    wassup, karl&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;Aliens:- 
+</span><span class='line'> I'm an Alien I'm an Alien I'm an Alien
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;But why that Summoner?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&nbsp;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-slide&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;But why that Summoner?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;because implicitly will loose type information that we may want to use again&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;section data-figure&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h4&gt;But why that Summoner?&lt;/h4&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;because implicitly will loose type information that we may want to use again</span></code></pre></td></tr></table></div></figure> scala
+import shapeless.{HList, ::, HNil}
+import shapeless.ops.hlist.Last</li>
+</ul>
+
+
+<p>//use the implicitly
+implicitly[Last[String :: Int :: HNil]]
+// res6: shapeless.ops.hlist.Last[shapeless.::[String,shapeless.::[Int,shapeless.HNil]]] =shapeless.ops.hlist$Last$$anon$34@20bd5df0</p>
+
+<p>// use the summoner
+Last[String :: Int :: HNil]
+// res7: shapeless.ops.hlist.Last\
+// [shapeless.::[String,shapeless.::[Int,shapeless.HNil]]]{type Out = Int} =shapeless.ops.hlist$Last$$anon$34@4ac2f6f
+```
 </section></p>
 
 <p>Notice that with <code>implicitly</code> we loose information that <code>Out</code> is <code>Int</code></p>

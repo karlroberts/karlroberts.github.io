@@ -9,7 +9,7 @@
   <meta name="author" content="Karl Roberts">
 
   
-  <meta name="description" content="This Blog is about Scala Combinator Parsers but exitingly about compiling the scala to JavaScript using Scal.js. It is also a slide deck for a talk &hellip;">
+  <meta name="description" content="This Blog is about Scala Combinator Parsers but excitingly about compiling the Scala to JavaScript using Scala.js. It is also a slide deck for a talk &hellip;">
   <meta name="keywords" content="suited.js">
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,9 +110,9 @@
   </header>
 
 
-<div class="entry-content"><p>This Blog is about Scala Combinator Parsers but exitingly about compiling the scala to JavaScript using Scal.js. <!-- more --></p>
+<div class="entry-content"><p>This Blog is about Scala Combinator Parsers but excitingly about compiling the Scala to JavaScript using Scala.js. <!-- more --></p>
 
-<p><small>It is also a slide deck for a talk givn at Scalasyd Sept 2017.<br/>
+<p><small>It is also a slide deck for a talk given at the ScalaSyd meetup Sept 2017.<br/>
 To switch between modes press a number as follows :<br/></p>
 
 <ul>
@@ -138,7 +138,7 @@ To switch between modes press a number as follows :<br/></p>
 </ul>
 
 
-<p>Arrow keys navigate to next or previous section. or slide
+<p>Arrow keys navigate to next or previous section or slide
 </small></p>
 
 <p><section data-slide>
@@ -181,7 +181,7 @@ To switch between modes press a number as follows :<br/></p>
 
 <p></section></p>
 
-<p>This Blog is my talk for Scalasyd September 13th 2017. It is about Scala combinator parsers annd Scala.js <!-- more --></p>
+<p>This Blog is my talk for ScalaSyd meetup on September 13th 2017. It is about Scala combinator parsers and Scala.js <!-- more --></p>
 
 <p><section data-slide></p>
 
@@ -273,7 +273,7 @@ To switch between modes press a number as follows :<br/></p>
 
 <p></section></p>
 
-<p>Before diving into nitty gritty details it&rsquo;s helpful to explain my motivation for this.</p>
+<p>Before diving into nitty-gritty details it&rsquo;s helpful to explain my motivation for this.</p>
 
 <p><section data-slide></p>
 
@@ -536,7 +536,7 @@ To switch between modes press a number as follows :<br/></p>
 </ul>
 
 
-<p>So apart from getting down with all the transpilling kool kids I actually have a need to do some Javascript jiggery-pokery.</p>
+<p>So apart from getting down with all the transpiling kool kids I actually have a need to do some JavaScript jiggery-pokery.</p>
 
 <p><section data-slide></p>
 
@@ -546,7 +546,7 @@ To switch between modes press a number as follows :<br/></p>
 <li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
 
 <ul>
-<li>a Javascript library</li>
+<li>a JavaScript library</li>
 <li>Allows a single document to render as page or slide deck
 
 <ul>
@@ -568,7 +568,7 @@ To switch between modes press a number as follows :<br/></p>
 <li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
 
 <ul>
-<li>a Javascript library</li>
+<li>a JavaScript library</li>
 <li>Allows a single document to render as page or slide deck
 
 <ul>
@@ -590,13 +590,18 @@ To switch between modes press a number as follows :<br/></p>
 <li>This talk is presented using <a href="https://github.com/suited">suited.js</a>
 
 <ul>
-<li>a Javascript library</li>
+<li>a JavaScript library</li>
 <li>Allows a single document to render as page or slide deck
 
 <ul>
 <li>this slide deck is actually my in blog</li>
 <li>hint: hit key 1,2 or 4 for fun
+
+<ul>
+<li>mode 4 will zoom on <code>enter</code> or click
 </section></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -609,7 +614,7 @@ To switch between modes press a number as follows :<br/></p>
 <h3><a href="https://github.com/suited">suited.js</a></h3>
 
 <ul>
-<li>was written by <a href="http://karlcode.owtelse.com/">me</a> and <a href="http://pappanyn.me/">Dirk</a>
+<li>was written by <a href="http://pappanyn.me/">Dirk</a> and <a href="http://karlcode.owtelse.com/">myself</a>
 
 <ul>
 <li>a small library</li>
@@ -636,7 +641,9 @@ To switch between modes press a number as follows :<br/></p>
 <p>Suited is cool and I&rsquo;ve given many talks using it and the same document can be a blog or article too.
 But we always want it to do more for instance we wanted to write out talks in markdown.</p>
 
-<p>So we needed a markdown plugin, but we also wanted a magic syntax to add slides and figures in markdown.</p>
+<p>So we needed a markdown plugin, but we also wanted a magic syntax to add slides and figures in markdown,
+Suited.js uses <code>&lt;section data-figure&gt;</code> and <code>&lt;section data-slide&gt;</code> to mark out sections of the contents to appear as navigable
+sections. Slides are just visible in the slide show whereas figures are visible in doc mode and also in the slide show.</p>
 
 <p><section data-figure></p>
 
@@ -656,16 +663,16 @@ But we always want it to do more for instance we wanted to write out talks in ma
 
 <p></section></p>
 
-<p>So we implemented a markdown plugin, but delegated to markdown-it</p>
+<p>So we implemented a markdown plugin, but delegated to markdown-it.</p>
 
-<p>But it has a fatal flaw. It has no parser to implement fragments</p>
+<p>But suited has a fatal flaw. It has no parser to implement fragments</p>
 
 <p><section data-figure></p>
 
 <h3>suited.js</h3>
 
 <ul>
-<li>Fragmennts are no fun
+<li>Fragments are no fun
 </section></li>
 </ul>
 
@@ -721,7 +728,7 @@ But we always want it to do more for instance we wanted to write out talks in ma
 <li>especially a complex one
 
 <ul>
-<li>potentially adds javascript to the markup
+<li>it will probably add javascript to the markup
 </section></li>
 </ul>
 </li>
@@ -730,17 +737,22 @@ But we always want it to do more for instance we wanted to write out talks in ma
 
 <p><section data-figure></p>
 
-<h3>so I wrote my own markdown parser?</h3>
+<h3>so I wrote my own markdown parser for Javascript?</h3>
 
 <ul>
+<li>Using Scala.js</li>
 <li>how hard can it be?
 </section></li>
 </ul>
 
 
+<p>Because I want to rely on a few libraries as possible while experimenting with Scala.js I decided to use
+Mark Hibberd&rsquo;s Combinator Parser <a href="github.com/markhibberd/dont-fear-the-parser">demo code</a> from his previous
+Scalasyd talk <a href="http://mth.io/talks/dont-fear-the-parser/">&ldquo;Dont fear the parser&rdquo;</a> as a starting point.</p>
+
 <p><section data-figure></p>
 
-<h3>Parser recap</h3>
+<h3><a href="https://github.com/markhibberd/dont-fear-the-parser">Parser recap</a></h3>
 
 <pre><code>case class Parser[A](run: String =&gt; ParseState[A])
 </code></pre>
@@ -751,51 +763,159 @@ But we always want it to do more for instance we wanted to write out talks in ma
 
 <h3>Parser recap</h3>
 
-<pre><code>sealed trait ParseState[A]
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">ParseState</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">case</span> <span class="k">class</span> <span class="nc">ParseOk</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">input</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">value</span><span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ParseState</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">ParseKo</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">message</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ParseState</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
 
-case class ParseOk[A](input: String, value: A) extends ParseState[A]
-case class ParseKo[A](message: String) extends ParseState[A]
-</code></pre>
 
 <p></section></p>
+
+<p>Parsing is OK but I also want to render the parse tree into HTML, this is what Transformers are for.</p>
 
 <p><section data-figure></p>
 
 <h3>Transformer typeclass</h3>
 
-<pre><code>trait Transformer[T] {
-  type IN
-  type OUT
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">trait</span> <span class="nc">Transformer</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">type</span> <span class="kt">IN</span>
+</span><span class='line'>  <span class="k">type</span> <span class="kt">OUT</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">run</span><span class="o">(</span><span class="n">t</span><span class="k">:</span> <span class="kt">T</span><span class="o">,</span> <span class="n">in</span><span class="k">:</span> <span class="kt">IN</span><span class="o">)</span><span class="k">:</span> <span class="kt">OUT</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-  def run(t: T, in: IN): OUT
-}
-</code></pre>
+
+<p>
+</section></p>
+
+<p><section data-figure></p>
+
+<h3>Syntax pimp and <a href="http://karlcode.owtelse.com/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/?mode=doc#slide-0">Aux Pattern</a></h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="c1">// syntax pimps</span>
+</span><span class='line'><span class="k">implicit</span> <span class="k">class</span> <span class="nc">TransformerOps</span><span class="o">[</span><span class="kt">T0</span><span class="o">](</span><span class="n">foo</span><span class="k">:</span> <span class="kt">T0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="cm">/**</span>
+</span><span class='line'><span class="cm">   * magic wand. pimp alias of Transformer.run eg a transform function</span>
+</span><span class='line'><span class="cm">   */</span>
+</span><span class='line'>  <span class="k">def</span> <span class="o">---*[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">bar</span><span class="k">:</span> <span class="kt">A</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">aux</span><span class="k">:</span> <span class="kt">Transformer.Aux</span><span class="o">[</span><span class="kt">T0</span>,<span class="kt">A</span>,<span class="kt">B</span><span class="o">])</span> <span class="k">:</span> <span class="kt">B</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">aux</span><span class="o">.</span><span class="n">run</span><span class="o">(</span><span class="n">foo</span><span class="o">,</span> <span class="n">bar</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p>See my previous talk on the <a href="http://karlcode.owtelse.com/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/?mode=doc#slide-0">Aux Pattern</a></p>
+
+<p>Now lets look at a specific member of the Transformer typeclass. The <code>MarkdownToHtml</code> transformer.</p>
+
+<p>I wanted to split the transform function into two parts, one to parse, and of course I want to use my markdown parser&rsquo;s run  function in this place, and one to render the <code>ParseResult</code> into HTML.</p>
+
+<p>Not only does this make it easier to reason about but also (I Hope) easier to build a plugin interface where you can supply a function to parse modified markdown as long as it still produces a <code>ParseResult[Markdown]</code> and one to enrich the HTML or even transform it completely, say into rich text or PDF</p>
+
+<p><section data-figure></p>
+
+<h3>MarkdownToHtml</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">MarkdownToHtml</span><span class="o">(</span>
+</span><span class='line'>    <span class="n">p</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nc">ParseState</span><span class="o">[</span><span class="kt">MarkdownDoc</span><span class="o">],</span>
+</span><span class='line'>    <span class="n">r</span><span class="k">:</span> <span class="kt">ParseState</span><span class="o">[</span><span class="kt">MarkdownDoc</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nc">Html</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>notice I&rsquo;ve split it into 2 functions
+
+<ul>
+<li>one to parse, p</li>
+<li>and one to render, r</li>
+</ul>
+</li>
+</ul>
+
 
 <p></section></p>
 
 <p><section data-figure></p>
 
-<h3>Pimp and Aux Pattern</h3>
+<h3><a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L76">MarkdownToHtml</a></h3>
 
-<pre><code>// syntax pimps
-implicit class TransformerOps[T0](foo: T0) {
+<h5>use <code>instance</code> to join the Transformer typeclass</h5>
 
-  /**
-    * magic wand. pimp alias of Transformer.run eg a transform function
-    */
-  def ---*[A,B](bar: A)(implicit aux: Transformer.Aux[T0,A,B]) : B = {
-    aux.run(foo, bar)
-  }
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">MarkdownToHtml</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">import</span> <span class="nn">Transformer._</span>
+</span><span class='line'>  <span class="k">import</span> <span class="nn">ast._</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Use `instance` typeclass constructor to add MarkdownToHtml to the Transformer typeclass</span>
+</span><span class='line'>  <span class="k">implicit</span> <span class="k">val</span> <span class="n">m2hTransformer</span><span class="k">:</span>
+</span><span class='line'>     <span class="kt">Transformer.Aux</span><span class="o">[</span><span class="kt">MarkdownToHtml</span>,<span class="kt">String</span>, <span class="kt">parser.Html</span><span class="o">]</span> <span class="k">=</span>
+</span><span class='line'>       <span class="n">instance</span><span class="o">(</span> <span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">in</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">r</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="n">p</span><span class="o">(</span><span class="n">in</span><span class="o">))</span> <span class="o">)</span>
+</span><span class='line'>  <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p></section></p>
+
+<p></section>
+see <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L76">MarkdownToHtml</a></p>
 
 <p><section data-figure></p>
 
-<h3>Markdown transformer</h3>
+<h3>MarkdownToHtml <code>---*</code> function</h3>
 
-<pre><code>case class MarkdownToHtml(p: String =&gt; ParseState[MarkdownDoc], r: ParseState[MarkdownDoc] =&gt; Html)
-</code></pre>
+<ul>
+<li>Now MarkdownToHtml is in the Transformer typeclass
+
+<ul>
+<li>It has access to the transformer Magic Wand function</li>
+<li>so my <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L87"><code>simple</code> implementation</a>  can use it like so</li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">simple</span> <span class="o">---*</span> <span class="s">&quot;&quot;&quot;## this is h2 i presume&quot;&quot;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p></section></p>
 
@@ -806,55 +926,770 @@ implicit class TransformerOps[T0](foo: T0) {
 <h3>Demo<del>lition</del> time</h3>
 
 <ul>
-<li>scala parser and render in the sbt console
+<li>Scala parser and render in the sbt console
 </section></li>
+</ul>
+
+
+<p>So let&rsquo;s demonstrate the parser and renderer in the console.</p>
+
+<p><section data-figure></p>
+
+<h3>Demo parser: start console</h3>
+
+<pre><code>me@host $ sbt
+sbt:Markdownem&gt; console
+scala&gt; :paste consoleimports.txt
+Pasting file consoleimports.txt...
+import parser._
+import parser.markdownParser._
+import transformers._
+import transformers.Transformer._
+import transformers.MarkdownToHtml._
+</code></pre>
+
+<p></section></p>
+
+<p>Notice that</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="o">[</span><span class="kt">warn</span><span class="o">]</span> <span class="nc">Scala</span> <span class="nc">REPL</span> <span class="n">doesn</span><span class="-Symbol">&#39;t</span> <span class="n">work</span> <span class="k">with</span> <span class="nc">Scala</span><span class="o">.</span><span class="n">js</span><span class="o">.</span> <span class="nc">You</span> <span class="n">are</span> <span class="n">running</span> <span class="n">a</span> <span class="nc">JVM</span> <span class="nc">REPL</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Scala REPL is only available to the Scala code. So only code built without depending on
+JavaScript libraries will work in this REPL demo.</p>
+
+<p>But that&rsquo;s OK, this demo has no JavaScript dependencies, it just generate JavaScript output.</p>
+
+<p><section data-figure></p>
+
+<h3>Demo headerParser</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">headerParser</span><span class="o">.</span><span class="n">run</span><span class="o">(</span><span class="s">&quot;&quot;&quot;## this is h2 i presume&quot;&quot;&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">res0</span><span class="k">:</span> <span class="kt">parser.ParseState</span><span class="o">[</span><span class="kt">ast.Markdown</span><span class="o">]</span> <span class="k">=</span>
+</span><span class='line'>  <span class="nc">ParseOk</span><span class="o">(,</span><span class="n">H2</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="k">this</span> <span class="n">is</span> <span class="n">h2</span> <span class="n">i</span> <span class="n">presume</span><span class="o">)))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Demo headerParser</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">headerParser</span><span class="o">.</span><span class="n">run</span><span class="o">(</span><span class="s">&quot;&quot;&quot;## this is h2 i presume</span>
+</span><span class='line'><span class="s">     | more input not in header&quot;&quot;&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The header parser just parses a single header.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">res3</span><span class="k">:</span> <span class="kt">parser.ParseState</span><span class="o">[</span><span class="kt">ast.Markdown</span><span class="o">]</span> <span class="k">=</span>
+</span><span class='line'>  <span class="nc">ParseOk</span><span class="o">(</span><span class="n">more</span> <span class="n">input</span> <span class="n">not</span> <span class="n">in</span> <span class="n">header</span><span class="o">,</span>
+</span><span class='line'>    <span class="n">H2</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="k">this</span> <span class="n">is</span> <span class="n">h2</span> <span class="n">i</span> <span class="n">presume</span><span class="o">)))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p>Notice that this is a successful parse, and that the <code>ParseOK</code> case class also contains the remaining input for further processing</p>
+
+<p>Also notice that the H2 contains a List of more Markdown, in this case <code>rawHtml</code>.
+This is because the link text could contain more inline markdown, like so&hellip;</p>
+
+<p><section data-figure></p>
+
+<h3>Demo headerParser</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">headerParser</span><span class="o">.</span><span class="n">run</span><span class="o">(</span><span class="s">&quot;&quot;&quot;## this _is_ h2 i **presume**&quot;&quot;&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">res1</span><span class="k">:</span> <span class="kt">parser.ParseState</span><span class="o">[</span><span class="kt">ast.Markdown</span><span class="o">]</span> <span class="k">=</span>
+</span><span class='line'>  <span class="nc">ParseOk</span><span class="o">(,</span><span class="n">H2</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="k">this</span> <span class="o">,</span>
+</span><span class='line'>                <span class="nc">Italic</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="n">is</span><span class="o">)),</span>
+</span><span class='line'>                <span class="n">h2</span> <span class="n">i</span> <span class="o">,</span> <span class="nc">Bold</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="n">presume</span><span class="o">)))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Demo headerParser failing</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">headerParser</span><span class="o">.</span><span class="n">run</span><span class="o">(</span><span class="s">&quot;&quot;&quot;this _is_ NOT h2 i presume&quot;&quot;&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">headerParser</span><span class="o">.</span><span class="n">run</span><span class="o">(</span><span class="s">&quot;&quot;&quot;this _is_ NOT h2 i presume&quot;&quot;&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="n">headerParser</span><span class="o">.</span><span class="n">run</span><span class="o">(</span><span class="s">&quot;&quot;&quot;this _is_ NOT h2 i presume&quot;&quot;&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="n">res0</span><span class="k">:</span> <span class="kt">parser.ParseState</span><span class="o">[</span><span class="kt">ast.Markdown</span><span class="o">]</span> <span class="k">=</span>
+</span><span class='line'>  <span class="nc">ParseKo</span><span class="o">(</span><span class="nc">Input</span> <span class="n">failed</span> <span class="n">to</span> <span class="k">match</span> <span class="n">predicate</span><span class="o">.</span><span class="k">:</span> <span class="kt">instead</span> <span class="kt">saw</span> <span class="kt">char</span> <span class="err">&#39;</span><span class="kt">t</span><span class="err">&#39;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p>Admittedly, this is not the best error message (for better errors use the built in Scala combinator parser library rather than this demo).
+It failed to see a <code>#</code> as the first char in a header and so produced a <code>ParseKo</code> instead of <code>ParseOk</code>.</p>
+
+<p>The important thing to see is that a parser stops as soon as it can go no further.</p>
+
+<p>In order to parse a whole document we can use the combinator methods, such as <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/parser/parsers.scala#L76">|||</a> i.e. <code>or</code> on <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/parser/parsers.scala">Parser</a> and some of the parsers such a <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/parser/parsers.scala#L145">list</a> to compose more powerful
+parsers that continue parsing input by trying one parser after another.</p>
+
+<p>An example is the <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/parser/markdownParser.scala#L50">markdownParser</a> which will try all blockParsers followed by the inlineParsers continuously until it can parse no more.</p>
+
+<p>However that will only occur when there is no more input because the last parser it tries is always the <a href="">rawHtml</a> parser which will always succeed because any input that is not parsed as markdown must be is just treated as <code>RawHtml</code>.</p>
+
+<p><section data-figure></p>
+
+<h3>Demo markdownParser</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">markdownParser</span><span class="o">.</span><span class="n">run</span><span class="o">(</span><span class="s">&quot;&quot;&quot;this _is_ NOT h2 i presume</span>
+</span><span class='line'><span class="s">     | ## but this _is **h2**_&quot;&quot;&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">res4</span><span class="k">:</span> <span class="kt">parser.ParseState</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">ast.Markdown</span><span class="o">]]</span> <span class="k">=</span>
+</span><span class='line'>  <span class="nc">ParseOk</span><span class="o">(,</span><span class="nc">List</span><span class="o">(</span><span class="k">this</span> <span class="o">,</span>
+</span><span class='line'>             <span class="nc">Italic</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="n">is</span><span class="o">)),</span>
+</span><span class='line'>              <span class="nc">NOT</span> <span class="n">h2</span> <span class="n">i</span> <span class="n">presume</span><span class="o">,</span>
+</span><span class='line'>             <span class="nc">Hardwrap</span><span class="o">,</span>
+</span><span class='line'>             <span class="n">H2</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="n">but</span> <span class="k">this</span> <span class="o">,</span>
+</span><span class='line'>               <span class="nc">Italic</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="n">is</span> <span class="o">,</span> <span class="nc">Bold</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="n">h2</span><span class="o">))))))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p>Now we can see that the input parses into a List of <code>Markdown</code>. This is all very well but it&rsquo;d be nice to see the rendered HTML.</p>
+
+<p>This is where <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L87">simple</a> MarkdownToHtml Transformer comes in.</p>
+
+<p>I can now use the <code>---*</code> magic wand function</p>
+
+<p><section data-figure></p>
+
+<h3>Demo <code>simple</code> render</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">simple</span> <span class="o">---*</span> <span class="s">&quot;&quot;&quot;this _is_ NOT h2 i presume</span>
+</span><span class='line'><span class="s">     | ## but this _is **h2**_&quot;&quot;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">res1</span><span class="k">:</span> <span class="kt">transformers.MarkdownToHtml.m2hTransformer.OUT</span> <span class="o">=</span>
+</span><span class='line'><span class="s">&quot;this &lt;em&gt;is&lt;/em&gt; NOT h2 i presume</span>
+</span><span class='line'><span class="s">&lt;h2&gt;but this &lt;em&gt;is &lt;strong&gt;h2&lt;/strong&gt;&lt;/em&gt;&lt;/h2&gt;</span>
+</span><span class='line'><span class="s">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Demo <code>simple</code> render a complex list</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">simple</span> <span class="o">---*</span> <span class="s">&quot;&quot;&quot;* unordered list item</span>
+</span><span class='line'><span class="s">     |   1. _nested_ list item</span>
+</span><span class='line'><span class="s">     |   2. **another _nested_** list item</span>
+</span><span class='line'><span class="s">     | * unorderd [link](http://foo.bar) list item</span>
+</span><span class='line'><span class="s">     | </span>
+</span><span class='line'><span class="s">     | [a ref link][1] whose url detail is at the end</span>
+</span><span class='line'><span class="s">     | </span>
+</span><span class='line'><span class="s">     | [1] http://the.reflink.com&quot;&quot;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Demo <code>simple</code> render a complex list result</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">res0</span><span class="k">:</span> <span class="kt">transformers.MarkdownToHtml.m2hTransformer.OUT</span> <span class="o">=</span>
+</span><span class='line'><span class="s">&quot;&lt;ul&gt;</span>
+</span><span class='line'><span class="s">    &lt;li&gt;unordered list item&lt;/li&gt;</span>
+</span><span class='line'><span class="s">    &lt;ol&gt;</span>
+</span><span class='line'><span class="s">        &lt;li&gt;&lt;em&gt;nested&lt;/em&gt; list item&lt;/li&gt;</span>
+</span><span class='line'><span class="s">        &lt;li&gt;&lt;strong&gt;another &lt;em&gt;nested&lt;/em&gt;&lt;/strong&gt; list item&lt;/li&gt;</span>
+</span><span class='line'><span class="s">    &lt;/ol&gt;</span>
+</span><span class='line'><span class="s">    &lt;li&gt;unorderd &lt;a href=&quot;</span><span class="n">http</span><span class="o">://</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="s">&quot;&gt;link&lt;/a&gt; list item&lt;/li&gt;</span>
+</span><span class='line'><span class="s">&lt;/ul&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s">&lt;a href=&quot;</span><span class="n">http</span><span class="o">://</span><span class="n">the</span><span class="o">.</span><span class="n">reflink</span><span class="o">.</span><span class="n">com</span><span class="s">&quot;&gt;a ref link&lt;/a&gt; whose url detail is at the end</span>
+</span><span class='line'><span class="s">&lt;p&gt;</span>
+</span><span class='line'><span class="s">&lt;!-- [1] http://the.reflink.com --&gt;&lt;/p&gt;</span>
+</span><span class='line'><span class="s">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h1></h1>
+
+<h3>So&hellip; Performance?</h3>
+
+<p></section></p>
+
+<p>What about Performance?</p>
+
+<p>I haven&rsquo;t run proper benchmarks yet, but as a quick and dirty test
+I have added timing output to the <code>main</code> function.</p>
+
+<p><section data-figure></p>
+
+<h3>remember this in <code>build.sbt</code></h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scalaJSUseMainModuleInitializer</span> <span class="o">:=</span> <span class="kc">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>After compiling to JavaScript
+
+<ul>
+<li>adds a call to the <code>main</code> function in the <code>MainClass</code></li>
+<li>at the end of the JavaScript.</li>
+</ul>
+</li>
+<li>This makes the main function run when the JS is loaded
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>We can get <code>sbt</code> run task to do the same for us</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Loading</span> <span class="n">settings</span> <span class="n">from</span> <span class="n">idea</span><span class="o">.</span><span class="n">sbt</span> <span class="o">...</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Loading</span> <span class="n">global</span> <span class="n">plugins</span> <span class="n">from</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">robertk</span><span class="o">/.</span><span class="n">sbt</span><span class="o">/</span><span class="mf">1.0</span><span class="o">/</span><span class="n">plugins</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Loading</span> <span class="n">settings</span> <span class="n">from</span> <span class="n">plugins</span><span class="o">.</span><span class="n">sbt</span> <span class="o">...</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Loading</span> <span class="n">project</span> <span class="n">definition</span> <span class="n">from</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">robertk</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">skunk</span><span class="o">/</span><span class="n">markdownem_js</span><span class="o">/</span><span class="n">project</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Loading</span> <span class="n">settings</span> <span class="n">from</span> <span class="n">build</span><span class="o">.</span><span class="n">sbt</span> <span class="o">...</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Set</span> <span class="n">current</span> <span class="n">project</span> <span class="n">to</span> <span class="nc">Markdownem</span> <span class="o">(</span><span class="n">in</span> <span class="n">build</span> <span class="n">file</span><span class="o">:/</span><span class="n">home</span><span class="o">/</span><span class="n">robertk</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">skunk</span><span class="o">/</span><span class="n">markdownem_js</span><span class="o">/)</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="n">sbt</span> <span class="n">server</span> <span class="n">started</span> <span class="n">at</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="k">:</span><span class="err">5300</span>
+</span><span class='line'><span class="kt">sbt:Markdownem&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>We can get <code>sbt</code> run task to do the same for us</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">run</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Running</span> <span class="n">tutorial</span><span class="o">.</span><span class="n">webapp</span><span class="o">.</span><span class="nc">TestApp</span>
+</span><span class='line'><span class="o">[</span><span class="kt">error</span><span class="o">]</span> <span class="n">java</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="nc">IOException</span><span class="k">:</span> <span class="kt">Cannot</span> <span class="kt">run</span> <span class="kt">program</span> <span class="err">&quot;</span><span class="kt">node</span><span class="err">&quot;</span><span class="kt">:</span> <span class="kt">error</span><span class="o">=</span><span class="mi">2</span><span class="o">,</span> <span class="nc">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+</span><span class='line'><span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p>What happened?</p>
+
+<p>It is an error from sbt as it is trying to run the default JavaScript runtime <code>Node.js</code> to execute the generated JavaScript.</p>
+
+<p>sbt can also run using other JavaScript runners such as <code>PhantomJS</code>, <code>Selenium</code> or <code>Rhino</code> see the <a href="https://www.scala-js.org/doc/project/js-environments.html">docs</a></p>
+
+<p>I had better load NodeJS onto my PATH, i use <code>nvm</code> for this.</p>
+
+<p><section data-slide></p>
+
+<h1>&nbsp;</h1>
+
+<h3>WTF!</h3>
+
+<p></section></p>
+
+<p><section data-slide>
+#</p>
+
+<h3>WTF!</h3>
+
+<ul>
+<li>It was trying to use <code>node</code> to run the JavaScript.</li>
+<li>&nbsp;
+</section></li>
+</ul>
+
+
+<p><section data-slide>
+#</p>
+
+<h3>WTF!</h3>
+
+<ul>
+<li>It was trying to use <code>node</code> to run the JavaScript.</li>
+<li>I better load it onto my PATH
+</section></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">exit</span>
+</span><span class='line'><span class="n">$</span> <span class="n">nvm</span> <span class="n">use</span> <span class="n">v7</span><span class="o">.</span><span class="mf">9.0</span>
+</span><span class='line'><span class="nc">Now</span> <span class="n">using</span> <span class="n">node</span> <span class="n">v7</span><span class="o">.</span><span class="mf">9.0</span> <span class="o">(</span><span class="n">npm</span> <span class="n">v4</span><span class="o">.</span><span class="mf">2.0</span><span class="o">)</span>
+</span><span class='line'><span class="n">$</span> <span class="n">sbt</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Loading</span> <span class="n">settings</span> <span class="n">from</span> <span class="n">idea</span><span class="o">.</span><span class="n">sbt</span> <span class="o">...</span>
+</span><span class='line'><span class="o">...</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Set</span> <span class="n">current</span> <span class="n">project</span> <span class="n">to</span> <span class="nc">Markdownem</span> <span class="o">(</span><span class="n">in</span> <span class="n">build</span> <span class="n">file</span><span class="o">:/</span><span class="n">home</span><span class="o">/</span><span class="n">robertk</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">skunk</span><span class="o">/</span><span class="n">markdownem_js</span><span class="o">/)</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="n">sbt</span> <span class="n">server</span> <span class="n">started</span> <span class="n">at</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="k">:</span><span class="err">5300</span>
+</span><span class='line'><span class="kt">sbt:Markdownem&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>We can get <code>sbt</code> running NodeJs</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">run</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Running</span> <span class="n">tutorial</span><span class="o">.</span><span class="n">webapp</span><span class="o">.</span><span class="nc">TestApp</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">ms</span><span class="k">:</span> <span class="kt">-&gt;</span> <span class="err">690</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">443</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">434</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">447</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">423</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">430</span>
+</span><span class='line'><span class="err">[</span><span class="kt">success</span><span class="err">]</span> <span class="kt">Total</span> <span class="kt">time:</span> <span class="err">4</span> <span class="kt">s</span><span class="o">,</span> <span class="n">completed</span> <span class="mi">21</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2017</span> <span class="mi">9</span><span class="k">:</span><span class="err">53</span><span class="kt">:</span><span class="err">01</span> <span class="kt">AM</span>
+</span><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span>
+</span><span class='line'><span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p>The <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/webapp/TestApp.scala">TestApp</a> just renders 112 lines of markdown into HTML a few times.</p>
+
+<p>We can see that after the initial run where it starts the node environment it ends up taking about 430ms.</p>
+
+<p>That seems slow!</p>
+
+<p><section data-slide></p>
+
+<h3>seems a bit slow!</h3>
+
+<ul>
+<li><p>112 lines of markdown in 430ms</p></li>
+<li><p>&nbsp;
+</section></p></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>seems a bit slow!</h3>
+
+<ul>
+<li><p>112 lines of markdown in 430ms</p></li>
+<li><p>lets compare the JS to a scala/JVM run
+</section></p></li>
+</ul>
+
+
+<p>If we comment the JS lines in build.sbt we can build and run the main app in standard Scala on the JVM</p>
+
+<p><section data-figure></p>
+
+<h3>comment Scala.js from build.sbt</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="c1">// enablePlugins(ScalaJSPlugin)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// This is an application with a main method</span>
+</span><span class='line'><span class="c1">// change this to true if you want the The TestApp main class to be a JS &quot;Application&quot;</span>
+</span><span class='line'><span class="c1">// scalaJSUseMainModuleInitializer := true</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">name</span> <span class="o">:=</span> <span class="s">&quot;Markdownem&quot;</span>
+</span><span class='line'><span class="n">scalaVersion</span> <span class="o">:=</span> <span class="s">&quot;2.12.2&quot;</span>
+</span><span class='line'><span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>now run as a ScalaJVM app</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">reload</span>
+</span><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">run</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Compiling</span> <span class="mi">8</span> <span class="nc">Scala</span> <span class="n">sources</span> <span class="n">to</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">markdownem_js</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">scala</span><span class="o">-</span><span class="mf">2.12</span><span class="o">/</span><span class="n">classes</span> <span class="o">...</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Done</span> <span class="n">compiling</span><span class="o">.</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Packaging</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">markdownem_js</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">scala</span><span class="o">-</span><span class="mf">2.12</span><span class="o">/</span><span class="n">markdownem_2</span><span class="o">.</span><span class="mi">12</span><span class="o">-</span><span class="mf">0.1</span><span class="o">-</span><span class="nc">SNAPSHOT</span><span class="o">.</span><span class="n">jar</span> <span class="o">...</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Done</span> <span class="n">packaging</span><span class="o">.</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Running</span> <span class="n">tutorial</span><span class="o">.</span><span class="n">webapp</span><span class="o">.</span><span class="nc">TestApp</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">ms</span><span class="k">:</span> <span class="kt">-&gt;</span> <span class="err">592</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">263</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">234</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">229</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">225</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">235</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>On the JVM same code runs 200ms faster</h3>
+
+<ul>
+<li><p>112 lines of markdown in ~ 230ms</p></li>
+<li><p>&nbsp;</p></li>
+<li><p>&nbsp;</p></li>
+<li><p>&nbsp;
+</section></p></li>
 </ul>
 
 
 <p><section data-slide></p>
 
-<h1></h1>
-
-<h3>Demo<del>lition</del> time</h3>
+<h3>On the JVM same code runs 200ms faster</h3>
 
 <ul>
-<li>scala.js
+<li><p>112 lines of markdown in ~ 230ms</p></li>
+<li><p>But this is not really a fair comparison with NodeJS</p></li>
+<li><p>&nbsp;</p></li>
+<li><p>&nbsp;
+</section></p></li>
+</ul>
+
+
+<p><section data-slide></p>
+
+<h3>On the JVM same code runs 200ms faster</h3>
 
 <ul>
-<li>modify the build to do javascript and demo
+<li><p>112 lines of markdown in ~ 230ms</p></li>
+<li><p>But this is not really a fair comparison with NodeJS</p></li>
+<li><p>The Javascript was not fully optomised because it would take longer to compile</p></li>
+<li><p>&nbsp;
+</section></p></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>On the JVM same code runs 200ms faster</h3>
+
+<ul>
+<li><p>112 lines of markdown in ~ 230ms</p></li>
+<li><p>But this is not really a fair comparison with NodeJS</p></li>
+<li><p>The Javascript was not fully optomised because it would take longer to compile</p></li>
+<li><p>So lets optomise it.
+</section></p></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h3>use the optimising compiler</h3>
+
+<ul>
+<li>The Javascript was compiled with the <code>FastOptStage</code> compiler
+
+<ul>
+<li>meaning it was fast to compile</li>
+</ul>
+</li>
+<li>We can tell sbt to run with the <code>FullOptStage</code> compiler
+
+<ul>
+<li>which will optimise much more
 </section></li>
 </ul>
 </li>
 </ul>
 
 
-<p><section data-slide></p>
+<p><section data-figure></p>
 
-<h1></h1>
+<h3>un-comment Scala.js, put it back into build.sbt</h3>
 
-<h3>So&hellip; performance?</h3>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">ScalaJSPlugin</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// This is an application with a main method</span>
+</span><span class='line'><span class="c1">// change this to true if you want the The TestApp main class to be a JS &quot;Application&quot;</span>
+</span><span class='line'><span class="n">scalaJSUseMainModuleInitializer</span> <span class="o">:=</span> <span class="kc">true</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">name</span> <span class="o">:=</span> <span class="s">&quot;Markdownem&quot;</span>
+</span><span class='line'><span class="n">scalaVersion</span> <span class="o">:=</span> <span class="s">&quot;2.12.2&quot;</span>
+</span><span class='line'><span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p></section></p>
 
-<p>What about Performance?</p>
+<p><section data-figure></p>
 
-<p>from the sbt command line or add to build.sbt
-<section data-figure></p>
+<h3>tell sbt to use Full optimisation</h3>
 
-<h3>performance</h3>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">reload</span>
+</span><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">set</span> <span class="kt">scalaJSStage</span> <span class="kt">in</span> <span class="kt">Global</span> <span class="kt">:=</span> <span class="kt">FullOptStage</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>set scalaJSStage in Global := FastOptStage
-
-set scalaJSStage in Global := FullOptStage
-</code></pre>
 
 <ul>
-<li>Now we have almost as fast as JVM</li>
+<li>N.B. we can set it back with</li>
 </ul>
 
 
-<p><small><small>caveat no code optimisation has been done yet</small></small>
-</section></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">set</span> <span class="kt">scalaJSStage</span> <span class="kt">in</span> <span class="kt">Global</span> <span class="kt">:=</span> <span class="kt">FastOptStage</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>now run optimised Javascript</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">run</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Full</span> <span class="n">optimizing</span> <span class="o">./</span><span class="n">target</span><span class="o">/</span><span class="n">scala</span><span class="o">-</span><span class="mf">2.12</span><span class="o">/</span><span class="n">markdownem</span><span class="o">-</span><span class="n">opt</span><span class="o">.</span><span class="n">js</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Closure</span><span class="k">:</span> <span class="err">0</span> <span class="kt">error</span><span class="o">(</span><span class="kt">s</span><span class="o">),</span> <span class="mi">0</span> <span class="n">warning</span><span class="o">(</span><span class="n">s</span><span class="o">)</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Running</span> <span class="n">tutorial</span><span class="o">.</span><span class="n">webapp</span><span class="o">.</span><span class="nc">TestApp</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">ms</span><span class="k">:</span> <span class="kt">-&gt;</span> <span class="err">590</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">298</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">281</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">296</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">270</span>
+</span><span class='line'><span class="kt">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="kt">ms:</span> <span class="kt">-&gt;</span> <span class="err">259</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Javascript in NodeJS almost as quick as JVM</h3>
+
+<ul>
+<li>112 lines of markdown in 260ms</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>But still it seems slow</h3>
+
+<ul>
+<li>Combinator parsers are recursive decent parsers</li>
+<li>every <code>or</code> <code>|||</code> branch backtracks on the input
+
+<ul>
+<li>and re-parses of the first parser fails</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<h6>&nbsp;</h6>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>But still it seems slow</h3>
+
+<ul>
+<li>Combinator parsers are recursive decent parsers</li>
+<li>every <code>or</code> <code>|||</code> branch backtracks on the input
+
+<ul>
+<li>and re-parses of the first parser fails</li>
+</ul>
+</li>
+<li>Packrat parsing&rsquo;s memoization can massivly improve it.</li>
+</ul>
+
+
+<h6>&nbsp;</h6>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>But still it seems slow</h3>
+
+<ul>
+<li>Combinator parsers are recursive decent parsers</li>
+<li>every <code>or</code> <code>|||</code> branch backtracks on the input
+
+<ul>
+<li>and re-parses of the first parser fails</li>
+</ul>
+</li>
+<li>Packrat parsing&rsquo;s memoization can massivly improve it.</li>
+</ul>
+
+
+<h6>caveat: also I&rsquo;ve done no code optimisation yet</h6>
+
+<p></section></p>
+
+<p>Runing in the sbt prompt is all very well.</p>
+
+<p>But how can I run this code in my browser?</p>
 
 <p><section data-slide></p>
 
@@ -864,9 +1699,117 @@ set scalaJSStage in Global := FullOptStage
 
 <p></section></p>
 
-<p><section data-slide></p>
+<p><section data-figure></p>
 
-<h3>Javascript interop</h3>
+<h3>export a javascript function to the &ldquo;toplevel&rdquo;</h3>
+
+<ul>
+<li>this allows other javascript ion a page to call it.</li>
+<li>add <code>@JSExportTopLevel</code> annotation to the method to export
+
+<ul>
+<li>so in <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L3">MarkdownToHtml.scala line 3</a> uncomment the <code>import</code></li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">scala.scalajs.js.annotation.JSExportTopLevel</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>export a javascript function to the &ldquo;toplevel&rdquo;</h3>
+
+<ul>
+<li>add <code>@JSExportTopLevel</code> annotation to the method to export
+
+<ul>
+<li>so in <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/src/main/scala/transformers/MarkdownToHtml.scala#L3">MarkdownToHtml.scala line 83</a> uncomment the annotation and expose a top level function called <code>mdmagic</code></li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="nd">@JSExportTopLevel</span><span class="o">(</span><span class="s">&quot;mdmagic&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="k">def</span> <span class="n">transform</span><span class="o">(</span><span class="n">md</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">simple</span> <span class="o">---*</span> <span class="n">md</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>compile the optimised JavaScript</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">sbt</span><span class="k">:</span><span class="kt">Markdownem&gt;</span> <span class="kt">fullOptJS</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Compiling</span> <span class="mi">8</span> <span class="nc">Scala</span> <span class="n">sources</span> <span class="n">to</span> <span class="o">./</span><span class="n">target</span><span class="o">/</span><span class="n">scala</span><span class="o">-</span><span class="mf">2.12</span><span class="o">/</span><span class="n">classes</span> <span class="o">...</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Done</span> <span class="n">compiling</span><span class="o">.</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Full</span> <span class="n">optimizing</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">robertk</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">skunk</span><span class="o">/</span><span class="n">markdownem_js</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">scala</span><span class="o">-</span><span class="mf">2.12</span><span class="o">/</span><span class="n">markdownem</span><span class="o">-</span><span class="n">opt</span><span class="o">.</span><span class="n">js</span>
+</span><span class='line'><span class="o">[</span><span class="kt">info</span><span class="o">]</span> <span class="nc">Closure</span><span class="k">:</span> <span class="err">0</span> <span class="kt">error</span><span class="o">(</span><span class="kt">s</span><span class="o">),</span> <span class="mi">0</span> <span class="n">warning</span><span class="o">(</span><span class="n">s</span><span class="o">)</span>
+</span><span class='line'><span class="o">[</span><span class="kt">success</span><span class="o">]</span> <span class="nc">Total</span> <span class="n">time</span><span class="k">:</span> <span class="err">16</span> <span class="kt">s</span><span class="o">,</span> <span class="n">completed</span> <span class="mi">21</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2017</span> <span class="mi">11</span><span class="k">:</span><span class="err">26</span><span class="kt">:</span><span class="err">04</span> <span class="kt">AM</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>import the markdownem-opt.js in a html page</h3>
+
+<ul>
+<li>see <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/test.html#L9">test.html</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;./target/scala-2.12/markdownem-opt.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>NB you probably want to set <code>scalaJSUseMainModuleInitializer := false</code> in build.sbt</h6>
+
+<h6>to prevent the slow main app test from running when the page loads</h6>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h5>simply use the <a href="https://github.com/karlroberts/scalasyd-markdownem/blob/master/test.html#L101-L106">mdmagic</a> function in some javascript</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>element = document.getElementById(elementId)
+</span><span class='line'>theContent = element.innerHTML
+</span><span class='line'>element.innerHTML = mdmagic(theContent)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></section></p>
+
+<p><section data-figure>
+* Open test.html in your browser
+  - to see it render the markdown as html
+</section></p>
+
+<p><section data-figure></p>
+
+<h3>For Remaining topics eg</h3>
+
+<h4>Javascript interop</h4>
 
 <ul>
 <li>RTF<a href="https://www.scala-js.org/doc/">M https://www.scala-js.org/doc/</a></li>
@@ -880,7 +1823,8 @@ set scalaJSStage in Global := FullOptStage
 <h4>TODO&hellip;.</h4>
 
 <ul>
-<li>just use scala lib ratpack parser (or sbt-rats?)
+<li>just use scala lib <a href="http://www.scala-lang.org/api/2.12.3/scala-parser-combinators/scala/util/parsing/combinator/PackratParsers.html">PackratParsers</a>
+or <a href="https://bitbucket.org/inkytonik/sbt-rats">sbt-rats</a>
 
 <ul>
 <li>better error messages</li>
@@ -899,17 +1843,27 @@ set scalaJSStage in Global := FullOptStage
 
 <p><section data-figure></p>
 
-<h4>Thanks&hellip;.</h4>
+<h4>The End</h4>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>Thanks &hellip;.</h4>
 
 <ul>
-<li>code used at <a href="https://bitbucket.org/suited/markdownem">https://bitbucket.org/suited/markdownem</a></li>
-<li>deck and talk @ <a href="http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0">http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0</a></li>
-<li>me @MrK4rl</li>
+<li><p>me @MrK4rl</p></li>
+<li><p>code used in demo <a href="https://bitbucket.org/suited/markdownem">https://bitbucket.org/suited/markdownem</a></p></li>
+<li>deck and talk (<a href="http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0">http://karlcode.owtelse.com/blog/2017/07/09/scala-js-markdown-combinator-parser/?mode=deck#slide-0</a>)</li>
+<li>ref <a href="https://www.scala-js.org/doc/">Scala.js doco</a></li>
+<li>ref <a href="http://mth.io/talks/dont-fear-the-parser/">&ldquo;Dont fear the parser&rdquo;</a> - Mark Hibberd - scalasyd talk</li>
+<li>ref <a href="http://github.com/markhibberd/dont-fear-the-parser">&ldquo;Dont fear the parser&rdquo;</a> - Mark Hibberd - demo code</li>
 <li>ref <a href="http://underscore.io/books/shapeless-guide/">The Type Astronaut&rsquo;s Guide to Shapeless http://underscore.io/books/shapeless-guide/</a></li>
-<li><a href="https://www.scala-js.org/doc/">doco</a>
-</section></li>
+<li>ref <a href="http://karlcode.owtelse.com/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2">&ldquo;The rise and fall of the Aux pattern&rdquo;</a> - Karl Roberts - scalasyd talk</li>
 </ul>
 
+
+<p></section></p>
 </div>
 
 
@@ -948,7 +1902,7 @@ set scalaJSStage in Global := FullOptStage
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/" title="Previous Post: The Rise and (hopefully) fall of the Aux Pattern 2">&laquo; The Rise and (hopefully) fall of the Aux Pattern 2</a>
+        <a class="basic-alignment left" href="/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/" title="Previous Post: The Rise and (hopefully) fall of the Aux Pattern">&laquo; The Rise and (hopefully) fall of the Aux Pattern</a>
       
       
     </p>
@@ -974,7 +1928,7 @@ set scalaJSStage in Global := FullOptStage
       </li>
     
       <li class="post">
-        <a href="/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/">The Rise and (Hopefully) Fall of the Aux Pattern 2</a>
+        <a href="/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/">The Rise and (Hopefully) Fall of the Aux Pattern</a>
       </li>
     
       <li class="post">
