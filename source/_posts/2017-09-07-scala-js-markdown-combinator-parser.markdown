@@ -36,11 +36,11 @@ Arrow keys navigate to next or previous section or slide
   <div style="height:100px"></div>
   <div>
     <a href="http://www.avocadoconsulting.com.au">
-      <img src="/images/avocado-trans.png" style="max-height: 200px" alt="Avocado Logo"/>
+      <img src="/images/avocado_logo_colour_stacked.png" style="max-height: 200px" alt="Avocado Logo"/>
     </a>
   </div>
   <div style="margin-top:100px; text-align: center;">
-    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view.
+    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view. Left and Right arrow keys to navigate.
         See <a href="http://github.com/suited">suited.js</a>
     </small></small>
   </div>
