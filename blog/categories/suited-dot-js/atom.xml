@@ -4,7 +4,7 @@
   <title><![CDATA[Category: suited.js | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/suited-dot-js/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2017-09-21T02:39:35+00:00</updated>
+  <updated>2017-09-21T04:09:01+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -58,11 +58,11 @@ To switch between modes press a number as follows :<br/></p>
   <div style="height:100px"></div>
   <div>
     <a href="http://www.avocadoconsulting.com.au">
-      <img src="http://karlroberts.github.io/images/avocado-trans.png" style="max-height: 200px" alt="Avocado Logo"/>
+      <img src="http://karlroberts.github.io/images/avocado_logo_colour_stacked.png" style="max-height: 200px" alt="Avocado Logo"/>
     </a>
   </div>
   <div style="margin-top:100px; text-align: center;">
-    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view. Left and Right arror keys to navigate.
+    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view. Left and Right arrow keys to navigate.
         See <a href="http://github.com/suited">suited.js</a>
     </small></small>
   </div></p>
@@ -1872,11 +1872,11 @@ element.innerHTML = mdmagic(theContent)
 </span><span class='line'>  &lt;div style="height:100px"&gt;&lt;/div&gt;
 </span><span class='line'>  &lt;div&gt;
 </span><span class='line'>    &lt;a href="http://www.avocadoconsulting.com.au"&gt;
-</span><span class='line'>      &lt;img src="http://karlroberts.github.io/images/avocado-trans.png" style="max-height: 200px" alt="Avocado Logo"/&gt;
+</span><span class='line'>      &lt;img src="http://karlroberts.github.io/images/avocado_logo_colour_stacked.png" style="max-height: 200px" alt="Avocado Logo"/&gt;
 </span><span class='line'>    &lt;/a&gt;
 </span><span class='line'>  &lt;/div&gt;
 </span><span class='line'>  &lt;div style="margin-top:100px; text-align: center;"&gt;
-</span><span class='line'>    &lt;small&gt;&lt;small&gt;To present this document press &lt;code&gt;2&lt;/code&gt;. Press &lt;code&gt;Esc&lt;/code&gt; to get back to document view.
+</span><span class='line'>    &lt;small&gt;&lt;small&gt;To present this document press &lt;code&gt;2&lt;/code&gt;. Press &lt;code&gt;Esc&lt;/code&gt; to get back to document view. Left and Right arrow keys to navigate.
 </span><span class='line'>        See &lt;a href="http://github.com/suited"&gt;suited.js&lt;/a&gt;
 </span><span class='line'>    &lt;/small&gt;&lt;/small&gt;
 </span><span class='line'>  &lt;/div&gt;&lt;/p&gt;
