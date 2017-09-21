@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: "The Rise and (hopefully) fall of the Aux Pattern 2"
+title: "The Rise and (hopefully) fall of the Aux Pattern"
 date: 2017-04-12 08:36:16 +1100
 comments: true
 categories:
@@ -214,7 +214,7 @@ I.e. when the specific type is first used.
 
 with no hints the compiler knows that `p` is a `MyPair[Int, String]` and `q` is an int
 
-as an aside, the hints I'm talking about are "type ascription" sometimes mislabled "type annotation",
+as an a2tion" sometimes mislabled "type annotation",
 for example here is the some code with more type ascription than is necessary in scala
 
 <section data-figure>
