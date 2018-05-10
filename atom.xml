@@ -4,7 +4,7 @@
   <title><![CDATA[Karl's Code]]></title>
   <link href="http://karlroberts.github.io/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2018-05-10T01:11:03+00:00</updated>
+  <updated>2018-05-10T01:17:20+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -1255,56 +1255,11 @@ $ sbt clean run
 <li><p>me @MrK4rl</p></li>
 <li><p>code used in demo <a href="https://github.com/karlroberts/scalasydUglyCode">https://github.com/karlroberts/scalasydUglyCode</a></p></li>
 <li>deck and talk (<a href="http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=deck#slide-0">http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=deck#slide-0</a>)</li>
+<li>blog (<a href="http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=doc#slide-0">http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=doc#slide-0</a>)</li>
 </ul>
 
 
 <p></section></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[POLi Payments Considered Harmful]]></title>
-    <link href="http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful/"/>
-    <updated>2017-09-19T12:21:45+00:00</updated>
-    <id>http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful</id>
-    <content type="html"><![CDATA[<p>Maybe I&rsquo;m late to the party but I was just attempting to purchase some bitcoin from <a href="http://www.coinspot.com.au">coinspot</a> and the default payment mechanism was to use <a href="https://www.polipayments.com/">POLi payments</a>. Their website asked me to enter my online banking credentials. It was at this point that all my security warning senses spiked and my hackels went up.</p>
-
-<p>I immediatly backed out and did a quick investigation. I can not beleive my eyes. It seems to go against everything we should do to protect our assets on the web.</p>
-
-<p>How is this legitimate!? Read on to see what I found out. Maybe you can help explain why people think this is a safe thing to do online?</p>
-
-<!-- more -->
-
-
-<h3>What is POLi payments?.</h3>
-
-<p>At first glance the POLi website looks pretty impressive. Nice and slick. The Autralia Post logo is prominantly displayed at the top of the page adding an air or respectability.</p>
-
-<p>POLi Payments Pty Ltd is an online payment system in Australia and New Zealand.</p>
-
-<p>In October 2014 POLi payments (formally Centricom Pty Ltd) <a href="https://au.linkedin.com/company/poli-payments">was aquired</a> by <a href="https://www.directory.gov.au/portfolios/communications-and-arts/australian-postal-corporation/securepay-holdings-pty-ltd">SecurePay Holdings</a> is a Australia Post controlled holding company for SecurePay Pty Ltd, an entity which provides online payment services.</p>
-
-<p>POLi enables consumers to pay for goods or services directly from a merchant&rsquo;s website without the need for a credit card, but by using a direct connection to the user&rsquo;s internet banking.</p>
-
-<h3>Why Would you use POLi payments</h3>
-
-<p>First of all, it&rsquo;s fast. Payment is immediate, I dson&rsquo;t have to wait a few days like with BPay for my money to clear, so for anyone whowants to get those Bitcoins now while the price is right it seems like a good thing.</p>
-
-<p>But Credit Card or charge card, (eg Visa or MasterCard) payments are immediate too so why not use that? After all If I pay with a CreditCard I get purchase protection, I am dealing with the Credit card company not the vendor, so if the goods dont arrive my account gets re-credited and the Credit Card company goes after the vendor. They have more clout then me and I don&rsquo;t have to chase a dodgy vendor for my goods.</p>
-
-<p>All of that is great, but it comes at a cost. Often there is a few percents of surcharge to use a Credit card that gets passed down to the  cutomer.</p>
-
-<p>Poli payments are free to the user. There are no charges to the user paying for goods this way.</p>
-
-<h3>How is this different from other online payment systems</h3>
-
-<h3>What is wrong with this?</h3>
-
-<h3>Am I breaching my online banking contract</h3>
-
-<p><a href="https://www.commbank.com.au/support/faqs/371.html">https://www.commbank.com.au/support/faqs/371.html</a></p>
-
-<p>Commonwealth Bank Of Australia specifically advises against using POLipay and in general giving your online credentials to any website other than there own <a href="https://twitter.com/cam_mackay/status/904651972145422336">https://twitter.com/cam_mackay/status/904651972145422336</a></p>
 ]]></content>
   </entry>
   
@@ -5635,6 +5590,76 @@ Don&rsquo;t add any others yet, it is best to keep things as simple as possible 
 <li>The sevice account has no contacts of it&rsquo;s own so you must supply a User who&rsquo;s contactas you want to snarf, eg <code>GoogleCredential.Builder().setServiceAccountUser("me@mydomain.com")</code></li>
 </ul>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Deploying Octopress: The Missing Manual]]></title>
+    <link href="http://karlroberts.github.io/blog/2014/06/25/deploying-octopress-the-missing-manual/"/>
+    <updated>2014-06-25T06:12:59+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2014/06/25/deploying-octopress-the-missing-manual</id>
+    <content type="html"><![CDATA[<h2>Github Deploy</h2>
+
+<p>The <a href="http://octopress.org/docs/deploying/github/">Octopress Doco</a> does a pretty good job but it misses out one crucial step.</p>
+
+<ul>
+<li>You need to commit the master branch and push it up to github.</li>
+</ul>
+
+
+<p>But before you do please read on to see how to do that the octopress way.</p>
+
+<!--more-->
+
+
+<h3>Where are all my blogs and pages?</h3>
+
+<p>If you&rsquo;ve followed octpresses Doco, then under your <code>octopress</code> directory you&rsquo;ll have a <code>source</code> folder.</p>
+
+<ul>
+<li>Web pages are in directories directly under <code>source</code>.</li>
+<li>Blog posts are under the <code>_posts</code> directory.</li>
+</ul>
+
+
+<p>running <code>rake generate</code> will copy the content to the <code>_deploy</code> directory and check it into git.
+running <code>rake deploy</code> commits it and pushes the deploy directory to github</p>
+
+<p>Job done right?</p>
+
+<p>Unfortunatly it&rsquo;s not always that easy. All the code under source will be on the git branch <code>source</code>. If you follow the instructions in the doco you&rsquo;ll commit this code and push it to git hub with this command</p>
+
+<pre><code>git add .
+git commit -m 'your message'
+git push origin source
+</code></pre>
+
+<p>This pushes your &ldquo;source&rdquo; to github into the <code>source</code> directory.</p>
+
+<h3>Why can&rsquo;t I see my stuff in Github</h3>
+
+<p>The problem is the pages that get rendered as the blog in github is the stuff in the <code>master</code> branch. That was supposed to be pushed by running <code>rake deploy</code></p>
+
+<p>However sometimes that git simply failes to do that for you. Why? Well perhaps you have accidentally modified the code under <code>_deploy</code> and git is actually complaining but the rake task doesn&rsquo;t show you that?</p>
+
+<p>To check simply</p>
+
+<pre><code>cd _deploy
+git status # notice that the _deploy dir is in the master branch :-)
+git push origin master # this may fail and tell you why
+</code></pre>
+
+<p>For me the last step did fail. I fixed it by doing</p>
+
+<pre><code>cd _deploy
+git fetch origin master
+git merge origin/master  # you may need to fix conflicts here
+git push origin master
+</code></pre>
+
+<p>And that sorted it :-)</p>
+
+<p>From then on my <code>rake deploy</code> worked as expected. lesson learned, leave the <code>_deploy</code> dir alone!</p>
 ]]></content>
   </entry>
   

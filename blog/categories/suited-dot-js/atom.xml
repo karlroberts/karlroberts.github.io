@@ -4,7 +4,7 @@
   <title><![CDATA[Category: suited.js | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/suited-dot-js/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2018-05-10T01:11:03+00:00</updated>
+  <updated>2018-05-10T01:17:20+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -1255,6 +1255,7 @@ $ sbt clean run
 <li><p>me @MrK4rl</p></li>
 <li><p>code used in demo <a href="https://github.com/karlroberts/scalasydUglyCode">https://github.com/karlroberts/scalasydUglyCode</a></p></li>
 <li>deck and talk (<a href="http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=deck#slide-0">http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=deck#slide-0</a>)</li>
+<li>blog (<a href="http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=doc#slide-0">http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=doc#slide-0</a>)</li>
 </ul>
 
 
