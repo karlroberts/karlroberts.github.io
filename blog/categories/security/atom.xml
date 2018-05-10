@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Security | Karl's Code]]></title>
+  <link href="http://karlroberts.github.io/blog/categories/security/atom.xml" rel="self"/>
+  <link href="http://karlroberts.github.io/"/>
+  <updated>2018-05-10T00:54:06+00:00</updated>
+  <id>http://karlroberts.github.io/</id>
+  <author>
+    <name><![CDATA[Karl Roberts]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[POLi Payments Considered Harmful]]></title>
+    <link href="http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful/"/>
+    <updated>2017-09-19T12:21:45+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful</id>
+    <content type="html"><![CDATA[<p>Maybe I&rsquo;m late to the party but I was just attempting to purchase some bitcoin from <a href="http://www.coinspot.com.au">coinspot</a> and the default payment mechanism was to use <a href="https://www.polipayments.com/">POLi payments</a>. Their website asked me to enter my online banking credentials. It was at this point that all my security warning senses spiked and my hackels went up.</p>
+
+<p>I immediatly backed out and did a quick investigation. I can not beleive my eyes. It seems to go against everything we should do to protect our assets on the web.</p>
+
+<p>How is this legitimate!? Read on to see what I found out. Maybe you can help explain why people think this is a safe thing to do online?</p>
+
+<!-- more -->
+
+
+<h3>What is POLi payments?.</h3>
+
+<p>At first glance the POLi website looks pretty impressive. Nice and slick. The Autralia Post logo is prominantly displayed at the top of the page adding an air or respectability.</p>
+
+<p>POLi Payments Pty Ltd is an online payment system in Australia and New Zealand.</p>
+
+<p>In October 2014 POLi payments (formally Centricom Pty Ltd) <a href="https://au.linkedin.com/company/poli-payments">was aquired</a> by <a href="https://www.directory.gov.au/portfolios/communications-and-arts/australian-postal-corporation/securepay-holdings-pty-ltd">SecurePay Holdings</a> is a Australia Post controlled holding company for SecurePay Pty Ltd, an entity which provides online payment services.</p>
+
+<p>POLi enables consumers to pay for goods or services directly from a merchant&rsquo;s website without the need for a credit card, but by using a direct connection to the user&rsquo;s internet banking.</p>
+
+<h3>Why Would you use POLi payments</h3>
+
+<p>First of all, it&rsquo;s fast. Payment is immediate, I dson&rsquo;t have to wait a few days like with BPay for my money to clear, so for anyone whowants to get those Bitcoins now while the price is right it seems like a good thing.</p>
+
+<p>But Credit Card or charge card, (eg Visa or MasterCard) payments are immediate too so why not use that? After all If I pay with a CreditCard I get purchase protection, I am dealing with the Credit card company not the vendor, so if the goods dont arrive my account gets re-credited and the Credit Card company goes after the vendor. They have more clout then me and I don&rsquo;t have to chase a dodgy vendor for my goods.</p>
+
+<p>All of that is great, but it comes at a cost. Often there is a few percents of surcharge to use a Credit card that gets passed down to the  cutomer.</p>
+
+<p>Poli payments are free to the user. There are no charges to the user paying for goods this way.</p>
+
+<h3>How is this different from other online payment systems</h3>
+
+<h3>What is wrong with this?</h3>
+
+<h3>Am I breaching my online banking contract</h3>
+
+<p><a href="https://www.commbank.com.au/support/faqs/371.html">https://www.commbank.com.au/support/faqs/371.html</a></p>
+
+<p>Commonwealth Bank Of Australia specifically advises against using POLipay and in general giving your online credentials to any website other than there own <a href="https://twitter.com/cam_mackay/status/904651972145422336">https://twitter.com/cam_mackay/status/904651972145422336</a></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>POLi Payments Considered Harmful - Karl's Code</title>
+  <meta name="author" content="Karl Roberts">
+
+  
+  <meta name="description" content="Maybe I&rsquo;m late to the party but I was just attempting to purchase some bitcoin from coinspot and the default payment mechanism was to use POLi &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
+
+  <!-- add scripts I want to add first if the keywords section in YML frontmatter exists -->
+
+
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- custom style for morkdown tables -->
+<link href="/stylesheets/table-data.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-72539490-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karl's Code</a></h1>
+  
+    <h2>and other code related stuff</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="karlroberts.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">POLi Payments Considered Harmful</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-09-19T12:21:45+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>12:21 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Maybe I&rsquo;m late to the party but I was just attempting to purchase some bitcoin from <a href="http://www.coinspot.com.au">coinspot</a> and the default payment mechanism was to use <a href="https://www.polipayments.com/">POLi payments</a>. Their website asked me to enter my online banking credentials. It was at this point that all my security warning senses spiked and my hackels went up.</p>
+
+<p>I immediatly backed out and did a quick investigation. I can not beleive my eyes. It seems to go against everything we should do to protect our assets on the web.</p>
+
+<p>How is this legitimate!? Read on to see what I found out. Maybe you can help explain why people think this is a safe thing to do online?</p>
+
+<!-- more -->
+
+
+<h3>What is POLi payments?.</h3>
+
+<p>At first glance the POLi website looks pretty impressive. Nice and slick. The Autralia Post logo is prominantly displayed at the top of the page adding an air or respectability.</p>
+
+<p>POLi Payments Pty Ltd is an online payment system in Australia and New Zealand.</p>
+
+<p>In October 2014 POLi payments (formally Centricom Pty Ltd) <a href="https://au.linkedin.com/company/poli-payments">was aquired</a> by <a href="https://www.directory.gov.au/portfolios/communications-and-arts/australian-postal-corporation/securepay-holdings-pty-ltd">SecurePay Holdings</a> is a Australia Post controlled holding company for SecurePay Pty Ltd, an entity which provides online payment services.</p>
+
+<p>POLi enables consumers to pay for goods or services directly from a merchant&rsquo;s website without the need for a credit card, but by using a direct connection to the user&rsquo;s internet banking.</p>
+
+<h3>Why Would you use POLi payments</h3>
+
+<p>First of all, it&rsquo;s fast. Payment is immediate, I dson&rsquo;t have to wait a few days like with BPay for my money to clear, so for anyone whowants to get those Bitcoins now while the price is right it seems like a good thing.</p>
+
+<p>But Credit Card or charge card, (eg Visa or MasterCard) payments are immediate too so why not use that? After all If I pay with a CreditCard I get purchase protection, I am dealing with the Credit card company not the vendor, so if the goods dont arrive my account gets re-credited and the Credit Card company goes after the vendor. They have more clout then me and I don&rsquo;t have to chase a dodgy vendor for my goods.</p>
+
+<p>All of that is great, but it comes at a cost. Often there is a few percents of surcharge to use a Credit card that gets passed down to the  cutomer.</p>
+
+<p>Poli payments are free to the user. There are no charges to the user paying for goods this way.</p>
+
+<h3>How is this different from other online payment systems</h3>
+
+<h3>What is wrong with this?</h3>
+
+<h3>Am I breaching my online banking contract</h3>
+
+<p><a href="https://www.commbank.com.au/support/faqs/371.html">https://www.commbank.com.au/support/faqs/371.html</a></p>
+
+<p>Commonwealth Bank Of Australia specifically advises against using POLipay and in general giving your online credentials to any website other than there own <a href="https://twitter.com/cam_mackay/status/904651972145422336">https://twitter.com/cam_mackay/status/904651972145422336</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Karl Roberts</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2017-09-19T12:21:45+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>12:21 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/security/'>security</a>, <a class='category' href='/blog/categories/warning/'>warning</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful/" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/07/09/scala-js-markdown-combinator-parser/" title="Previous Post: ScalaJs markdown combinator parser">&laquo; ScalaJs markdown combinator parser</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/" title="Next Post: Refactoring Ugly Scala to Idiomatic Scala">Refactoring Ugly Scala to Idiomatic Scala &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/">Refactoring Ugly Scala to Idiomatic Scala</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/09/19/polipay-considered-harmful/">POLi Payments Considered Harmful</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/07/09/scala-js-markdown-combinator-parser/">ScalaJs Markdown Combinator Parser</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/">The Rise and (Hopefully) Fall of the Aux Pattern</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/15/python-is-faster-than-node-dot-js/">AWS Lambda Launch Times - Is Python Faster Than Node.js ?</a>
+      </li>
+    
+  </ul>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="6142720898"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+</script>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'karlroberts',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode-leader1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="4526386891"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- <p> adsense here todo... </p> -->
+<p>
+Copyright &copy; 2018 - Karl Roberts -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'karlcode';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful/';
+        var disqus_url = 'http://karlroberts.github.io/blog/2017/09/19/polipay-considered-harmful/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

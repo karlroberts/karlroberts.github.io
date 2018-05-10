@@ -1,0 +1,1548 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Refactoring Ugly Scala to Idiomatic Scala - Karl's Code</title>
+  <meta name="author" content="Karl Roberts">
+
+  
+  <meta name="description" content="This Blog is my (#Scalasyd)[https://github.com/scalasyd/scalasyd] talk about refactoring Scala code to be more idiomatic It is also a slide deck for &hellip;">
+  <meta name="keywords" content="suited.js">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karlroberts.github.io/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Karl's Code" type="application/atom+xml">
+
+  <!-- add scripts I want to add first if the keywords section in YML frontmatter exists -->
+
+
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- custom style for morkdown tables -->
+<link href="/stylesheets/table-data.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+
+<link href="/scripts/suited-light.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-72539490-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karl's Code</a></h1>
+  
+    <h2>and other code related stuff</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="karlroberts.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Refactoring Ugly Scala to Idiomatic Scala</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-04-30T22:06:35+00:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>10:06 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This Blog is my (#Scalasyd)[<a href="https://github.com/scalasyd/scalasyd">https://github.com/scalasyd/scalasyd</a>] talk about refactoring Scala code to be more idiomatic <!-- more --></p>
+
+<p><small>It is also a slide deck for the talk given at the ScalaSyd meetup May 2018.<br/>
+To switch between modes press a number as follows :<br/></p>
+
+<ul>
+<li>&lsquo;1&rsquo; -&gt; Doc mode:
+
+<ul>
+<li>shows the document as intended.</li>
+</ul>
+</li>
+<li>&lsquo;2&rsquo; -&gt; Deck mode, see the slides
+
+<ul>
+<li>see the slides</li>
+</ul>
+</li>
+<li>&lsquo;4&rsquo; -&gt; Lecture Mode
+
+<ul>
+<li>enter zooms current navigated to section</li>
+<li>click zooms div or block clicked</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Arrow keys navigate to next or previous section or slide
+</small></p>
+
+<p><section data-slide>
+  <h1 align="center">Refactor</h1>
+  <h2 align="center">Ugly Scala Code</h2>
+  <div align="center">
+    <span>9th May 2018</span>
+  </div>
+  <h4>&nbsp;</h4>
+  <h3>Code Weaver</h3>
+  <div style="height:100px"></div>
+  <div>
+    <a href="http://www.codeweaver.com.au">
+      <img src="/images/codeweaver/Volleyball_Interchange_Diagram.gif" style="max-height: 200px" alt="Code Weaver Logo example"/>
+      <!-- image by By VidTheKid at en.wikipedia (Transferred from en.wikipedia by SreeBot) [Public domain], via Wikimedia Commons -->
+    </a>
+  </div>
+  <h5>&nbsp;</h5>
+  <h3>By</h3>
+  <h5><a href="http://karlcode.owtelse.com/">Karl Roberts</a></h5>
+  <h5><a href="https://twitter.com/MrK4rl">@MrK4rl</a></h5>
+  <div style="margin-top:100px; text-align: center;">
+    <small><small>To present this document press <code>2</code>. Press <code>Esc</code> to get back to document view. Left and Right arrow keys to navigate.
+        See <a href="http://github.com/suited">suited.js</a>
+    </small></small>
+  </div></p>
+
+<p></section></p>
+
+<p>In this blog I&rsquo;ll be talking about working with Scala to build applications.</p>
+
+<p><section data-figure></p>
+
+<h4>Demo code</h4>
+
+<ul>
+<li>can be found at the link below</li>
+<li><a href="https://github.com/karlroberts/scalasydUglyCode">https://github.com/karlroberts/scalasydUglyCode</a></li>
+</ul>
+
+
+<p><section data-figure></p>
+
+<h4>Confession</h4>
+
+<ul>
+<li>First I need to admit to a dirty little secret I&rsquo;ve been keeping&hellip;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Ugly Truth</h3>
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Ugly Truth</h3>
+
+<ul>
+<li>It can be easier to hack away in an imperative style</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Ugly Truth</h3>
+
+<ul>
+<li>It can be easier to hack away in an imperative style</li>
+<li>Especially when hacking on a new Java API</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>The Ugly Truth</h3>
+
+<ul>
+<li>It can be easier to hack away in an imperative style</li>
+<li>Especially when hacking on a new Java API</li>
+<li>Or noodling around to get an understanding</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Excuses?</h3>
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Excuses?</h3>
+
+<ul>
+<li>Thinking in Java</li>
+<li>&nbsp;
+&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Excuses?</h3>
+
+<ul>
+<li>Thinking in Java</li>
+<li>looping in loops
+
+<ul>
+<li>helps walk or build a data structure</li>
+<li>while I&rsquo;m developing it</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p>I have a bunch of justifications for this behaviour they may not be good excuses but here they are.</p>
+
+<p><section data-figure></p>
+
+<h3>The Excuses?</h3>
+
+<ul>
+<li>Thinking in Java</li>
+<li>looping in loops
+
+<ul>
+<li>helps walk or build a data structure</li>
+<li>while I&rsquo;m developing it</li>
+</ul>
+</li>
+<li>Types get in the way less</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Problem?</h3>
+
+<ul>
+<li>Sneaky Bugs can exist
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>Hard to test pieces in isolation</li>
+<li>Hard to understand later or refactor?
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Problem?</h3>
+
+<ul>
+<li>Sneaky Bugs can exist
+
+<ul>
+<li>especially in the edge cases</li>
+</ul>
+</li>
+<li>Hard to test pieces in isolation</li>
+<li>Hard to understand later or refactor?
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>The Problem?</h3>
+
+<ul>
+<li>Sneaky Bugs can exist
+
+<ul>
+<li>especially in the edge cases</li>
+</ul>
+</li>
+<li>Hard to test pieces in isolation</li>
+<li>Hard to understand later or refactor?
+
+<ul>
+<li>you may forget to take account of some out of view mutation</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>The Problem?</h3>
+
+<ul>
+<li>Sneaky Bugs can exist
+
+<ul>
+<li>especially in the edge cases</li>
+</ul>
+</li>
+<li>Hard to test pieces in isolation</li>
+<li>Hard to understand later or refactor?
+
+<ul>
+<li>you may forget to take account of some out of view mutation</li>
+</ul>
+</li>
+<li>Gives me the creeps.</li>
+</ul>
+
+
+<p></section></p>
+
+<p>The code written in the style, that you are going to see, runs ok (I think) but I am always wary of it, because I know how hard I had to work to get it running.
+Coding it was a trial and error affair, with contant compiling and running and attaching debuggers to test what was happening to my mutable placeholders.</p>
+
+<p>The trick is to refactor it to a more imutable functional style as soon as it is &ldquo;working&rdquo;.</p>
+
+<p>It is always best to refactor runnable code because we can see that the refactor caused no disernable difference to the outcome by simple running it.</p>
+
+<p>Tests help of course, but the problem with testing mutable sections of code is that you have to test from the outside, as alluded to above it is hard to test an isolated fragment to see if it works.</p>
+
+<p><section data-figure></p>
+
+<h3>The Solution?</h3>
+
+<ul>
+<li>Once Running Refactor
+
+<ul>
+<li>while you still understand the problem</li>
+</ul>
+</li>
+<li>Remove mutation</li>
+<li>Remove loops</li>
+<li>Learn the API you are working in
+
+<ul>
+<li>it may well have realy helpful methods/functions for you to use.</li>
+</ul>
+</li>
+<li>Discover nice general patterns</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>My Example?</h3>
+
+<h5><a href="https://github.com/karlroberts/scalasydUglyCode/blob/start/src/main/scala/historicprices/provider/api.scala">source code location</a></h5>
+
+<p><img src="/images/codeweaver/uglycode/start.png" style="max-width: 80%" alt="api doc for List"/></p>
+
+<p></section></p>
+
+<p>This code is extracted from a Crypto currency tool I wrote to help me keep track of my position on coinspot.</p>
+
+<p>Unfortunatly at the time coinspot api did not allow me to get all the data from them so I needed to extract my trade history as csv,
+parse it and build up a data structure to allow me to query my position and other useful info.</p>
+
+<p>Using my Position data structure I can see what currencies I&rsquo;m making money in and ask questions ike &ldquo;how much bitcoin did I buy below this price?&rdquo;</p>
+
+<p>The big problem solved above is that the trade history showed prices for cross trades in terms of each other eg bought 1.2 ETH for .05 BTC but I want to know my
+position in AUD for each currency, so I was forced to look to the internet for historical prices of the coins in AUD at the price of the time of the trade to work backwards.</p>
+
+<p>Here you can see I have a list of previously known prices from which I build up a <code>PriceTable</code> which is a <code>Map</code> of <code>PriceTableForCurrency</code>.</p>
+
+<p>This is really a big map of maps. The caller of this function (in this case the main function) saves the newly discovered prices to a file that I read and parse on start-up to contruct my known prices List.</p>
+
+<p>In short what I need to do is:-</p>
+
+<p><section data-slide></p>
+
+<h3>PriceTable</h3>
+
+<ul>
+<li>I need to build up a PriceTable for Currencies.
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>PriceTable</h3>
+
+<ul>
+<li>I need to build up a PriceTable for Currencies.
+
+<ul>
+<li>A Map of Maps</li>
+</ul>
+</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>PriceTable</h3>
+
+<ul>
+<li>I need to build up a PriceTable for Currencies.
+
+<ul>
+<li>A Map of Maps</li>
+</ul>
+</li>
+<li>So I can
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>PriceTable</h3>
+
+<ul>
+<li>I need to build up a PriceTable for Currencies.
+
+<ul>
+<li>A Map of Maps</li>
+</ul>
+</li>
+<li>So I can
+
+<ul>
+<li>look up a currency and</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Build a PriceTable</h3>
+
+<ul>
+<li>I need to build up a PriceTable for Currencies.
+
+<ul>
+<li>A Map of Maps</li>
+</ul>
+</li>
+<li>So I can
+
+<ul>
+<li>look up a currency and</li>
+<li>from there look up a price a date I care about</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p>For context you should know that to help me work around the Map of Maps in the imperative style I created a few type aliases and helper classes to make it easier to reason about, the main structures are as follows:-</p>
+
+<p><section data-figure></p>
+
+<h3>PriceTable</h3>
+
+<pre><code>// a type alias
+type PriceTable = Map[Currency, PriceTableForCurrency]
+</code></pre>
+
+<p></section></p>
+
+<p>Here <code>PriceTableForCurrency</code> is just a <code>case class</code> that wraps a <code>Map</code> but has a helpful API that allows me to augment it and build it up from <code>HistoricPrice</code> objects
+which I get from parsing the CSV file of previously discovered historic prices.</p>
+
+<p><section data-figure></p>
+
+<h3>PriceTableForCurrency</h3>
+
+<h5><a href="https://github.com/karlroberts/scalasydUglyCode/blob/start/src/main/scala/historicprices/provider/api.scala">source code location</a></h5>
+
+<pre><code>case class PriceTableForCurrency(currency: Currency, prices: Map[LocalDateTime,Double]) {
+  /**
+    * Will overwrite if we alredy have a price at this time
+    * @param historicPrice
+    * @return
+    */
+  def +=(historicPrice: HistoricPrice) = {
+    val hp = (historicPrice.localDateTime, historicPrice.quotePrice)
+    this.copy(prices = prices + hp)
+  }
+  def ++=(other:PriceTableForCurrency) = if(other.currency == currency) this.copy(prices = prices ++ other.prices) else this
+
+  def asHistoricPrices: List[HistoricPrice] = {
+    import scala.collection.mutable.ListBuffer
+    val lb = ListBuffer[HistoricPrice]()
+    prices.foreach(tup =&gt; {
+      lb += HistoricPrice(tup._1,currency,tup._2)
+    })
+    lb.toList
+  }
+}
+</code></pre>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>My Example - quick re-read for context</h3>
+
+<h5><a href="https://github.com/karlroberts/scalasydUglyCode/blob/start/src/main/scala/historicprices/provider/api.scala">source code location</a></h5>
+
+<p><img src="/images/codeweaver/uglycode/start.png" style="max-width: 80%" alt="api doc for List"/></p>
+
+<p></section></p>
+
+<p>The first part I want to look at is building up the initial <code>PriceTable</code> (effectivly a Map of Maps) from the known prices list, which I read in from a CSV file.</p>
+
+<p>Building a Map of Maps is something that I do a lot while coding, and it is a pain every time.</p>
+
+<p>Walking a list and examining the Map to see if I have the Key in the map already and adding it and a value if I don&rsquo;t have it or modifying the value if I do have it is tedious for a single Map. It is exponentially more tedious and error prone for each level of nested Map.</p>
+
+<p>If only there was a better way.</p>
+
+<p><section data-slide></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/mutable/Map$.html">Api docs for Map</a></h5>
+
+<ul>
+<li><p>We can contruct a Map like this:</p>
+
+<p>  val myMap = Map(&ldquo;a&rdquo; -> &ldquo;little A&rdquo;, &ldquo;b&rdquo; -> &ldquo;little B&rdquo;)</p></li>
+<li><p>&nbsp;</p></li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p>&nbsp;</p>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/mutable/Map$.html">Api docs for Map</a></h5>
+
+<ul>
+<li><p>We can contruct a Map like this:</p>
+
+<p>  val myMap = Map(&ldquo;a&rdquo; -> &ldquo;little A&rdquo;, &ldquo;b&rdquo; -> &ldquo;little B&rdquo;)</p></li>
+<li><p>The -> is a function that create a Tuple</p></li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p>&nbsp;</p>
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/mutable/Map$.html">Api docs for Map</a></h5>
+
+<ul>
+<li><p>We can contruct a Map like this:</p>
+
+<p>  val myMap = Map(&ldquo;a&rdquo; -> &ldquo;little A&rdquo;, &ldquo;b&rdquo; -> &ldquo;little B&rdquo;)</p></li>
+<li><p>The -> is a function that create a Tuple</p></li>
+<li>and so this is like building a Map from a list of Tuples
+
+<ul>
+<li>ie (Key, Value) pairs</li>
+</ul>
+</li>
+</ul>
+
+
+<p>&nbsp;</p>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/mutable/Map$.html">Api docs for Map</a></h5>
+
+<ul>
+<li><p>We can contruct a Map like this:</p>
+
+<p>  val myMap = Map(&ldquo;a&rdquo; -> &ldquo;little A&rdquo;, &ldquo;b&rdquo; -> &ldquo;little B&rdquo;)</p></li>
+<li><p>The -> is a function that create a Tuple</p></li>
+<li>and so this is like building a Map from a list of Tuples
+
+<ul>
+<li>ie (Key, Value) pairs</li>
+</ul>
+</li>
+</ul>
+
+
+<p><img src="/images/codeweaver/uglycode/map-api-doc.png" style="max-width: 80%" alt="api doc for map"/></p>
+
+<p></section></p>
+
+<p>This makes sense. A <code>Map</code> can be thought of as a list of Key and Value pairs.</p>
+
+<p>So if I can convert my <code>List</code> into a list of Key/Value pairs, ie a <code>Tuple2</code> or <code>(Key,Value)</code>,
+I should be able to turn it into a Map.</p>
+
+<p><section data-slide></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/immutable/List.html#toMap[T,U]:scala.collection.Map[T,U]">Api docs for List</a></h5>
+
+<ul>
+<li><p>If only there was a way to turn a list of tuples into a Map</p></li>
+<li><p>&nbsp;</p></li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/immutable/List.html#toMap[T,U]:scala.collection.Map[T,U]">Api docs for List</a></h5>
+
+<ul>
+<li><p>If only there was a way to turn a list of tuples into a Map</p></li>
+<li><p><img src="/images/codeweaver/uglycode/list-api-1.png" style="max-width: 80%" alt="api doc for List"/></p></li>
+</ul>
+
+
+<p></section></p>
+
+<p>Awesome. I can do it using the standard library.</p>
+
+<p><section data-slide></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/immutable/List.html">Api docs for List</a></h5>
+
+<ul>
+<li>So we can build a map from a list but what about a <code>Map</code> of <code>Maps</code>?</li>
+<li><p>&nbsp;</p></li>
+<li><p>&nbsp;</p></li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/immutable/List.html">Api docs for List</a></h5>
+
+<ul>
+<li>So we can build a <code>Map</code> from a list but what about a <code>Map</code> of <code>Maps</code>?</li>
+<li><p>If only there was a way to group list items by some attribute</p></li>
+<li><p>&nbsp;</p></li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/immutable/List.html">Api docs for List</a></h5>
+
+<ul>
+<li>So we can build a <code>Map</code> from a list but what about a <code>Map</code> of <code>Maps</code>?</li>
+<li><p>If only there was a way to group list items by some attribute</p></li>
+<li><p><img src="/images/codeweaver/uglycode/list-api-2.png" style="max-width: 80%" alt="api doc for List"/></p></li>
+</ul>
+
+
+<p></section></p>
+
+<p>Mmm. This is giving me a clue. Maybe I can refactor this.</p>
+
+<p><section data-figure></p>
+
+<h3>Lets create a better Map of Maps</h3>
+
+<h5><a href="https://www.scala-lang.org/api/2.12.2/scala/collection/immutable/List.html">Api docs for List</a></h5>
+
+<ul>
+<li>So this is cool we an turn a <code>List</code> of <code>Tuple2</code> into a <code>Map</code></li>
+<li><p>We can also group a <code>List</code> into a <code>Map</code> with a <code>List</code> as its values</p></li>
+<li><p>So if the value <code>List</code> could be transformed into a Tuple</p>
+
+<ul>
+<li>we have th building blocks for a Map of Maps
+</section></li>
+</ul>
+</li>
+</ul>
+
+
+<p>This is good I&rsquo;m getting a raging clue now.</p>
+
+<p><section data-figure></p>
+
+<h6>Lets do it - fix Map of Maps trial 1</h6>
+
+<ul>
+<li>git checkout start_1</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h6>Lets do it - fix Map of Maps trail 2</h6>
+
+<ul>
+<li>git checkout start_2</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h6>Lets do it - fixed Map of Maps</h6>
+
+<ul>
+<li>git checkout start_3</li>
+</ul>
+
+
+<p></section></p>
+
+<p>That was great. Now I have a functional tool to construct maps and maps of maps.</p>
+
+<pre><code>List.groupBy
+</code></pre>
+
+<h3>Now fix the ugly foreach</h3>
+
+<p>Ok now that is done lets look at the ugle walk of the xtrades (cross trades) list using foreach.</p>
+
+<p>While its better than a forloop (which could adds another possible iteration bug) the body of the foreach is convoluted.
+The problem is that it is doing too many things at once.</p>
+
+<p>I need to break it down into smaller problems which will not only make it easier to test and debug but will structure the code around clearer thinking.</p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach</h3>
+
+<ul>
+<li>Instead of trying to do 3 things
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach</h3>
+
+<ul>
+<li>Instead of trying to do 3 things
+
+<ul>
+<li>walk trades looking for a historic price miss</li>
+<li>&nbsp;</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach:</h3>
+
+<ul>
+<li>Instead of trying to do 3 things
+
+<ul>
+<li>walk trades looking for a historic price miss</li>
+<li>fetch the new historic price</li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach:</h3>
+
+<ul>
+<li>Instead of trying to do 3 things
+
+<ul>
+<li>walk trades looking for a historic price miss</li>
+<li>fetch the new historic price</li>
+<li>add it to Map of Maps
+
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach:</h3>
+
+<ul>
+<li>Instead of trying to do 3 things
+
+<ul>
+<li>walk trades looking for a historic price miss</li>
+<li>fetch the new historic price</li>
+<li>add it to Map of Maps
+
+<ul>
+<li>looking out to see if we have the key or not first</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach:</h3>
+
+<ul>
+<li>Instead of trying to do 3 things
+
+<ul>
+<li>walk trades looking for a historic price miss</li>
+<li>fetch the new historic price</li>
+<li>add it to Map of Maps
+
+<ul>
+<li>looking out to see if we have the key or not first</li>
+<li>and if not adding else just adding</li>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Lets fix that ugly foreach:</h3>
+
+<ul>
+<li>Instead of trying to do 3 things
+
+<ul>
+<li>walk trades looking for a historic price miss</li>
+<li>fetch the new historic price</li>
+<li>add it to Map of Maps
+
+<ul>
+<li>looking out to see if we have the key or not first</li>
+<li>and if not adding else just adding</li>
+<li>again looking to see if we have the nested key etc..</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach - why not this?</h3>
+
+<ul>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach - why not this?</h3>
+
+<ul>
+<li>Filter the list of trades
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>Lets fix that ugly foreach - why not this?</h3>
+
+<ul>
+<li>Filter the list of trades
+
+<ul>
+<li>to create a List of trades that dont have a price</li>
+</ul>
+</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Lets fix that ugly foreach - why not this?</h3>
+
+<ul>
+<li>Filter the list of trades
+
+<ul>
+<li>to create a List of trades that dont have a price</li>
+</ul>
+</li>
+<li>Then just get them</li>
+<li>I can worry about how to stuff the new prices in the <code>PriceTable</code> later</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>Lets do it</h4>
+
+<ul>
+<li>git checkout start_4</li>
+</ul>
+
+
+<p></section></p>
+
+<p>That was simple. As a side benefit, now I am not iterativley Building the lists and Maps, I can get rid of all the <code>var</code> placeholder <code>Maps</code> and <code>Buffers</code></p>
+
+<p>A close look at the the code shows that I was able to stuff the new prices into the imutable <code>PriceTable</code> by folding down the new prices.</p>
+
+<p><section data-figure></p>
+
+<h4>Add to imutable <code>PriceTable</code></h4>
+
+<ul>
+<li>use a fold</li>
+<li>have the starting accumulator be the current <code>PriceTable</code></li>
+</ul>
+
+
+<p><img src="/images/codeweaver/uglycode/fold-prices.png" style="max-width: 80%" alt="api doc for List"/></p>
+
+<p></section></p>
+
+<p>Ok</p>
+
+<p><section data-slide></p>
+
+<h3>so &hellip;?</h3>
+
+<ul>
+<li>We&rsquo;ve tidied most of it up
+
+<ul>
+<li>by mapping and filtering and folding we dont need <code>var</code> placeholders anymore</li>
+</ul>
+</li>
+<li><p>&nbsp;</p></li>
+<li><p>&nbsp;</p></li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>so &hellip;?</h3>
+
+<ul>
+<li>We&rsquo;ve tidied most of it up
+
+<ul>
+<li>by mapping and filtering and folding we dont need <code>var</code> placeholders anymore</li>
+</ul>
+</li>
+<li><p>Can I get onto the fun stuff?</p></li>
+<li><p>&nbsp;</p></li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-slide></p>
+
+<h3>so can I prematurely optimize yet?</h3>
+
+<ul>
+<li>We&rsquo;ve tidied most of it up
+
+<ul>
+<li>by mapping and filtering and folding we dont need <code>var</code> placeholders anymore</li>
+</ul>
+</li>
+<li><p>Can I get onto the fun stuff?</p></li>
+<li><p>so can i tune it up a bit?</p></li>
+<li>&nbsp;
+
+<ul>
+<li>&nbsp;</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p>So now the code is tidy and manageble, is it time for me to speed up that slow price fetch from the internet?</p>
+
+<p><section data-figure></p>
+
+<h3>so can I prematurely optimize yet?</h3>
+
+<ul>
+<li>We&rsquo;ve tidied most of it up
+
+<ul>
+<li>by mapping and filtering and folding we dont need <code>var</code> placeholders anymore</li>
+</ul>
+</li>
+<li><p>Can I get onto the fun stuff?</p></li>
+<li><p>Can i tune it up a bit?</p></li>
+<li>Yes by fetching in parallel.
+
+<ul>
+<li>which is now trivial as I have simple collections to work with.</li>
+</ul>
+</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>so can I prematurely optimize yet?</h3>
+
+<ul>
+<li>I will use <code>scalaz</code> Task</li>
+<li>to wrap the get historic prices function</li>
+<li>and return a List[Task[PriceTableForCurrency]]</li>
+<li>rather than a List[PriceTableForCurrency]</li>
+<li>then gather all the tasks in parallel</li>
+<li>to give me back a List[PriceTableForCurrency]</li>
+</ul>
+
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h6>Lets do it</h6>
+
+<pre><code>$ git checkout start_5
+$ # clear out the existing prefetched prices
+$ cat /dev/null &gt;  $HOME/uglycode/coinspotpos/historicPrices.csv
+$ sbt clean run
+</code></pre>
+
+<p></section></p>
+
+<p>So lets have a look at how much tidier the code is now.</p>
+
+<p><section data-figure></p>
+
+<h3>Ugly?</h3>
+
+<h5><a href="https://github.com/karlroberts/scalasydUglyCode/blob/start/src/main/scala/historicprices/provider/api.scala">source code location</a></h5>
+
+<p><img src="/images/codeweaver/uglycode/start.png" style="max-width: 80%" alt="api doc for List"/></p>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h3>Pretty?</h3>
+
+<h5><a href="https://github.com/karlroberts/scalasydUglyCode/blob/finish/src/main/scala/historicprices/provider/api.scala">source code location</a></h5>
+
+<p><img src="/images/codeweaver/uglycode/pretty.png" style="max-width: 80%" alt="api doc for List"/></p>
+
+<p></section></p>
+
+<p>Nice.</p>
+
+<p><section data-slide></p>
+
+<h4>The End</h4>
+
+<p></section></p>
+
+<p><section data-figure></p>
+
+<h4>Thanks &hellip;.</h4>
+
+<ul>
+<li><p>me @MrK4rl</p></li>
+<li><p>code used in demo <a href="https://github.com/karlroberts/scalasydUglyCode">https://github.com/karlroberts/scalasydUglyCode</a></p></li>
+<li>deck and talk (<a href="http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=deck#slide-0">http://karlcode.owtelse.com/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/?mode=deck#slide-0</a>)</li>
+</ul>
+
+
+<p></section></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Karl Roberts</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-04-30T22:06:35+00:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>10:06 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/idomatic/'>idomatic</a>, <a class='category' href='/blog/categories/scala/'>scala</a>, <a class='category' href='/blog/categories/scalasyd/'>scalasyd</a>, <a class='category' href='/blog/categories/suited-dot-js/'>suited.js</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://karlroberts.github.io/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/" data-via="MrK4rl" data-counturl="http://karlroberts.github.io/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/09/19/polipay-considered-harmful/" title="Previous Post: POLi payments considered harmful">&laquo; POLi payments considered harmful</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/">Refactoring Ugly Scala to Idiomatic Scala</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/09/19/polipay-considered-harmful/">POLi Payments Considered Harmful</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/07/09/scala-js-markdown-combinator-parser/">ScalaJs Markdown Combinator Parser</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/11/the-rise-and-hopefully-fall-of-the-aux-pattern-2/">The Rise and (Hopefully) Fall of the Aux Pattern</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/15/python-is-faster-than-node-dot-js/">AWS Lambda Launch Times - Is Python Faster Than Node.js ?</a>
+      </li>
+    
+  </ul>
+</section>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="6142720898"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+</script>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'karlroberts',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- karlcode-leader1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2688887005119521" data-ad-slot="4526386891"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- <p> adsense here todo... </p> -->
+<p>
+Copyright &copy; 2018 - Karl Roberts -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'karlcode';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://karlroberts.github.io/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/';
+        var disqus_url = 'http://karlroberts.github.io/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript" src="/scripts/suited.js"></script>
+	<script type="text/javascript">
+	var suited = {
+	  config: {
+	   "foo": "bar",
+	   "plugins": {
+	    //  "MarkdownPlugin": {
+	    //    "html": true
+	    //  }
+	   }
+
+	  }
+	};
+  </script>
+
+
+
+</body>
+</html>
