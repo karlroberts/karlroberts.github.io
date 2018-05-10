@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Idomatic | Karl's Code]]></title>
   <link href="http://karlroberts.github.io/blog/categories/idomatic/atom.xml" rel="self"/>
   <link href="http://karlroberts.github.io/"/>
-  <updated>2018-05-10T01:03:33+00:00</updated>
+  <updated>2018-05-10T01:11:03+00:00</updated>
   <id>http://karlroberts.github.io/</id>
   <author>
     <name><![CDATA[Karl Roberts]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Refactoring Ugly Scala to Idiomatic Scala]]></title>
-    <link href="http://karlroberts.github.io/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala/"/>
-    <updated>2018-04-30T22:06:35+00:00</updated>
-    <id>http://karlroberts.github.io/blog/2018/04/30/refactoring-ugly-scala-to-idiomatic-scala</id>
+    <link href="http://karlroberts.github.io/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala/"/>
+    <updated>2018-05-09T22:06:35+00:00</updated>
+    <id>http://karlroberts.github.io/blog/2018/05/09/refactoring-ugly-scala-to-idiomatic-scala</id>
     <content type="html"><![CDATA[<p>This Blog is my (#Scalasyd)[<a href="https://github.com/scalasyd/scalasyd">https://github.com/scalasyd/scalasyd</a>] talk about refactoring Scala code to be more idiomatic <!-- more --></p>
 
 <p><small>It is also a slide deck for the talk given at the ScalaSyd meetup May 2018.<br/>
