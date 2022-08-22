@@ -14,8 +14,12 @@
 <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
 <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'
          gesture-detector>
+<!--    <a-assets>-->
+<!--        <a-asset-item id="my_cube" src="/programming/AR/test2/greencube.gltf"></a-asset-item>-->
+<!--    </a-assets>-->
+
     <a-assets>
-        <a-asset-item id="my_cube" src="/programming/AR/test2/greencube.gltf"></a-asset-item>
+        <a-asset-item id="my_cube" src="/programming/AR/test2/dougnut2_limitedDisolve.gltf"></a-asset-item>
     </a-assets>
     <a-marker id="animated-marker" preset="hiro" raycaster="objects: .clickable"
               emitevents="true"
