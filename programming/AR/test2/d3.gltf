@@ -1,0 +1,203 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.1.46",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "icing",
+            "scale" : [
+                0.05000000074505806,
+                0.05000000074505806,
+                0.05000000074505806
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "pinkicing",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.8882825970649719,
+                    0.3323104977607727,
+                    0.736198902130127,
+                    0.949999988079071
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.1460251808166504
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "dougnut",
+            "pbrMetallicRoughness" : {
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.7552301287651062
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Torus.003",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                },
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 1
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 11388,
+            "max" : [
+                1.2227455377578735,
+                0.5297977924346924,
+                1.2278318405151367
+            ],
+            "min" : [
+                -1.2544299364089966,
+                -0.27170321345329285,
+                -1.2175906896591187
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 11388,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 11388,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 68184,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 65144,
+            "max" : [
+                1.173728585243225,
+                0.5045943260192871,
+                1.2250648736953735
+            ],
+            "min" : [
+                -1.1764659881591797,
+                -0.4986588656902313,
+                -1.1988322734832764
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 65144,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 65144,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 386052,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 136656,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 136656,
+            "byteOffset" : 136656
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 91104,
+            "byteOffset" : 273312
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 136368,
+            "byteOffset" : 364416
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 781728,
+            "byteOffset" : 500784
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 781728,
+            "byteOffset" : 1282512
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 521152,
+            "byteOffset" : 2064240
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 772104,
+            "byteOffset" : 2585392
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 3357496,
+            "uri" : "d3.bin"
+        }
+    ]
+}
