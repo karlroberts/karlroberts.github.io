@@ -6,18 +6,28 @@
 <script src=”https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <body style="margin : 0px; overflow: hidden;">
 <a-scene embedded arjs>
-    <a-marker preset="hiro">
+
+    <a-assets>
+        <a-asset-item id="my_dougnut" src="/programming/AR/test2/dougnut2_limitedDisolve.gltf"></a-asset-item>
+    </a-assets>
+
+    <a-marker preset="hiro" raycaster="objects: .clickable" emitevents="true"
+              cursor="fuse: false; rayOrigin: mouse;"
+              smooth="true">
 <!--        <a-entity-->
 <!--                position="0 0 0"-->
 <!--                scale="0.05 0.05 0.05"-->
 <!--                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"-->
 <!--        ></a-entity>-->
 
-                <a-entity
-                        position="0 0 0"
-                        scale="2.05 2.05 2.05"
-                        gltf-model-next="src: url(/programming/AR/test2/dougnut2_limitedDisolve.gltf);"
-                ></a-entity>
+        <a-entity
+                gltf-model="#my_dougnut"
+                scale="35 35 35"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler="minScale: 0.25; maxScale: 10"
+        rotation="0 0 0">
+        </a-entity>
 
 <!--        <a-entity-->
 <!--                position="0 0 0"-->
