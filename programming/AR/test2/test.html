@@ -11,8 +11,28 @@
 <!--    <div style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Loading, please wait...</div>-->
 <!--</div>-->
 
+
+<script>
+    AFRAME.registerComponent('modify-materials', {
+        init: function () {
+            // Wait for model to load.
+            this.el.addEventListener('model-loaded', () => {
+                // Grab the mesh / scene.
+                const obj = this.el.getObject3D('mesh');
+                // Go over the submeshes and modify materials we want.
+                obj.traverse(node => {
+                    if (node.name.indexOf('ship') !== -1) {
+                        node.material.color.set('red');
+                    }
+                });
+            });
+        }
+    });
+</script>
+
+
 <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
-<a-scene>
+<a-scene background="color: #ECECEC">
 <!--<a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'-->
 <!--         gesture-detector>-->
 <!--    <a-assets>-->
