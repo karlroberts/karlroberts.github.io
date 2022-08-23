@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+
+<!--<script src=”https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>-->
+
+<body style='margin : 0px; overflow: hidden;'>
+<!--<div class="arjs-loader">-->
+<!--    <div style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Loading, please wait...</div>-->
+<!--</div>-->
+
+<!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
+<a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'
+         gesture-detector>
+<!--    <a-assets>-->
+<!--        <a-asset-item id="my_cube" src="/programming/AR/test2/greencube.gltf"></a-asset-item>-->
+<!--    </a-assets>-->
+
+    <a-assets>
+        <a-asset-item id="my_d3" src="/programming/AR/test2/d3.gltf"></a-asset-item>
+    </a-assets>
+    <a-marker id="animated-marker" preset="hiro" raycaster="objects: .clickable"
+              emitevents="true"
+              cursor="fuse: false; rayOrigin: mouse;"
+              smooth="true">
+
+        <!--        <a-entity-->
+        <!--                position="0 0 0"-->
+        <!--                scale="0.05 0.05 0.05"-->
+        <!--                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"-->
+        <!--        ></a-entity>-->
+
+        <a-entity
+                gltf-model="#my_d3"
+                scale="10 10 10" <!--x y z parameters - play with scale depending on the size of your Blender export-->
+        position="0 0 0" <!--x y z parameters - amend if needed depending on the position of your Blender export-->
+        class="clickable"
+        gesture-handler="minScale: 0.25; maxScale: 10" <!--change these min and max to limit interaction in terms of size-->
+        rotation="0 0 0">
+        </a-entity>
+    </a-marker>
+<!--    <a-entity camera></a-entity>-->
+</a-scene>
+</body>
+</html>
