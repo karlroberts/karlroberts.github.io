@@ -62,6 +62,48 @@
         rotation="0 0 0">
         </a-entity>
     </a-marker>
+
+    <a-marker id="animated-marker" type="barcode" value="1" raycaster="objects: .clickable"
+              emitevents="true"
+              cursor="fuse: false; rayOrigin: mouse;"
+              smooth="true">
+
+        <!--        <a-entity-->
+        <!--                position="0 0 0"-->
+        <!--                scale="0.05 0.05 0.05"-->
+        <!--                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"-->
+        <!--        ></a-entity>-->
+
+        <a-entity
+                gltf-model="#my_d3"
+                scale="10 10 10" <!--x y z parameters - play with scale depending on the size of your Blender export-->
+        position="0 0 0" <!--x y z parameters - amend if needed depending on the position of your Blender export-->
+        class="clickable"
+        gesture-handler="minScale: 0.25; maxScale: 10" <!--change these min and max to limit interaction in terms of size-->
+        rotation="0 0 0">
+        </a-entity>
+    </a-marker>
+
+    <a-marker id="animated-marker" type="barcode" value="2" raycaster="objects: .clickable"
+              emitevents="true"
+              cursor="fuse: false; rayOrigin: mouse;"
+              smooth="true">
+
+        <!--        <a-entity-->
+        <!--                position="0 0 0"-->
+        <!--                scale="0.05 0.05 0.05"-->
+        <!--                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"-->
+        <!--        ></a-entity>-->
+
+        <a-entity
+                gltf-model="#my_d3"
+                scale="10 10 10" <!--x y z parameters - play with scale depending on the size of your Blender export-->
+        position="0 0 0" <!--x y z parameters - amend if needed depending on the position of your Blender export-->
+        class="clickable"
+        gesture-handler="minScale: 0.25; maxScale: 10" <!--change these min and max to limit interaction in terms of size-->
+        rotation="0 0 0">
+        </a-entity>
+    </a-marker>
     <a-entity camera></a-entity>
 </a-scene>
 </body>
